@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__meta-ads__ads_creative_upload_image",
+      "mcp__meta-ads__ads_activate_entity"
+    ]
+  }
+}
