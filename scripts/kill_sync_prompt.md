@@ -47,6 +47,21 @@ only rows whose `adset_id` is involved.
 Write `state/inbox/metrics_<account_id>.json` as a JSON array containing every returned ad
 row for the involved ad sets, with the field values exactly as returned (strings are fine).
 
+## Step 2b — currently active ad sets (replacement guard)
+Media buyers sometimes pause an ad set and re-create it under the same name. For each account
+with a non-empty kills file, call `ads_get_ad_entities` with `level: "adset"`, `limit: 1000`,
+`fields: ["id","name","effective_status"]`,
+`filtering: [{"field":"campaign_id","operator":"IN","value":[<test campaign id>]},
+             {"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`
+and write `state/inbox/active_adsets_<account_id>.json` as a JSON array of `{"id","name"}`.
+Write `[]` for accounts without kills.
+
+Note for Step 2: the `adset_id` filter can silently return `[]` for archived objects. When the
+kill was followed by archiving, add `{"field":"effective_status","operator":"IN",
+"value":["ACTIVE","PAUSED","ADSET_PAUSED","CAMPAIGN_PAUSED","ARCHIVED","WITH_ISSUES"]}` to the
+campaign_id query so archived ads are included. Missing metric fields are fine — write the
+rows as returned; the script prints n/a.
+
 ## Step 3 — run the sync
 Bash: `"${KILL_SYNC_PYTHON:-python3}" scripts/kill_sync.py process`
 (add `--dry-run` only if the environment variable KILL_SYNC_DRY_RUN=1).

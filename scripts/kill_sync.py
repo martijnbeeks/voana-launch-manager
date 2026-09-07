@@ -327,6 +327,8 @@ def process(dry: bool) -> int:
     for account, acc in cfg["accounts"].items():
         events = read_json(INBOX / f"kills_{account}.json", [])
         metrics = read_json(INBOX / f"metrics_{account}.json", [])
+        active_adsets = read_json(INBOX / f"active_adsets_{account}.json", [])
+        active_by_name = {a.get("name", "").strip(): str(a.get("id")) for a in active_adsets}
         by_id = {str(m.get("id")): m for m in metrics}
         by_adset: dict[str, list[dict]] = {}
         for m in metrics:
@@ -357,6 +359,10 @@ def process(dry: bool) -> int:
             actor = e.get("actor_name") or "unknown"
             if kind == "ad" and str(by_id.get(obj_id, {}).get("adset_id")) in killed_adsets:
                 new_rows.append({"key": key, "skipped": "covered by adset kill", "at": now.isoformat()})
+                continue
+            if kind == "adset" and active_by_name.get(name.strip()) not in (None, obj_id):
+                print(f"  ↻ adset {obj_id} · {name[:60]} · replaced by active {active_by_name[name.strip()]} — not a kill")
+                new_rows.append({"key": key, "skipped": f"replaced by {active_by_name[name.strip()]}", "at": now.isoformat()})
                 continue
 
             if kind == "adset":
@@ -464,7 +470,7 @@ def digest(dry: bool) -> int:
     tasks = ClickUpTasks()
     f = CONFIG["clickup"]["fields"]
     missing = [t for t in tasks.tasks
-               if t["status"]["status"] in (CONFIG["clickup"]["batch_kill_task_status"], "winner", "has potential")
+               if t["status"]["status"] == CONFIG["clickup"]["batch_kill_task_status"]
                and not (tasks.field_value(t, f["learnings"]) or "").strip()]
     missing.sort(key=lambda t: int(t.get("date_closed") or t.get("date_updated") or 0))
     if not missing:
