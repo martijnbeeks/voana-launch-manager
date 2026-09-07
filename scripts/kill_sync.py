@@ -219,22 +219,25 @@ class ClickUpTasks:
         return None
 
 
+SKIP_CLICKUP = os.environ.get("KILL_SYNC_SKIP_CLICKUP") == "1"
+
+
 def cu_comment(task_id: str, text: str, dry: bool):
-    if dry:
+    if dry or SKIP_CLICKUP:
         print(f"    [dry] comment on {task_id}:\n" + "\n".join("      " + l for l in text.splitlines()))
         return
     cu("POST", f"/task/{task_id}/comment", {"comment_text": text, "notify_all": False})
 
 
 def cu_set_field(task_id: str, field_id: str, value, dry: bool):
-    if dry:
+    if dry or SKIP_CLICKUP:
         print(f"    [dry] set field {field_id[:8]}… = {value!r}")
         return
     cu("POST", f"/task/{task_id}/field/{field_id}", {"value": value})
 
 
 def cu_set_status(task_id: str, status: str, dry: bool):
-    if dry:
+    if dry or SKIP_CLICKUP:
         print(f"    [dry] task status -> {status}")
         return
     cu("PUT", f"/task/{task_id}", {"status": status})
@@ -319,7 +322,7 @@ def process(dry: bool) -> int:
     cfg = CONFIG
     seen = ledger_keys()
     tasks = ClickUpTasks()
-    print(f"ClickUp: {len(tasks.tasks)} tasks loaded · webhook: "
+    print(f"ClickUp: {len(tasks.tasks)} tasks loaded{' · CLICKUP WRITES SKIPPED' if SKIP_CLICKUP else ''} · webhook: "
           f"{'dedicated' if WEBHOOK and not WEBHOOK_IS_FALLBACK else 'OPS FALLBACK' if WEBHOOK else 'NONE'}")
     new_rows, embeds, problems = [], [], []
     now = dt.datetime.now()
@@ -486,7 +489,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["process", "digest"])
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--skip-clickup", action="store_true", help="post Discord + record state, but do not write to ClickUp")
     a = ap.parse_args(argv)
+    global SKIP_CLICKUP
+    SKIP_CLICKUP = SKIP_CLICKUP or a.skip_clickup
     STATE.mkdir(exist_ok=True); INBOX.mkdir(exist_ok=True)
     return process(a.dry_run) if a.cmd == "process" else digest(a.dry_run)
 

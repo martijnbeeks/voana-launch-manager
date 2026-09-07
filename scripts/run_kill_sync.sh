@@ -10,6 +10,8 @@
 #   KILL_SYNC_PREFLIGHT_ONLY=1   stop after the pre-flight checks
 #   KILL_SYNC_DRY_RUN=1          fetch, but write nothing to ClickUp/Discord
 #   KILL_SYNC_DIGEST=1           also post the "learnings owed" digest
+#   KILL_SYNC_SKIP_CLICKUP=1     post Discord + record state, but leave ClickUp untouched
+#   KILL_SYNC_WINDOW_HOURS=36    override the poll window (default: since last_run.json)
 set -uo pipefail
 
 REPO="/Users/martijnbeeks/Development/voana-project/voana-launch-manager"
@@ -56,6 +58,8 @@ done
 [ -n "$KILL_SYNC_PYTHON" ] || { alert "🔴 **kill-sync did not run** — no usable python3"; exit 1; }
 export KILL_SYNC_PYTHON
 export KILL_SYNC_DRY_RUN="${KILL_SYNC_DRY_RUN:-}"
+export KILL_SYNC_SKIP_CLICKUP="${KILL_SYNC_SKIP_CLICKUP:-}"
+export KILL_SYNC_WINDOW_HOURS="${KILL_SYNC_WINDOW_HOURS:-}"
 
 print -r -- "preflight ok: claude $(claude --version 2>/dev/null | head -1) · python $("$KILL_SYNC_PYTHON" -V 2>&1)"
 if [ "${KILL_SYNC_PREFLIGHT_ONLY:-}" = "1" ]; then print -r -- "KILL_SYNC_PREFLIGHT_ONLY=1 — stopping."; exit 0; fi

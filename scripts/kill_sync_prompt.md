@@ -11,7 +11,8 @@ Use one `client_conversation_id` for all Meta calls (generate a random 20-char i
 
 ## Step 0 — window
 Read `state/last_run.json`. `start_time` = its `last_run` minus 2 hours, in ISO 8601 with the
-timezone offset of this Mac. If the file is missing, use now minus 36 hours.
+timezone offset of this Mac. If the file is missing, use now minus 36 hours. If the environment
+variable KILL_SYNC_WINDOW_HOURS is set, ignore the file and use now minus that many hours.
 
 ## Step 1 — pause events, per account
 Accounts (from `scripts/kill_sync_config.json`):
@@ -64,7 +65,8 @@ rows as returned; the script prints n/a.
 
 ## Step 3 — run the sync
 Bash: `"${KILL_SYNC_PYTHON:-python3}" scripts/kill_sync.py process`
-(add `--dry-run` only if the environment variable KILL_SYNC_DRY_RUN=1).
+(add `--dry-run` only if the environment variable KILL_SYNC_DRY_RUN=1; the script reads
+KILL_SYNC_SKIP_CLICKUP itself).
 If the script exits non-zero, print its full output — do not retry, do not "fix" ClickUp by hand.
 
 ## Step 4 — report
