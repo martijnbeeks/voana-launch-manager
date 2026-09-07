@@ -1,0 +1,59 @@
+{
+  "accounts": {
+    "758865990548177": {
+      "name": "CLN_0034_Kandy_Voana",
+      "test_campaigns": [
+        "120254492561360562"
+      ]
+    },
+    "1247693024067639": {
+      "name": "GetVoana - 1",
+      "test_campaigns": [
+        "120247451142810591"
+      ]
+    }
+  },
+  "clickup": {
+    "fields": {
+      "status": "266d9f7c-32eb-4201-b0e5-3a1378c0ccd9",
+      "result": "4a25efe8-d16f-421e-9483-8271d321c20b",
+      "learnings": "d7e04b82-e58c-4210-af33-3613009ed6b2",
+      "launch_date": "61f939fb-4060-46f9-997e-d3529e2671b2"
+    },
+    "status_options": {
+      "Not Tested": "3abcd89a-5f7e-495e-920f-8f2b225d81e2",
+      "In Testing": "51a1b7b8-ff4e-47b2-b767-7ff8e8ce6b23",
+      "Losing Ad": "efe3a98a-836c-4dcf-935a-d302fda5b138",
+      "Has Potential": "ef80ed66-b328-4714-81ca-511694c8d028",
+      "Winning Ad": "1263232e-7a26-4ede-8ca9-3e055230db8c",
+      "Super Winner": "edf6cc07-b046-4fe4-9452-644b5c5e9ce4"
+    },
+    "batch_kill_task_status": "killed",
+    "overridable_statuses": [
+      "",
+      "Not Tested",
+      "In Testing"
+    ],
+    "list_ids": {
+      "media": "901819973378",
+      "launch_manager": "901819973363"
+    },
+    "protected_task_statuses": [
+      "winner",
+      "has potential",
+      "complete"
+    ]
+  },
+  "ignore_actors": [
+    "Meta"
+  ],
+  "ignore_applications": [
+    "ads MCP server"
+  ],
+  "run_status_codes": {
+    "1": "ACTIVE",
+    "7": "PAUSED",
+    "9": "PENDING_REVIEW",
+    "17": "IN_PROCESS"
+  }
+}

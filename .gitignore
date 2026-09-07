@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+state/inbox/
+state/kill-sync.log
+__pycache__/

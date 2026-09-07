@@ -346,6 +346,14 @@ order, which is by batch number, not the list API's `orderindex`.
   **immediate** start; check `start_time` on existing sets before assuming the
   midnight slot is free — on 2026-09-07 it already held S016 from someone else.
 
+**Lists and the auto-move:** `Launch Manager` (`901819973363`, statuses ready for
+launch → launched → complete) is only the queue. A ClickUp automation moves a task to
+the **Media** list (`901819973378`) the moment it becomes `launched`, where it lands as
+`learning`; Media's outcome statuses are `killed` / `winner` / `has potential` /
+`rejected` / `complete`. So after launch, look for the task in Media, not Launch Manager.
+Custom fields (`Status`, `Result`, `📖 Learnings`, `Launch Date`, `Page`) are shared
+across both lists with identical IDs (see `scripts/kill_sync_config.json`).
+
 **Write-back after launch:** `PUT /task/{id}` `{"status":"launched"}`, then
 `POST /task/{id}/field/{field_id}` for `Launch Date` (ms epoch), `Page`
 (option UUID) and any corrected `Batch number *` (S070's said "S067"). Also add
@@ -387,12 +395,37 @@ Local (no auth): macOS `sips` converts PNG→JPEG q92 before staging.
 
 ---
 
+## Kill-sync (Meta pause → ClickUp + Discord) — runs on Martijn's Mac
+
+Twice daily (08:45 / 20:45 local, LaunchAgent `com.voana.kill-sync`) a headless
+Claude run follows `scripts/kill_sync_prompt.md`: it reads both test accounts'
+activity logs via the Meta MCP, writes the human pause events (run_status 1→7,
+not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
+`state/inbox/`, then `scripts/kill_sync.py process` does the deterministic part:
+- ad killed → comment on the Media task with actor, days live, spend, purchases,
+  CPA, CTR, CPC and what is still running; Discord embed.
+- whole ad set killed → task status `killed`, `Status` = Losing Ad (only if it
+  was empty / Not Tested / In Testing), `Result` = one-line summary, comment with
+  the per-ad table, Discord embed asking for 📖 Learnings. Never touches Learnings
+  and never downgrades winner / has potential / complete.
+- morning run also posts a digest of killed batches still without learnings.
+Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
+`scripts/com.voana.kill-sync.plist`, `state/kills.jsonl` (append-only ledger,
+dedupes re-runs), `state/last_run.json` (poll window), `state/kill-sync.log`.
+Secrets in `.env` (gitignored): `CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_URL`
+(falls back to the ops webhook in `../voana-tools/.env` until set). Test with
+`KILL_SYNC_DRY_RUN=1 zsh scripts/run_kill_sync.sh`. Full design: `docs/kill-sync-plan.md`.
+Guardrail: the job is **read-only on Meta**.
+
 ## Repo layout (target)
 
 ```
 CLAUDE.md            # this file — the operating manual
 launches/            # one file per launch: YYYY-MM-DD-batch-<n>.md (batch, creator,
                      #   creatives, budget, ad set / ad IDs, links)
+docs/                # design docs (kill-sync-plan.md)
+scripts/             # kill_sync.py + prompt + launchd wrapper/plist
+state/               # kill-sync ledger + poll window (inbox/ and log are gitignored)
 creatives/           # briefs & metadata for creative batches (not raw video files)
 scripts/             # helper scripts (batch launch, winner promotion, reporting)
 reports/             # generated performance snapshots

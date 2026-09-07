@@ -1,6 +1,6 @@
 # Kill-sync: Meta ad kills → ClickUp status + Discord alert
 
-Status: **plan, not built** (2026-09-07). Goal: when a media buyer pauses ("kills") a test
+Status: **built 2026-09-07, runs locally** — Martijn chose this Mac over GitHub Actions, twice daily. Implementation notes at the bottom; §2–§3 describe the original GitHub-Actions design. Goal: when a media buyer pauses ("kills") a test
 ad or ad set in Ads Manager, the matching ClickUp Launch Manager task gets updated
 automatically and the team gets a Discord message with the numbers, so the learnings
 (format, angle, avatar, awareness, page, lander) can be filled in by hand while the
@@ -113,3 +113,25 @@ Effort: steps 4–9 are one working session once 1–3 are in place.
 - Tokens: a System User token does not expire but is revoked if the system user is
   removed from the account; the workflow should post a Discord alert on any 4xx from Meta.
 - The Meta MCP is not usable from GitHub Actions; the script talks to the Graph API directly.
+
+## 6. As built (2026-09-07)
+
+- Runs as LaunchAgent `com.voana.kill-sync` on Martijn's MacBook at 08:45 and 20:45 local
+  (mirrors `voana-tools/scripts/run_daily_hooks.sh`): `scripts/run_kill_sync.sh` → headless
+  `claude -p` with `scripts/kill_sync_prompt.md` → `scripts/kill_sync.py process`.
+- **Why headless Claude for the Meta half:** the only Meta credential on this Mac is the
+  `meta-ads` MCP (user-scope, `https://mcp.facebook.com/ads`); the System-User token lives in
+  the retire-dip-alerts Key Vault, not locally. The Claude run only fetches and writes JSON;
+  ClickUp + Discord writes are deterministic Python.
+- **Detection is activity-log driven, not snapshot driven:** a kill = activity event with
+  `run_status` 1→7 (or 9→7), actor ≠ Meta, not our own 17→7 launch flow. No full ad inventory
+  has to pass through the model — only the handful of kill events plus metrics for the ad sets
+  involved.
+- **ClickUp target is the Media list** (`901819973378`), not Launch Manager: an automation
+  moves tasks there on `launched` (status `learning`). Batch kill → status `killed`
+  (Media has `killed` / `winner` / `has potential` / `rejected` / `complete`).
+- Winner rule (§2) is NOT implemented in v1: the sync never overrides a human-set `Status`
+  (Has Potential / Winning Ad / Super Winner) or task status (`winner` / `has potential` /
+  `complete`); it only fills empty / Not Tested / In Testing.
+- Discord: `KILL_SYNC_DISCORD_WEBHOOK_URL` in `.env`; until set, posts go to the ops webhook
+  with a footnote. Sheet `#nnn` batches are not written back (v2).
