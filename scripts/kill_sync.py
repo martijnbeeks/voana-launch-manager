@@ -276,6 +276,77 @@ def task_url(task: dict | None) -> str:
     return f"https://app.clickup.com/t/{task['id']}" if task else ""
 
 
+# ── ClickUp metric reporting (Result field + checklist) ──────────────────────
+CHECKLIST_NAME = "Ad performance"
+AD_LINE_RE = re.compile(r"^(C\d+|V\d+)\b")
+
+
+def ad_line(m: dict, killed_on: dt.datetime | None = None) -> str:
+    """One compact line per creative for the Result field / checklist item:
+    'C3 ✖09-09 · $38.90 · 0 purch · CPA n/a · CTR 1.34% · CPC $0.97 · 2,977 impr · 2d'"""
+    spend, purch = num(m.get("amount_spent")), count(m.get("purchases"))
+    cpa = m.get("cost_per_purchase")
+    if num(cpa) is None and spend and purch:
+        cpa = spend / purch
+    mark = f"✖{killed_on:%m-%d}" if killed_on else ("▶" if m.get("effective_status") == "ACTIVE" else "⏸")
+    live = days_live(m.get("created_time"), killed_on)
+    return (f"{creative_no(m.get('name', ''))} {mark} · {money(m.get('amount_spent'))} · {purch} purch · "
+            f"CPA {money(cpa)} · CTR {pct(m.get('ctr'))} · CPC {money(m.get('cpc'))} · "
+            f"{count(m.get('impressions')):,} impr · {live if live is not None else '?'}d")
+
+
+def merge_result(existing: str | None, new_lines: list[str], header: str | None) -> str:
+    """Keep one line per creative (newest wins), optional header on top."""
+    lines = {}
+    old_header = None
+    for l in (existing or "").splitlines():
+        l = l.strip()
+        if not l:
+            continue
+        m = AD_LINE_RE.match(l)
+        if m:
+            lines[m.group(1)] = l
+        elif old_header is None and l.startswith("KILLED"):
+            old_header = l
+    for l in new_lines:
+        m = AD_LINE_RE.match(l)
+        if m:
+            lines[m.group(1)] = l
+    def order(k):  # C1, C2, … C10 numerically
+        return (k[0], int(k[1:]))
+    body = [lines[k] for k in sorted(lines, key=order)]
+    head = header or old_header
+    return "\n".join(([head] if head else []) + body)
+
+
+def upsert_checklist(task: dict, ads: list[dict], killed_ids: set[str], when: dt.datetime, dry: bool):
+    """One checklist item per creative, name = metrics line, resolved when dead."""
+    if not ads:
+        return
+    cl = next((c for c in task.get("checklists", []) if c.get("name") == CHECKLIST_NAME), None)
+    if cl is None:
+        if dry or SKIP_CLICKUP:
+            print(f"    [dry] create checklist '{CHECKLIST_NAME}'")
+            cl = {"id": "dry", "items": []}
+        else:
+            cl = cu("POST", f"/task/{task['id']}/checklist", {"name": CHECKLIST_NAME}).get("checklist", {})
+            task.setdefault("checklists", []).append(cl)
+    items = {creative_no(i.get("name", "")): i for i in cl.get("items", [])}
+    for a in sorted(ads, key=lambda a: a.get("name", "")):
+        code = creative_no(a.get("name", ""))
+        dead = str(a.get("id")) in killed_ids or a.get("effective_status") not in ("ACTIVE", "IN_PROCESS", "PENDING_REVIEW")
+        line = ad_line(a, when if str(a.get("id")) in killed_ids else None)
+        body = {"name": line, "resolved": bool(dead)}
+        item = items.get(code)
+        if dry or SKIP_CLICKUP:
+            print(f"    [dry] checklist {'update' if item else 'add'}: {line}{' [resolved]' if dead else ''}")
+            continue
+        if item:
+            cu("PUT", f"/checklist/{cl['id']}/checklist_item/{item['id']}", body)
+        else:
+            cu("POST", f"/checklist/{cl['id']}/checklist_item", body)
+
+
 # ── state ────────────────────────────────────────────────────────────────────
 def read_json(p: Path, default):
     try:
@@ -399,6 +470,12 @@ def process(dry: bool) -> int:
                             f"Still running: {', '.join(still) if still else 'none'}\n"
                             f"{ads_manager_url(account, 'ad', obj_id)}")
                     cu_comment(task["id"], text, dry)
+                    siblings = by_adset.get(str(m.get("adset_id")), []) if m else []
+                    if m:
+                        merged = merge_result(tasks.field_value(task, cfg["clickup"]["fields"]["result"]),
+                                              [ad_line(m, when)], None)
+                        cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merged, dry)
+                    upsert_checklist(task, siblings or ads, {obj_id}, when, dry)
                 else:
                     lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
                     tot_spend = sum(num(a.get("amount_spent")) or 0 for a in ads)
@@ -412,6 +489,13 @@ def process(dry: bool) -> int:
                     lines.append(result)
                     lines.append("→ fill in 📖 Learnings")
                     cu_comment(task["id"], "\n".join(lines), dry)
+                    # every ad in the set is dead now; ads killed earlier keep their own ✖ date
+                    prior = tasks.field_value(task, cfg["clickup"]["fields"]["result"]) or ""
+                    earlier = {AD_LINE_RE.match(l.strip()).group(1) for l in prior.splitlines()
+                               if AD_LINE_RE.match(l.strip()) and "✖" in l}
+                    table = [ad_line(a, when) for a in ads if creative_no(a.get("name", "")) not in earlier]
+                    result = merge_result(prior, table, result)
+                    upsert_checklist(task, ads, {str(a.get("id")) for a in ads}, when, dry)
                     cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""
                     if cur in cfg["clickup"]["overridable_statuses"]:
                         cu_set_field(task["id"], cfg["clickup"]["fields"]["status"],

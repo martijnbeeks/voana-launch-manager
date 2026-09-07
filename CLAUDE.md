@@ -402,12 +402,18 @@ Claude run follows `scripts/kill_sync_prompt.md`: it reads both test accounts'
 activity logs via the Meta MCP, writes the human pause events (run_status 1→7,
 not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
 `state/inbox/`, then `scripts/kill_sync.py process` does the deterministic part:
-- ad killed → comment on the Media task with actor, days live, spend, purchases,
-  CPA, CTR, CPC and what is still running; Discord embed.
-- whole ad set killed → task status `killed`, `Status` = Losing Ad (only if it
-  was empty / Not Tested / In Testing), `Result` = one-line summary, comment with
-  the per-ad table, Discord embed asking for 📖 Learnings. Never touches Learnings
-  and never downgrades winner / has potential / complete.
+- ad killed → comment on the Media task (actor, days live, spend, purchases, CPA,
+  CTR, CPC, what is still running); a `C3 ✖09-09 · $38.90 · 0 purch · CPA n/a ·
+  CTR 1.34% …` line merged into the `Result` field; checklist "Ad performance"
+  updated (one item per creative with its numbers, ticked when dead); Discord embed.
+- whole ad set killed → task status `killed`, `Status` = Losing Ad (only if it was
+  empty / Not Tested / In Testing), `Result` = `KILLED <date> after N days · $ ·
+  purchases · CPA · by <actor>` header plus the per-creative lines (earlier ✖ dates
+  kept), checklist fully ticked, comment with the per-ad table, Discord embed asking
+  for 📖 Learnings. Never touches Learnings and never downgrades winner / has
+  potential / complete.
+- `KILL_SYNC_SKIP_CLICKUP=1` (currently set in the installed plist, 2026-09-07) keeps
+  Discord + ledger live but leaves ClickUp untouched until Martijn switches it on.
 - morning run also posts a digest of killed batches still without learnings.
 Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
 `scripts/com.voana.kill-sync.plist`, `state/kills.jsonl` (append-only ledger,
