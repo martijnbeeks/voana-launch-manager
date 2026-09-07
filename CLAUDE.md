@@ -18,7 +18,7 @@ Proven angles: rash/chafing relief and GLP-1 loose-skin chafing. Markets: US, CA
 | Account | ID | Role | Currency |
 |---|---|---|---|
 | CLN_0034_Kandy_Voana (CLNG4) | `758865990548177` | **Main media-buying account.** All testing + scaling happens here. | USD |
-| GetVoana - 1 (Voana) | `1247693024067639` | Secondary/backup. "KATECHON X VOANA" ABO campaign (currently dormant — active campaign, no active ad sets). | USD |
+| GetVoana - 1 (Voana) | `1247693024067639` | **Second live test account** (since 2026-09-06). Runs `ABO: Test Campaign USA V2` (`120247451142810591`, the S-series batches from ClickUp, $20/day per ad set), the `KATECHON X VOANA \| $10 \| ABO` campaign (active, ad set `KAT020` at $60/day) and mirrored `14-07-26 \| Scaling campaign US/CA/UK` CBOs. Same pixel as the main account. **Image-upload MCP tools are not enabled here** — see "Launching into GetVoana - 1". | USD |
 | [NOVA] getvoana.com (InovaInteraktif) | `901583842399904` | Engagement/social-proof farming ("NEW PPE - US", ~€1/day PPE ad set with duplicated post ads). | EUR |
 | CLA_0011_Kandy_Voana (Clikim Apex) | `814663791667175` | Idle — no active campaigns. | USD |
 
@@ -97,7 +97,12 @@ Current winning creative families: **"7R" (7 Reasons Why)**, **"Comp"
 
 ## Launch template
 
-**Source of truth: the launch Google Sheet**
+**Two launch queues exist — check which one the request refers to:**
+1. **The launch Google Sheet** (below) → `BATCH #nnn` batches → main account `758865990548177`.
+2. **ClickUp "Launch Manager"** → `S0nn` batches → GetVoana - 1 `1247693024067639`
+   (see "ClickUp pipeline (S-series)" further down).
+
+**Source of truth for sheet batches: the launch Google Sheet**
 <https://docs.google.com/spreadsheets/d/1P2ILJvzxSBUx5aeqEQJ2-xFyVAkeJkzDP7QcIkqDvg0/>
 Every launch is driven by rows in that sheet; Claude reads the sheet, launches
 what it specifies, and writes launch results back. Cadence: a target of X ad
@@ -161,6 +166,14 @@ midnight ET with `start_time` at 00:00.
 **Copy pairing rule:** the copy doc is always paired 1:1 with its same-numbered
 image — image 1 gets "ad copy 1", image 2 gets "ad copy 2". Never cross-combine
 images and copies into a test matrix.
+**Standing override (Martijn, 2026-08-23 and again 2026-09-07):** when a folder
+has fewer copy docs than images (typically "AD COPY 1" long + "AD COPY 2" short),
+give every ad **both** texts as Meta "multiple primary text" options:
+`creative.asset_feed_spec = {"optimization_type":"DEGREES_OF_FREEDOM","bodies":[{"text":…},{"text":…}]}`
+next to a normal `object_story_spec.link_data` (pass the whole creative JSON to
+`ads_create_ad`; `ads_create_creative` cannot express this). Body = the full doc
+including its bold title line, paragraphs separated by a `⠀` spacer line;
+headline = the title line of AD COPY 1.
 
 **Ad spec (fixed):**
 - Video page-post ads with linked Instagram media; ads named `1`, `2`, `3`, …
@@ -187,6 +200,15 @@ the scheduled midnight start_time gates actual delivery.
 (`batch-<n>/ad<i>.jpg`, converted PNG→JPEG q92 via sips) and pass the
 raw.githubusercontent.com URL; append `?v=2` to bust Meta's fetch cache if the
 first attempt 404s.
+- **Getting the PNGs out of Drive:** do NOT use the Drive MCP `download_file_content`
+  (base64 through the model, ~3 MB per image). Use Composio:
+  `composio execute GOOGLEDRIVE_DOWNLOAD_FILE -d '{"fileId":"…"}'` returns a
+  short-lived `downloaded_file_content.s3url`; `curl` that to disk. Copy docs are
+  fine via the Drive MCP `read_file_content`.
+- **If `ads_creative_upload_media` / `ads_creative_upload_image` answer "gradually
+  rolled out"** (true for GetVoana - 1), skip the library upload and put
+  `"image_url": "<raw.githubusercontent URL>"` at the **top level** of the
+  `creative` JSON in `ads_create_ad`; Meta fetches it at creation.
 
 ### Workflow
 1. **Gather** the per-launch inputs above; default to next batch number,
@@ -269,11 +291,65 @@ Ads publish through persona/advertorial pages, chosen per launch:
 | ClikGlobal | 1128763686997383 |
 | FinnDore | 1153248104536863 |
 
-### Known open items (as of 2026-08-17)
-- `KATECHON X VOANA | $10 | ABO` (GetVoana-1) is active but has zero active
-  ad sets — decide: revive or pause.
+### Known open items (as of 2026-09-07)
+- ~~`KATECHON X VOANA | $10 | ABO` has zero active ad sets~~ — resolved: ad set
+  `KAT020 … Katechon Engine v2` runs at $60/day.
 - `Batch 399 - 7R, Comp` is scheduled to start 2026-09-08 ($20/day) — verify
   this is intentional.
+- Named-brand comparative imagery (Johnson's, Vaseline, Gold Bond, Desitin,
+  Sudocrem, Boots, Superdrug…) keeps shipping without legal review — flagged in
+  every launch log since 2026-08-23; still Martijn's call each time.
+- ClickUp S063 is parked: its Landing Page URL field lists two pages and the
+  copy docs point to a third (`/intertigo-stick-og/sp`). Needs a decision.
+
+---
+
+## ClickUp pipeline (S-series) — added 2026-09-07
+
+Since early September the creative team plans in ClickUp, not the sheet. Martijn
+supplies a personal API key per session (header `Authorization: <key>`, plain
+REST, `https://api.clickup.com/api/v2/…`); never commit the key.
+
+| Thing | Where |
+|---|---|
+| Workspace | Syndesmos — team `90182798127` |
+| Space | VOANA (Brand) — `901811531882` |
+| Folder → list | `[VN] - Tasks` → **Launch Manager** — list `901819973363`; only view is "Channel Tasks" (`2kzn0jtf-3038`). Sibling lists: Creative Team, Media. |
+| Statuses | `ready for launch` → `launched` → `complete` |
+| Task name | `S0nn - C1-Cn - <Image\|Video\|LFS\|GIF> - Stick - <Creative Director> - <Editor> - <angle> - <avatar> - <UMP> - <UMS> - <Awareness> - <Static\|…> - <Iteration\|Ideation\|Imitation> - <Variation ID>` |
+| Key custom fields | `Landing Page URL` (short text — can hold 2 URLs or be empty), `Google Drive Folder Link`, `Page` (dropdown of the FB pages), `Launch Date`, `Batch number *`, `Ad Format *`, `Number of Ads in Batch` |
+| Drive folder contents | `…_C<n>.png` per creative (1080×1080) + Google Docs `AD COPY 1` (long) / `AD COPY 2` (short) — usually only two docs regardless of image count |
+
+**How to read it:** `GET /list/901819973363/task?include_closed=true` (38 tasks,
+single page) — dropdown values come back as `orderindex`, resolve them against
+`GET /list/{id}/field`. "First N in the view" = `GET /view/2kzn0jtf-3038/task`
+order, which is by batch number, not the list API's `orderindex`.
+
+**Launch spec for S-batches** (differences from the sheet template):
+- Account GetVoana - 1, campaign `ABO: Test Campaign USA V2` (`120247451142810591`) —
+  Martijn chose to keep using it rather than open a new ABO (2026-09-07).
+- Ad set name = the full ClickUp task name. Ad name = task name with the lander
+  code inserted after the batch id and `_C<n>` appended:
+  `S070 - COMP - C1-C3 - … - None_C1` (codes seen: `OG`, `7R`, `COMP`, `PG8`).
+- Single-URL rule: if `Landing Page URL` has one link, launch one version per
+  image to that link (no default two-URL split). Empty field → ask. Two links
+  in the field, or links that contradict the copy docs → **skip the batch** and
+  take the next one (S063 precedent).
+- Page: the ClickUp `Page` field is usually empty. Pick by style and by precedent
+  in the same campaign: magazine/"independent review"/"tested" statics →
+  **Woman Health Magazine**; curiosity statics (Aris `the_cycle` iterations) →
+  **Skin Health with Dr. Carter**; long-form story LFS → Linda Ramos / Glenda Ford.
+  Write the choice back into the `Page` field.
+- Everything else as the fixed ad-set/ad spec above ($20/day, midnight ET
+  start, pixel `642125018433390` PURCHASE, WWW.NO-SKIN-RASH.COM, UTMs).
+- Previous S-batches in that campaign (S002–S014, 2026-09-06) were launched with
+  **immediate** start; check `start_time` on existing sets before assuming the
+  midnight slot is free — on 2026-09-07 it already held S016 from someone else.
+
+**Write-back after launch:** `PUT /task/{id}` `{"status":"launched"}`, then
+`POST /task/{id}/field/{field_id}` for `Launch Date` (ms epoch), `Page`
+(option UUID) and any corrected `Batch number *` (S070's said "S067"). Also add
+the note to the sheet's 📊 Log row and the `launches/` file as usual.
 
 ---
 
@@ -287,6 +363,8 @@ Every launch uses these four connections — verify all are live before launchin
 | **Google Drive MCP** (claude.ai connector) | Reading creative folders, downloading images + copy docs (files are private to the team) | Drive search for "VOANA - Growth Guide" |
 | **Composio → Google Sheets** (`googlesheets`) | Reading Ad Roadmap rows, writing status + 📊 Log updates | `composio execute GOOGLESHEETS_BATCH_GET` on the sheet |
 | **GitHub CLI** (`gh`) | Pushing creatives to `martijnbeeks/voana-ad-assets` (public) — Meta image upload needs a public URL, Drive links fail | `gh auth status` |
+| **Composio → Google Drive** (`googledrive`, linked) | Downloading creative PNGs without base64 through the model | `composio execute GOOGLEDRIVE_DOWNLOAD_FILE -d '{"fileId":"…"}'` |
+| **ClickUp REST API** (personal key from Martijn, per session) | S-series launch queue reads + status/field write-back | `curl -H "Authorization: $CU" https://api.clickup.com/api/v2/team` lists "Syndesmos" |
 
 Local (no auth): macOS `sips` converts PNG→JPEG q92 before staging.
 
