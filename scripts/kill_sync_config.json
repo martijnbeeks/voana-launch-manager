@@ -44,15 +44,15 @@
       "complete"
     ],
     "metric_fields": {
-      "spend": "3eb242a7-fcae-4a54-bbc5-6f24e067ab62",
-      "purch": "35edbd5b-e060-4573-8b02-26294428d36b",
-      "cpa": "73745dcb-4dcd-406b-b677-f03048a9a0ee",
-      "octr": "02a4579c-6bb3-4504-9d84-82ae5dfc99cb",
-      "atc": "2cb83d8a-7ff3-4487-889d-b986c0a4a5f7",
-      "roas": "6b405c43-b74e-4a0f-a041-490f9bd8aba7",
-      "cpm": "95e06cc0-e4e5-460e-b6d6-958d8dea4fdb",
-      "cpc": "defec733-cbeb-4d3e-8152-c7f874068302",
-      "aov": "70dcbe9f-33d8-4681-b5fb-eab7ca862b48"
+      "spend": "0b99727c-e0f9-456a-9628-cd968feb7337",
+      "purch": "928ca9b7-f553-488f-b284-87a27bfaedad",
+      "cpa": "a108255d-c2d1-409d-879b-c18ee960d8d2",
+      "octr": "1bb695e8-67e9-49c5-b704-49c939f972dd",
+      "atc": "33ac4f37-3dbe-40da-872e-65b8f6ad058c",
+      "roas": "83e66210-c319-4413-a0bc-cf5e3bb91704",
+      "cpm": "f6b300bc-0aa7-4335-adc4-f89d0c8a91a4",
+      "cpc": "175e4d9b-2bc2-454f-bac8-4c7a88a86b7b",
+      "aov": "651b1a5b-e488-45d9-8b6c-439ecce9f3fb"
     }
   },
   "ignore_actors": [

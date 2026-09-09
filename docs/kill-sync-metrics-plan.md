@@ -220,3 +220,25 @@ Three were skipped:
 board says dead, the account says running — and kill-sync will never catch it,
 because it only reads *pause* events. A "ClickUp says killed but Meta says
 active" check would be a separate, useful job.
+
+
+## 9. Correction, same day: the fields moved to Media only
+
+Phase 3 shipped the nine fields **folder-level** on `[VN] - Tasks`, reasoning that
+values had to survive the automation that moves a batch from Launch Manager into
+Media. Checked afterwards: **all 28 killed tasks were already in Media**. The move
+happens at launch, long before any kill, so that risk was theoretical.
+
+The cost was not. A folder-level field shows in the task detail panel of *every*
+task in the folder, so all 34 Creative Team tasks and all 14 Format Radar tasks
+grew nine permanently-empty metric fields. That cannot be hidden: the fields
+appeared as columns in **zero** of the folder's 24 views, so view settings had
+nothing to switch off — the detail panel lists every field the task's list has.
+
+There is no per-list opt-out for a folder-level field, and the API cannot rename,
+re-scope or delete a field (all four endpoints 405). The only route was a human
+deleting the ten fields in the UI, then recreating them list-level on Media and
+writing the values again — which is what happened.
+
+**Lesson: pick a custom field's scope as carefully as its name. Both are
+permanent as far as the API is concerned.**

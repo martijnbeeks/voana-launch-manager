@@ -427,13 +427,21 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   on a whole-batch kill — the fields describe the ad set, and one dead creative
   must not overwrite them. A metric Meta did not report is skipped, never
   written as 0.
-  They are **folder-level** fields on `[VN] - Tasks` (901814791421), created
-  2026-09-09 via the undocumented `POST /api/v2/folder/{id}/field` — which works,
-  and is what makes the values survive the ClickUp automation that moves a batch
-  from Launch Manager into Media. List-level fields would be two different fields
-  and would lose the values on that move.
-  **A custom field cannot be deleted through the API** (`DELETE /field/{id}` →
-  405), so get the name right the first time; removal is a UI job.
+  They are **list-level fields on `Media` (901819973378) only** — created via
+  `POST /api/v2/list/{id}/field`. They were first made folder-level on
+  `[VN] - Tasks` to survive the automation that moves a batch from Launch Manager
+  into Media, but that was the wrong trade: **every kill lands in Media already**
+  (28/28 checked), so the move never happens after a kill — while folder-level
+  put 9 permanently-empty fields on every Creative Team and Format Radar task's
+  detail panel. A folder-level field has no per-list opt-out and appears in the
+  task panel whether or not any view shows it as a column, so it could not be
+  hidden. Keep these list-level.
+  **A custom field is immutable through the API once created** — `PUT /field/{id}`,
+  `PUT /list/{id}/field/{id}`, `DELETE /field/{id}` and
+  `DELETE /list/{id}/field/{id}` are all **405**. No rename, no re-scope, no
+  delete. Choose the name AND the scope correctly the first time; fixing either
+  means a human deleting the fields in the UI and the values being written again.
+  Field *values* delete fine: `DELETE /task/{id}/field/{field_id}` → 200.
   Adding one does NOT disturb the team: new fields do not appear in existing
   saved views (verified on By Department and Launch It), and every view can hide
   columns individually anyway.
