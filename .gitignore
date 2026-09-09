@@ -4,3 +4,8 @@
 state/inbox/
 state/kill-sync.log
 __pycache__/
+
+# runtime state and local backups
+state/
+*.bak-*
+*.bak2-*

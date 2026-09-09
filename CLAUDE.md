@@ -402,19 +402,59 @@ Claude run follows `scripts/kill_sync_prompt.md`: it reads both test accounts'
 activity logs via the Meta MCP, writes the human pause events (run_status 1→7,
 not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
 `state/inbox/`, then `scripts/kill_sync.py process` does the deterministic part:
+- metrics written on a kill (field names verified with `ads_get_field_context`,
+  2026-09-09; all exist at both `ad` and `adset` level):
+  **primary** — CPA (`cost_per_omni_purchase`), outbound CTR
+  (`outbound_clicks_ctr`, not plain `ctr`: plain CTR counts likes and profile
+  taps and flatters a weak ad), adds to cart (`omni_add_to_cart`);
+  **secondary** — CPM, CPC, ROAS (`purchase_roas`), average conversion value
+  (`omni_purchase_values` ÷ purchases — understated while the upsell tracking
+  problem is open, read it relatively). Primary metrics go in the one-line
+  `Result` header (it must stay one line — `merge_result` re-parses it);
+  secondary go in the comment. Batch totals prefer Meta's own `adset` row from
+  `state/inbox/adset_metrics_*.json`, because Meta dedupes people across the ads
+  in a set and we cannot; without that file the ad rows are summed and **ratios
+  are recomputed from the sums, never averaged** — the mean of per-ad CPAs is
+  not the batch CPA.
 - ad killed → comment on the Media task (actor, days live, spend, purchases, CPA,
-  CTR, CPC, what is still running); a `C3 ✖09-09 · $38.90 · 0 purch · CPA n/a ·
+  outbound CTR, adds to cart, ROAS, AOV, CPM, CPC, what is still running); a `C3 ✖09-09 · $38.90 · 0 purch · CPA n/a ·
   CTR 1.34% …` line merged into the `Result` field; checklist "Ad performance"
   updated (one item per creative with its numbers, ticked when dead); Discord embed.
+- whole ad set killed → the batch totals are ALSO written to real ClickUp number
+  fields (`clickup.metric_fields` in the config: Ad Spend, Purchases, CPA,
+  Outbound CTR, Adds to Cart, ROAS, CPM, CPC, AOV), so the list can be sorted and
+  filtered on them instead of the numbers being locked inside `Result` text. Only
+  on a whole-batch kill — the fields describe the ad set, and one dead creative
+  must not overwrite them. A metric Meta did not report is skipped, never
+  written as 0.
+  They are **folder-level** fields on `[VN] - Tasks` (901814791421), created
+  2026-09-09 via the undocumented `POST /api/v2/folder/{id}/field` — which works,
+  and is what makes the values survive the ClickUp automation that moves a batch
+  from Launch Manager into Media. List-level fields would be two different fields
+  and would lose the values on that move.
+  **A custom field cannot be deleted through the API** (`DELETE /field/{id}` →
+  405), so get the name right the first time; removal is a UI job.
+  Adding one does NOT disturb the team: new fields do not appear in existing
+  saved views (verified on By Department and Launch It), and every view can hide
+  columns individually anyway.
 - whole ad set killed → task status `killed`, `Status` = Losing Ad (only if it was
   empty / Not Tested / In Testing), `Result` = `KILLED <date> after N days · $ ·
   purchases · CPA · by <actor>` header plus the per-creative lines (earlier ✖ dates
   kept), checklist fully ticked, comment with the per-ad table, Discord embed asking
   for 📖 Learnings. Never touches Learnings and never downgrades winner / has
   potential / complete.
-- `KILL_SYNC_SKIP_CLICKUP=1` (currently set in the installed plist, 2026-09-07) keeps
-  Discord + ledger live but leaves ClickUp untouched until Martijn switches it on.
-- morning run also posts a digest of killed batches still without learnings.
+- `KILL_SYNC_SKIP_CLICKUP=1` keeps Discord + ledger live but leaves ClickUp
+  untouched. It was set in the installed plist from 2026-09-07 and **removed on
+  2026-09-09** — ClickUp writes are now live. The flag still works if you need to
+  go back to observe-only; it is also still a `--skip-clickup` CLI flag. NB it
+  only silences the *writes*: `ClickUpTasks.__init__` reads the task lists at
+  startup regardless, so it cannot rescue a run whose ClickUp token is dead.
+- both runs (08:45 and 20:45) post a digest of what that run just pushed into
+  ClickUp: one line per batch, linked to its task. Built from `kills.jsonl`
+  (newest `detected` stamp, rows with a `task_id`), so it never calls ClickUp and
+  cannot fail on an outage. Nothing synced → no message. Replaced the old
+  "killed batches still without learnings" digest on 2026-09-09; the old one was
+  a slow-changing list that repeated itself every run.
 Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
 `scripts/com.voana.kill-sync.plist`, `state/kills.jsonl` (append-only ledger,
 dedupes re-runs), `state/last_run.json` (poll window), `state/kill-sync.log`.
