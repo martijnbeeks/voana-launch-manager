@@ -1,6 +1,6 @@
 # Plan — full metrics in ClickUp when a batch is killed
 
-Status: **phases 1, 2 and 3 built 2026-09-09** (see git log). Phase 3 (real ClickUp
+Status: **all four phases done 2026-09-09** (see git log). Phase 3 (real ClickUp
 number fields) and phase 4 (backfill) still need the decisions in section 4.
 Goal: when kill-sync kills a batch, ClickUp should hold every number the team
 needs to judge that batch — and hold it in a form you can sort and filter.
@@ -124,7 +124,7 @@ Then extend the kill path to fill these fields next to the `Result` text.
    right the first time, because renaming is the easy part and re-typing values
    is not.
 
-### Phase 4 — backfill (optional)
+### Phase 4 — backfill — ✅ DONE 2026-09-09
 
 The 25 batches already `killed` in ClickUp have no numbers in the new fields.
 A one-off script can read their metrics from Meta and fill them. Only worth
@@ -195,5 +195,28 @@ Three things learned doing it:
    and Launch It), and each view can hide columns individually, so adding
    folder-level fields does not disturb the Creative Team's boards.
 
-Phase 4 (backfill of the 25 already-killed batches) is still open — those tasks
-have empty metric fields until someone fills them.
+## 8. Phase 4 as built (2026-09-09)
+
+**25 of the 28 `killed` tasks were backfilled** from Meta ad-set rows
+(`level: adset`, `date_preset: maximum`, matched to ClickUp by `S###` prefix).
+Meta returned `omni_purchase` / `cost_per_omni_purchase`, confirming the P1 fix
+was needed — without it every backfilled CPA would have been blank.
+
+Only the metrics Meta actually reported were written, so most rows got 4-8 of the
+9 fields rather than all 9. Those gaps are real: these batches were killed
+early, and 15 of the 25 recorded **no purchase at all**, so CPA / ROAS / AOV do
+not exist for them. Writing 0 there would have invented a result.
+
+Three were skipped:
+
+| Batch | Why |
+|---|---|
+| S001 | not in Meta any more — matches the `[AI 2026-08-25]` "Not attributable" note already on the task |
+| S055 | in Meta but **`ACTIVE`** with no spend |
+| S058 | in Meta but **`ACTIVE`** with no spend |
+
+**S055 and S058 are worth a human look**: they are `killed` in ClickUp but still
+`ACTIVE` in Meta. That is the opposite of the mismatch this tool looks for — the
+board says dead, the account says running — and kill-sync will never catch it,
+because it only reads *pause* events. A "ClickUp says killed but Meta says
+active" check would be a separate, useful job.
