@@ -420,6 +420,23 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   outbound CTR, adds to cart, ROAS, AOV, CPM, CPC, what is still running); a `C3 ✖09-09 · $38.90 · 0 purch · CPA n/a ·
   CTR 1.34% …` line merged into the `Result` field; checklist "Ad performance"
   updated (one item per creative with its numbers, ticked when dead); Discord embed.
+- whole ad set killed → the batch totals are ALSO written to real ClickUp number
+  fields (`clickup.metric_fields` in the config: Ad Spend, Purchases, CPA,
+  Outbound CTR, Adds to Cart, ROAS, CPM, CPC, AOV), so the list can be sorted and
+  filtered on them instead of the numbers being locked inside `Result` text. Only
+  on a whole-batch kill — the fields describe the ad set, and one dead creative
+  must not overwrite them. A metric Meta did not report is skipped, never
+  written as 0.
+  They are **folder-level** fields on `[VN] - Tasks` (901814791421), created
+  2026-09-09 via the undocumented `POST /api/v2/folder/{id}/field` — which works,
+  and is what makes the values survive the ClickUp automation that moves a batch
+  from Launch Manager into Media. List-level fields would be two different fields
+  and would lose the values on that move.
+  **A custom field cannot be deleted through the API** (`DELETE /field/{id}` →
+  405), so get the name right the first time; removal is a UI job.
+  Adding one does NOT disturb the team: new fields do not appear in existing
+  saved views (verified on By Department and Launch It), and every view can hide
+  columns individually anyway.
 - whole ad set killed → task status `killed`, `Status` = Losing Ad (only if it was
   empty / Not Tested / In Testing), `Result` = `KILLED <date> after N days · $ ·
   purchases · CPA · by <actor>` header plus the per-creative lines (earlier ✖ dates

@@ -617,6 +617,16 @@ def process(dry: bool) -> int:
                                  f"AOV {money(t['aov'])} · revenue {money(t['revenue'])} · "
                                  f"{whole(t['impr'])} impr"
                                  + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
+                    # Batch totals also go into real ClickUp number fields, so the
+                    # list can be sorted and filtered on CPA / ROAS instead of the
+                    # numbers being locked inside the Result text. Only on a whole
+                    # -batch kill: these fields describe the ad set, and a single
+                    # dead creative must not overwrite them with its own numbers.
+                    # A metric Meta did not report is SKIPPED, never written as 0.
+                    for key, fid in (cfg["clickup"].get("metric_fields") or {}).items():
+                        v = t.get(key)
+                        if v is not None:
+                            cu_set_field(task["id"], fid, round(float(v), 2), dry)
                     lines.append("→ fill in 📖 Learnings")
                     cu_comment(task["id"], "\n".join(lines), dry)
                     # every ad in the set is dead now; ads killed earlier keep their own ✖ date

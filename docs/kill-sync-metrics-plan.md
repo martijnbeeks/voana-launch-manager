@@ -1,6 +1,6 @@
 # Plan — full metrics in ClickUp when a batch is killed
 
-Status: **phases 1 and 2 built 2026-09-09** (see git log). Phase 3 (real ClickUp
+Status: **phases 1, 2 and 3 built 2026-09-09** (see git log). Phase 3 (real ClickUp
 number fields) and phase 4 (backfill) still need the decisions in section 4.
 Goal: when kill-sync kills a batch, ClickUp should hold every number the team
 needs to judge that batch — and hold it in a form you can sort and filter.
@@ -92,7 +92,7 @@ supports on this account. Do not assume. Ask for a small set, print what comes
 back, then add the ones that work. Metrics that Meta does not return must print
 `n/a`, never `0` — that is the P1 lesson.
 
-### Phase 3 — real number fields in ClickUp
+### Phase 3 — real number fields in ClickUp — ✅ DONE 2026-09-09
 
 Create number fields so the data can be sorted and filtered. The v2 API can do
 this: `POST /api/v2/list/{list_id}/field` with `{"name","type","type_config"}`.
@@ -173,3 +173,27 @@ within hours, well before anyone archives it.
 
 `conversion_value`, `purchase_value`, `roas`, `aov` and `outbound_ctr` do **not**
 exist — do not guess field names, ask `ads_get_field_context`.
+
+
+## 7. Phase 3 as built (2026-09-09)
+
+9 **folder-level** fields on `[VN] - Tasks` (901814791421): Ad Spend, Purchases,
+CPA, Outbound CTR, Adds to Cart, ROAS, CPM, CPC, AOV. Ids in
+`kill_sync_config.json` under `clickup.metric_fields`.
+
+Three things learned doing it:
+
+1. **`POST /api/v2/folder/{id}/field` works** and is undocumented. Folder-level
+   was necessary: an automation moves batches from Launch Manager into Media, and
+   list-level fields are per-list, so the values would be lost on the move.
+2. **`DELETE /api/v2/field/{id}` returns 405** — a custom field cannot be removed
+   through the API. Name it right the first time. (A probe field named
+   `ZZ Kill-sync probe` was created during this work and has to be deleted in the
+   UI.) Field *values* on a task DO delete fine:
+   `DELETE /task/{id}/field/{field_id}` → 200.
+3. **New fields do not appear in existing saved views** (checked on By Department
+   and Launch It), and each view can hide columns individually, so adding
+   folder-level fields does not disturb the Creative Team's boards.
+
+Phase 4 (backfill of the 25 already-killed batches) is still open — those tasks
+have empty metric fields until someone fills them.
