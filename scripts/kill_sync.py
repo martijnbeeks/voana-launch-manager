@@ -106,6 +106,35 @@ def pct(v) -> str:
     return "n/a" if x is None else f"{x:.2f}%"
 
 
+def purchases_of(m: dict) -> int | None:
+    """Purchase count for one ad row.
+
+    Meta renamed this field: it returns `omni_purchase` now, `purchases` was the
+    older name. Read both, current name first.
+
+    Returns None when Meta reported neither — deliberately NOT 0. A missing count
+    that becomes 0 is a *wrong* number rather than a missing one, it reads as a
+    real result, and it drags CPA to n/a with it. That is exactly how every kill
+    card silently reported "0 purch" before 2026-09-09.
+    See docs/kill-sync-metrics-plan.md, P1.
+    """
+    for key in ("omni_purchase", "purchases"):
+        v = m.get(key)
+        if v is not None and v != "":
+            return count(v)
+    return None
+
+
+def cpa_of(m: dict) -> float | None:
+    """Cost per purchase: Meta's own value when present, else spend / purchases."""
+    for key in ("cost_per_omni_purchase", "cost_per_purchase"):
+        x = num(m.get(key))
+        if x is not None:
+            return x
+    spend, purch = num(m.get("amount_spent")), purchases_of(m)
+    return spend / purch if spend and purch else None
+
+
 def parse_dt(s: str | None) -> dt.datetime | None:
     """Handles ISO ('2026-09-07T02:21:16-0400') and the MCP's localized
     '7-9-2026 om 03:14' (d-m-Y). Returns naive local-ish datetime."""
@@ -284,13 +313,10 @@ AD_LINE_RE = re.compile(r"^(C\d+|V\d+)\b")
 def ad_line(m: dict, killed_on: dt.datetime | None = None) -> str:
     """One compact line per creative for the Result field / checklist item:
     'C3 ✖09-09 · $38.90 · 0 purch · CPA n/a · CTR 1.34% · CPC $0.97 · 2,977 impr · 2d'"""
-    spend, purch = num(m.get("amount_spent")), count(m.get("purchases"))
-    cpa = m.get("cost_per_purchase")
-    if num(cpa) is None and spend and purch:
-        cpa = spend / purch
+    purch, cpa = purchases_of(m), cpa_of(m)
     mark = f"✖{killed_on:%m-%d}" if killed_on else ("▶" if m.get("effective_status") == "ACTIVE" else "⏸")
     live = days_live(m.get("created_time"), killed_on)
-    return (f"{creative_no(m.get('name', ''))} {mark} · {money(m.get('amount_spent'))} · {purch} purch · "
+    return (f"{creative_no(m.get('name', ''))} {mark} · {money(m.get('amount_spent'))} · {purch if purch is not None else 'n/a'} purch · "
             f"CPA {money(cpa)} · CTR {pct(m.get('ctr'))} · CPC {money(m.get('cpc'))} · "
             f"{count(m.get('impressions')):,} impr · {live if live is not None else '?'}d")
 
@@ -370,11 +396,9 @@ def ledger_append(rows: list[dict]):
 
 # ── core ─────────────────────────────────────────────────────────────────────
 def ad_summary(m: dict) -> str:
-    spend, purch = num(m.get("amount_spent")), count(m.get("purchases"))
-    cpa = m.get("cost_per_purchase")
-    if num(cpa) is None and spend and purch:
-        cpa = spend / purch
-    return (f"{money(m.get('amount_spent'))} spent · {int(purch or 0)} purchase(s) · CPA {money(cpa)} · "
+    purch, cpa = purchases_of(m), cpa_of(m)
+    return (f"{money(m.get('amount_spent'))} spent · "
+            f"{purch if purch is not None else 'n/a'} purchase(s) · CPA {money(cpa)} · "
             f"CTR {pct(m.get('ctr'))} · CPC {money(m.get('cpc'))} · {count(m.get('impressions')):,} impr")
 
 
@@ -479,12 +503,13 @@ def process(dry: bool) -> int:
                 else:
                     lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
                     tot_spend = sum(num(a.get("amount_spent")) or 0 for a in ads)
-                    tot_p = sum(count(a.get("purchases")) for a in ads)
+                    _known = [p for p in (purchases_of(a) for a in ads) if p is not None]
+                    tot_p = sum(_known) if _known else None
                     for a in sorted(ads, key=lambda a: a.get("name", "")):
                         lines.append(f"• {creative_no(a.get('name',''))} ({lander_code(a.get('name','')) or '-'}): {ad_summary(a)}")
                     live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
                     result = (f"KILLED {when:%Y-%m-%d} after {live if live is not None else '?'} days · "
-                              f"${tot_spend:,.2f} · {int(tot_p)} purchase(s) · "
+                              f"${tot_spend:,.2f} · {tot_p if tot_p is not None else 'n/a'} purchase(s) · "
                               f"CPA {money(tot_spend / tot_p) if tot_p else 'n/a'} · by {actor}")
                     lines.append(result)
                     lines.append("→ fill in 📖 Learnings")
@@ -554,18 +579,44 @@ def process(dry: bool) -> int:
 
 
 def digest(dry: bool) -> int:
-    tasks = ClickUpTasks()
-    f = CONFIG["clickup"]["fields"]
-    missing = [t for t in tasks.tasks
-               if t["status"]["status"] == CONFIG["clickup"]["batch_kill_task_status"]
-               and not (tasks.field_value(t, f["learnings"]) or "").strip()]
-    missing.sort(key=lambda t: int(t.get("date_closed") or t.get("date_updated") or 0))
-    if not missing:
-        print("digest: nothing owed"); return 0
-    lines = [f"• [{batch_prefix(t['name']) or t['name'][:10]}]({task_url(t)}) — "
-             f"{(tasks.field_value(t, f['result']) or 'no result yet')[:90]}" for t in missing[:20]]
-    embed = {"title": f"📖 {len(missing)} killed batch(es) still without learnings",
-             "description": "\n".join(lines)[:4000], "color": 0x3498DB}
+    """List what the run that just finished pushed into ClickUp.
+
+    Every row `process` ledgers carries the same `detected` stamp, so the newest
+    stamp is exactly one run. A row only reaches a ClickUp task when it matched
+    one, so `task_id` is the test for "updated in ClickUp" — replacement-guard
+    rows (which carry `skipped`) and kills with no matching task never have it.
+    Reads only the ledger, so a ClickUp outage cannot break this step.
+    """
+    p = STATE / "kills.jsonl"
+    rows = []
+    if p.exists():
+        for line in p.read_text().splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+    runs = [r for r in rows if r.get("detected")]
+    if not runs:
+        print("digest: no synced kills in the ledger yet")
+        return 0
+    latest = max(r["detected"] for r in runs)
+    synced = [r for r in runs if r["detected"] == latest and r.get("task_id")]
+    if not synced:
+        print(f"digest: run {latest[:19]} updated no ClickUp tasks")
+        return 0
+    synced.sort(key=lambda r: r.get("name", ""))
+    lines = []
+    for r in synced:
+        name = r.get("name", "")
+        label = batch_prefix(name) or name[:12] or "?"
+        what = "whole batch" if r.get("kind") == "adset" else "single ad"
+        lines.append(f"• [{label}](https://app.clickup.com/t/{r['task_id']}) — "
+                     f"{what}, killed by {r.get('actor') or 'unknown'}")
+    embed = {"title": f"\u2705 {len(synced)} killed batch(es) updated in ClickUp",
+             "description": "\n".join(lines)[:4000], "color": 0x2ECC71}
     return 0 if discord([embed], None, dry) else 3
 
 

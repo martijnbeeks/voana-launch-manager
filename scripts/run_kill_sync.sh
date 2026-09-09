@@ -65,6 +65,19 @@ print -r -- "preflight ok: claude $(claude --version 2>/dev/null | head -1) · p
 if [ "${KILL_SYNC_PREFLIGHT_ONLY:-}" = "1" ]; then print -r -- "KILL_SYNC_PREFLIGHT_ONLY=1 — stopping."; exit 0; fi
 
 # --- the run -----------------------------------------------------------------
+# `kill_sync.py process` advances state/last_run.json as its final act, and only
+# when it completes (see kill_sync.py:542, guarded by `if not dry`). The bridge
+# reports failures in prose and still exits 0, so that file — not $rc — is the
+# only trustworthy signal that the work actually happened.
+read_last_run() {
+  "$KILL_SYNC_PYTHON" -c 'import json
+try:
+    print(json.load(open("state/last_run.json"))["last_run"])
+except Exception:
+    print("")' 2>/dev/null
+}
+LAST_RUN_BEFORE="$(read_last_run)"
+
 claude -p "$(cat "$PROMPT")" --dangerously-skip-permissions --max-turns 40
 rc=$?
 if [ $rc -ne 0 ]; then
@@ -75,7 +88,18 @@ $(tail -c 1200 "$LOG" 2>/dev/null)
   exit $rc
 fi
 
-if [ "${KILL_SYNC_DIGEST:-}" = "1" ] && [ "$(date +%H)" -lt 12 ]; then
+if [ -z "${KILL_SYNC_DRY_RUN:-}" ]; then
+  LAST_RUN_AFTER="$(read_last_run)"
+  if [ "$LAST_RUN_AFTER" = "$LAST_RUN_BEFORE" ]; then
+    alert "🔴 **kill-sync failed** — the bridge exited 0 but \`state/last_run.json\` never advanced (still \`${LAST_RUN_BEFORE:-unset}\`), so \`kill_sync.py process\` did not complete. The poll window is now growing.
+\`\`\`
+$(tail -c 1200 "$LOG" 2>/dev/null)
+\`\`\`"
+    exit 1
+  fi
+fi
+
+if [ "${KILL_SYNC_DIGEST:-}" = "1" ]; then
   "$KILL_SYNC_PYTHON" scripts/kill_sync.py digest ${KILL_SYNC_DRY_RUN:+--dry-run} || alert "🟧 kill-sync digest failed"
 fi
 

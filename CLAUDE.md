@@ -412,9 +412,18 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   kept), checklist fully ticked, comment with the per-ad table, Discord embed asking
   for 📖 Learnings. Never touches Learnings and never downgrades winner / has
   potential / complete.
-- `KILL_SYNC_SKIP_CLICKUP=1` (currently set in the installed plist, 2026-09-07) keeps
-  Discord + ledger live but leaves ClickUp untouched until Martijn switches it on.
-- morning run also posts a digest of killed batches still without learnings.
+- `KILL_SYNC_SKIP_CLICKUP=1` keeps Discord + ledger live but leaves ClickUp
+  untouched. It was set in the installed plist from 2026-09-07 and **removed on
+  2026-09-09** — ClickUp writes are now live. The flag still works if you need to
+  go back to observe-only; it is also still a `--skip-clickup` CLI flag. NB it
+  only silences the *writes*: `ClickUpTasks.__init__` reads the task lists at
+  startup regardless, so it cannot rescue a run whose ClickUp token is dead.
+- both runs (08:45 and 20:45) post a digest of what that run just pushed into
+  ClickUp: one line per batch, linked to its task. Built from `kills.jsonl`
+  (newest `detected` stamp, rows with a `task_id`), so it never calls ClickUp and
+  cannot fail on an outage. Nothing synced → no message. Replaced the old
+  "killed batches still without learnings" digest on 2026-09-09; the old one was
+  a slow-changing list that repeated itself every run.
 Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
 `scripts/com.voana.kill-sync.plist`, `state/kills.jsonl` (append-only ledger,
 dedupes re-runs), `state/last_run.json` (poll window), `state/kill-sync.log`.
