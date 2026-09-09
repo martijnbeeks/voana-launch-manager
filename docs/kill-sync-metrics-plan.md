@@ -1,6 +1,7 @@
 # Plan — full metrics in ClickUp when a batch is killed
 
-Status: **proposal**, written 2026-09-09. Nothing here is built yet.
+Status: **phases 1 and 2 built 2026-09-09** (see git log). Phase 3 (real ClickUp
+number fields) and phase 4 (backfill) still need the decisions in section 4.
 Goal: when kill-sync kills a batch, ClickUp should hold every number the team
 needs to judge that batch — and hold it in a form you can sort and filter.
 
@@ -59,7 +60,7 @@ batch, CTR and CPC do not explain why it failed.
 
 ## 3. Plan
 
-### Phase 1 — fix the purchase field names (small, urgent)
+### Phase 1 — fix the purchase field names — ✅ DONE 2026-09-09
 
 In `kill_sync.py`, read the Meta name first and keep the old one as a fallback:
 
@@ -73,7 +74,7 @@ Add a test with a real Meta row so a future rename is caught.
 
 **Do this first.** Every other phase produces wrong numbers until it is done.
 
-### Phase 2 — ask Meta for more metrics
+### Phase 2 — ask Meta for more metrics — ✅ DONE 2026-09-09
 
 Extend the `fields` list in `scripts/kill_sync_prompt.md` step 2:
 
@@ -144,3 +145,31 @@ Phase 2  more metrics from Meta  (research first, then build)
 Phase 3  ClickUp number fields   (needs decisions 1 and 2)
 Phase 4  backfill                (optional)
 ```
+
+
+## 6. Added after the first build
+
+**P5 — archived ads return no metrics.** On 2026-09-09 the 12 metric rows for
+S002/S003 came back `ARCHIVED` with empty spend and purchases: Meta serves no
+lifetime metrics for archived ads. It did not matter there (both were suppressed
+by the replacement guard), but a batch that is killed *and* archived before the
+next run lands in ClickUp with `n/a` everywhere. Honest, but empty.
+
+Worth considering: capture metrics at kill time rather than at report time, or
+shorten the gap by running more often. Not urgent — a kill is normally reported
+within hours, well before anyone archives it.
+
+**Field names confirmed 2026-09-09** via `ads_get_field_context`:
+
+| Metric | Meta field | Note |
+|---|---|---|
+| CPA | `cost_per_omni_purchase` | alias `cost_per_purchase` |
+| Outbound CTR | `outbound_clicks_ctr` | |
+| Adds to cart | `omni_add_to_cart` | alias `adds_to_cart` |
+| CPM / CPC | `cpm` / `cpc` | |
+| ROAS | `purchase_roas` | `website_purchase_roas` as fallback |
+| Conversion value | `omni_purchase_values` | alias `purchases_conversion_value` |
+| Average conversion value | *(none)* | computed: value ÷ purchases |
+
+`conversion_value`, `purchase_value`, `roas`, `aov` and `outbound_ctr` do **not**
+exist — do not guess field names, ask `ads_get_field_context`.

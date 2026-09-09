@@ -402,8 +402,22 @@ Claude run follows `scripts/kill_sync_prompt.md`: it reads both test accounts'
 activity logs via the Meta MCP, writes the human pause events (run_status 1→7,
 not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
 `state/inbox/`, then `scripts/kill_sync.py process` does the deterministic part:
+- metrics written on a kill (field names verified with `ads_get_field_context`,
+  2026-09-09; all exist at both `ad` and `adset` level):
+  **primary** — CPA (`cost_per_omni_purchase`), outbound CTR
+  (`outbound_clicks_ctr`, not plain `ctr`: plain CTR counts likes and profile
+  taps and flatters a weak ad), adds to cart (`omni_add_to_cart`);
+  **secondary** — CPM, CPC, ROAS (`purchase_roas`), average conversion value
+  (`omni_purchase_values` ÷ purchases — understated while the upsell tracking
+  problem is open, read it relatively). Primary metrics go in the one-line
+  `Result` header (it must stay one line — `merge_result` re-parses it);
+  secondary go in the comment. Batch totals prefer Meta's own `adset` row from
+  `state/inbox/adset_metrics_*.json`, because Meta dedupes people across the ads
+  in a set and we cannot; without that file the ad rows are summed and **ratios
+  are recomputed from the sums, never averaged** — the mean of per-ad CPAs is
+  not the batch CPA.
 - ad killed → comment on the Media task (actor, days live, spend, purchases, CPA,
-  CTR, CPC, what is still running); a `C3 ✖09-09 · $38.90 · 0 purch · CPA n/a ·
+  outbound CTR, adds to cart, ROAS, AOV, CPM, CPC, what is still running); a `C3 ✖09-09 · $38.90 · 0 purch · CPA n/a ·
   CTR 1.34% …` line merged into the `Result` field; checklist "Ad performance"
   updated (one item per creative with its numbers, ticked when dead); Discord embed.
 - whole ad set killed → task status `killed`, `Status` = Losing Ad (only if it was

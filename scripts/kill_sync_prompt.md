@@ -39,7 +39,16 @@ events, first fetch the ad to learn its `adset_id` (see fields below). Then call
 `ads_get_ad_entities` with `level: "ad"`, `date_preset: "maximum"`, `limit: 1000`,
 `filtering: [{"field":"adset_id","operator":"IN","value":[<all involved ad set ids>]}]` and
 `fields: ["id","name","adset_id","adset_name","campaign_id","status","effective_status",
-"created_time","amount_spent","impressions","clicks","ctr","cpc","purchases","cost_per_purchase"]`.
+"created_time","amount_spent","impressions","clicks","ctr","cpc","cpm","purchases",
+"cost_per_purchase","outbound_clicks","outbound_clicks_ctr","omni_add_to_cart",
+"purchase_roas","omni_purchase_values"]`.
+Those names were verified with `ads_get_field_context` on 2026-09-09 and all exist at
+both `ad` and `adset` level. Meta may answer with `omni_purchase` /
+`cost_per_omni_purchase` instead of `purchases` / `cost_per_purchase` — that is
+expected and the script reads both. **Copy the keys back exactly as Meta returns
+them; do not rename or alias them.** A metric Meta omits must stay missing: the
+script prints `n/a` for it, and inventing a `0` turns a missing number into a
+wrong one.
 Follow `pagination.next_cursor` until exhausted. If the adset_id filter is rejected, fall back to
 `object_ids` with the killed ad ids plus a second call per ad set using
 `filtering: [{"field":"campaign_id","operator":"IN","value":[<test campaign id>]}]` and keep
@@ -47,6 +56,18 @@ only rows whose `adset_id` is involved.
 
 Write `state/inbox/metrics_<account_id>.json` as a JSON array containing every returned ad
 row for the involved ad sets, with the field values exactly as returned (strings are fine).
+
+## Step 2c — ad-set level metrics
+For each account with a non-empty kills file, also call `ads_get_ad_entities` with
+`level: "adset"`, `date_preset: "maximum"`, `limit: 1000`, the same `fields` list as
+Step 2, and `filtering: [{"field":"adset_id","operator":"IN","value":[<all involved
+ad set ids>]}]`. Write `state/inbox/adset_metrics_<account_id>.json` as a JSON array
+of the returned rows. Write `[]` for accounts without kills.
+
+Why this exists: Meta dedupes people across the ads inside one ad set, and summing
+the ad rows cannot. The script falls back to summing when this file is missing or
+`[]`, so a failed call here degrades the batch totals instead of failing the run —
+say so in your report if it happens.
 
 ## Step 2b — currently active ad sets (replacement guard)
 Media buyers sometimes pause an ad set and re-create it under the same name. For each account

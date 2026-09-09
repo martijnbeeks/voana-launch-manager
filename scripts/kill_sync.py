@@ -15,6 +15,10 @@ Inbox contract (written by the Claude runbook, one file per account):
       {"object_type": "ad"|"adset", "object_id": "...", "object_name": "...",
        "actor_name": "...", "application_name": "...", "datetime": "<as returned>",
        "old_value": 1, "new_value": 7}
+  state/inbox/adset_metrics_<account_id>.json  optional, level=adset rows for the
+                                        killed ad sets (Meta dedupes people
+                                        across ads; we cannot). Missing file =
+                                        fall back to summing the ad rows.
   state/inbox/metrics_<account_id>.json list of ad entities (level=ad) for the
       killed ads AND for every ad in a killed ad set, each with at least:
       id, name, adset_id, adset_name, effective_status, created_time,
@@ -106,33 +110,118 @@ def pct(v) -> str:
     return "n/a" if x is None else f"{x:.2f}%"
 
 
-def purchases_of(m: dict) -> int | None:
-    """Purchase count for one ad row.
-
-    Meta renamed this field: it returns `omni_purchase` now, `purchases` was the
-    older name. Read both, current name first.
-
-    Returns None when Meta reported neither — deliberately NOT 0. A missing count
-    that becomes 0 is a *wrong* number rather than a missing one, it reads as a
-    real result, and it drags CPA to n/a with it. That is exactly how every kill
-    card silently reported "0 purch" before 2026-09-09.
-    See docs/kill-sync-metrics-plan.md, P1.
-    """
-    for key in ("omni_purchase", "purchases"):
-        v = m.get(key)
+def _first(m: dict, *keys):
+    """First key that Meta actually populated. None means "Meta said nothing"."""
+    for k in keys:
+        v = m.get(k)
         if v is not None and v != "":
-            return count(v)
+            return v
     return None
+
+
+# Every accessor below returns None when Meta reported nothing, and a real 0
+# when Meta reported 0. Never collapse the two: a missing number that prints as
+# 0 is a *wrong* result, it reads as real, and nobody spots it. That is exactly
+# how "0 purch · CPA n/a" shipped on every kill card until 2026-09-09.
+# Field names verified against ads_get_field_context on 2026-09-09; the second
+# name in each pair is the older alias.
+
+def purchases_of(m: dict) -> int | None:
+    v = _first(m, "omni_purchase", "purchases")
+    return count(v) if v is not None else None
+
+
+def atc_of(m: dict) -> int | None:
+    """Adds to cart — the offer/messaging signal: clicks but no cart means the
+    ad worked and the page did not; carts but no purchase points at checkout."""
+    v = _first(m, "omni_add_to_cart", "adds_to_cart")
+    return count(v) if v is not None else None
+
+
+def outbound_ctr_of(m: dict) -> float | None:
+    """Outbound CTR — clicks that actually left Meta. Plain `ctr` counts every
+    click including likes and profile taps, so it flatters a weak ad."""
+    return num(_first(m, "outbound_clicks_ctr"))
+
+
+def outbound_clicks_of(m: dict) -> int | None:
+    v = _first(m, "outbound_clicks")
+    return count(v) if v is not None else None
+
+
+def cpm_of(m: dict) -> float | None:
+    return num(_first(m, "cpm"))
+
+
+def roas_of(m: dict) -> float | None:
+    return num(_first(m, "purchase_roas", "website_purchase_roas"))
+
+
+def revenue_of(m: dict) -> float | None:
+    return num(_first(m, "omni_purchase_values", "purchases_conversion_value"))
+
+
+def aov_of(m: dict) -> float | None:
+    """Average conversion value. Known to be understated while the upsell
+    tracking problem is open — read it relatively, not as absolute revenue."""
+    rev, p = revenue_of(m), purchases_of(m)
+    return rev / p if rev is not None and p else None
 
 
 def cpa_of(m: dict) -> float | None:
     """Cost per purchase: Meta's own value when present, else spend / purchases."""
-    for key in ("cost_per_omni_purchase", "cost_per_purchase"):
-        x = num(m.get(key))
-        if x is not None:
-            return x
+    x = num(_first(m, "cost_per_omni_purchase", "cost_per_purchase"))
+    if x is not None:
+        return x
     spend, purch = num(m.get("amount_spent")), purchases_of(m)
     return spend / purch if spend and purch else None
+
+
+def ratio(v) -> str:
+    x = num(v)
+    return "n/a" if x is None else f"{x:.2f}"
+
+
+def whole(v) -> str:
+    return "n/a" if v is None else f"{int(v):,}"
+
+
+def totals_of(ads: list[dict], adset_row: dict | None = None) -> dict:
+    """Batch-level numbers.
+
+    Prefers Meta's own ad-set row when the bridge supplied one, because Meta
+    dedupes people across the ads in a set and we cannot.
+
+    Falling back to the ad rows, ratios are RECOMPUTED from the summed totals —
+    never averaged. The mean of per-ad CPAs is not the batch CPA, and averaging
+    them would quietly misreport every batch whose ads spent unequally.
+    """
+    if adset_row:
+        return {"spend": num(adset_row.get("amount_spent")), "purch": purchases_of(adset_row),
+                "atc": atc_of(adset_row), "cpa": cpa_of(adset_row),
+                "octr": outbound_ctr_of(adset_row), "cpm": cpm_of(adset_row),
+                "cpc": num(adset_row.get("cpc")), "roas": roas_of(adset_row),
+                "aov": aov_of(adset_row), "revenue": revenue_of(adset_row),
+                "impr": count(adset_row.get("impressions")), "source": "adset"}
+
+    def total(fn):
+        vals = [v for v in (fn(a) for a in ads) if v is not None]
+        return sum(vals) if vals else None
+
+    spend = total(lambda a: num(a.get("amount_spent")))
+    purch = total(purchases_of)
+    rev = total(revenue_of)
+    impr = total(lambda a: count(a.get("impressions")) if a.get("impressions") not in (None, "") else None)
+    oclicks = total(outbound_clicks_of)
+    clicks = total(lambda a: count(a.get("clicks")) if a.get("clicks") not in (None, "") else None)
+    return {"spend": spend, "purch": purch, "atc": total(atc_of), "revenue": rev,
+            "cpa": spend / purch if spend and purch else None,
+            "octr": (oclicks / impr * 100) if oclicks is not None and impr else None,
+            "cpm": (spend / impr * 1000) if spend and impr else None,
+            "cpc": (spend / clicks) if spend and clicks else None,
+            "roas": (rev / spend) if rev is not None and spend else None,
+            "aov": (rev / purch) if rev is not None and purch else None,
+            "impr": impr, "source": "ads"}
 
 
 def parse_dt(s: str | None) -> dt.datetime | None:
@@ -317,8 +406,8 @@ def ad_line(m: dict, killed_on: dt.datetime | None = None) -> str:
     mark = f"✖{killed_on:%m-%d}" if killed_on else ("▶" if m.get("effective_status") == "ACTIVE" else "⏸")
     live = days_live(m.get("created_time"), killed_on)
     return (f"{creative_no(m.get('name', ''))} {mark} · {money(m.get('amount_spent'))} · {purch if purch is not None else 'n/a'} purch · "
-            f"CPA {money(cpa)} · CTR {pct(m.get('ctr'))} · CPC {money(m.get('cpc'))} · "
-            f"{count(m.get('impressions')):,} impr · {live if live is not None else '?'}d")
+            f"CPA {money(cpa)} · oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))} · "
+            f"CPC {money(m.get('cpc'))} · {count(m.get('impressions')):,} impr · {live if live is not None else '?'}d")
 
 
 def merge_result(existing: str | None, new_lines: list[str], header: str | None) -> str:
@@ -399,7 +488,9 @@ def ad_summary(m: dict) -> str:
     purch, cpa = purchases_of(m), cpa_of(m)
     return (f"{money(m.get('amount_spent'))} spent · "
             f"{purch if purch is not None else 'n/a'} purchase(s) · CPA {money(cpa)} · "
-            f"CTR {pct(m.get('ctr'))} · CPC {money(m.get('cpc'))} · {count(m.get('impressions')):,} impr")
+            f"oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))}"
+            f"  |  ROAS {ratio(roas_of(m))} · AOV {money(aov_of(m))} · CPM {money(cpm_of(m))} · "
+            f"CPC {money(m.get('cpc'))} · CTR {pct(m.get('ctr'))} · {count(m.get('impressions')):,} impr")
 
 
 def describe_task(task: dict | None, adset_name: str) -> str:
@@ -426,6 +517,13 @@ def process(dry: bool) -> int:
         events = read_json(INBOX / f"kills_{account}.json", [])
         metrics = read_json(INBOX / f"metrics_{account}.json", [])
         active_adsets = read_json(INBOX / f"active_adsets_{account}.json", [])
+        # Meta's own ad-set rows, when the bridge managed to fetch them. Optional
+        # on purpose: an older inbox, or a Meta call that failed, must still
+        # produce a kill report rather than crash — totals_of() then falls back
+        # to summing the ad rows.
+        adset_metrics = {str(r.get("id")): r
+                         for r in read_json(INBOX / f"adset_metrics_{account}.json", [])
+                         if r.get("id")}
         active_by_name = {a.get("name", "").strip(): str(a.get("id")) for a in active_adsets}
         by_id = {str(m.get("id")): m for m in metrics}
         by_adset: dict[str, list[dict]] = {}
@@ -502,16 +600,23 @@ def process(dry: bool) -> int:
                     upsert_checklist(task, siblings or ads, {obj_id}, when, dry)
                 else:
                     lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
-                    tot_spend = sum(num(a.get("amount_spent")) or 0 for a in ads)
-                    _known = [p for p in (purchases_of(a) for a in ads) if p is not None]
-                    tot_p = sum(_known) if _known else None
+                    t = totals_of(ads, adset_metrics.get(str(obj_id)))
                     for a in sorted(ads, key=lambda a: a.get("name", "")):
                         lines.append(f"• {creative_no(a.get('name',''))} ({lander_code(a.get('name','')) or '-'}): {ad_summary(a)}")
                     live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
+                    # Batch totals. Primary metrics (CPA / outbound CTR / adds to
+                    # cart) go in the one-line Result header — merge_result
+                    # re-parses that line, so it must stay a single line. The
+                    # secondary context lands in the comment just below.
                     result = (f"KILLED {when:%Y-%m-%d} after {live if live is not None else '?'} days · "
-                              f"${tot_spend:,.2f} · {tot_p if tot_p is not None else 'n/a'} purchase(s) · "
-                              f"CPA {money(tot_spend / tot_p) if tot_p else 'n/a'} · by {actor}")
+                              f"{money(t['spend'])} · {whole(t['purch'])} purchase(s) · "
+                              f"CPA {money(t['cpa'])} · oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · "
+                              f"ROAS {ratio(t['roas'])} · by {actor}")
                     lines.append(result)
+                    lines.append(f"Batch context · CPM {money(t['cpm'])} · CPC {money(t['cpc'])} · "
+                                 f"AOV {money(t['aov'])} · revenue {money(t['revenue'])} · "
+                                 f"{whole(t['impr'])} impr"
+                                 + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
                     lines.append("→ fill in 📖 Learnings")
                     cu_comment(task["id"], "\n".join(lines), dry)
                     # every ad in the set is dead now; ads killed earlier keep their own ✖ date
