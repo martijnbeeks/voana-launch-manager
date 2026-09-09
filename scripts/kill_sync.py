@@ -126,16 +126,33 @@ def _first(m: dict, *keys):
 # Field names verified against ads_get_field_context on 2026-09-09; the second
 # name in each pair is the older alias.
 
+def _delivered(m: dict) -> bool:
+    """Did this row actually run?
+
+    Meta omits a count field entirely when the event never happened — it does not
+    send a 0. So on a row that spent money and served impressions, a missing
+    purchase or add-to-cart count means the event happened zero times, which is a
+    real answer and the one the kill decision needs. On a row with no delivery
+    data at all (an archived ad, which returns no metrics) the same absence means
+    we simply do not know, and 0 would be a lie.
+    """
+    return num(m.get("amount_spent")) is not None or count(m.get("impressions")) > 0
+
+
 def purchases_of(m: dict) -> int | None:
     v = _first(m, "omni_purchase", "purchases")
-    return count(v) if v is not None else None
+    if v is not None:
+        return count(v)
+    return 0 if _delivered(m) else None
 
 
 def atc_of(m: dict) -> int | None:
     """Adds to cart — the offer/messaging signal: clicks but no cart means the
     ad worked and the page did not; carts but no purchase points at checkout."""
     v = _first(m, "omni_add_to_cart", "adds_to_cart")
-    return count(v) if v is not None else None
+    if v is not None:
+        return count(v)
+    return 0 if _delivered(m) else None
 
 
 def outbound_ctr_of(m: dict) -> float | None:

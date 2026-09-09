@@ -40,12 +40,13 @@ check("legacy names -> cpa", ks.cpa_of(old), 7.79)
 both = dict(now, purchases=1, cost_per_purchase="$7.79 USD")
 check("both spellings -> purchases", ks.purchases_of(both), 1)
 
-# THE REGRESSION: no purchase data at all must be None, never 0
-missing = {"amount_spent": "$38.90 USD", "ctr": "1.34%", "cpc": "$0.97 USD"}
-check("missing -> purchases is None not 0", ks.purchases_of(missing), None)
-check("missing -> cpa is None", ks.cpa_of(missing), None)
-check("missing -> printed as n/a", "n/a" in ks.ad_summary(missing), True)
-check("missing -> not printed as 0", "0 purchase" in ks.ad_summary(missing), False)
+# THE REGRESSION: a row with NO delivery data must be unknown, never 0.
+# (A row that did deliver is the opposite case — see the 2026-09-09 block below.)
+missing = {"ctr": "1.34%", "cpc": "$0.97 USD"}
+check("no delivery -> purchases is None not 0", ks.purchases_of(missing), None)
+check("no delivery -> cpa is None", ks.cpa_of(missing), None)
+check("no delivery -> printed as n/a", "n/a" in ks.ad_summary(missing), True)
+check("no delivery -> not printed as 0", "0 purchase" in ks.ad_summary(missing), False)
 
 # a real zero is data, and must survive as 0
 zero = {"amount_spent": "$38.90 USD", "omni_purchase": 0}
@@ -85,8 +86,9 @@ check("revenue alias", ks.revenue_of(alias), 100.0)
 check("roas alias", ks.roas_of(alias), 3.10)
 
 # missing stays n/a, never 0
+# these have no "it happened zero times" reading — absent means unknown, always
 bare = {"amount_spent": "$10.00 USD"}
-for label, fn in (("octr", ks.outbound_ctr_of), ("atc", ks.atc_of), ("cpm", ks.cpm_of),
+for label, fn in (("octr", ks.outbound_ctr_of), ("cpm", ks.cpm_of),
                   ("roas", ks.roas_of), ("revenue", ks.revenue_of), ("aov", ks.aov_of)):
     check(f"missing {label} is None", fn(bare), None)
 
