@@ -7,7 +7,8 @@ JSON files into state/inbox/; this script does everything deterministic:
 
   process   read state/inbox/*.json, detect kills, update ClickUp, post Discord,
             append state/kills.jsonl, advance state/last_run.json
-  digest    post the "batches complete without learnings" reminder
+  digest    post the "synced into ClickUp" digest for the run that just finished
+  replay D  re-post the Discord report for an archived inbox D (no ClickUp, no state)
   --dry-run print what would happen, write nothing to ClickUp/Discord
 
 Inbox contract (written by the Claude runbook, one file per account):
@@ -34,6 +35,8 @@ import json
 import os
 import re
 import sys
+import time
+import traceback
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -301,15 +304,50 @@ def lander_code(ad_name: str) -> str:
 
 
 # ── ClickUp ──────────────────────────────────────────────────────────────────
+class ClickUpError(Exception):
+    """One ClickUp call that failed for good. `code` is the HTTP status (None for
+    a network error) so callers can tell a 404 (the thing is gone) from a 5xx."""
+
+    def __init__(self, method: str, path: str, code: int | None, detail: str = ""):
+        self.method, self.path, self.code, self.detail = method, path, code, detail
+        super().__init__(f"{method} {path} → {'HTTP ' + str(code) if code else 'network error'}"
+                         + (f": {detail}" if detail else ""))
+
+
+CU_RETRIES = 3
+_SLEEP = time.sleep  # patched in tests
+
+
 def cu(method: str, path: str, body: dict | None = None) -> dict:
-    req = urllib.request.Request(
-        CLICKUP + path, method=method,
-        data=json.dumps(body).encode() if body is not None else None,
-        headers={"Authorization": CLICKUP_KEY, "Content-Type": "application/json", "User-Agent": UA},
-    )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        raw = r.read()
-    return json.loads(raw) if raw else {}
+    """ClickUp call with backoff on 429/5xx (honouring Retry-After) and on
+    network drops. Anything else — 401, 404 — raises ClickUpError at once.
+    A run makes ~25 calls per batch kill, so a 100 req/min token cap is
+    reachable mid-run; without this a rate limit tore a kill in half."""
+    for attempt in range(CU_RETRIES + 1):
+        req = urllib.request.Request(
+            CLICKUP + path, method=method,
+            data=json.dumps(body).encode() if body is not None else None,
+            headers={"Authorization": CLICKUP_KEY, "Content-Type": "application/json", "User-Agent": UA},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                raw = r.read()
+            return json.loads(raw) if raw else {}
+        except urllib.error.HTTPError as e:
+            detail = e.read()[:300].decode("utf-8", "replace") if e.fp else ""
+            transient = e.code == 429 or e.code >= 500
+            if not transient or attempt == CU_RETRIES:
+                raise ClickUpError(method, path, e.code, detail) from e
+            wait = float(e.headers.get("Retry-After") or 0) or (2.0 * 2 ** attempt)
+            print(f"    clickup {method} {path} → HTTP {e.code}; retry {attempt + 1}/{CU_RETRIES} in {wait:.0f}s")
+            _SLEEP(wait)
+        except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
+            if attempt == CU_RETRIES:
+                raise ClickUpError(method, path, None, str(e)) from e
+            wait = 2.0 * 2 ** attempt
+            print(f"    clickup {method} {path} → {e!r}; retry {attempt + 1}/{CU_RETRIES} in {wait:.0f}s")
+            _SLEEP(wait)
+    raise AssertionError("unreachable")
 
 
 class ClickUpTasks:
@@ -358,8 +396,20 @@ SKIP_CLICKUP = os.environ.get("KILL_SYNC_SKIP_CLICKUP") == "1"
 
 
 def cu_comment(task_id: str, text: str, dry: bool):
+    """Post once. The first line of every kill comment is deterministic (actor +
+    kill time), so a re-run after a crash finds it and does not repeat itself —
+    the 2026-09-10 crash had already commented on four tasks it never ledgered."""
     if dry or SKIP_CLICKUP:
         print(f"    [dry] comment on {task_id}:\n" + "\n".join("      " + l for l in text.splitlines()))
+        return
+    head = text.strip().splitlines()[0].strip()
+    try:
+        existing = cu("GET", f"/task/{task_id}/comment").get("comments", [])
+    except ClickUpError as e:
+        print(f"    could not read comments on {task_id} ({e}); posting anyway")
+        existing = []
+    if any((c.get("comment_text") or "").strip().startswith(head) for c in existing):
+        print(f"    comment already on {task_id}: {head[:70]} — not repeated")
         return
     cu("POST", f"/task/{task_id}/comment", {"comment_text": text, "notify_all": False})
 
@@ -379,14 +429,38 @@ def cu_set_status(task_id: str, status: str, dry: bool):
 
 
 # ── Discord ──────────────────────────────────────────────────────────────────
+DISCORD_MAX_EMBEDS = 10
+DISCORD_MAX_CHARS = 6000   # title + description across ALL embeds in one message
+
+
+def _embed_len(e: dict) -> int:
+    return len(e.get("title") or "") + len(e.get("description") or "")
+
+
+def chunk_embeds(embeds: list[dict]) -> list[list[dict]]:
+    """Split into messages Discord accepts: at most 10 embeds AND at most 6000
+    characters of embed text per message. Seven whole-batch kills in one payload
+    were 400'd on 2026-09-10 and the kill post was silently lost — the old
+    loop only counted embeds."""
+    chunks, cur, size = [], [], 0
+    for e in embeds:
+        n = _embed_len(e)
+        if cur and (len(cur) >= DISCORD_MAX_EMBEDS or size + n > DISCORD_MAX_CHARS):
+            chunks.append(cur); cur, size = [], 0
+        cur.append(e); size += n
+    if cur:
+        chunks.append(cur)
+    return chunks
+
+
 def discord(embeds: list[dict], content: str | None, dry: bool) -> bool:
     if not embeds and not content:
         return True
     if dry or not WEBHOOK:
         print("    [dry/no-webhook] discord:", json.dumps({"content": content, "embeds": embeds}, ensure_ascii=False)[:1500])
         return bool(WEBHOOK)
-    for i in range(0, max(1, len(embeds)), 10):
-        payload = {"username": "Voana kill-sync", "embeds": embeds[i:i + 10]}
+    for i, batch in enumerate(chunk_embeds(embeds) or [[]]):
+        payload = {"username": "Voana kill-sync", "embeds": batch}
         if i == 0 and content:
             payload["content"] = content[:1900]
         req = urllib.request.Request(
@@ -397,6 +471,9 @@ def discord(embeds: list[dict], content: str | None, dry: bool) -> bool:
             urllib.request.urlopen(req, timeout=20).read()
         except urllib.error.HTTPError as e:
             print(f"    discord HTTP {e.code}: {e.read()[:300]!r}")
+            return False
+        except (urllib.error.URLError, OSError) as e:
+            print(f"    discord network error: {e!r}")
             return False
     return True
 
@@ -413,7 +490,24 @@ def task_url(task: dict | None) -> str:
 
 # ── ClickUp metric reporting (Result field + checklist) ──────────────────────
 CHECKLIST_NAME = "Ad performance"
-AD_LINE_RE = re.compile(r"^(C\d+|V\d+)\b")
+# 'C4/7R ✖09-09 · …' or legacy 'C4 ✖09-09 · …'. The key is what merge_result
+# and the checklist upsert match on, so it must be unique per AD, and one
+# creative runs on two landers (OG and 7R) — a bare 'C4' silently collapsed
+# them into one line, dropping half the batch from the Result field.
+AD_LINE_RE = re.compile(r"^((?:C|V)\d+(?:/[A-Za-z0-9]+)?)\b")
+SCRIPT_LINE_RE = re.compile(r"^(?:C|V)\d+(?:/[A-Za-z0-9]+)? (?:✖\d\d-\d\d|▶|⏸) · ")
+
+
+def ad_key(ad_name: str) -> str:
+    """'S014 - 7R - C1-C6 - … _C4' → 'C4/7R'; an ad with no lander segment → 'C4'."""
+    code, lander = creative_no(ad_name), lander_code(ad_name)
+    return f"{code}/{lander}" if lander else code
+
+
+def _key_order(k: str):
+    """C1, C2, … C10 numerically, landers alphabetically inside a creative."""
+    m = re.match(r"([CV])(\d+)(?:/(.*))?$", k)
+    return (m.group(1), int(m.group(2)), m.group(3) or "") if m else ("Z", 0, k)
 
 
 def ad_line(m: dict, killed_on: dt.datetime | None = None) -> str:
@@ -422,7 +516,7 @@ def ad_line(m: dict, killed_on: dt.datetime | None = None) -> str:
     purch, cpa = purchases_of(m), cpa_of(m)
     mark = f"✖{killed_on:%m-%d}" if killed_on else ("▶" if m.get("effective_status") == "ACTIVE" else "⏸")
     live = days_live(m.get("created_time"), killed_on)
-    return (f"{creative_no(m.get('name', ''))} {mark} · {money(m.get('amount_spent'))} · {purch if purch is not None else 'n/a'} purch · "
+    return (f"{ad_key(m.get('name', ''))} {mark} · {money(m.get('amount_spent'))} · {purch if purch is not None else 'n/a'} purch · "
             f"CPA {money(cpa)} · oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))} · "
             f"CPC {money(m.get('cpc'))} · {count(m.get('impressions')):,} impr · {live if live is not None else '?'}d")
 
@@ -444,39 +538,96 @@ def merge_result(existing: str | None, new_lines: list[str], header: str | None)
         m = AD_LINE_RE.match(l)
         if m:
             lines[m.group(1)] = l
-    def order(k):  # C1, C2, … C10 numerically
-        return (k[0], int(k[1:]))
-    body = [lines[k] for k in sorted(lines, key=order)]
+    # A legacy bare-code line ('C4 …') is the collapsed version of the per-lander
+    # lines that now replace it — drop it once 'C4/<lander>' exists.
+    for k in [k for k in lines if "/" not in k]:
+        if any(o.startswith(k + "/") for o in lines):
+            del lines[k]
+    body = [lines[k] for k in sorted(lines, key=_key_order)]
     head = header or old_header
     return "\n".join(([head] if head else []) + body)
 
 
-def upsert_checklist(task: dict, ads: list[dict], killed_ids: set[str], when: dt.datetime, dry: bool):
-    """One checklist item per creative, name = metrics line, resolved when dead."""
-    if not ads:
-        return
+def _checklist_of(task: dict) -> dict:
     cl = next((c for c in task.get("checklists", []) if c.get("name") == CHECKLIST_NAME), None)
     if cl is None:
-        if dry or SKIP_CLICKUP:
-            print(f"    [dry] create checklist '{CHECKLIST_NAME}'")
-            cl = {"id": "dry", "items": []}
+        cl = cu("POST", f"/task/{task['id']}/checklist", {"name": CHECKLIST_NAME}).get("checklist", {})
+        task.setdefault("checklists", []).append(cl)
+    return cl
+
+
+def _refetch_checklists(task: dict):
+    """Re-read the task's checklists from ClickUp. The list endpoint's copy can be
+    stale (checklist or item deleted in the UI since the run started)."""
+    task["checklists"] = cu("GET", f"/task/{task['id']}").get("checklists", [])
+
+
+def _item_map(cl: dict) -> tuple[dict, list]:
+    """Script-authored items by ad key (first wins), plus legacy bare-code items.
+    Items a human typed do not match SCRIPT_LINE_RE and are never touched."""
+    items, legacy = {}, []
+    for i in cl.get("items", []):
+        name = (i.get("name") or "").strip()
+        m = AD_LINE_RE.match(name)
+        if not m or not SCRIPT_LINE_RE.match(name):
+            continue
+        if m.group(1) in items:
+            legacy.append(i)          # a duplicate of a line we already hold
         else:
-            cl = cu("POST", f"/task/{task['id']}/checklist", {"name": CHECKLIST_NAME}).get("checklist", {})
-            task.setdefault("checklists", []).append(cl)
-    items = {creative_no(i.get("name", "")): i for i in cl.get("items", [])}
+            items[m.group(1)] = i
+    return items, legacy
+
+
+def upsert_checklist(task: dict, ads: list[dict], killed_ids: set[str], when: dt.datetime, dry: bool):
+    """One checklist item per AD (creative + lander), name = metrics line,
+    resolved when dead. Tolerates ClickUp's flakiness: a 404 on an item write
+    re-reads the task and retries the whole upsert once (items already written
+    are then matched, not duplicated); an item deleted in the UI is recreated.
+    Legacy 'C4 …' items are removed once 'C4/<lander>' lines exist — they were
+    the collapsed form and would otherwise sit beside the real ones forever."""
+    if not ads:
+        return
+    plan = []
     for a in sorted(ads, key=lambda a: a.get("name", "")):
-        code = creative_no(a.get("name", ""))
         dead = str(a.get("id")) in killed_ids or a.get("effective_status") not in ("ACTIVE", "IN_PROCESS", "PENDING_REVIEW")
         line = ad_line(a, when if str(a.get("id")) in killed_ids else None)
-        body = {"name": line, "resolved": bool(dead)}
-        item = items.get(code)
-        if dry or SKIP_CLICKUP:
-            print(f"    [dry] checklist {'update' if item else 'add'}: {line}{' [resolved]' if dead else ''}")
-            continue
-        if item:
-            cu("PUT", f"/checklist/{cl['id']}/checklist_item/{item['id']}", body)
-        else:
-            cu("POST", f"/checklist/{cl['id']}/checklist_item", body)
+        plan.append((ad_key(a.get("name", "")), {"name": line, "resolved": bool(dead)}))
+    if dry or SKIP_CLICKUP:
+        for _, body in plan:
+            print(f"    [dry] checklist upsert: {body['name']}{' [resolved]' if body['resolved'] else ''}")
+        return
+    for attempt in (1, 2):
+        try:
+            cl = _checklist_of(task)
+            items, legacy = _item_map(cl)
+            new_keys = {k for k, _ in plan}
+            for k, body in plan:
+                item = items.get(k)
+                if item:
+                    try:
+                        cu("PUT", f"/checklist/{cl['id']}/checklist_item/{item['id']}", body)
+                    except ClickUpError as e:
+                        if e.code != 404:
+                            raise
+                        print(f"    checklist item {item['id']} gone — recreating")
+                        cu("POST", f"/checklist/{cl['id']}/checklist_item", body)
+                else:
+                    cu("POST", f"/checklist/{cl['id']}/checklist_item", body)
+            stale = legacy + [i for k, i in items.items()
+                              if "/" not in k and any(n.startswith(k + "/") for n in new_keys)]
+            for i in stale:
+                print(f"    retiring legacy checklist item: {(i.get('name') or '')[:50]}")
+                try:
+                    cu("DELETE", f"/checklist/{cl['id']}/checklist_item/{i['id']}")
+                except ClickUpError as e:
+                    if e.code != 404:
+                        raise
+            return
+        except ClickUpError as e:
+            if e.code != 404 or attempt == 2:
+                raise
+            print(f"    checklist write on {task['id']} → 404 ({e.path}); re-reading the task and retrying once")
+            _refetch_checklists(task)
 
 
 # ── state ────────────────────────────────────────────────────────────────────
@@ -510,6 +661,19 @@ def ad_summary(m: dict) -> str:
             f"CPC {money(m.get('cpc'))} · CTR {pct(m.get('ctr'))} · {count(m.get('impressions')):,} impr")
 
 
+def brief_metrics(x: dict) -> str:
+    """The five numbers a kill decision is read by, in one short line. Takes an
+    ad row (Meta field names) or a totals_of() dict."""
+    if not x:
+        return "metrics n/a"
+    if "spend" in x and "purch" in x:      # totals_of()
+        spend, purch, cpa, octr, roas = x["spend"], x["purch"], x["cpa"], x["octr"], x["roas"]
+    else:
+        spend, purch, cpa, octr, roas = num(x.get("amount_spent")), purchases_of(x), cpa_of(x), outbound_ctr_of(x), roas_of(x)
+    return (f"{money(spend)} · {purch if purch is not None else 'n/a'} purch · CPA {money(cpa)} · "
+            f"oCTR {pct(octr)} · ROAS {ratio(roas)}")
+
+
 def describe_task(task: dict | None, adset_name: str) -> str:
     """Format / angle / avatar / awareness straight from the name grammar."""
     parts = [p.strip() for p in adset_name.split(" - ")]
@@ -519,36 +683,48 @@ def describe_task(task: dict | None, adset_name: str) -> str:
     return ""
 
 
-def process(dry: bool) -> int:
+def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
+    """`replay=True` re-posts the Discord report for an already-processed inbox
+    (state/inbox/processed/<stamp>/): ClickUp writes are skipped, the ledger is
+    ignored for detection and NOT appended, last_run is left alone. It exists for
+    the case where ClickUp was synced but the Discord post failed."""
+    global SKIP_CLICKUP
     if not CLICKUP_KEY:
         print("CLICKUP_API_KEY missing in .env"); return 2
     cfg = CONFIG
-    seen = ledger_keys()
+    inbox = inbox or INBOX
+    if replay:
+        SKIP_CLICKUP = True
+        print(f"REPLAY of {inbox} — Discord only, no ClickUp writes, no state change")
+    seen = set() if replay else ledger_keys()
     tasks = ClickUpTasks()
     print(f"ClickUp: {len(tasks.tasks)} tasks loaded{' · CLICKUP WRITES SKIPPED' if SKIP_CLICKUP else ''} · webhook: "
           f"{'dedicated' if WEBHOOK and not WEBHOOK_IS_FALLBACK else 'OPS FALLBACK' if WEBHOOK else 'NONE'}")
     new_rows, embeds, problems = [], [], []
+    failed_clickup = 0
     now = dt.datetime.now()
 
     for account, acc in cfg["accounts"].items():
-        events = read_json(INBOX / f"kills_{account}.json", [])
-        metrics = read_json(INBOX / f"metrics_{account}.json", [])
-        active_adsets = read_json(INBOX / f"active_adsets_{account}.json", [])
+        events = read_json(inbox / f"kills_{account}.json", [])
+        metrics = read_json(inbox / f"metrics_{account}.json", [])
+        active_adsets = read_json(inbox / f"active_adsets_{account}.json", [])
         # Meta's own ad-set rows, when the bridge managed to fetch them. Optional
         # on purpose: an older inbox, or a Meta call that failed, must still
         # produce a kill report rather than crash — totals_of() then falls back
         # to summing the ad rows.
         adset_metrics = {str(r.get("id")): r
-                         for r in read_json(INBOX / f"adset_metrics_{account}.json", [])
+                         for r in read_json(inbox / f"adset_metrics_{account}.json", [])
                          if r.get("id")}
         active_by_name = {a.get("name", "").strip(): str(a.get("id")) for a in active_adsets}
+        # one row per ad id: a bridge that lists an ad twice (killed-ads query and
+        # ads-of-killed-set query overlap) must not double the batch totals
         by_id = {str(m.get("id")): m for m in metrics}
         by_adset: dict[str, list[dict]] = {}
-        for m in metrics:
+        for m in by_id.values():
             by_adset.setdefault(str(m.get("adset_id")), []).append(m)
-        print(f"\n== {acc['name']} ({account}): {len(events)} pause events, {len(metrics)} metric rows")
+        print(f"\n== {acc['name']} ({account}): {len(events)} pause events, {len(by_id)} metric rows")
 
-        kills = []
+        kills, in_run = [], set()
         for e in events:
             old, new = str(e.get("old_value")), str(e.get("new_value"))
             if new != "7":
@@ -560,8 +736,9 @@ def process(dry: bool) -> int:
             if old not in ("1", "9"):
                 continue  # only live (or in-review) -> paused counts as a kill
             key = f"{account}:{e['object_type']}:{e['object_id']}:{e.get('datetime')}"
-            if key in seen:
+            if key in seen or key in in_run:
                 continue
+            in_run.add(key)
             kills.append((key, e))
 
         # collapse: if an ad set was killed, skip the individual ad events of that set
@@ -590,110 +767,138 @@ def process(dry: bool) -> int:
             task, how = tasks.find(adset_name)
             print(f"  💀 {kind} {obj_id} · {name[:70]} · by {actor} · task: {how}")
             if not task:
-                problems.append(f"{kind} `{name[:80]}` killed by {actor} — ClickUp task {how}")
+                problems.append(f"{batch_prefix(adset_name) or name[:30]} · no ClickUp task ({how})")
 
             still = []
             if kind == "ad" and ads:
                 siblings = by_adset.get(str(ads[0].get("adset_id")), [])
-                still = [creative_no(s.get("name", "")) for s in siblings
+                still = [ad_key(s.get("name", "")) for s in siblings
                          if str(s.get("id")) != obj_id and s.get("effective_status") == "ACTIVE"]
 
-            # ── ClickUp
             batch_no = batch_prefix(adset_name) or adset_name[:12]
-            if task:
-                if kind == "ad":
-                    m = ads[0] if ads else {}
-                    text = (f"💀 {creative_no(name)} killed by {actor} on {when:%Y-%m-%d %H:%M} "
-                            f"({acc['name']}, {lander_code(name) or 'lander n/a'}) after {days_live(m.get('created_time'), when)} days\n"
-                            f"{ad_summary(m) if m else 'metrics n/a'}\n"
-                            f"Still running: {', '.join(still) if still else 'none'}\n"
-                            f"{ads_manager_url(account, 'ad', obj_id)}")
-                    cu_comment(task["id"], text, dry)
-                    siblings = by_adset.get(str(m.get("adset_id")), []) if m else []
-                    if m:
-                        merged = merge_result(tasks.field_value(task, cfg["clickup"]["fields"]["result"]),
-                                              [ad_line(m, when)], None)
-                        cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merged, dry)
-                    upsert_checklist(task, siblings or ads, {obj_id}, when, dry)
-                else:
-                    lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
-                    t = totals_of(ads, adset_metrics.get(str(obj_id)))
-                    for a in sorted(ads, key=lambda a: a.get("name", "")):
-                        lines.append(f"• {creative_no(a.get('name',''))} ({lander_code(a.get('name','')) or '-'}): {ad_summary(a)}")
-                    live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
-                    # Batch totals. Primary metrics (CPA / outbound CTR / adds to
-                    # cart) go in the one-line Result header — merge_result
-                    # re-parses that line, so it must stay a single line. The
-                    # secondary context lands in the comment just below.
-                    result = (f"KILLED {when:%Y-%m-%d} after {live if live is not None else '?'} days · "
-                              f"{money(t['spend'])} · {whole(t['purch'])} purchase(s) · "
-                              f"CPA {money(t['cpa'])} · oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · "
-                              f"ROAS {ratio(t['roas'])} · by {actor}")
-                    lines.append(result)
-                    lines.append(f"Batch context · CPM {money(t['cpm'])} · CPC {money(t['cpc'])} · "
-                                 f"AOV {money(t['aov'])} · revenue {money(t['revenue'])} · "
-                                 f"{whole(t['impr'])} impr"
-                                 + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
-                    # Batch totals also go into real ClickUp number fields, so the
-                    # list can be sorted and filtered on CPA / ROAS instead of the
-                    # numbers being locked inside the Result text. Only on a whole
-                    # -batch kill: these fields describe the ad set, and a single
-                    # dead creative must not overwrite them with its own numbers.
-                    # A metric Meta did not report is SKIPPED, never written as 0.
-                    for key, fid in (cfg["clickup"].get("metric_fields") or {}).items():
-                        v = t.get(key)
-                        if v is not None:
-                            cu_set_field(task["id"], fid, round(float(v), 2), dry)
-                    lines.append("→ fill in 📖 Learnings")
-                    cu_comment(task["id"], "\n".join(lines), dry)
-                    # every ad in the set is dead now; ads killed earlier keep their own ✖ date
-                    prior = tasks.field_value(task, cfg["clickup"]["fields"]["result"]) or ""
-                    earlier = {AD_LINE_RE.match(l.strip()).group(1) for l in prior.splitlines()
-                               if AD_LINE_RE.match(l.strip()) and "✖" in l}
-                    table = [ad_line(a, when) for a in ads if creative_no(a.get("name", "")) not in earlier]
-                    result = merge_result(prior, table, result)
-                    upsert_checklist(task, ads, {str(a.get("id")) for a in ads}, when, dry)
-                    cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""
-                    if cur in cfg["clickup"]["overridable_statuses"]:
-                        cu_set_field(task["id"], cfg["clickup"]["fields"]["status"],
-                                     cfg["clickup"]["status_options"]["Losing Ad"], dry)
-                    else:
-                        print(f"    Status left as '{cur}' (human-set)")
-                    cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], result, dry)
-                    if task["status"]["status"] in cfg["clickup"]["protected_task_statuses"]:
-                        print(f"    task status left as '{task['status']['status']}' (human-set)")
-                    else:
-                        cu_set_status(task["id"], cfg["clickup"]["batch_kill_task_status"], dry)
 
-            # ── Discord embed
+            # ── ClickUp. Everything for one kill is isolated: a failure here is
+            # logged, ledgered and reported, and the run carries on to the next
+            # kill. Before 2026-09-10 one ClickUp 404 raised straight out of the
+            # loop, so four batches that were already written were never
+            # ledgered, two were never reached, and the inbox/last_run stayed
+            # put — the next run would have re-commented on all of them.
+            def write_ad_kill():
+                m = ads[0] if ads else {}
+                text = (f"💀 {ad_key(name)} killed by {actor} on {when:%Y-%m-%d %H:%M} "
+                        f"({acc['name']}, {lander_code(name) or 'lander n/a'}) after {days_live(m.get('created_time'), when)} days\n"
+                        f"{ad_summary(m) if m else 'metrics n/a'}\n"
+                        f"Still running: {', '.join(still) if still else 'none'}\n"
+                        f"{ads_manager_url(account, 'ad', obj_id)}")
+                cu_comment(task["id"], text, dry)
+                siblings = by_adset.get(str(m.get("adset_id")), []) if m else []
+                if m:
+                    merged = merge_result(tasks.field_value(task, cfg["clickup"]["fields"]["result"]),
+                                          [ad_line(m, when)], None)
+                    cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merged, dry)
+                # the checklist is the chattiest and flakiest write — last, so a
+                # failure there costs nothing above
+                upsert_checklist(task, siblings or ads, {obj_id}, when, dry)
+
+            def write_batch_kill():
+                lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
+                t = totals_of(ads, adset_metrics.get(str(obj_id)))
+                for a in sorted(ads, key=lambda a: a.get("name", "")):
+                    lines.append(f"• {creative_no(a.get('name',''))} ({lander_code(a.get('name','')) or '-'}): {ad_summary(a)}")
+                live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
+                # Batch totals. Primary metrics (CPA / outbound CTR / adds to
+                # cart) go in the one-line Result header — merge_result
+                # re-parses that line, so it must stay a single line. The
+                # secondary context lands in the comment just below.
+                result = (f"KILLED {when:%Y-%m-%d} after {live if live is not None else '?'} days · "
+                          f"{money(t['spend'])} · {whole(t['purch'])} purchase(s) · "
+                          f"CPA {money(t['cpa'])} · oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · "
+                          f"ROAS {ratio(t['roas'])} · by {actor}")
+                lines.append(result)
+                lines.append(f"Batch context · CPM {money(t['cpm'])} · CPC {money(t['cpc'])} · "
+                             f"AOV {money(t['aov'])} · revenue {money(t['revenue'])} · "
+                             f"{whole(t['impr'])} impr"
+                             + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
+                lines.append("→ fill in 📖 Learnings")
+                cu_comment(task["id"], "\n".join(lines), dry)
+                # every ad in the set is dead now; ads killed earlier keep their own ✖ date
+                prior = tasks.field_value(task, cfg["clickup"]["fields"]["result"]) or ""
+                earlier = {AD_LINE_RE.match(l.strip()).group(1) for l in prior.splitlines()
+                           if AD_LINE_RE.match(l.strip()) and "✖" in l}
+                table = [ad_line(a, when) for a in ads if ad_key(a.get("name", "")) not in earlier]
+                cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merge_result(prior, table, result), dry)
+                cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""
+                if cur in cfg["clickup"]["overridable_statuses"]:
+                    cu_set_field(task["id"], cfg["clickup"]["fields"]["status"],
+                                 cfg["clickup"]["status_options"]["Losing Ad"], dry)
+                else:
+                    print(f"    Status left as '{cur}' (human-set)")
+                if task["status"]["status"] in cfg["clickup"]["protected_task_statuses"]:
+                    print(f"    task status left as '{task['status']['status']}' (human-set)")
+                else:
+                    cu_set_status(task["id"], cfg["clickup"]["batch_kill_task_status"], dry)
+                # Batch totals also go into real ClickUp number fields, so the
+                # list can be sorted and filtered on CPA / ROAS instead of the
+                # numbers being locked inside the Result text. Only on a whole
+                # -batch kill: these fields describe the ad set, and a single
+                # dead creative must not overwrite them with its own numbers.
+                # A metric Meta did not report is SKIPPED, never written as 0.
+                for mkey, fid in (cfg["clickup"].get("metric_fields") or {}).items():
+                    v = t.get(mkey)
+                    if v is not None:
+                        cu_set_field(task["id"], fid, round(float(v), 2), dry)
+                upsert_checklist(task, ads, {str(a.get("id")) for a in ads}, when, dry)
+
+            clickup_error = None
+            if task:
+                try:
+                    write_ad_kill() if kind == "ad" else write_batch_kill()
+                except ClickUpError as ex:
+                    clickup_error = str(ex)
+                except Exception as ex:  # a bug in one kill must not abort the batch either
+                    clickup_error = f"{type(ex).__name__}: {ex}"
+                    traceback.print_exc()
+                if clickup_error:
+                    failed_clickup += 1
+                    print(f"    ✗ ClickUp update failed: {clickup_error}")
+                    problems.append(f"{batch_no} · ClickUp update failed · {task_url(task)} · {clickup_error[:120]}")
+
+            # ── Discord embed: ONE line of numbers + links. Keep it short — the
+            # per-ad table is in the ClickUp comment, and the channel is read on
+            # a phone. Seven batch kills used to be 7 × 15 lines.
             if kind == "ad":
                 m = ads[0] if ads else {}
-                title = f"💀 {batch_no} — {creative_no(name)} killed by {actor}"
-                desc = (f"{acc['name']} · live {days_live(m.get('created_time'), when)} days\n{ad_summary(m) if m else 'metrics n/a'}\n"
-                        f"{describe_task(task, adset_name)}\nLander: {lander_code(name) or 'n/a'}\n"
-                        f"Still running: {', '.join(still) if still else 'none'}")
+                title = f"💀 {batch_no} · {ad_key(name)} · {actor}"
+                desc = (f"{acc['name']} · {days_live(m.get('created_time'), when) if m else '?'}d · {brief_metrics(m)}"
+                        f" · still: {', '.join(still) if still else 'none'}")
             else:
-                title = f"💀💀 {batch_no} — whole batch killed by {actor}"
-                desc = (f"{acc['name']} · {len(ads)} ads\n" +
-                        "\n".join(f"• {creative_no(a.get('name',''))}: {ad_summary(a)}" for a in sorted(ads, key=lambda a: a.get('name',''))) +
-                        f"\n{describe_task(task, adset_name)}\n**→ fill in 📖 Learnings**")
-            links = " · ".join(x for x in [f"[ClickUp]({task_url(task)})" if task else "ClickUp: no task",
+                t = totals_of(ads, adset_metrics.get(str(obj_id)))
+                live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
+                title = f"💀💀 {batch_no} · batch · {actor}"
+                desc = (f"{acc['name']} · {len(ads)} ads · {live if live is not None else '?'}d · {brief_metrics(t)}"
+                        f" · 📖 learnings?")
+            if clickup_error:
+                desc += "\n⚠️ ClickUp update failed"
+            links = " · ".join(x for x in [f"[ClickUp]({task_url(task)})" if task else "no ClickUp task",
                                            f"[Ads Manager]({ads_manager_url(account, kind, obj_id)})"])
             embeds.append({"title": title[:256], "description": (desc + "\n" + links)[:4000],
                            "color": 0xE74C3C if kind == "adset" else 0xE67E22,
                            "url": task_url(task) or ads_manager_url(account, kind, obj_id)})
-            new_rows.append({"key": key, "account": account, "kind": kind, "object_id": obj_id, "name": name,
-                             "actor": actor, "at": when.isoformat(), "task_id": task["id"] if task else None,
-                             "match": how, "detected": now.isoformat()})
+            row = {"key": key, "account": account, "kind": kind, "object_id": obj_id, "name": name,
+                   "actor": actor, "at": when.isoformat(), "task_id": task["id"] if task else None,
+                   "match": how, "detected": now.isoformat()}
+            if clickup_error:
+                row["error"] = clickup_error[:300]
+            new_rows.append(row)
 
     content = None
     if problems:
-        content = "⚠️ Kill-sync could not map:\n" + "\n".join("• " + p for p in problems)
+        content = "\n".join("⚠️ " + p for p in problems)
     if WEBHOOK_IS_FALLBACK and embeds:
-        content = (content or "") + "\n_(posted to the ops channel — set KILL_SYNC_DISCORD_WEBHOOK_URL for a dedicated channel)_"
+        content = (content or "") + "\n_(ops channel — set KILL_SYNC_DISCORD_WEBHOOK_URL)_"
     ok = discord(embeds, content, dry)
 
-    if not dry:
+    if not dry and not replay:
         if new_rows:
             ledger_append(new_rows)
         (STATE / "last_run.json").write_text(json.dumps({"last_run": now.isoformat(timespec="seconds"),
@@ -702,13 +907,20 @@ def process(dry: bool) -> int:
         archive.mkdir(parents=True, exist_ok=True)
         for p in INBOX.glob("*.json"):
             p.replace(archive / p.name)
-        if embeds and not WEBHOOK:
+        if embeds and (not WEBHOOK or not ok):
+            # keep the report so a failed post can be read (or replayed from the
+            # archived inbox) instead of vanishing with the process
             (STATE / "reports").mkdir(exist_ok=True)
             (STATE / "reports" / f"{now:%Y-%m-%d_%H%M}.md").write_text(
                 "\n\n".join(f"### {e['title']}\n{e['description']}" for e in embeds))
-    print(f"\nDone: {len(embeds)} kill(s) reported, {len(problems)} unmapped, discord={'ok' if ok else 'FAILED/none'}")
+            if WEBHOOK:
+                print(f"    Discord post failed — report saved to state/reports/{now:%Y-%m-%d_%H%M}.md; "
+                      f"re-post with: kill_sync.py replay state/inbox/processed/{now:%Y-%m-%d_%H%M}")
+    print(f"\nDone: {len(embeds)} kill(s) reported, {len(problems)} unmapped/failed, "
+          f"{failed_clickup} ClickUp failure(s), discord={'ok' if ok else 'FAILED/none'}")
+    if failed_clickup:
+        return 4
     return 0 if ok or not embeds else 3
-
 
 def digest(dry: bool) -> int:
     """List what the run that just finished pushed into ClickUp.
@@ -740,27 +952,32 @@ def digest(dry: bool) -> int:
         print(f"digest: run {latest[:19]} updated no ClickUp tasks")
         return 0
     synced.sort(key=lambda r: r.get("name", ""))
-    lines = []
+    links = []
     for r in synced:
         name = r.get("name", "")
         label = batch_prefix(name) or name[:12] or "?"
-        what = "whole batch" if r.get("kind") == "adset" else "single ad"
-        lines.append(f"• [{label}](https://app.clickup.com/t/{r['task_id']}) — "
-                     f"{what}, killed by {r.get('actor') or 'unknown'}")
-    embed = {"title": f"\u2705 {len(synced)} killed batch(es) updated in ClickUp",
-             "description": "\n".join(lines)[:4000], "color": 0x2ECC71}
+        if r.get("kind") == "ad":
+            label += f" {ad_key(name)}"
+        links.append(f"[{label}](https://app.clickup.com/t/{r['task_id']})" + (" ⚠️" if r.get("error") else ""))
+    embed = {"title": f"\u2705 {len(synced)} kill(s) → ClickUp",
+             "description": " · ".join(links)[:4000], "color": 0x2ECC71}
     return 0 if discord([embed], None, dry) else 3
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["process", "digest"])
+    ap.add_argument("cmd", choices=["process", "digest", "replay"])
+    ap.add_argument("inbox", nargs="?", help="replay: an archived inbox dir (state/inbox/processed/<stamp>)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--skip-clickup", action="store_true", help="post Discord + record state, but do not write to ClickUp")
     a = ap.parse_args(argv)
     global SKIP_CLICKUP
     SKIP_CLICKUP = SKIP_CLICKUP or a.skip_clickup
     STATE.mkdir(exist_ok=True); INBOX.mkdir(exist_ok=True)
+    if a.cmd == "replay":
+        if not a.inbox or not Path(a.inbox).is_dir():
+            ap.error("replay needs an archived inbox directory")
+        return process(a.dry_run, inbox=Path(a.inbox), replay=True)
     return process(a.dry_run) if a.cmd == "process" else digest(a.dry_run)
 
 
