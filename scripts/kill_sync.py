@@ -290,8 +290,9 @@ def totals_of(ads: list[dict], adset_row: dict | None = None) -> dict:
 
 
 def parse_dt(s: str | None) -> dt.datetime | None:
-    """Handles ISO ('2026-09-07T02:21:16-0400') and the MCP's localized
-    '7-9-2026 om 03:14' (d-m-Y). Returns naive local-ish datetime."""
+    """Handles ISO ('2026-09-07T02:21:16-0400'), the Dutch-locale MCP's
+    '7-9-2026 om 03:14' (d-m-Y) and the English-locale '9/17/2026 at 3:46 AM'
+    (m/d/Y, 12-hour). Returns naive local-ish datetime."""
     if not s:
         return None
     s = str(s).strip()
@@ -301,6 +302,24 @@ def parse_dt(s: str | None) -> dt.datetime | None:
             return d.replace(tzinfo=None)
         except ValueError:
             pass
+    # English locale, as the claude.ai Meta connector on the Mac Mini returns it:
+    # '9/17/2026 at 3:46\u202fAM' — M/D/Y, 12-hour, a NARROW no-break space
+    # before AM/PM. Unparsed, every kill fell back to "now": wrong kill time on
+    # the card and in ClickUp, and a comment head that changed on every re-run,
+    # so the comment dedupe could not match (duplicate on S182, 2026-09-17).
+    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})\D+?(\d{1,2}):(\d{2})(?:[\s\u202f\u00a0]*([AaPp])\.?[Mm]\.?)?", s)
+    if m:
+        mo, d_, y, h, mi = map(int, m.groups()[:5])
+        ampm = (m.group(6) or "").lower()
+        if ampm == "p" and h != 12:
+            h += 12
+        elif ampm == "a" and h == 12:
+            h = 0
+        return dt.datetime(y, mo, d_, h, mi)
+    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})$", s)
+    if m:
+        mo, d_, y = map(int, m.groups())
+        return dt.datetime(y, mo, d_)
     m = re.match(r"(\d{1,2})-(\d{1,2})-(\d{4})\D+(\d{1,2}):(\d{2})", s)
     if m:
         d_, mo, y, h, mi = map(int, m.groups())
@@ -448,12 +467,19 @@ def cu_comment(task_id: str, text: str, dry: bool):
         print(f"    [dry] comment on {task_id}:\n" + "\n".join("      " + l for l in text.splitlines()))
         return
     head = text.strip().splitlines()[0].strip()
+    # Match on the head WITHOUT its clock time. Until 2026-09-17 the kill time
+    # could fall back to "now" (unparsed English dates), so the same kill got a
+    # different HH:MM on every run and was commented again. Actor + kill DATE +
+    # account still identifies a kill: nobody kills one batch twice in a day.
+    def _key(h: str) -> str:
+        return re.sub(r"(\d{4}-\d{2}-\d{2}) \d{2}:\d{2}", r"\1", h.strip())
     try:
         existing = cu("GET", f"/task/{task_id}/comment").get("comments", [])
     except ClickUpError as e:
         print(f"    could not read comments on {task_id} ({e}); posting anyway")
         existing = []
-    if any((c.get("comment_text") or "").strip().startswith(head) for c in existing):
+    if any(_key((c.get("comment_text") or "").strip().splitlines()[0] if (c.get("comment_text") or "").strip() else "")
+           == _key(head) for c in existing):
         print(f"    comment already on {task_id}: {head[:70]} — not repeated")
         return
     cu("POST", f"/task/{task_id}/comment", {"comment_text": text, "notify_all": False})
