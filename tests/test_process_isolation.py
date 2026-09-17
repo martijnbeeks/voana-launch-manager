@@ -79,6 +79,8 @@ class FakeClickUp:
                     return {"comments": [{"comment_text": c} for c in self.comments[tid]]}
                 self.comments[tid].append(body["comment_text"]); return {}
             if seg[2] == "field":
+                if not any(f["id"] == seg[3] for f in t["custom_fields"]):
+                    raise ks.ClickUpError(method, path, 400, '{"err":"Custom field does not exist in the task location hierarchy","ECODE":"FIELD_115"}')
                 for f in t["custom_fields"]:
                     if f["id"] == seg[3]:
                         f["value"] = body["value"]
@@ -109,7 +111,10 @@ def make_task(tid, name, status="learning", list_key="media"):
     return {"id": tid, "name": name, "list": ks.CONFIG["clickup"]["list_ids"][list_key],
             "status": {"status": status}, "checklists": [],
             "custom_fields": [{"id": F["result"], "type": "text", "value": None},
-                              {"id": F["status"], "type": "drop_down", "value": None, "type_config": {"options": []}}]}
+                              {"id": F["status"], "type": "drop_down", "value": None, "type_config": {"options": []}}]
+                             + ([{"id": fid, "type": "number", "value": None}
+                                 for fid in (ks.CONFIG["clickup"].get("metric_fields") or {}).values()]
+                                if list_key == "media" else [])}
 
 def fresh_state(events, metrics, adset_rows=None):
     d = pathlib.Path(tempfile.mkdtemp(prefix="killsync-"))
@@ -290,6 +295,10 @@ check("S182: no PUT with a status the list lacks", [c for c in fake.calls if c[0
 check("S182: task status left alone", fake.tasks["t182"]["status"]["status"], "ready for launch")
 check("S182: comment still written", len(fake.comments["t182"]), 1)
 check("S182: checklist still written", len(fake.tasks["t182"]["checklists"][0]["items"]), 2)
+check("S182: no write to a field the list lacks",
+      [c for c in fake.calls if c[0] == "POST" and "/field/" in c[1]
+       and c[1].split("/")[-1] in (ks.CONFIG["clickup"].get("metric_fields") or {}).values()], [])
+check("S182: missing fields explained in the note", "metric fields" in (posted[-1][1] or ""), True)
 check("S182: ledger row carries no error", [r.get("error") for r in rows], [None])
 check("S182: Discord explains it as a note, not a failure",
       ("ℹ️ S182" in (posted[-1][1] or ""), "ClickUp update failed" in (posted[-1][1] or "")), (True, False))
@@ -303,6 +312,9 @@ fake = FakeClickUp([tm]); ks.cu = fake
 state6 = fresh_state([ev("S183", "as183")], [ad("S183", "OG", "C1", "as183")])
 check("Media task: run clean", ks.process(dry=False), 0)
 check("Media task: status set to killed", fake.tasks["tm"]["status"]["status"], "killed")
+check("Media task: metric fields written",
+      any(f["value"] is not None for f in fake.tasks["tm"]["custom_fields"]
+          if f["id"] in (ks.CONFIG["clickup"].get("metric_fields") or {}).values()), True)
 
 # ── rewrite: ClickUp only, filtered, ignores the ledger, touches no state ─────
 ks._LIST_CACHE.clear()
