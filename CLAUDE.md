@@ -510,6 +510,22 @@ Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
 `scripts/com.voana.kill-sync.plist`, `data/kill-sync/kills.jsonl` (append-only ledger,
 dedupes re-runs), `data/kill-sync/last_run.json` (poll window), `state/kill-sync.log`.
 
+**Task status is per ClickUp list** (2026-09-17, S182). "killed" exists only in
+**Media**; a batch the move-to-Media automation missed is still in **Launch Manager**
+(ready for launch / launched / complete) and ClickUp answers 400 "Status does not
+exist". `cu_set_status` now reads the list's statuses first and, when the target is
+missing, skips it and posts an ℹ️ note ("move it to Media if it launched") instead
+of a failure. The status write also moved after the metric fields, which that 400
+had silently skipped. To repair a kill whose ClickUp half failed after Discord
+already posted, use **`kill_sync.py rewrite <archived inbox> --only S182`**: ClickUp
+writes only, ledger ignored, no Discord, no state change, idempotent.
+
+**Discord cards show CPM · CTR (link) · CPC (link)** on a second line (2026-09-17).
+The Meta MCP calls these `cpm`, `website_ctr`, `cost_per_link_click` (link clicks:
+`link_click`). The Graph API names `inline_link_click_ctr` /
+`cost_per_inline_link_click` are unknown to the MCP and would print n/a forever.
+Batch totals recompute link CTR/CPC from summed link clicks, never averaging rates.
+
 **Runs on the Mac Mini since 2026-09-17** (Multica autopilot, 08:45 + 20:45; the MacBook
 LaunchAgent is stowed in `~/Library/LaunchAgents-disabled/` as fallback). Two things follow:
 - **Durable state is tracked in git** (`data/kill-sync/`), not under the gitignored `state/`.

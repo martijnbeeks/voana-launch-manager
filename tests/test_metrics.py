@@ -57,6 +57,38 @@ check("real zero -> printed as 0", "0 purchase(s)" in ks.ad_summary(zero), True)
 nocpa = {"amount_spent": "$100.00 USD", "omni_purchase": 4}
 check("cpa fallback", ks.cpa_of(nocpa), 25.0)
 
+# ── link metrics (2026-09-17): CPM, CTR (link), CPC (link) on the Discord card ─
+row = {"amount_spent": "$708.80 USD", "impressions": 100000, "cpm": "$7.09 USD",
+       "website_ctr": "1.52%", "cost_per_link_click": "$0.47 USD", "link_click": 1520,
+       "omni_purchase": 20, "outbound_clicks_ctr": "7.12%"}
+check("link ctr from MCP field", ks.link_ctr_of(row), 1.52)
+check("link cpc from MCP field", ks.link_cpc_of(row), 0.47)
+check("cpm", ks.cpm_of(row), 7.09)
+line2 = ks.brief_metrics(row).splitlines()
+check("card is two lines", len(line2), 2)
+check("second line", line2[1], "CPM $7.09 · CTR (link) 1.52% · CPC (link) $0.47")
+check("first line unchanged in shape", line2[0].startswith("$708.80 · 20 purch · CPA "), True)
+# fields absent but link clicks present -> recomputed, not guessed
+bare = {"amount_spent": "$50.00 USD", "impressions": 10000, "link_click": 200}
+check("link ctr recomputed", ks.link_ctr_of(bare), 2.0)
+check("link cpc recomputed", ks.link_cpc_of(bare), 0.25)
+# nothing at all -> n/a, never 0
+none = {"amount_spent": "$50.00 USD", "impressions": 10000}
+check("no link data -> ctr None", ks.link_ctr_of(none), None)
+check("no link data -> printed n/a", "CTR (link) n/a · CPC (link) n/a" in ks.brief_metrics(none), True)
+# batch fallback recomputes from summed clicks, never averages rates
+a1 = {"amount_spent": "$90.00 USD", "impressions": 9000, "link_click": 90, "website_ctr": "1.00%"}
+a2 = {"amount_spent": "$10.00 USD", "impressions": 1000, "link_click": 50, "website_ctr": "5.00%"}
+t = ks.totals_of([a1, a2])
+check("batch link ctr = 140/10000, not mean(1,5)", round(t["lctr"], 2), 1.4)
+check("batch link cpc = 100/140", round(t["lcpc"], 4), round(100 / 140, 4))
+check("batch card shows them", "CTR (link) 1.40%" in ks.brief_metrics(t), True)
+# Meta's own ad-set row wins over summing
+t2 = ks.totals_of([a1, a2], {"amount_spent": "$100 USD", "impressions": 10000,
+                             "website_ctr": "1.35%", "cost_per_link_click": "$0.74 USD", "cpm": "$10.00 USD"})
+check("adset row link ctr", t2["lctr"], 1.35)
+check("adset row link cpc", t2["lcpc"], 0.74)
+
 # archived rows carry no metrics at all and must not crash
 check("empty row survives", ks.purchases_of({}), None)
 ks.ad_summary({})

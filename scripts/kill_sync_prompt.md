@@ -48,9 +48,11 @@ events, first fetch the ad to learn its `adset_id` (see fields below). Then call
 `fields: ["id","name","adset_id","adset_name","campaign_id","status","effective_status",
 "created_time","amount_spent","impressions","clicks","ctr","cpc","cpm","purchases",
 "cost_per_purchase","outbound_clicks","outbound_clicks_ctr","omni_add_to_cart",
-"purchase_roas","omni_purchase_values"]`.
-Those names were verified with `ads_get_field_context` on 2026-09-09 and all exist at
-both `ad` and `adset` level. Meta may answer with `omni_purchase` /
+"purchase_roas","omni_purchase_values","link_click","website_ctr","cost_per_link_click"]`.
+Those names were verified with `ads_get_field_context` on 2026-09-09 (the last three —
+link clicks, CTR (link) and CPC (link) — on 2026-09-17) and all exist at both `ad` and
+`adset` level. Use them exactly: the Graph API spellings `inline_link_click_ctr` /
+`cost_per_inline_link_click` are UNKNOWN to this MCP. Meta may answer with `omni_purchase` /
 `cost_per_omni_purchase` instead of `purchases` / `cost_per_purchase` — that is
 expected and the script reads both. **Copy the keys back exactly as Meta returns
 them; do not rename or alias them.** A metric Meta omits must stay missing: the

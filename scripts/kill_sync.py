@@ -180,6 +180,34 @@ def cpm_of(m: dict) -> float | None:
     return num(_first(m, "cpm"))
 
 
+# Link-click metrics, as Ads Manager shows them: "CTR (link click-through rate)"
+# and "CPC (cost per link click)". The Meta MCP names them `website_ctr` and
+# `cost_per_link_click` — NOT the Graph API's inline_link_click_ctr /
+# cost_per_inline_link_click, which the MCP reports as unknown fields (verified
+# with ads_get_field_context 2026-09-17). Link clicks differ from outbound clicks
+# (oCTR): a link click can land on a Meta surface, an outbound click cannot.
+
+def link_clicks_of(m: dict) -> int | None:
+    v = _first(m, "link_click", "link_clicks")
+    return count(v) if v is not None else None
+
+
+def link_ctr_of(m: dict) -> float | None:
+    v = num(_first(m, "website_ctr", "link_ctr"))
+    if v is not None:
+        return v
+    clicks, impr = link_clicks_of(m), count(m.get("impressions"))
+    return clicks / impr * 100 if clicks is not None and impr else None
+
+
+def link_cpc_of(m: dict) -> float | None:
+    v = num(_first(m, "cost_per_link_click"))
+    if v is not None:
+        return v
+    spend, clicks = num(m.get("amount_spent")), link_clicks_of(m)
+    return spend / clicks if spend is not None and clicks else None
+
+
 def roas_of(m: dict) -> float | None:
     return num(_first(m, "purchase_roas", "website_purchase_roas"))
 
@@ -228,6 +256,7 @@ def totals_of(ads: list[dict], adset_row: dict | None = None) -> dict:
                 "atc": atc_of(adset_row), "cpa": cpa_of(adset_row),
                 "octr": outbound_ctr_of(adset_row), "cpm": cpm_of(adset_row),
                 "cpc": num(adset_row.get("cpc")), "roas": roas_of(adset_row),
+                "lctr": link_ctr_of(adset_row), "lcpc": link_cpc_of(adset_row),
                 "aov": aov_of(adset_row), "revenue": revenue_of(adset_row),
                 "impr": count(adset_row.get("impressions")), "source": "adset"}
 
@@ -241,11 +270,15 @@ def totals_of(ads: list[dict], adset_row: dict | None = None) -> dict:
     impr = total(lambda a: count(a.get("impressions")) if a.get("impressions") not in (None, "") else None)
     oclicks = total(outbound_clicks_of)
     clicks = total(lambda a: count(a.get("clicks")) if a.get("clicks") not in (None, "") else None)
+    lclicks = total(link_clicks_of)
     return {"spend": spend, "purch": purch, "atc": total(atc_of), "revenue": rev,
             "cpa": spend / purch if spend and purch else None,
             "octr": (oclicks / impr * 100) if oclicks is not None and impr else None,
             "cpm": (spend / impr * 1000) if spend and impr else None,
             "cpc": (spend / clicks) if spend and clicks else None,
+            # recomputed from summed link clicks, never an average of per-ad rates
+            "lctr": (lclicks / impr * 100) if lclicks is not None and impr else None,
+            "lcpc": (spend / lclicks) if spend and lclicks else None,
             "roas": (rev / spend) if rev is not None and spend else None,
             "aov": (rev / purch) if rev is not None and purch else None,
             "impr": impr, "source": "ads"}
@@ -428,11 +461,47 @@ def cu_set_field(task_id: str, field_id: str, value, dry: bool):
     cu("POST", f"/task/{task_id}/field/{field_id}", {"value": value})
 
 
-def cu_set_status(task_id: str, status: str, dry: bool):
+_LIST_CACHE: dict[str, dict] = {}
+
+
+def list_info(list_id: str) -> dict:
+    """{name, statuses} for a list, read once per run."""
+    if list_id not in _LIST_CACHE:
+        d = cu("GET", f"/list/{list_id}")
+        _LIST_CACHE[list_id] = {"name": d.get("name") or list_id,
+                                "statuses": [str(x.get("status", "")).lower() for x in d.get("statuses") or []]}
+    return _LIST_CACHE[list_id]
+
+
+def task_list_id(task: dict) -> str | None:
+    lst = task.get("list")
+    return str(lst.get("id")) if isinstance(lst, dict) else (str(lst) if lst else None)
+
+
+def cu_set_status(task: dict, status: str, dry: bool) -> str | None:
+    """Set the task status, or explain why not. Returns None when set (or dry),
+    else a one-line reason.
+
+    Statuses belong to a LIST. A launched batch is normally moved by a ClickUp
+    automation from Launch Manager (ready for launch / launched / complete) into
+    Media (… / killed / …). When that automation does not fire, the task is
+    still in Launch Manager and "killed" does not exist there: ClickUp answers
+    400 "Status does not exist" (S182, 2026-09-17). That is a fact about the
+    task's placement, not a failed sync, so it is reported and skipped — and it
+    must never stop the writes that follow it.
+    """
+    lid = task_list_id(task)
+    if lid:
+        info = list_info(lid)
+        if info["statuses"] and status.lower() not in info["statuses"]:
+            cur = (task.get("status") or {}).get("status", "?")
+            return (f"task is in list '{info['name']}' (status '{cur}'), which has no '{status}' "
+                    f"status — left as is; move it to Media if it launched")
     if dry or SKIP_CLICKUP:
         print(f"    [dry] task status -> {status}")
-        return
-    cu("PUT", f"/task/{task_id}", {"status": status})
+        return None
+    cu("PUT", f"/task/{task['id']}", {"status": status})
+    return None
 
 
 # ── Discord ──────────────────────────────────────────────────────────────────
@@ -669,16 +738,20 @@ def ad_summary(m: dict) -> str:
 
 
 def brief_metrics(x: dict) -> str:
-    """The five numbers a kill decision is read by, in one short line. Takes an
-    ad row (Meta field names) or a totals_of() dict."""
+    """The numbers a kill decision is read by. Takes an ad row (Meta field
+    names) or a totals_of() dict. Two lines: outcome, then delivery cost
+    (CPM, CTR (link), CPC (link) — added 2026-09-17 at Martijn's request)."""
     if not x:
         return "metrics n/a"
     if "spend" in x and "purch" in x:      # totals_of()
         spend, purch, cpa, octr, roas = x["spend"], x["purch"], x["cpa"], x["octr"], x["roas"]
+        cpm, lctr, lcpc = x.get("cpm"), x.get("lctr"), x.get("lcpc")
     else:
         spend, purch, cpa, octr, roas = num(x.get("amount_spent")), purchases_of(x), cpa_of(x), outbound_ctr_of(x), roas_of(x)
+        cpm, lctr, lcpc = cpm_of(x), link_ctr_of(x), link_cpc_of(x)
     return (f"{money(spend)} · {purch if purch is not None else 'n/a'} purch · CPA {money(cpa)} · "
-            f"oCTR {pct(octr)} · ROAS {ratio(roas)}")
+            f"oCTR {pct(octr)} · ROAS {ratio(roas)}\n"
+            f"CPM {money(cpm)} · CTR (link) {pct(lctr)} · CPC (link) {money(lcpc)}")
 
 
 def describe_task(task: dict | None, adset_name: str) -> str:
@@ -690,7 +763,8 @@ def describe_task(task: dict | None, adset_name: str) -> str:
     return ""
 
 
-def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
+def process(dry: bool, inbox: Path | None = None, replay: bool = False,
+            rewrite: bool = False, only: set[str] | None = None) -> int:
     """`replay=True` re-posts the Discord report for an already-processed inbox
     (state/inbox/processed/<stamp>/): ClickUp writes are skipped, the ledger is
     ignored for detection and NOT appended, last_run is left alone. It exists for
@@ -703,11 +777,18 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
     if replay:
         SKIP_CLICKUP = True
         print(f"REPLAY of {inbox} — Discord only, no ClickUp writes, no state change")
-    seen = set() if replay else ledger_keys()
+    if rewrite:
+        # The mirror of replay: ClickUp only. For a kill whose ClickUp writes
+        # failed after Discord already posted — re-running `process` cannot
+        # help, the ledger has it. Every ClickUp write is idempotent (comments
+        # match on their first line, fields and checklist items upsert).
+        print(f"REWRITE of {inbox} — ClickUp only{' for ' + ', '.join(sorted(only)) if only else ''}; "
+              f"no Discord, no ledger, no state change")
+    seen = set() if (replay or rewrite) else ledger_keys()
     tasks = ClickUpTasks()
     print(f"ClickUp: {len(tasks.tasks)} tasks loaded{' · CLICKUP WRITES SKIPPED' if SKIP_CLICKUP else ''} · webhook: "
           f"{'dedicated' if WEBHOOK and not WEBHOOK_IS_FALLBACK else 'OPS FALLBACK' if WEBHOOK else 'NONE'}")
-    new_rows, embeds, problems = [], [], []
+    new_rows, embeds, problems, notes = [], [], [], []
     failed_clickup = 0
     now = dt.datetime.now()
 
@@ -783,6 +864,8 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
                          if str(s.get("id")) != obj_id and s.get("effective_status") == "ACTIVE"]
 
             batch_no = batch_prefix(adset_name) or adset_name[:12]
+            if only and batch_no not in only:
+                continue
 
             # ── ClickUp. Everything for one kill is isolated: a failure here is
             # logged, ledgered and reported, and the run carries on to the next
@@ -840,20 +923,25 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
                                  cfg["clickup"]["status_options"]["Losing Ad"], dry)
                 else:
                     print(f"    Status left as '{cur}' (human-set)")
-                if task["status"]["status"] in cfg["clickup"]["protected_task_statuses"]:
-                    print(f"    task status left as '{task['status']['status']}' (human-set)")
-                else:
-                    cu_set_status(task["id"], cfg["clickup"]["batch_kill_task_status"], dry)
                 # Batch totals also go into real ClickUp number fields, so the
                 # list can be sorted and filtered on CPA / ROAS instead of the
                 # numbers being locked inside the Result text. Only on a whole
                 # -batch kill: these fields describe the ad set, and a single
                 # dead creative must not overwrite them with its own numbers.
                 # A metric Meta did not report is SKIPPED, never written as 0.
+                # Written BEFORE the task status: on 2026-09-17 a rejected
+                # status aborted S182 here and its metric fields never landed.
                 for mkey, fid in (cfg["clickup"].get("metric_fields") or {}).items():
                     v = t.get(mkey)
                     if v is not None:
                         cu_set_field(task["id"], fid, round(float(v), 2), dry)
+                if task["status"]["status"] in cfg["clickup"]["protected_task_statuses"]:
+                    print(f"    task status left as '{task['status']['status']}' (human-set)")
+                else:
+                    why = cu_set_status(task, cfg["clickup"]["batch_kill_task_status"], dry)
+                    if why:
+                        print(f"    task status not set: {why}")
+                        notes.append(f"{batch_no} · {why} · {task_url(task)}")
                 upsert_checklist(task, ads, {str(a.get("id")) for a in ads}, when, dry)
 
             clickup_error = None
@@ -899,10 +987,14 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
             new_rows.append(row)
 
     content = None
-    if problems:
-        content = "\n".join("⚠️ " + p for p in problems)
+    if problems or notes:
+        content = "\n".join(["⚠️ " + p for p in problems] + ["ℹ️ " + n for n in notes])
     if WEBHOOK_IS_FALLBACK and embeds:
         content = (content or "") + "\n_(ops channel — set KILL_SYNC_DISCORD_WEBHOOK_URL)_"
+    if rewrite:
+        print(f"\nRewrite done: {len(embeds)} kill(s) rewritten, {failed_clickup} ClickUp failure(s)"
+              + ("".join(f"\n  ℹ️ {n}" for n in notes)))
+        return 4 if failed_clickup else 0
     ok = discord(embeds, content, dry)
 
     if not dry and not replay:
@@ -1011,8 +1103,10 @@ def push_state(branch: str = "main") -> int:
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["process", "digest", "replay", "push-state"])
-    ap.add_argument("inbox", nargs="?", help="replay: an archived inbox dir (state/inbox/processed/<stamp>)")
+    ap.add_argument("cmd", choices=["process", "digest", "replay", "rewrite", "push-state"])
+    ap.add_argument("inbox", nargs="?", help="replay/rewrite: an archived inbox dir (state/inbox/processed/<stamp>)")
+    ap.add_argument("--only", action="append", default=[], metavar="BATCH",
+                    help="rewrite: only these batch prefixes, e.g. --only S182 (repeatable)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--skip-clickup", action="store_true", help="post Discord + record state, but do not write to ClickUp")
     a = ap.parse_args(argv)
@@ -1025,6 +1119,10 @@ def main(argv=None):
         if not a.inbox or not Path(a.inbox).is_dir():
             ap.error("replay needs an archived inbox directory")
         return process(a.dry_run, inbox=Path(a.inbox), replay=True)
+    if a.cmd == "rewrite":
+        if not a.inbox or not Path(a.inbox).is_dir():
+            ap.error("rewrite needs an archived inbox directory")
+        return process(a.dry_run, inbox=Path(a.inbox), rewrite=True, only=set(a.only) or None)
     return process(a.dry_run) if a.cmd == "process" else digest(a.dry_run)
 
 

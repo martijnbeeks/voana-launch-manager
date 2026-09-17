@@ -41,6 +41,14 @@ class FakeClickUp:
     makes the n-th item POST on that checklist 404 once (ClickUp flake)."""
     def __init__(self, tasks):
         self.tasks = {t["id"]: t for t in tasks}
+        # the real lists' status sets (verified 2026-09-17)
+        L = ks.CONFIG["clickup"]["list_ids"]
+        self.lists = {
+            L["media"]: {"name": "Media", "statuses": [{"status": s} for s in
+                         ("to do", "learning", "rejected", "winner", "has potential", "killed", "complete")]},
+            L["launch_manager"]: {"name": "Launch Manager", "statuses": [{"status": s} for s in
+                                  ("ready for launch", "launched", "complete")]},
+        }
         self.calls = []
         self.comments = {t["id"]: [] for t in tasks}
         self.fail_item_posts = {}
@@ -56,6 +64,8 @@ class FakeClickUp:
         seg = path.strip("/").split("/")
         if method == "GET" and seg[0] == "list":
             lid = seg[1]
+            if len(seg) == 2:   # list metadata: its own statuses
+                return self.lists.get(lid, {"name": lid, "statuses": []})
             return {"tasks": [t for t in self.tasks.values() if t["list"] == lid], "last_page": True}
         if seg[0] == "task":
             tid = seg[1]
@@ -95,8 +105,8 @@ class FakeClickUp:
             item.update(body); return {}
         raise AssertionError(f"unexpected {method} {path}")
 
-def make_task(tid, name, status="learning"):
-    return {"id": tid, "name": name, "list": ks.CONFIG["clickup"]["list_ids"]["media"],
+def make_task(tid, name, status="learning", list_key="media"):
+    return {"id": tid, "name": name, "list": ks.CONFIG["clickup"]["list_ids"][list_key],
             "status": {"status": status}, "checklists": [],
             "custom_fields": [{"id": F["result"], "type": "text", "value": None},
                               {"id": F["status"], "type": "drop_down", "value": None, "type_config": {"options": []}}]}
@@ -265,7 +275,58 @@ check("replay left the inbox in place", len(list((state4 / "inbox").glob("*.json
 check("replay made only ClickUp reads", all(m == "GET" for m, _ in fake.calls[before:]), True)
 ks.SKIP_CLICKUP = False
 
-for d in (state, state2, state3, state4):
+# ── S182 (2026-09-17): a task still in Launch Manager has no "killed" status ──
+posted.clear()
+ks._LIST_CACHE.clear()
+t182 = make_task("t182", adset_name("S182"), status="ready for launch", list_key="launch_manager")
+ks.CONFIG["clickup"].setdefault("metric_fields", {})
+fake = FakeClickUp([t182]); ks.cu = fake
+m182 = [ad("S182", "OG", c, "as182", spend="$25.00 USD") for c in ("C1", "C2")]
+state5 = fresh_state([ev("S182", "as182")], m182)
+rc = ks.process(dry=False)
+rows = [json.loads(l) for l in (state5 / "kills.jsonl").read_text().splitlines()]
+check("S182: not a ClickUp failure", rc, 0)
+check("S182: no PUT with a status the list lacks", [c for c in fake.calls if c[0] == "PUT"], [])
+check("S182: task status left alone", fake.tasks["t182"]["status"]["status"], "ready for launch")
+check("S182: comment still written", len(fake.comments["t182"]), 1)
+check("S182: checklist still written", len(fake.tasks["t182"]["checklists"][0]["items"]), 2)
+check("S182: ledger row carries no error", [r.get("error") for r in rows], [None])
+check("S182: Discord explains it as a note, not a failure",
+      ("ℹ️ S182" in (posted[-1][1] or ""), "ClickUp update failed" in (posted[-1][1] or "")), (True, False))
+check("S182: embed not marked failed", "⚠️" in posted[-1][0][0]["description"], False)
+check("list statuses read once per list", sum(1 for c in fake.calls if c == ("GET", f"/list/{t182['list']}")), 1)
+
+# a task that IS in Media still gets "killed"
+ks._LIST_CACHE.clear()
+tm = make_task("tm", adset_name("S183"))
+fake = FakeClickUp([tm]); ks.cu = fake
+state6 = fresh_state([ev("S183", "as183")], [ad("S183", "OG", "C1", "as183")])
+check("Media task: run clean", ks.process(dry=False), 0)
+check("Media task: status set to killed", fake.tasks["tm"]["status"]["status"], "killed")
+
+# ── rewrite: ClickUp only, filtered, ignores the ledger, touches no state ─────
+ks._LIST_CACHE.clear()
+tA, tB = make_task("tA", adset_name("S201")), make_task("tB", adset_name("S202"))
+fake = FakeClickUp([tA, tB]); ks.cu = fake
+evs = [ev("S201", "as201"), ev("S202", "as202")]
+mets = [ad("S201", "OG", "C1", "as201"), ad("S202", "OG", "C1", "as202")]
+state7 = fresh_state(evs, mets)
+# pretend both kills were already ledgered by the run whose ClickUp half failed
+(state7 / "kills.jsonl").write_text("".join(
+    json.dumps({"key": f"{ACCOUNT}:adset:{e['object_id']}:{e['datetime']}"}) + "\n" for e in evs))
+posted.clear()
+rc = ks.process(dry=False, inbox=state7 / "inbox", rewrite=True, only={"S202"})
+check("rewrite exits clean", rc, 0)
+check("rewrite ignores the ledger and writes the chosen batch", len(fake.comments["tB"]), 1)
+check("rewrite leaves other batches alone", len(fake.comments["tA"]), 0)
+check("rewrite posts nothing to Discord", posted, [])
+check("rewrite appends no ledger rows", len((state7 / "kills.jsonl").read_text().splitlines()), 2)
+check("rewrite leaves last_run alone", (state7 / "last_run.json").exists(), False)
+check("rewrite leaves the inbox in place", len(list((state7 / "inbox").glob("*.json"))), 3)
+rc = ks.process(dry=False, inbox=state7 / "inbox", rewrite=True, only={"S202"})
+check("rewrite twice: still one comment", len(fake.comments["tB"]), 1)
+
+for d in (state, state2, state3, state4, state5, state6, state7):
     shutil.rmtree(d, ignore_errors=True)
 if fails:
     print("\n".join("FAIL " + f for f in fails)); sys.exit(1)
