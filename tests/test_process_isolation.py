@@ -338,6 +338,25 @@ check("rewrite leaves the inbox in place", len(list((state7 / "inbox").glob("*.j
 rc = ks.process(dry=False, inbox=state7 / "inbox", rewrite=True, only={"S202"})
 check("rewrite twice: still one comment", len(fake.comments["tB"]), 1)
 
+# ── English-locale kill times (Mac Mini connector, 2026-09-17) ────────────────
+check("english AM with narrow nbsp", ks.parse_dt("9/17/2026 at 3:46\u202fAM"), ks.dt.datetime(2026, 9, 17, 3, 46))
+check("english PM", ks.parse_dt("9/17/2026 at 3:46 PM"), ks.dt.datetime(2026, 9, 17, 15, 46))
+check("english 12 AM is midnight", ks.parse_dt("9/17/2026 at 12:05 AM"), ks.dt.datetime(2026, 9, 17, 0, 5))
+check("english 12 PM is noon", ks.parse_dt("9/17/2026 at 12:05 PM"), ks.dt.datetime(2026, 9, 17, 12, 5))
+check("month and day not swapped", ks.parse_dt("1/2/2026 at 9:00 AM"), ks.dt.datetime(2026, 1, 2, 9, 0))
+check("dutch still d-m-Y", ks.parse_dt("7-9-2026 om 03:14"), ks.dt.datetime(2026, 9, 7, 3, 14))
+
+# comment dedupe ignores the clock time: an old head stamped with the wrong
+# time must still count as the same kill
+ks._LIST_CACHE.clear()
+td = make_task("td", adset_name("S300"))
+fake = FakeClickUp([td]); ks.cu = fake
+fake.comments["td"].append("💀 Batch killed by Martijn on 2026-09-09 14:53 (GetVoana - 1)\nold numbers")
+ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-09 03:46 (GetVoana - 1)\nnew numbers", dry=False)
+check("same kill, different clock time: not repeated", len(fake.comments["td"]), 1)
+ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-10 03:46 (GetVoana - 1)\nnext day", dry=False)
+check("different day: posted", len(fake.comments["td"]), 2)
+
 # ── archive: durable, pruned ─────────────────────────────────────────────────
 check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)
 arch = ks.archive_dir()
