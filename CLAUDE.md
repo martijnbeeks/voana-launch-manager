@@ -507,8 +507,20 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   bytes (`LOG_START`) — `tail -c 1200` of the shared log used to show the
   previous run's traceback.
 Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
-`scripts/com.voana.kill-sync.plist`, `state/kills.jsonl` (append-only ledger,
-dedupes re-runs), `state/last_run.json` (poll window), `state/kill-sync.log`.
+`scripts/com.voana.kill-sync.plist`, `data/kill-sync/kills.jsonl` (append-only ledger,
+dedupes re-runs), `data/kill-sync/last_run.json` (poll window), `state/kill-sync.log`.
+
+**Runs on the Mac Mini since 2026-09-17** (Multica autopilot, 08:45 + 20:45; the MacBook
+LaunchAgent is stowed in `~/Library/LaunchAgents-disabled/` as fallback). Two things follow:
+- **Durable state is tracked in git** (`data/kill-sync/`), not under the gitignored `state/`.
+  Every Multica run is a fresh checkout, so an untracked poll window would reset to "now minus
+  36h" and an untracked ledger would re-report every kill. `kill_sync.py push-state` commits the
+  directory and pushes **`HEAD:main`** — the checkout sits on a throwaway `agent/…` branch.
+  `KILL_SYNC_STATE_DIR` overrides the location. Pinned by `tests/test_durable_state.py`.
+- **The prompt finds Meta tools by keyword ToolSearch**, never a pinned server name: the prefix
+  is `mcp__claude_ai_Meta_MCP__` on the Mac Mini and `mcp__meta-ads__` on the MacBook.
+  Secrets (`CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_URL`) come from the Multica agent's
+  `custom_env`, added with `voana-tools/scripts/multica_agent_env_add.py`.
 Secrets in `.env` (gitignored): `CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_URL`
 (falls back to the ops webhook in `../voana-tools/.env` until set). Test with
 `KILL_SYNC_DRY_RUN=1 zsh scripts/run_kill_sync.sh`; offline tests
@@ -524,7 +536,8 @@ launches/            # one file per launch: YYYY-MM-DD-batch-<n>.md (batch, crea
                      #   creatives, budget, ad set / ad IDs, links)
 docs/                # design docs (kill-sync-plan.md)
 scripts/             # kill_sync.py + prompt + launchd wrapper/plist
-state/               # kill-sync ledger + poll window (inbox/ and log are gitignored)
+data/kill-sync/      # kill-sync ledger + poll window (tracked; pushed by `push-state`)
+state/               # scratch: inbox, log, reports (gitignored)
 creatives/           # briefs & metadata for creative batches (not raw video files)
 scripts/             # helper scripts (batch launch, winner promotion, reporting)
 reports/             # generated performance snapshots

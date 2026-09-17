@@ -6,7 +6,7 @@ because the Meta MCP is the only Meta credential on this Mac. That session drops
 JSON files into state/inbox/; this script does everything deterministic:
 
   process   read state/inbox/*.json, detect kills, update ClickUp, post Discord,
-            append state/kills.jsonl, advance state/last_run.json
+            append data/kill-sync/kills.jsonl, advance data/kill-sync/last_run.json
   digest    post the "synced into ClickUp" digest for the run that just finished
   replay D  re-post the Discord report for an archived inbox D (no ClickUp, no state)
   --dry-run print what would happen, write nothing to ClickUp/Discord
@@ -42,8 +42,15 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-STATE = ROOT / "state"
+STATE = ROOT / "state"          # scratch: inbox, log, reports — gitignored
 INBOX = STATE / "inbox"
+# DURABLE state — the kills ledger and the poll window — lives in a TRACKED
+# directory. Since 2026-09-17 the job runs as a Multica autopilot on the Mac
+# Mini, where every run is a fresh checkout: anything under the gitignored
+# state/ would be gone next run, the window would reset to "now minus 36h" and
+# the ledger would forget every kill it had reported. `push-state` commits this
+# directory to main after each run (same pattern as voana-tools' format radar).
+DURABLE = Path(os.environ.get("KILL_SYNC_STATE_DIR") or ROOT / "data" / "kill-sync")
 CONFIG = json.loads((ROOT / "scripts" / "kill_sync_config.json").read_text())
 
 CLICKUP = "https://api.clickup.com/api/v2"
@@ -639,14 +646,14 @@ def read_json(p: Path, default):
 
 
 def ledger_keys() -> set[str]:
-    p = STATE / "kills.jsonl"
+    p = DURABLE / "kills.jsonl"
     if not p.exists():
         return set()
     return {json.loads(l)["key"] for l in p.read_text().splitlines() if l.strip()}
 
 
 def ledger_append(rows: list[dict]):
-    with (STATE / "kills.jsonl").open("a") as f:
+    with (DURABLE / "kills.jsonl").open("a") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
@@ -901,7 +908,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False) -> int:
     if not dry and not replay:
         if new_rows:
             ledger_append(new_rows)
-        (STATE / "last_run.json").write_text(json.dumps({"last_run": now.isoformat(timespec="seconds"),
+        (DURABLE / "last_run.json").write_text(json.dumps({"last_run": now.isoformat(timespec="seconds"),
                                                           "kills": len(embeds)}, indent=1))
         archive = INBOX / "processed" / f"{now:%Y-%m-%d_%H%M}"
         archive.mkdir(parents=True, exist_ok=True)
@@ -931,7 +938,7 @@ def digest(dry: bool) -> int:
     rows (which carry `skipped`) and kills with no matching task never have it.
     Reads only the ledger, so a ClickUp outage cannot break this step.
     """
-    p = STATE / "kills.jsonl"
+    p = DURABLE / "kills.jsonl"
     rows = []
     if p.exists():
         for line in p.read_text().splitlines():
@@ -964,16 +971,56 @@ def digest(dry: bool) -> int:
     return 0 if discord([embed], None, dry) else 3
 
 
+def push_state(branch: str = "main") -> int:
+    """Commit DURABLE and push it to `branch`. 0 = pushed or nothing to push.
+
+    The Multica checkout sits on a throwaway `agent/...` branch that does not
+    exist on GitHub, so this pushes `HEAD:main` explicitly — "push the current
+    branch" fails there every time. State files never conflict with human
+    commits, so the one commit is rebased onto the target first.
+    """
+    import subprocess
+
+    def git(*args: str) -> str:
+        r = subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True)
+        if r.returncode != 0:
+            raise RuntimeError(f"git {' '.join(args)} -> {r.stderr.strip() or r.returncode}")
+        return r.stdout.strip()
+
+    try:
+        rel = DURABLE.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        print(f"push-state: {DURABLE} is outside the repo — nothing to push")
+        return 0
+    try:
+        git("add", "--", rel)
+        if not git("status", "--porcelain", "--", rel):
+            print("push-state: state unchanged — nothing to push")
+            return 0
+        last = read_json(DURABLE / "last_run.json", {})
+        git("-c", "user.name=kill-sync", "-c", "user.email=kill-sync@voana.local", "commit", "-q",
+            "-m", f"kill-sync: {str(last.get('last_run', '?'))[:16]} — {last.get('kills', 0)} kill(s)")
+        git("pull", "--rebase", "-q", "origin", branch)
+        git("push", "-q", "origin", f"HEAD:{branch}")
+    except RuntimeError as exc:
+        print(f"push-state FAILED: {exc}")
+        return 4
+    print(f"push-state: pushed {rel} to origin/{branch}")
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["process", "digest", "replay"])
+    ap.add_argument("cmd", choices=["process", "digest", "replay", "push-state"])
     ap.add_argument("inbox", nargs="?", help="replay: an archived inbox dir (state/inbox/processed/<stamp>)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--skip-clickup", action="store_true", help="post Discord + record state, but do not write to ClickUp")
     a = ap.parse_args(argv)
     global SKIP_CLICKUP
     SKIP_CLICKUP = SKIP_CLICKUP or a.skip_clickup
-    STATE.mkdir(exist_ok=True); INBOX.mkdir(exist_ok=True)
+    STATE.mkdir(exist_ok=True); INBOX.mkdir(exist_ok=True); DURABLE.mkdir(parents=True, exist_ok=True)
+    if a.cmd == "push-state":
+        return push_state()
     if a.cmd == "replay":
         if not a.inbox or not Path(a.inbox).is_dir():
             ap.error("replay needs an archived inbox directory")

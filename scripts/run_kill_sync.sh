@@ -93,7 +93,7 @@ if ! await_full_wake "$MAX_WAKE_WAIT"; then
 fi
 
 # --- the run -----------------------------------------------------------------
-# `kill_sync.py process` advances state/last_run.json as its final act, and only
+# `kill_sync.py process` advances data/kill-sync/last_run.json as its final act, and only
 # when it completes (guarded by `if not dry`). The bridge reports failures in
 # prose and still exits 0, so that file — not $rc — is the only trustworthy
 # signal that the work actually happened. A re-run is safe: the ledger dedupes
@@ -102,7 +102,7 @@ fi
 read_last_run() {
   "$KILL_SYNC_PYTHON" -c 'import json
 try:
-    print(json.load(open("state/last_run.json"))["last_run"])
+    print(json.load(open("data/kill-sync/last_run.json"))["last_run"])
 except Exception:
     print("")' 2>/dev/null
 }

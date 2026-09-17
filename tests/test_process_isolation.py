@@ -109,7 +109,7 @@ def fresh_state(events, metrics, adset_rows=None):
     (d / "inbox" / f"active_adsets_{ACCOUNT}.json").write_text("[]")
     if adset_rows is not None:
         (d / "inbox" / f"adset_metrics_{ACCOUNT}.json").write_text(json.dumps(adset_rows))
-    ks.STATE, ks.INBOX = d, d / "inbox"
+    ks.STATE, ks.INBOX, ks.DURABLE = d, d / "inbox", d
     return d
 
 ks.CLICKUP_KEY = "pk_test"
