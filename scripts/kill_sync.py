@@ -949,10 +949,25 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 # A metric Meta did not report is SKIPPED, never written as 0.
                 # Written BEFORE the task status: on 2026-09-17 a rejected
                 # status aborted S182 here and its metric fields never landed.
+                # Custom fields are scoped to a list/folder. The metric fields live
+                # on Media only, so a task the move-to-Media automation missed has
+                # none of them and ClickUp answers 400 FIELD_115 (S182, 2026-09-17).
+                # The task payload lists exactly the fields its location has.
+                present = {f.get("id") for f in task.get("custom_fields") or []}
+                missing = []
                 for mkey, fid in (cfg["clickup"].get("metric_fields") or {}).items():
                     v = t.get(mkey)
-                    if v is not None:
-                        cu_set_field(task["id"], fid, round(float(v), 2), dry)
+                    if v is None:
+                        continue
+                    if present and fid not in present:
+                        missing.append(mkey)
+                        continue
+                    cu_set_field(task["id"], fid, round(float(v), 2), dry)
+                if missing:
+                    why = (f"metric fields {', '.join(missing)} do not exist on this task's list "
+                           f"— not written; move it to Media if it launched")
+                    print(f"    {why}")
+                    notes.append(f"{batch_no} · {why} · {task_url(task)}")
                 if task["status"]["status"] in cfg["clickup"]["protected_task_statuses"]:
                     print(f"    task status left as '{task['status']['status']}' (human-set)")
                 else:
