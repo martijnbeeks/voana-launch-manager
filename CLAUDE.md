@@ -517,8 +517,11 @@ exist". `cu_set_status` now reads the list's statuses first and, when the target
 missing, skips it and posts an ℹ️ note ("move it to Media if it launched") instead
 of a failure. The status write also moved after the metric fields, which that 400
 had silently skipped. To repair a kill whose ClickUp half failed after Discord
-already posted, use **`kill_sync.py rewrite <archived inbox> --only S182`**: ClickUp
+already posted, use **`kill_sync.py rewrite data/kill-sync/inbox-archive/<stamp> --only S182`**: ClickUp
 writes only, ledger ignored, no Discord, no state change, idempotent.
+The archive is in the TRACKED `data/kill-sync/inbox-archive/` (newest 14 kept):
+Multica deletes a run's workdir afterwards, so the old `state/inbox/processed/`
+archive was already gone when S182 needed it.
 
 **Discord cards show CPM · CTR (link) · CPC (link)** on a second line (2026-09-17).
 The Meta MCP calls these `cpm`, `website_ctr`, `cost_per_link_click` (link clicks:

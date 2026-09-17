@@ -326,6 +326,15 @@ check("rewrite leaves the inbox in place", len(list((state7 / "inbox").glob("*.j
 rc = ks.process(dry=False, inbox=state7 / "inbox", rewrite=True, only={"S202"})
 check("rewrite twice: still one comment", len(fake.comments["tB"]), 1)
 
+# ── archive: durable, pruned ─────────────────────────────────────────────────
+check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)
+arch = ks.archive_dir()
+for i in range(ks.ARCHIVE_KEEP + 3):
+    (arch / f"2026-09-{i:02d}_0845").mkdir(parents=True, exist_ok=True)
+gone = ks.prune_archive()
+check("prune keeps the newest ARCHIVE_KEEP", len([d for d in arch.iterdir() if d.is_dir()]), ks.ARCHIVE_KEEP)
+check("prune drops the oldest first", gone[0] if gone else None, "2026-09-00_0845")
+
 for d in (state, state2, state3, state4, state5, state6, state7):
     shutil.rmtree(d, ignore_errors=True)
 if fails:

@@ -156,7 +156,7 @@ $(run_tail)
 fi
 
 if [ "${DISCORD_FAILED:-0}" = "1" ]; then
-  alert "🟧 **kill-sync**: ClickUp synced, Discord kill post failed — \`kill_sync.py replay state/inbox/processed/<stamp>\`"
+  alert "🟧 **kill-sync**: ClickUp synced, Discord kill post failed — \`kill_sync.py replay data/kill-sync/inbox-archive/<stamp>\`"
 fi
 
 if [ "${KILL_SYNC_DIGEST:-}" = "1" ]; then

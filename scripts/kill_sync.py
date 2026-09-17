@@ -51,6 +51,11 @@ INBOX = STATE / "inbox"
 # the ledger would forget every kill it had reported. `push-state` commits this
 # directory to main after each run (same pattern as voana-tools' format radar).
 DURABLE = Path(os.environ.get("KILL_SYNC_STATE_DIR") or ROOT / "data" / "kill-sync")
+ARCHIVE_KEEP = 14   # a week of twice-daily runs; each archive is a few hundred KB at most
+
+
+def archive_dir() -> Path:
+    return DURABLE / "inbox-archive"
 CONFIG = json.loads((ROOT / "scripts" / "kill_sync_config.json").read_text())
 
 CLICKUP = "https://api.clickup.com/api/v2"
@@ -714,6 +719,19 @@ def read_json(p: Path, default):
         return default
 
 
+def prune_archive(keep: int = ARCHIVE_KEEP) -> list[str]:
+    """Drop all but the newest `keep` archived inboxes (names sort by time)."""
+    import shutil
+    root = archive_dir()
+    if not root.is_dir():
+        return []
+    dirs = sorted(d for d in root.iterdir() if d.is_dir())
+    gone = dirs[:-keep] if keep > 0 else dirs
+    for d in gone:
+        shutil.rmtree(d, ignore_errors=True)
+    return [d.name for d in gone]
+
+
 def ledger_keys() -> set[str]:
     p = DURABLE / "kills.jsonl"
     if not p.exists():
@@ -766,7 +784,7 @@ def describe_task(task: dict | None, adset_name: str) -> str:
 def process(dry: bool, inbox: Path | None = None, replay: bool = False,
             rewrite: bool = False, only: set[str] | None = None) -> int:
     """`replay=True` re-posts the Discord report for an already-processed inbox
-    (state/inbox/processed/<stamp>/): ClickUp writes are skipped, the ledger is
+    (data/kill-sync/inbox-archive/<stamp>/): ClickUp writes are skipped, the ledger is
     ignored for detection and NOT appended, last_run is left alone. It exists for
     the case where ClickUp was synced but the Discord post failed."""
     global SKIP_CLICKUP
@@ -1002,10 +1020,15 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
             ledger_append(new_rows)
         (DURABLE / "last_run.json").write_text(json.dumps({"last_run": now.isoformat(timespec="seconds"),
                                                           "kills": len(embeds)}, indent=1))
-        archive = INBOX / "processed" / f"{now:%Y-%m-%d_%H%M}"
+        # The archive lives in the TRACKED durable dir: on the Mac Mini every run
+        # is a fresh checkout and Multica deletes the workdir afterwards, so an
+        # archive under state/ was gone before `replay` or `rewrite` could ever
+        # read it (found repairing S182, 2026-09-17). push-state commits it.
+        archive = archive_dir() / f"{now:%Y-%m-%d_%H%M}"
         archive.mkdir(parents=True, exist_ok=True)
         for p in INBOX.glob("*.json"):
             p.replace(archive / p.name)
+        prune_archive()
         if embeds and (not WEBHOOK or not ok):
             # keep the report so a failed post can be read (or replayed from the
             # archived inbox) instead of vanishing with the process
@@ -1014,7 +1037,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 "\n\n".join(f"### {e['title']}\n{e['description']}" for e in embeds))
             if WEBHOOK:
                 print(f"    Discord post failed — report saved to state/reports/{now:%Y-%m-%d_%H%M}.md; "
-                      f"re-post with: kill_sync.py replay state/inbox/processed/{now:%Y-%m-%d_%H%M}")
+                      f"re-post with: kill_sync.py replay {archive}")
     print(f"\nDone: {len(embeds)} kill(s) reported, {len(problems)} unmapped/failed, "
           f"{failed_clickup} ClickUp failure(s), discord={'ok' if ok else 'FAILED/none'}")
     if failed_clickup:
@@ -1104,7 +1127,7 @@ def push_state(branch: str = "main") -> int:
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["process", "digest", "replay", "rewrite", "push-state"])
-    ap.add_argument("inbox", nargs="?", help="replay/rewrite: an archived inbox dir (state/inbox/processed/<stamp>)")
+    ap.add_argument("inbox", nargs="?", help="replay/rewrite: an archived inbox dir (data/kill-sync/inbox-archive/<stamp>)")
     ap.add_argument("--only", action="append", default=[], metavar="BATCH",
                     help="rewrite: only these batch prefixes, e.g. --only S182 (repeatable)")
     ap.add_argument("--dry-run", action="store_true")
