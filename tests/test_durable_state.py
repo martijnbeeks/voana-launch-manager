@@ -70,3 +70,21 @@ def test_push_state_is_a_noop_when_nothing_changed(monkeypatch):
     monkeypatch.setattr(subprocess, "run", lambda cmd, **kw: calls.append(cmd[1:]) or R())
     assert ks.push_state() == 0
     assert not any(c[0] == "push" for c in calls)
+
+
+def test_the_isolation_suite_redirects_durable_state():
+    """2026-09-17: the isolation suite redirected STATE but not DURABLE, so one
+    test run wrote three fake kills and a wrong poll window into the REAL
+    data/kill-sync/, and that got committed. Any suite that calls process()
+    must point DURABLE at its temp dir."""
+    src = (_ROOT / "tests" / "test_process_isolation.py").read_text()
+    assert "ks.DURABLE" in src
+
+
+def test_running_the_isolation_suite_leaves_real_state_untouched():
+    before = {n: (ks.DURABLE / n).read_bytes() for n in ("kills.jsonl", "last_run.json")}
+    proc = subprocess.run(["python3", str(_ROOT / "tests" / "test_process_isolation.py")],
+                          cwd=_ROOT, capture_output=True, text=True)
+    assert proc.returncode == 0, proc.stdout[-400:]
+    after = {n: (ks.DURABLE / n).read_bytes() for n in before}
+    assert before == after
