@@ -463,12 +463,69 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   cannot fail on an outage. Nothing synced → no message. Replaced the old
   "killed batches still without learnings" digest on 2026-09-09; the old one was
   a slow-changing list that repeated itself every run.
+- **One kill's ClickUp failure never aborts the run** (2026-09-10). A 404 on one
+  checklist-item POST used to raise straight out of the loop: four batches
+  already written were never ledgered, two were never reached, and inbox /
+  `last_run.json` stayed put — the next run would have re-commented on all of
+  them. Every kill's ClickUp writes are now isolated (`write_batch_kill` /
+  `write_ad_kill` inside `process`): a failure is printed, ledgered with an
+  `error` field, named in the Discord problems line with the task URL, and the
+  run carries on; exit code **4** = synced with ClickUp failures. The 404 was
+  **ClickUp flaking near its rate limit, not a deleted checklist** — the same
+  task 404'd again on the recovery run and then 429'd on the refetch. `cu()`
+  backs off on 429/5xx (honouring `Retry-After`) and network drops; 401/404
+  raise `ClickUpError` at once. `upsert_checklist` re-reads the task and
+  retries once on a 404, recreates an item deleted in the UI, and the checklist
+  is written **last** so the comment / Result / status never wait on it.
+- **Re-runs are idempotent, ledger or not.** `cu_comment` reads the task's
+  comments and skips when the deterministic first line (actor + kill time) is
+  already there; fields and checklist items are upserts. So the crash recovery
+  was simply `kill_sync.py process` on the same inbox.
+- **An ad is creative + lander.** One creative runs on two landers (OG / 7R /
+  COMP), so `C4` alone is two ads. Result lines and checklist items are keyed
+  `C4/7R` (`ad_key`, `AD_LINE_RE`); the bare-code form silently collapsed the
+  two into one line and made checklist items unmatchable (every run added
+  another set). Legacy `C4 …` lines/items are dropped once `C4/<lander>` exist.
+  Human-written checklist items never match `SCRIPT_LINE_RE` and are untouched.
+- **Discord caps a message at 6000 chars of embed text**, not just 10 embeds:
+  seven whole-batch kills in one payload were 400'd and the kill post was
+  silently lost. `chunk_embeds` splits on both limits. A failed post now saves
+  `state/reports/<stamp>.md` and the wrapper alerts 🟧; **`kill_sync.py replay
+  state/inbox/processed/<stamp>`** re-posts the report for an archived inbox
+  with no ClickUp writes and no state change.
+- **Discord is terse on purpose** (2026-09-10): a kill card is a title
+  (`💀💀 S014 · batch · <actor>`) plus ONE line — account, ads, days live,
+  spend, purchases, CPA, oCTR, ROAS — and the ClickUp / Ads Manager links.
+  The per-ad table is in the ClickUp comment, not the channel. The digest is
+  one line of task links; wrapper alerts quote the last 6 log lines only.
+- The wrapper sources `voana-tools/scripts/lib/scheduler_guard.sh` (no-op
+  fallbacks if absent): waits for a **full wake** before spending anything
+  (`KILL_SYNC_MAX_WAKE_WAIT`, 11h — under the 12h gap to the next run; the
+  2026-09-09 20:45 run died "mid-response" inside a dark wake), runs `claude`
+  through `claude_sub` (subscription, never a metered key), retries the bridge
+  3× on transient output (5/10 min), and its alert quotes **this run's** log
+  bytes (`LOG_START`) — `tail -c 1200` of the shared log used to show the
+  previous run's traceback.
 Files: `scripts/run_kill_sync.sh` (wrapper, alerts the ops webhook on failure),
-`scripts/com.voana.kill-sync.plist`, `state/kills.jsonl` (append-only ledger,
-dedupes re-runs), `state/last_run.json` (poll window), `state/kill-sync.log`.
+`scripts/com.voana.kill-sync.plist`, `data/kill-sync/kills.jsonl` (append-only ledger,
+dedupes re-runs), `data/kill-sync/last_run.json` (poll window), `state/kill-sync.log`.
+
+**Runs on the Mac Mini since 2026-09-17** (Multica autopilot, 08:45 + 20:45; the MacBook
+LaunchAgent is stowed in `~/Library/LaunchAgents-disabled/` as fallback). Two things follow:
+- **Durable state is tracked in git** (`data/kill-sync/`), not under the gitignored `state/`.
+  Every Multica run is a fresh checkout, so an untracked poll window would reset to "now minus
+  36h" and an untracked ledger would re-report every kill. `kill_sync.py push-state` commits the
+  directory and pushes **`HEAD:main`** — the checkout sits on a throwaway `agent/…` branch.
+  `KILL_SYNC_STATE_DIR` overrides the location. Pinned by `tests/test_durable_state.py`.
+- **The prompt finds Meta tools by keyword ToolSearch**, never a pinned server name: the prefix
+  is `mcp__claude_ai_Meta_MCP__` on the Mac Mini and `mcp__meta-ads__` on the MacBook.
+  Secrets (`CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_URL`) come from the Multica agent's
+  `custom_env`, added with `voana-tools/scripts/multica_agent_env_add.py`.
 Secrets in `.env` (gitignored): `CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_URL`
 (falls back to the ops webhook in `../voana-tools/.env` until set). Test with
-`KILL_SYNC_DRY_RUN=1 zsh scripts/run_kill_sync.sh`. Full design: `docs/kill-sync-plan.md`.
+`KILL_SYNC_DRY_RUN=1 zsh scripts/run_kill_sync.sh`; offline tests
+`python3 tests/test_metrics.py` and `python3 tests/test_process_isolation.py`
+(in-memory ClickUp). Full design: `docs/kill-sync-plan.md`.
 Guardrail: the job is **read-only on Meta**.
 
 ## Repo layout (target)
@@ -479,7 +536,8 @@ launches/            # one file per launch: YYYY-MM-DD-batch-<n>.md (batch, crea
                      #   creatives, budget, ad set / ad IDs, links)
 docs/                # design docs (kill-sync-plan.md)
 scripts/             # kill_sync.py + prompt + launchd wrapper/plist
-state/               # kill-sync ledger + poll window (inbox/ and log are gitignored)
+data/kill-sync/      # kill-sync ledger + poll window (tracked; pushed by `push-state`)
+state/               # scratch: inbox, log, reports (gitignored)
 creatives/           # briefs & metadata for creative batches (not raw video files)
 scripts/             # helper scripts (batch launch, winner promotion, reporting)
 reports/             # generated performance snapshots
