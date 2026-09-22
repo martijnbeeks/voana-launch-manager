@@ -1089,7 +1089,13 @@ def digest(dry: bool) -> int:
     """List what the run that just finished pushed into ClickUp.
 
     Every row `process` ledgers carries the same `detected` stamp, so the newest
-    stamp is exactly one run. A row only reaches a ClickUp task when it matched
+    stamp is exactly one run — but only when the run ledgered rows at all. A
+    zero-kill run appends nothing and leaves the newest stamp on its
+    predecessor, so the digest re-announced kills that were already reported:
+    three identical "15 kill(s)" cards for the 2026-09-20 20:45 run, one per
+    zero-kill run that followed. `last_run.json` carries the stamp of the run
+    that just finished, so the digest now posts only when the newest ledger
+    stamp is that run's own. A row only reaches a ClickUp task when it matched
     one, so `task_id` is the test for "updated in ClickUp" — replacement-guard
     rows (which carry `skipped`) and kills with no matching task never have it.
     Reads only the ledger, so a ClickUp outage cannot break this step.
@@ -1110,6 +1116,12 @@ def digest(dry: bool) -> int:
         print("digest: no synced kills in the ledger yet")
         return 0
     latest = max(r["detected"] for r in runs)
+    # `process --dry-run` writes no last_run.json, so a dry digest still previews.
+    this_run = str(read_json(DURABLE / "last_run.json", {}).get("last_run", ""))
+    if not dry and latest[:19] != this_run[:19]:
+        print(f"digest: this run ({this_run[:19] or 'no last_run.json'}) ledgered no kills — "
+              f"newest ledger stamp is {latest[:19]}, already reported")
+        return 0
     synced = [r for r in runs if r["detected"] == latest and r.get("task_id")]
     if not synced:
         print(f"digest: run {latest[:19]} updated no ClickUp tasks")

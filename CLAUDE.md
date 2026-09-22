@@ -463,6 +463,12 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   cannot fail on an outage. Nothing synced → no message. Replaced the old
   "killed batches still without learnings" digest on 2026-09-09; the old one was
   a slow-changing list that repeated itself every run.
+  **"Nothing synced → no message" only became true on 2026-09-22.** A zero-kill
+  run ledgers no rows, so the newest `detected` stamp stayed on the last run that
+  did kill something and the digest re-announced it: the 2026-09-20 20:45 run's
+  "15 kill(s)" card was posted three times, once more per zero-kill run. The
+  digest now compares the newest stamp against `last_run.json` (the run that just
+  finished) and stays quiet unless they match. Pinned by `tests/test_digest.py`.
 - **One kill's ClickUp failure never aborts the run** (2026-09-10). A 404 on one
   checklist-item POST used to raise straight out of the loop: four batches
   already written were never ledgered, two were never reached, and inbox /
@@ -543,8 +549,9 @@ LaunchAgent is stowed in `~/Library/LaunchAgents-disabled/` as fallback). Two th
 Secrets in `.env` (gitignored): `CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_URL`
 (falls back to the ops webhook in `../voana-tools/.env` until set). Test with
 `KILL_SYNC_DRY_RUN=1 zsh scripts/run_kill_sync.sh`; offline tests
-`python3 tests/test_metrics.py` and `python3 tests/test_process_isolation.py`
-(in-memory ClickUp). Full design: `docs/kill-sync-plan.md`.
+`python3 tests/test_metrics.py`, `python3 tests/test_process_isolation.py`
+(in-memory ClickUp) and `python3 tests/test_digest.py`.
+Full design: `docs/kill-sync-plan.md`.
 Guardrail: the job is **read-only on Meta**.
 
 ## Repo layout (target)
