@@ -86,7 +86,15 @@ if not WEBHOOK and ENV.get("DISCORD_WEBHOOK_URL"):
 
 # ── parsing helpers ──────────────────────────────────────────────────────────
 def num(v) -> float | None:
-    """'$78.40 USD' -> 78.4, '2,56%' -> 2.56, '1.234,5' -> 1234.5, None -> None."""
+    """'$78.40 USD' -> 78.4, '2,56%' -> 2.56, '1.234,5' -> 1234.5, None -> None.
+
+    Since 2026-09-22 the Meta MCP sends money as {"value": "197.71", "unit": "USD"}.
+    Stringified, that dict carries a comma after the number, which the locale
+    logic below reads as a decimal comma: $197.71 became $19,771 on every card
+    and in every ClickUp metric field. Unwrap it first.
+    """
+    if isinstance(v, dict):
+        v = v.get("value")
     if v is None or v == "":
         return None
     if isinstance(v, (int, float)):
@@ -107,6 +115,8 @@ def num(v) -> float | None:
 
 def count(v) -> int:
     """'3.410' / '3,410' / 3410 -> 3410 (thousands separators only, never decimals)."""
+    if isinstance(v, dict):
+        v = v.get("value")
     if v is None or v == "":
         return 0
     if isinstance(v, (int, float)):
@@ -349,6 +359,7 @@ MONTHS = {m: i + 1 for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "ju
 MONTHS.update({"mrt": 3, "mei": 5, "okt": 10})
 
 BATCH_RE = re.compile(r"^(S\d{3}|#\d{3,4})\b")
+BATCH_TAG_RE = re.compile(r"\s+-\s+BATCH\s*\d+\b", re.I)
 CREATIVE_RE = re.compile(r"_(C\d+|V\d+)$")
 
 
@@ -439,6 +450,14 @@ class ClickUpTasks:
             cands = [t for t in self.tasks if batch_prefix(t["name"]) == pre]
             if len(cands) == 1:
                 return cands[0], "prefix"
+            # A task launched as several ad sets is named once in ClickUp
+            # ("S240 - V1-V3 - Video …") but "S240 - BATCH 1 - V1-V3 - Video …"
+            # in Meta. When the S-number is also reused by another task, the
+            # prefix alone is ambiguous (2026-09-22: two S240 kills unsynced).
+            bare = BATCH_TAG_RE.sub("", adset_name).strip()
+            same = [t for t in cands if t["name"].strip() == bare]
+            if len(same) == 1:
+                return same[0], "batch"
             if len(cands) > 1:
                 return None, f"ambiguous prefix {pre} ({len(cands)} tasks)"
         return None, "no match"
@@ -459,10 +478,13 @@ class ClickUpTasks:
 SKIP_CLICKUP = os.environ.get("KILL_SYNC_SKIP_CLICKUP") == "1"
 
 
-def cu_comment(task_id: str, text: str, dry: bool):
+def cu_comment(task_id: str, text: str, dry: bool, update: bool = False):
     """Post once. The first line of every kill comment is deterministic (actor +
     kill time), so a re-run after a crash finds it and does not repeat itself —
-    the 2026-09-10 crash had already commented on four tasks it never ledgered."""
+    the 2026-09-10 crash had already commented on four tasks it never ledgered.
+
+    With `update` (the `rewrite` command) a comment already there is edited in
+    place instead — skipping it left the 100x numbers of 2026-09-22 standing."""
     if dry or SKIP_CLICKUP:
         print(f"    [dry] comment on {task_id}:\n" + "\n".join("      " + l for l in text.splitlines()))
         return
@@ -478,9 +500,16 @@ def cu_comment(task_id: str, text: str, dry: bool):
     except ClickUpError as e:
         print(f"    could not read comments on {task_id} ({e}); posting anyway")
         existing = []
-    if any(_key((c.get("comment_text") or "").strip().splitlines()[0] if (c.get("comment_text") or "").strip() else "")
-           == _key(head) for c in existing):
-        print(f"    comment already on {task_id}: {head[:70]} — not repeated")
+    same = [c for c in existing
+            if _key((c.get("comment_text") or "").strip().splitlines()[0] if (c.get("comment_text") or "").strip() else "")
+            == _key(head)]
+    if same:
+        old = same[0]
+        if update and (old.get("comment_text") or "").strip() != text.strip():
+            cu("PUT", f"/comment/{old['id']}", {"comment_text": text})
+            print(f"    comment on {task_id} updated in place: {head[:70]}")
+        else:
+            print(f"    comment already on {task_id}: {head[:70]} — not repeated")
         return
     cu("POST", f"/task/{task_id}/comment", {"comment_text": text, "notify_all": False})
 
@@ -924,7 +953,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                         f"{ad_summary(m) if m else 'metrics n/a'}\n"
                         f"Still running: {', '.join(still) if still else 'none'}\n"
                         f"{ads_manager_url(account, 'ad', obj_id)}")
-                cu_comment(task["id"], text, dry)
+                cu_comment(task["id"], text, dry, update=rewrite)
                 siblings = by_adset.get(str(m.get("adset_id")), []) if m else []
                 if m:
                     merged = merge_result(tasks.field_value(task, cfg["clickup"]["fields"]["result"]),
@@ -935,7 +964,12 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 upsert_checklist(task, siblings or ads, {obj_id}, when, dry)
 
             def write_batch_kill():
-                lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
+                # Several ad sets of one task ("S240 - BATCH 1/2 - …") are killed
+                # together; the tag keeps their heads apart, or the comment
+                # dedupe drops every batch after the first (2026-09-22).
+                tag = BATCH_TAG_RE.search(adset_name)
+                tag = f" · {tag.group(0).strip(' -').upper()}" if tag else ""
+                lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']}){tag}"]
                 t = totals_of(ads, adset_metrics.get(str(obj_id)))
                 for a in sorted(ads, key=lambda a: a.get("name", "")):
                     lines.append(f"• {creative_no(a.get('name',''))} ({lander_code(a.get('name','')) or '-'}): {ad_summary(a)}")
@@ -954,11 +988,14 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                              f"{whole(t['impr'])} impr"
                              + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
                 lines.append("→ fill in 📖 Learnings")
-                cu_comment(task["id"], "\n".join(lines), dry)
-                # every ad in the set is dead now; ads killed earlier keep their own ✖ date
+                cu_comment(task["id"], "\n".join(lines), dry, update=rewrite)
+                # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
+                # A ✖ line dated THIS kill is our own earlier write of the same
+                # kill, so a rewrite must replace it — else a bad first write
+                # (2026-09-22: $14.05 printed as $1,405.00) could never be fixed.
                 prior = tasks.field_value(task, cfg["clickup"]["fields"]["result"]) or ""
                 earlier = {AD_LINE_RE.match(l.strip()).group(1) for l in prior.splitlines()
-                           if AD_LINE_RE.match(l.strip()) and "✖" in l}
+                           if AD_LINE_RE.match(l.strip()) and "✖" in l and f"✖{when:%m-%d}" not in l}
                 table = [ad_line(a, when) for a in ads if ad_key(a.get("name", "")) not in earlier]
                 cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merge_result(prior, table, result), dry)
                 cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""

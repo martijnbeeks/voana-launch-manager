@@ -158,6 +158,31 @@ check("empty batch spend", t3["spend"], None)
 check("empty batch cpa", t3["cpa"], None)
 ks.ad_summary(row); ks.ad_line(row)
 
+# ── 2026-09-22: the MCP now sends money as {"value", "unit"} ─────────────────
+# Stringified, the dict's trailing comma read as a decimal comma: $197.71 -> $19,771.
+usd = lambda s: {"value": s, "unit": "USD"}
+dict_row = {"amount_spent": usd("197.71"), "cpm": usd("52.67"), "cost_per_link_click": usd("2"),
+            "cost_per_omni_purchase": usd("49.43"), "omni_purchase": "4", "impressions": "3754"}
+check("dict money -> spend", ks.num(dict_row["amount_spent"]), 197.71)
+check("dict money -> money()", ks.money(dict_row["amount_spent"]), "$197.71")
+check("dict money -> cpm", ks.cpm_of(dict_row), 52.67)
+check("dict money -> cpa", ks.cpa_of(dict_row), 49.43)
+check("dict money -> link cpc", ks.link_cpc_of(dict_row), 2.0)
+t4 = ks.totals_of([], dict_row)
+check("dict money -> batch spend", t4["spend"], 197.71)
+check("dict with no value -> None", ks.num({"unit": "USD"}), None)
+check("dict count", ks.count({"value": "3754"}), 3754)
+
+# ── 2026-09-22: "S240 - BATCH 1 - …" with the S-number reused by another task ─
+tasks = ks.ClickUpTasks.__new__(ks.ClickUpTasks)
+tasks.tasks = [{"name": "S240 - V1-V3 - Video - Stick - offer"},
+               {"name": "S240 - C1-C3 - LFS - Cream - the_cycle"}]
+got, how = tasks.find("S240 - BATCH 2 - V1-V3 - Video - Stick - offer")
+check("batch tag stripped -> matched", (got or {}).get("name"), "S240 - V1-V3 - Video - Stick - offer")
+check("batch tag stripped -> how", how, "batch")
+got, how = tasks.find("S240 - V9 - something else")
+check("still ambiguous without a name match", (got, how.startswith("ambiguous")), (None, True))
+
 if fails:
     print("FAILED:")
     for x in fails:
