@@ -86,7 +86,15 @@ if not WEBHOOK and ENV.get("DISCORD_WEBHOOK_URL"):
 
 # ── parsing helpers ──────────────────────────────────────────────────────────
 def num(v) -> float | None:
-    """'$78.40 USD' -> 78.4, '2,56%' -> 2.56, '1.234,5' -> 1234.5, None -> None."""
+    """'$78.40 USD' -> 78.4, '2,56%' -> 2.56, '1.234,5' -> 1234.5, None -> None.
+
+    Since 2026-09-22 the Meta MCP sends money as {"value": "197.71", "unit": "USD"}.
+    Stringified, that dict carries a comma after the number, which the locale
+    logic below reads as a decimal comma: $197.71 became $19,771 on every card
+    and in every ClickUp metric field. Unwrap it first.
+    """
+    if isinstance(v, dict):
+        v = v.get("value")
     if v is None or v == "":
         return None
     if isinstance(v, (int, float)):
@@ -107,6 +115,8 @@ def num(v) -> float | None:
 
 def count(v) -> int:
     """'3.410' / '3,410' / 3410 -> 3410 (thousands separators only, never decimals)."""
+    if isinstance(v, dict):
+        v = v.get("value")
     if v is None or v == "":
         return 0
     if isinstance(v, (int, float)):
@@ -349,6 +359,7 @@ MONTHS = {m: i + 1 for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "ju
 MONTHS.update({"mrt": 3, "mei": 5, "okt": 10})
 
 BATCH_RE = re.compile(r"^(S\d{3}|#\d{3,4})\b")
+BATCH_TAG_RE = re.compile(r"\s+-\s+BATCH\s*\d+\b", re.I)
 CREATIVE_RE = re.compile(r"_(C\d+|V\d+)$")
 
 
@@ -439,6 +450,14 @@ class ClickUpTasks:
             cands = [t for t in self.tasks if batch_prefix(t["name"]) == pre]
             if len(cands) == 1:
                 return cands[0], "prefix"
+            # A task launched as several ad sets is named once in ClickUp
+            # ("S240 - V1-V3 - Video …") but "S240 - BATCH 1 - V1-V3 - Video …"
+            # in Meta. When the S-number is also reused by another task, the
+            # prefix alone is ambiguous (2026-09-22: two S240 kills unsynced).
+            bare = BATCH_TAG_RE.sub("", adset_name).strip()
+            same = [t for t in cands if t["name"].strip() == bare]
+            if len(same) == 1:
+                return same[0], "batch"
             if len(cands) > 1:
                 return None, f"ambiguous prefix {pre} ({len(cands)} tasks)"
         return None, "no match"
@@ -955,10 +974,13 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                              + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
                 lines.append("→ fill in 📖 Learnings")
                 cu_comment(task["id"], "\n".join(lines), dry)
-                # every ad in the set is dead now; ads killed earlier keep their own ✖ date
+                # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
+                # A ✖ line dated THIS kill is our own earlier write of the same
+                # kill, so a rewrite must replace it — else a bad first write
+                # (2026-09-22: $14.05 printed as $1,405.00) could never be fixed.
                 prior = tasks.field_value(task, cfg["clickup"]["fields"]["result"]) or ""
                 earlier = {AD_LINE_RE.match(l.strip()).group(1) for l in prior.splitlines()
-                           if AD_LINE_RE.match(l.strip()) and "✖" in l}
+                           if AD_LINE_RE.match(l.strip()) and "✖" in l and f"✖{when:%m-%d}" not in l}
                 table = [ad_line(a, when) for a in ads if ad_key(a.get("name", "")) not in earlier]
                 cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merge_result(prior, table, result), dry)
                 cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""
