@@ -67,6 +67,9 @@ class FakeClickUp:
             if len(seg) == 2:   # list metadata: its own statuses
                 return self.lists.get(lid, {"name": lid, "statuses": []})
             return {"tasks": [t for t in self.tasks.values() if t["list"] == lid], "last_page": True}
+        if seg[0] == "comment" and method == "PUT":
+            tid, i = seg[1].split("#")
+            self.comments[tid][int(i)] = body["comment_text"]; return {}
         if seg[0] == "task":
             tid = seg[1]
             t = self.tasks[tid]
@@ -76,7 +79,7 @@ class FakeClickUp:
                 t["status"] = {"status": body["status"]}; return {}
             if seg[-1] == "comment":
                 if method == "GET":
-                    return {"comments": [{"comment_text": c} for c in self.comments[tid]]}
+                    return {"comments": [{"id": f"{tid}#{i}", "comment_text": c} for i, c in enumerate(self.comments[tid])]}
                 self.comments[tid].append(body["comment_text"]); return {}
             if seg[2] == "field":
                 if not any(f["id"] == seg[3] for f in t["custom_fields"]):
@@ -356,6 +359,15 @@ ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-09 03:46 (GetVoana 
 check("same kill, different clock time: not repeated", len(fake.comments["td"]), 1)
 ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-10 03:46 (GetVoana - 1)\nnext day", dry=False)
 check("different day: posted", len(fake.comments["td"]), 2)
+
+# rewrite edits a bad comment in place instead of skipping it (2026-09-22: 100x money)
+ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-10 03:46 (GetVoana - 1)\nfixed", dry=False, update=True)
+check("update: no new comment", len(fake.comments["td"]), 2)
+check("update: text replaced", fake.comments["td"][1].endswith("fixed"), True)
+# two batches of one task killed together keep separate comments
+ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-22 04:03 (GetVoana - 1) · BATCH 1\na", dry=False)
+ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-22 04:03 (GetVoana - 1) · BATCH 2\nb", dry=False)
+check("batch 1 and batch 2 both posted", len(fake.comments["td"]), 4)
 
 # ── archive: durable, pruned ─────────────────────────────────────────────────
 check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)
