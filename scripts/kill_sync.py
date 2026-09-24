@@ -86,7 +86,14 @@ if not WEBHOOK and ENV.get("DISCORD_WEBHOOK_URL"):
 
 # ── parsing helpers ──────────────────────────────────────────────────────────
 def num(v) -> float | None:
-    """'$78.40 USD' -> 78.4, '2,56%' -> 2.56, '1.234,5' -> 1234.5, None -> None."""
+    """'$78.40 USD' -> 78.4, '2,56%' -> 2.56, '1.234,5' -> 1234.5, None -> None.
+
+    Money fields can also arrive as {'value': '50.42', 'unit': 'USD'} (the MCP
+    shape seen 2026-09-23). Unwrap it first: stringifying the dict leaves a
+    trailing ',' that the locale guess below reads as a decimal comma, turning
+    $50.42 into $5,042 on every kill card."""
+    if isinstance(v, dict):
+        v = v.get("value")
     if v is None or v == "":
         return None
     if isinstance(v, (int, float)):
