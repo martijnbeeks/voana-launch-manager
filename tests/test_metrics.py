@@ -31,6 +31,17 @@ now = {"amount_spent": "$7.79 USD", "omni_purchase": 1,
 check("current names -> purchases", ks.purchases_of(now), 1)
 check("current names -> cpa", ks.cpa_of(now), 7.79)
 
+# money as {value, unit} objects (MCP shape 2026-09-23) — was read as 100x
+obj = {"amount_spent": {"value": "50.42", "unit": "USD"}, "impressions": "732",
+       "cpm": {"value": "68.88", "unit": "USD"},
+       "cost_per_link_click": {"value": "1.68", "unit": "USD"},
+       "cost_per_omni_purchase": {"value": "5,037.00", "unit": "USD"}}
+check("money object -> spend", ks.num(obj["amount_spent"]), 50.42)
+check("money object -> cpm", ks.cpm_of(obj), 68.88)
+check("money object -> link cpc", ks.link_cpc_of(obj), 1.68)
+check("money object -> cpa w/ thousands", ks.cpa_of(obj), 5037.0)
+check("money object, no value", ks.num({"unit": "USD"}), None)
+
 # the older spelling still works
 old = {"amount_spent": "$7.79 USD", "purchases": 1, "cost_per_purchase": "$7.79 USD"}
 check("legacy names -> purchases", ks.purchases_of(old), 1)
