@@ -962,10 +962,15 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                              + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
                 lines.append("→ fill in 📖 Learnings")
                 cu_comment(task["id"], "\n".join(lines), dry)
-                # every ad in the set is dead now; ads killed earlier keep their own ✖ date
+                # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
+                # A ✖ line stamped with THIS kill's date is ours — rewrite it (that is
+                # how `rewrite` repairs lines written with bad numbers, e.g. the 100x
+                # money bug of 2026-09-22/23).
                 prior = tasks.field_value(task, cfg["clickup"]["fields"]["result"]) or ""
+                this_kill = f"✖{when:%m-%d}" if when else None
                 earlier = {AD_LINE_RE.match(l.strip()).group(1) for l in prior.splitlines()
-                           if AD_LINE_RE.match(l.strip()) and "✖" in l}
+                           if AD_LINE_RE.match(l.strip()) and "✖" in l
+                           and not (this_kill and this_kill in l)}
                 table = [ad_line(a, when) for a in ads if ad_key(a.get("name", "")) not in earlier]
                 cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merge_result(prior, table, result), dry)
                 cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""
