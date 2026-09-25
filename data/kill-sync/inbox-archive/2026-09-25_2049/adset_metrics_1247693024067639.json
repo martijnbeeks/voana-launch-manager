@@ -1,0 +1,452 @@
+[
+ {
+  "id": "120247657653460591",
+  "name": "S251 - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-21T00:39:43-0400",
+  "amount_spent": {
+   "value": "114.56",
+   "unit": "USD"
+  },
+  "impressions": "547",
+  "clicks": "103",
+  "ctr": "18.83%",
+  "cpc": {
+   "value": "1.11",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "209.43",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "57.28",
+   "unit": "USD"
+  },
+  "outbound_clicks": "52",
+  "outbound_clicks_ctr": "9.506399",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.767284",
+  "omni_purchase_values": {
+   "value": "87.9",
+   "unit": "USD"
+  },
+  "link_click": "52",
+  "website_ctr": "9.506399",
+  "cost_per_link_click": {
+   "value": "2.2",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675670020591",
+  "name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-22T01:46:56-0400",
+  "amount_spent": {
+   "value": "54.18",
+   "unit": "USD"
+  },
+  "impressions": "934",
+  "clicks": "39",
+  "ctr": "4.18%",
+  "cpc": {
+   "value": "1.39",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "58.01",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "54.18",
+   "unit": "USD"
+  },
+  "outbound_clicks": "31",
+  "outbound_clicks_ctr": "3.319058",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "0.700443",
+  "omni_purchase_values": {
+   "value": "37.95",
+   "unit": "USD"
+  },
+  "link_click": "31",
+  "website_ctr": "3.319058",
+  "cost_per_link_click": {
+   "value": "1.75",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689653290591",
+  "name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-23T00:21:47-0400",
+  "amount_spent": {
+   "value": "51.17",
+   "unit": "USD"
+  },
+  "impressions": "1370",
+  "clicks": "21",
+  "ctr": "1.53%",
+  "cpc": {
+   "value": "2.44",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "37.35",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "16",
+  "outbound_clicks_ctr": "1.167883",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "16",
+  "website_ctr": "1.167883",
+  "cost_per_link_click": {
+   "value": "3.2",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675706740591",
+  "name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-22T01:56:02-0400",
+  "amount_spent": {
+   "value": "62.34",
+   "unit": "USD"
+  },
+  "impressions": "1719",
+  "clicks": "55",
+  "ctr": "3.20%",
+  "cpc": {
+   "value": "1.13",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "36.27",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "62.34",
+   "unit": "USD"
+  },
+  "outbound_clicks": "48",
+  "outbound_clicks_ctr": "2.792321",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.122073",
+  "omni_purchase_values": {
+   "value": "69.95",
+   "unit": "USD"
+  },
+  "link_click": "48",
+  "website_ctr": "2.792321",
+  "cost_per_link_click": {
+   "value": "1.3",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689820510591",
+  "name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-23T00:36:47-0400",
+  "amount_spent": {
+   "value": "52.38",
+   "unit": "USD"
+  },
+  "impressions": "2120",
+  "clicks": "33",
+  "ctr": "1.56%",
+  "cpc": {
+   "value": "1.59",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "24.71",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "52.38",
+   "unit": "USD"
+  },
+  "outbound_clicks": "31",
+  "outbound_clicks_ctr": "1.462264",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.724513",
+  "omni_purchase_values": {
+   "value": "37.95",
+   "unit": "USD"
+  },
+  "link_click": "31",
+  "website_ctr": "1.462264",
+  "cost_per_link_click": {
+   "value": "1.69",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247691469390591",
+  "name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-23T02:53:58-0400",
+  "amount_spent": {
+   "value": "46.71",
+   "unit": "USD"
+  },
+  "impressions": "585",
+  "clicks": "55",
+  "ctr": "9.40%",
+  "cpc": {
+   "value": "0.85",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "79.85",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "46.71",
+   "unit": "USD"
+  },
+  "outbound_clicks": "41",
+  "outbound_clicks_ctr": "7.008547",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.748234",
+  "omni_purchase_values": {
+   "value": "34.95",
+   "unit": "USD"
+  },
+  "link_click": "44",
+  "website_ctr": "7.521368",
+  "cost_per_link_click": {
+   "value": "1.06",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486747490591",
+  "name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-09T02:15:40-0400",
+  "amount_spent": {
+   "value": "1433.12",
+   "unit": "USD"
+  },
+  "impressions": "27584",
+  "clicks": "852",
+  "ctr": "3.09%",
+  "cpc": {
+   "value": "1.68",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "51.95",
+   "unit": "USD"
+  },
+  "omni_purchase": "36",
+  "cost_per_omni_purchase": {
+   "value": "39.81",
+   "unit": "USD"
+  },
+  "outbound_clicks": "561",
+  "outbound_clicks_ctr": "2.033788",
+  "omni_add_to_cart": "16",
+  "purchase_roas": "1.314796",
+  "omni_purchase_values": {
+   "value": "1884.26",
+   "unit": "USD"
+  },
+  "link_click": "561",
+  "website_ctr": "2.033788",
+  "cost_per_link_click": {
+   "value": "2.55",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590457250591",
+  "name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-16T05:55:08-0400",
+  "amount_spent": {
+   "value": "252.5",
+   "unit": "USD"
+  },
+  "impressions": "3298",
+  "clicks": "355",
+  "ctr": "10.76%",
+  "cpc": {
+   "value": "0.71",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "76.56",
+   "unit": "USD"
+  },
+  "omni_purchase": "6",
+  "cost_per_omni_purchase": {
+   "value": "42.08",
+   "unit": "USD"
+  },
+  "outbound_clicks": "131",
+  "outbound_clicks_ctr": "3.972104",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.327564",
+  "omni_purchase_values": {
+   "value": "335.21",
+   "unit": "USD"
+  },
+  "link_click": "131",
+  "website_ctr": "3.972104",
+  "cost_per_link_click": {
+   "value": "1.93",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247622239370591",
+  "name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-18T04:54:29-0400",
+  "amount_spent": {
+   "value": "334.9",
+   "unit": "USD"
+  },
+  "impressions": "4753",
+  "clicks": "248",
+  "ctr": "5.22%",
+  "cpc": {
+   "value": "1.35",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "70.46",
+   "unit": "USD"
+  },
+  "omni_purchase": "11",
+  "cost_per_omni_purchase": {
+   "value": "30.45",
+   "unit": "USD"
+  },
+  "outbound_clicks": "214",
+  "outbound_clicks_ctr": "4.50242",
+  "omni_add_to_cart": "4",
+  "purchase_roas": "1.535055",
+  "omni_purchase_values": {
+   "value": "514.09",
+   "unit": "USD"
+  },
+  "link_click": "214",
+  "website_ctr": "4.50242",
+  "cost_per_link_click": {
+   "value": "1.56",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247676117810591",
+  "name": "S151 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-22T02:32:16-0400",
+  "amount_spent": {
+   "value": "61.9",
+   "unit": "USD"
+  },
+  "impressions": "627",
+  "clicks": "113",
+  "ctr": "18.02%",
+  "cpc": {
+   "value": "0.55",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "98.72",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "30.95",
+   "unit": "USD"
+  },
+  "outbound_clicks": "56",
+  "outbound_clicks_ctr": "8.931419",
+  "omni_add_to_cart": "3",
+  "purchase_roas": "0.96769",
+  "omni_purchase_values": {
+   "value": "59.9",
+   "unit": "USD"
+  },
+  "link_click": "57",
+  "website_ctr": "9.090909",
+  "cost_per_link_click": {
+   "value": "1.09",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247690071080591",
+  "name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-23T00:48:45-0400",
+  "amount_spent": {
+   "value": "53.98",
+   "unit": "USD"
+  },
+  "impressions": "2102",
+  "clicks": "33",
+  "ctr": "1.57%",
+  "cpc": {
+   "value": "1.64",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "25.68",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "25",
+  "outbound_clicks_ctr": "1.189343",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "25",
+  "website_ctr": "1.189343",
+  "cost_per_link_click": {
+   "value": "2.16",
+   "unit": "USD"
+  }
+ }
+]

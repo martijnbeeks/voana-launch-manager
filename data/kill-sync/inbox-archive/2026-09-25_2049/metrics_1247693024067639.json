@@ -1,0 +1,3158 @@
+[
+ {
+  "id": "120247691683980591",
+  "name": "S128 - SP DIRECT - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS_V2",
+  "adset_id": "120247691469390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T02:54:00-0400",
+  "adset_name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "2.64",
+   "unit": "USD"
+  },
+  "impressions": "31",
+  "clicks": "2",
+  "ctr": "6.45%",
+  "cpc": {
+   "value": "1.32",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "85.16",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "6.451613",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "6.451613",
+  "cost_per_link_click": {
+   "value": "1.32",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247691469380591",
+  "name": "S128 - COMP - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS_V1",
+  "adset_id": "120247691469390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T02:54:00-0400",
+  "adset_name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "19.78",
+   "unit": "USD"
+  },
+  "impressions": "236",
+  "clicks": "23",
+  "ctr": "9.75%",
+  "cpc": {
+   "value": "0.86",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "83.81",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "19.78",
+   "unit": "USD"
+  },
+  "outbound_clicks": "17",
+  "outbound_clicks_ctr": "7.20339",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.766936",
+  "omni_purchase_values": {
+   "value": "34.95",
+   "unit": "USD"
+  },
+  "link_click": "20",
+  "website_ctr": "8.474576",
+  "cost_per_link_click": {
+   "value": "0.99",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247691674080591",
+  "name": "S128 - COMP - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS_V2",
+  "adset_id": "120247691469390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T02:54:00-0400",
+  "adset_name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "1.02",
+   "unit": "USD"
+  },
+  "impressions": "9",
+  "clicks": "2",
+  "ctr": "22.22%",
+  "cpc": {
+   "value": "0.51",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "113.33",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "22.222222",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "22.222222",
+  "cost_per_link_click": {
+   "value": "0.51",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247691674070591",
+  "name": "S128 - COMP - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS_V3",
+  "adset_id": "120247691469390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T02:54:00-0400",
+  "adset_name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "15.54",
+   "unit": "USD"
+  },
+  "impressions": "212",
+  "clicks": "15",
+  "ctr": "7.08%",
+  "cpc": {
+   "value": "1.04",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "73.3",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "10",
+  "outbound_clicks_ctr": "4.716981",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "10",
+  "website_ctr": "4.716981",
+  "cost_per_link_click": {
+   "value": "1.55",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247691684000591",
+  "name": "S128 - SP DIRECT - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS_V1",
+  "adset_id": "120247691469390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T02:54:00-0400",
+  "adset_name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "6.8",
+   "unit": "USD"
+  },
+  "impressions": "85",
+  "clicks": "12",
+  "ctr": "14.12%",
+  "cpc": {
+   "value": "0.57",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "80",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "10.588235",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "9",
+  "website_ctr": "10.588235",
+  "cost_per_link_click": {
+   "value": "0.76",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247691683990591",
+  "name": "S128 - SP DIRECT - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS_V3",
+  "adset_id": "120247691469390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T02:54:00-0400",
+  "adset_name": "S128 - V1-V3 - Video - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - treatment_sabotage_loop - triple_natural_formula - Solution Aware - THAI - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "0.93",
+   "unit": "USD"
+  },
+  "impressions": "12",
+  "clicks": "1",
+  "ctr": "8.33%",
+  "cpc": {
+   "value": "0.93",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "77.5",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "8.333333",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "8.333333",
+  "cost_per_link_click": {
+   "value": "0.93",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247690071120591",
+  "name": "S236 - SP DIRECT - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None_C2",
+  "adset_id": "120247690071080591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:49:20-0400",
+  "adset_name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "7.26",
+   "unit": "USD"
+  },
+  "impressions": "201",
+  "clicks": "1",
+  "ctr": "0.50%",
+  "cpc": {
+   "value": "7.26",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "36.12",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "0.497512",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "0.497512",
+  "cost_per_link_click": {
+   "value": "7.26",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247690071100591",
+  "name": "S236 - 7R - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None_C3",
+  "adset_id": "120247690071080591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:49:20-0400",
+  "adset_name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "17.32",
+   "unit": "USD"
+  },
+  "impressions": "449",
+  "clicks": "14",
+  "ctr": "3.12%",
+  "cpc": {
+   "value": "1.24",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "38.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "10",
+  "outbound_clicks_ctr": "2.227171",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "10",
+  "website_ctr": "2.227171",
+  "cost_per_link_click": {
+   "value": "1.73",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247690071140591",
+  "name": "S236 - SP DIRECT - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None_C1",
+  "adset_id": "120247690071080591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:49:20-0400",
+  "adset_name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "1.14",
+   "unit": "USD"
+  },
+  "impressions": "99",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "11.52",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247690071110591",
+  "name": "S236 - 7R - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None_C2",
+  "adset_id": "120247690071080591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:49:20-0400",
+  "adset_name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "15.9",
+   "unit": "USD"
+  },
+  "impressions": "752",
+  "clicks": "9",
+  "ctr": "1.20%",
+  "cpc": {
+   "value": "1.77",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "21.14",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "1.196809",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "9",
+  "website_ctr": "1.196809",
+  "cost_per_link_click": {
+   "value": "1.77",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247690071090591",
+  "name": "S236 - 7R - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None_C1",
+  "adset_id": "120247690071080591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:49:20-0400",
+  "adset_name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "6.61",
+   "unit": "USD"
+  },
+  "impressions": "442",
+  "clicks": "4",
+  "ctr": "0.90%",
+  "cpc": {
+   "value": "1.65",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "14.95",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "0.904977",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "0.904977",
+  "cost_per_link_click": {
+   "value": "1.65",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247690071130591",
+  "name": "S236 - SP DIRECT - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None_C3",
+  "adset_id": "120247690071080591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:48:48-0400",
+  "adset_name": "S236 - C1 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "5.75",
+   "unit": "USD"
+  },
+  "impressions": "159",
+  "clicks": "5",
+  "ctr": "3.14%",
+  "cpc": {
+   "value": "1.15",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "36.16",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "0.628931",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "0.628931",
+  "cost_per_link_click": {
+   "value": "5.75",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689944230591",
+  "name": "S235 - OG - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None_C2",
+  "adset_id": "120247689820510591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:36:50-0400",
+  "adset_name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "32.14",
+   "unit": "USD"
+  },
+  "impressions": "866",
+  "clicks": "19",
+  "ctr": "2.19%",
+  "cpc": {
+   "value": "1.69",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "37.11",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "18",
+  "outbound_clicks_ctr": "2.078522",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "18",
+  "website_ctr": "2.078522",
+  "cost_per_link_click": {
+   "value": "1.79",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689944220591",
+  "name": "S235 - OG - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None_C3",
+  "adset_id": "120247689820510591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:36:50-0400",
+  "adset_name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "1.93",
+   "unit": "USD"
+  },
+  "impressions": "85",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "22.71",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247689962100591",
+  "name": "S235 - 7R - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None_C2",
+  "adset_id": "120247689820510591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:36:50-0400",
+  "adset_name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "4.46",
+   "unit": "USD"
+  },
+  "impressions": "641",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "6.96",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247689962110591",
+  "name": "S235 - 7R - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None_C3",
+  "adset_id": "120247689820510591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:36:50-0400",
+  "adset_name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "3.91",
+   "unit": "USD"
+  },
+  "impressions": "118",
+  "clicks": "4",
+  "ctr": "3.39%",
+  "cpc": {
+   "value": "0.98",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "33.14",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "3",
+  "outbound_clicks_ctr": "2.542373",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "2.542373",
+  "cost_per_link_click": {
+   "value": "1.3",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689820500591",
+  "name": "S235 - OG - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None_C1",
+  "adset_id": "120247689820510591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:36:50-0400",
+  "adset_name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "7.14",
+   "unit": "USD"
+  },
+  "impressions": "259",
+  "clicks": "7",
+  "ctr": "2.70%",
+  "cpc": {
+   "value": "1.02",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "27.57",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "7.14",
+   "unit": "USD"
+  },
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "2.702703",
+  "omni_add_to_cart": null,
+  "purchase_roas": "5.315126",
+  "omni_purchase_values": {
+   "value": "37.95",
+   "unit": "USD"
+  },
+  "link_click": "7",
+  "website_ctr": "2.702703",
+  "cost_per_link_click": {
+   "value": "1.02",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689962120591",
+  "name": "S235 - 7R - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None_C1",
+  "adset_id": "120247689820510591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:36:50-0400",
+  "adset_name": "S235 - C1 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "2.8",
+   "unit": "USD"
+  },
+  "impressions": "151",
+  "clicks": "3",
+  "ctr": "1.99%",
+  "cpc": {
+   "value": "0.93",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "18.54",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "3",
+  "outbound_clicks_ctr": "1.986755",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "1.986755",
+  "cost_per_link_click": {
+   "value": "0.93",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689704400591",
+  "name": "S228 - SP DIRECT - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C1",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "16.95",
+   "unit": "USD"
+  },
+  "impressions": "242",
+  "clicks": "7",
+  "ctr": "2.89%",
+  "cpc": {
+   "value": "2.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "70.04",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "1.652893",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "1.652893",
+  "cost_per_link_click": {
+   "value": "4.24",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689764300591",
+  "name": "S228 - 7R - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C1",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "3.57",
+   "unit": "USD"
+  },
+  "impressions": "84",
+  "clicks": "2",
+  "ctr": "2.38%",
+  "cpc": {
+   "value": "1.79",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "42.5",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.190476",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.190476",
+  "cost_per_link_click": {
+   "value": "3.57",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689764290591",
+  "name": "S228 - 7R - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C2",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "5.46",
+   "unit": "USD"
+  },
+  "impressions": "263",
+  "clicks": "4",
+  "ctr": "1.52%",
+  "cpc": {
+   "value": "1.37",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "20.76",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "1.520913",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "1.520913",
+  "cost_per_link_click": {
+   "value": "1.37",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689704410591",
+  "name": "S228 - SP DIRECT - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C2",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "14.98",
+   "unit": "USD"
+  },
+  "impressions": "380",
+  "clicks": "7",
+  "ctr": "1.84%",
+  "cpc": {
+   "value": "2.14",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "39.42",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "6",
+  "outbound_clicks_ctr": "1.578947",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "6",
+  "website_ctr": "1.578947",
+  "cost_per_link_click": {
+   "value": "2.5",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689653280591",
+  "name": "S228 - SP DIRECT - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C3",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "2.58",
+   "unit": "USD"
+  },
+  "impressions": "81",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "31.85",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247689764310591",
+  "name": "S228 - 7R - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C3",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "4.63",
+   "unit": "USD"
+  },
+  "impressions": "160",
+  "clicks": "1",
+  "ctr": "0.63%",
+  "cpc": {
+   "value": "4.63",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "28.94",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "0.625",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "0.625",
+  "cost_per_link_click": {
+   "value": "4.63",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247689764320591",
+  "name": "S228 - 7R - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C4",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "1.28",
+   "unit": "USD"
+  },
+  "impressions": "74",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "17.3",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247689704390591",
+  "name": "S228 - SP DIRECT - C1-C4 - Image - Cream - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS_C4",
+  "adset_id": "120247689653290591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-23T00:21:49-0400",
+  "adset_name": "S228 - C1-C4 - Image - Stick - Aris - Aldrin Vitug - rash - woman_45plus - UMP - UMS - Solution Aware - Static - Iteration - IT-SS",
+  "amount_spent": {
+   "value": "1.72",
+   "unit": "USD"
+  },
+  "impressions": "86",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "20",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247622411130591",
+  "name": "S196 - 7R - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS_V3 - imp",
+  "adset_id": "120247622239370591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-18T04:54:33-0400",
+  "adset_name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "amount_spent": {
+   "value": "113.27",
+   "unit": "USD"
+  },
+  "impressions": "1671",
+  "clicks": "68",
+  "ctr": "4.07%",
+  "cpc": {
+   "value": "1.67",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "67.79",
+   "unit": "USD"
+  },
+  "omni_purchase": "3",
+  "cost_per_omni_purchase": {
+   "value": "37.76",
+   "unit": "USD"
+  },
+  "outbound_clicks": "56",
+  "outbound_clicks_ctr": "3.351287",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "1.392249",
+  "omni_purchase_values": {
+   "value": "157.7",
+   "unit": "USD"
+  },
+  "link_click": "56",
+  "website_ctr": "3.351287",
+  "cost_per_link_click": {
+   "value": "2.02",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247676117800591",
+  "name": "S151 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C4",
+  "adset_id": "120247676117810591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T02:32:19-0400",
+  "adset_name": "S151 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "3.12",
+   "unit": "USD"
+  },
+  "impressions": "25",
+  "clicks": "1",
+  "ctr": "4.00%",
+  "cpc": {
+   "value": "3.12",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "124.8",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "4",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "4",
+  "cost_per_link_click": {
+   "value": "3.12",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247676202650591",
+  "name": "S151 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C2",
+  "adset_id": "120247676117810591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T02:32:19-0400",
+  "adset_name": "S151 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "21.36",
+   "unit": "USD"
+  },
+  "impressions": "208",
+  "clicks": "33",
+  "ctr": "15.87%",
+  "cpc": {
+   "value": "0.65",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "102.69",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "20",
+  "outbound_clicks_ctr": "9.615385",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "20",
+  "website_ctr": "9.615385",
+  "cost_per_link_click": {
+   "value": "1.07",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247676202660591",
+  "name": "S151 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C3",
+  "adset_id": "120247676117810591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T02:32:19-0400",
+  "adset_name": "S151 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "2.05",
+   "unit": "USD"
+  },
+  "impressions": "8",
+  "clicks": "3",
+  "ctr": "37.50%",
+  "cpc": {
+   "value": "0.68",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "256.25",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "2.05",
+   "unit": "USD"
+  },
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "25",
+  "omni_add_to_cart": null,
+  "purchase_roas": "14.609756",
+  "omni_purchase_values": {
+   "value": "29.95",
+   "unit": "USD"
+  },
+  "link_click": "2",
+  "website_ctr": "25",
+  "cost_per_link_click": {
+   "value": "1.03",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247676202640591",
+  "name": "S151 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C1",
+  "adset_id": "120247676117810591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T02:32:19-0400",
+  "adset_name": "S151 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "4.24",
+   "unit": "USD"
+  },
+  "impressions": "46",
+  "clicks": "8",
+  "ctr": "17.39%",
+  "cpc": {
+   "value": "0.53",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "92.17",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "4.347826",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "6.521739",
+  "cost_per_link_click": {
+   "value": "1.41",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247676202630591",
+  "name": "S151 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C5",
+  "adset_id": "120247676117810591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T02:32:19-0400",
+  "adset_name": "S151 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "31.13",
+   "unit": "USD"
+  },
+  "impressions": "340",
+  "clicks": "68",
+  "ctr": "20.00%",
+  "cpc": {
+   "value": "0.46",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "91.56",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "31.13",
+   "unit": "USD"
+  },
+  "outbound_clicks": "31",
+  "outbound_clicks_ctr": "9.117647",
+  "omni_add_to_cart": "3",
+  "purchase_roas": "0.962094",
+  "omni_purchase_values": {
+   "value": "29.95",
+   "unit": "USD"
+  },
+  "link_click": "31",
+  "website_ctr": "9.117647",
+  "cost_per_link_click": {
+   "value": "1",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675724040591",
+  "name": "S140 - OG - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120247675706740591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:56:04-0400",
+  "adset_name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "3.78",
+   "unit": "USD"
+  },
+  "impressions": "125",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "30.24",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247675746750591",
+  "name": "S140 - 7R - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120247675706740591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:56:04-0400",
+  "adset_name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.08",
+   "unit": "USD"
+  },
+  "impressions": "67",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "16.12",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247675746740591",
+  "name": "S140 - 7R - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120247675706740591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:56:04-0400",
+  "adset_name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "18.45",
+   "unit": "USD"
+  },
+  "impressions": "256",
+  "clicks": "13",
+  "ctr": "5.08%",
+  "cpc": {
+   "value": "1.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "72.07",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "10",
+  "outbound_clicks_ctr": "3.90625",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "10",
+  "website_ctr": "3.90625",
+  "cost_per_link_click": {
+   "value": "1.85",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675706730591",
+  "name": "S140 - OG - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120247675706740591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:56:04-0400",
+  "adset_name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "23.82",
+   "unit": "USD"
+  },
+  "impressions": "843",
+  "clicks": "30",
+  "ctr": "3.56%",
+  "cpc": {
+   "value": "0.79",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "28.26",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "23.82",
+   "unit": "USD"
+  },
+  "outbound_clicks": "27",
+  "outbound_clicks_ctr": "3.202847",
+  "omni_add_to_cart": null,
+  "purchase_roas": "2.936608",
+  "omni_purchase_values": {
+   "value": "69.95",
+   "unit": "USD"
+  },
+  "link_click": "27",
+  "website_ctr": "3.202847",
+  "cost_per_link_click": {
+   "value": "0.88",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675746730591",
+  "name": "S140 - 7R - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120247675706740591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:56:04-0400",
+  "adset_name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "3.9",
+   "unit": "USD"
+  },
+  "impressions": "207",
+  "clicks": "4",
+  "ctr": "1.93%",
+  "cpc": {
+   "value": "0.98",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "18.84",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "1.932367",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "1.932367",
+  "cost_per_link_click": {
+   "value": "0.98",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675724030591",
+  "name": "S140 - OG - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120247675706740591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:56:04-0400",
+  "adset_name": "S140 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "11.31",
+   "unit": "USD"
+  },
+  "impressions": "221",
+  "clicks": "8",
+  "ctr": "3.62%",
+  "cpc": {
+   "value": "1.41",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "51.18",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "3.167421",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "7",
+  "website_ctr": "3.167421",
+  "cost_per_link_click": {
+   "value": "1.62",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675682660591",
+  "name": "S117 - OG - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120247675670020591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:46:59-0400",
+  "adset_name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "13.74",
+   "unit": "USD"
+  },
+  "impressions": "181",
+  "clicks": "13",
+  "ctr": "7.18%",
+  "cpc": {
+   "value": "1.06",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "75.91",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "11",
+  "outbound_clicks_ctr": "6.077348",
+  "omni_add_to_cart": "1",
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "11",
+  "website_ctr": "6.077348",
+  "cost_per_link_click": {
+   "value": "1.25",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675690440591",
+  "name": "S117 - 7R - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120247675670020591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:46:59-0400",
+  "adset_name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.57",
+   "unit": "USD"
+  },
+  "impressions": "50",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "31.4",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247675682650591",
+  "name": "S117 - OG - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120247675670020591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:46:59-0400",
+  "adset_name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "25.27",
+   "unit": "USD"
+  },
+  "impressions": "500",
+  "clicks": "19",
+  "ctr": "3.80%",
+  "cpc": {
+   "value": "1.33",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "50.54",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "25.27",
+   "unit": "USD"
+  },
+  "outbound_clicks": "14",
+  "outbound_clicks_ctr": "2.8",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.501781",
+  "omni_purchase_values": {
+   "value": "37.95",
+   "unit": "USD"
+  },
+  "link_click": "14",
+  "website_ctr": "2.8",
+  "cost_per_link_click": {
+   "value": "1.81",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675690450591",
+  "name": "S117 - 7R - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120247675670020591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:46:59-0400",
+  "adset_name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "8.36",
+   "unit": "USD"
+  },
+  "impressions": "143",
+  "clicks": "5",
+  "ctr": "3.50%",
+  "cpc": {
+   "value": "1.67",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "58.46",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "5",
+  "outbound_clicks_ctr": "3.496504",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "5",
+  "website_ctr": "3.496504",
+  "cost_per_link_click": {
+   "value": "1.67",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675670010591",
+  "name": "S117 - OG - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120247675670020591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:46:59-0400",
+  "adset_name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "3.73",
+   "unit": "USD"
+  },
+  "impressions": "35",
+  "clicks": "2",
+  "ctr": "5.71%",
+  "cpc": {
+   "value": "1.87",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "106.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "2.857143",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "2.857143",
+  "cost_per_link_click": {
+   "value": "3.73",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247675690430591",
+  "name": "S117 - 7R - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120247675670020591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-22T01:46:59-0400",
+  "adset_name": "S117 - C1-C3 - Image - Stick - Don Elmore Suing - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.51",
+   "unit": "USD"
+  },
+  "impressions": "25",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "60.4",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247657653470591",
+  "name": "S251 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None - C1",
+  "adset_id": "120247657653460591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-21T00:39:46-0400",
+  "adset_name": "S251 - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None",
+  "amount_spent": {
+   "value": "3.72",
+   "unit": "USD"
+  },
+  "impressions": "20",
+  "clicks": "2",
+  "ctr": "10.00%",
+  "cpc": {
+   "value": "1.86",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "186",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247657667560591",
+  "name": "S251 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None - C2",
+  "adset_id": "120247657653460591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-21T00:39:46-0400",
+  "adset_name": "S251 - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None",
+  "amount_spent": {
+   "value": "12.25",
+   "unit": "USD"
+  },
+  "impressions": "99",
+  "clicks": "17",
+  "ctr": "17.17%",
+  "cpc": {
+   "value": "0.72",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "123.74",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "6",
+  "outbound_clicks_ctr": "6.060606",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "6",
+  "website_ctr": "6.060606",
+  "cost_per_link_click": {
+   "value": "2.04",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247657667570591",
+  "name": "S251 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None - C3",
+  "adset_id": "120247657653460591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-21T00:39:46-0400",
+  "adset_name": "S251 - C1-C3 - LFS - Stick - Aris - Aris - the_cycle - woman_45plus - treatment_sabotage_loop - anhydrous_glide_film - Problem Aware - LFS - Iteration - None",
+  "amount_spent": {
+   "value": "98.59",
+   "unit": "USD"
+  },
+  "impressions": "428",
+  "clicks": "84",
+  "ctr": "19.63%",
+  "cpc": {
+   "value": "1.17",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "230.35",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "49.3",
+   "unit": "USD"
+  },
+  "outbound_clicks": "46",
+  "outbound_clicks_ctr": "10.747664",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.891571",
+  "omni_purchase_values": {
+   "value": "87.9",
+   "unit": "USD"
+  },
+  "link_click": "46",
+  "website_ctr": "10.747664",
+  "cost_per_link_click": {
+   "value": "2.14",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247622411120591",
+  "name": "S196 - 7R - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS_V1",
+  "adset_id": "120247622239370591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-18T04:54:33-0400",
+  "adset_name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "amount_spent": {
+   "value": "31.97",
+   "unit": "USD"
+  },
+  "impressions": "463",
+  "clicks": "23",
+  "ctr": "4.97%",
+  "cpc": {
+   "value": "1.39",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "69.05",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "31.97",
+   "unit": "USD"
+  },
+  "outbound_clicks": "19",
+  "outbound_clicks_ctr": "4.103672",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "1.750391",
+  "omni_purchase_values": {
+   "value": "55.96",
+   "unit": "USD"
+  },
+  "link_click": "19",
+  "website_ctr": "4.103672",
+  "cost_per_link_click": {
+   "value": "1.68",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247622372630591",
+  "name": "S196 - SP DIRECT - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS_V3",
+  "adset_id": "120247622239370591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-18T04:54:33-0400",
+  "adset_name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "amount_spent": {
+   "value": "35.24",
+   "unit": "USD"
+  },
+  "impressions": "454",
+  "clicks": "26",
+  "ctr": "5.73%",
+  "cpc": {
+   "value": "1.36",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "77.62",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "35.24",
+   "unit": "USD"
+  },
+  "outbound_clicks": "22",
+  "outbound_clicks_ctr": "4.845815",
+  "omni_add_to_cart": null,
+  "purchase_roas": "2.395006",
+  "omni_purchase_values": {
+   "value": "84.4",
+   "unit": "USD"
+  },
+  "link_click": "22",
+  "website_ctr": "4.845815",
+  "cost_per_link_click": {
+   "value": "1.6",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247622411140591",
+  "name": "S196 - 7R - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS_V2",
+  "adset_id": "120247622239370591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-18T04:54:33-0400",
+  "adset_name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "amount_spent": {
+   "value": "15.96",
+   "unit": "USD"
+  },
+  "impressions": "216",
+  "clicks": "10",
+  "ctr": "4.63%",
+  "cpc": {
+   "value": "1.6",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "73.89",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "7.98",
+   "unit": "USD"
+  },
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "4.166667",
+  "omni_add_to_cart": null,
+  "purchase_roas": "5.996867",
+  "omni_purchase_values": {
+   "value": "95.71",
+   "unit": "USD"
+  },
+  "link_click": "9",
+  "website_ctr": "4.166667",
+  "cost_per_link_click": {
+   "value": "1.77",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247622372620591",
+  "name": "S196 - SP DIRECT - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS_V2",
+  "adset_id": "120247622239370591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-18T04:54:33-0400",
+  "adset_name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "amount_spent": {
+   "value": "7.59",
+   "unit": "USD"
+  },
+  "impressions": "124",
+  "clicks": "4",
+  "ctr": "3.23%",
+  "cpc": {
+   "value": "1.9",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "61.21",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "3.225806",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "3.225806",
+  "cost_per_link_click": {
+   "value": "1.9",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486930160591",
+  "name": "S106 - OG - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1 - IMP",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-09T02:15:43-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "107.51",
+   "unit": "USD"
+  },
+  "impressions": "2133",
+  "clicks": "81",
+  "ctr": "3.80%",
+  "cpc": {
+   "value": "1.33",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "50.4",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "26.88",
+   "unit": "USD"
+  },
+  "outbound_clicks": "64",
+  "outbound_clicks_ctr": "3.000469",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "1.662171",
+  "omni_purchase_values": {
+   "value": "178.7",
+   "unit": "USD"
+  },
+  "link_click": "64",
+  "website_ctr": "3.000469",
+  "cost_per_link_click": {
+   "value": "1.68",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247594468930591",
+  "name": "S106 - SP DIRECT V1 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C3 - IMP",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T11:03:14-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "316.35",
+   "unit": "USD"
+  },
+  "impressions": "6774",
+  "clicks": "158",
+  "ctr": "2.33%",
+  "cpc": {
+   "value": "2",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "46.7",
+   "unit": "USD"
+  },
+  "omni_purchase": "10",
+  "cost_per_omni_purchase": {
+   "value": "31.64",
+   "unit": "USD"
+  },
+  "outbound_clicks": "113",
+  "outbound_clicks_ctr": "1.668143",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "1.677225",
+  "omni_purchase_values": {
+   "value": "530.59",
+   "unit": "USD"
+  },
+  "link_click": "113",
+  "website_ctr": "1.668143",
+  "cost_per_link_click": {
+   "value": "2.8",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486747480591",
+  "name": "S106 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1 - IMP",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-09T02:15:43-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "339.98",
+   "unit": "USD"
+  },
+  "impressions": "6411",
+  "clicks": "222",
+  "ctr": "3.46%",
+  "cpc": {
+   "value": "1.53",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "53.03",
+   "unit": "USD"
+  },
+  "omni_purchase": "12",
+  "cost_per_omni_purchase": {
+   "value": "28.33",
+   "unit": "USD"
+  },
+  "outbound_clicks": "146",
+  "outbound_clicks_ctr": "2.277336",
+  "omni_add_to_cart": "12",
+  "purchase_roas": "1.777663",
+  "omni_purchase_values": {
+   "value": "604.37",
+   "unit": "USD"
+  },
+  "link_click": "146",
+  "website_ctr": "2.277336",
+  "cost_per_link_click": {
+   "value": "2.33",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247612920970591",
+  "name": "Existing post - S106 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-17T11:22:07-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "121.91",
+   "unit": "USD"
+  },
+  "impressions": "1644",
+  "clicks": "68",
+  "ctr": "4.14%",
+  "cpc": {
+   "value": "1.79",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "74.15",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "40",
+  "outbound_clicks_ctr": "2.43309",
+  "omni_add_to_cart": "1",
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "40",
+  "website_ctr": "2.43309",
+  "cost_per_link_click": {
+   "value": "3.05",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247594468910591",
+  "name": "S106 - SP DIRECT V2 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C2",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T11:03:14-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "26.02",
+   "unit": "USD"
+  },
+  "impressions": "698",
+  "clicks": "15",
+  "ctr": "2.15%",
+  "cpc": {
+   "value": "1.73",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "37.28",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "10",
+  "outbound_clicks_ctr": "1.432665",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "10",
+  "website_ctr": "1.432665",
+  "cost_per_link_click": {
+   "value": "2.6",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247594468950591",
+  "name": "S106 - SP DIRECT V2 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C3",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T11:03:14-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "3.2",
+   "unit": "USD"
+  },
+  "impressions": "72",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "44.44",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247594468960591",
+  "name": "S106 - SP DIRECT V1 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T11:03:14-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "13.06",
+   "unit": "USD"
+  },
+  "impressions": "333",
+  "clicks": "9",
+  "ctr": "2.70%",
+  "cpc": {
+   "value": "1.45",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "39.22",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "8",
+  "outbound_clicks_ctr": "2.402402",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "8",
+  "website_ctr": "2.402402",
+  "cost_per_link_click": {
+   "value": "1.63",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247594468920591",
+  "name": "S106 - SP DIRECT V2 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T11:03:14-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "2.79",
+   "unit": "USD"
+  },
+  "impressions": "120",
+  "clicks": "1",
+  "ctr": "0.83%",
+  "cpc": {
+   "value": "2.79",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "23.25",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247594468940591",
+  "name": "SS106 - SP DIRECT V1 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C2",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T11:03:14-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "3.95",
+   "unit": "USD"
+  },
+  "impressions": "101",
+  "clicks": "1",
+  "ctr": "0.99%",
+  "cpc": {
+   "value": "3.95",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "39.11",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "0.990099",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "0.990099",
+  "cost_per_link_click": {
+   "value": "3.95",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247593825110591",
+  "name": "S106 - SP DIRECT V1 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T10:32:25-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "36.08",
+   "unit": "USD"
+  },
+  "impressions": "617",
+  "clicks": "11",
+  "ctr": "1.78%",
+  "cpc": {
+   "value": "3.28",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "58.48",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "1.134522",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "7",
+  "website_ctr": "1.134522",
+  "cost_per_link_click": {
+   "value": "5.15",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247593825140591",
+  "name": "S106 - SP DIRECT V2 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C3",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T10:32:25-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "95.2",
+   "unit": "USD"
+  },
+  "impressions": "1410",
+  "clicks": "56",
+  "ctr": "3.97%",
+  "cpc": {
+   "value": "1.7",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "67.52",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "47.6",
+   "unit": "USD"
+  },
+  "outbound_clicks": "34",
+  "outbound_clicks_ctr": "2.411348",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.860294",
+  "omni_purchase_values": {
+   "value": "81.9",
+   "unit": "USD"
+  },
+  "link_click": "34",
+  "website_ctr": "2.411348",
+  "cost_per_link_click": {
+   "value": "2.8",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247593825090591",
+  "name": "S106 - SP DIRECT V1 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C2",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T10:32:25-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "4.76",
+   "unit": "USD"
+  },
+  "impressions": "62",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "76.77",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247593825130591",
+  "name": "S106 - SP DIRECT V1 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C3",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T10:32:25-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "28.37",
+   "unit": "USD"
+  },
+  "impressions": "1042",
+  "clicks": "10",
+  "ctr": "0.96%",
+  "cpc": {
+   "value": "2.84",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "27.23",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "0.863724",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "9",
+  "website_ctr": "0.863724",
+  "cost_per_link_click": {
+   "value": "3.15",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247593825100591",
+  "name": "S106 - SP DIRECT V2 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C2",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T10:32:25-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "35.91",
+   "unit": "USD"
+  },
+  "impressions": "599",
+  "clicks": "16",
+  "ctr": "2.67%",
+  "cpc": {
+   "value": "2.24",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "59.95",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "35.91",
+   "unit": "USD"
+  },
+  "outbound_clicks": "8",
+  "outbound_clicks_ctr": "1.335559",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.223893",
+  "omni_purchase_values": {
+   "value": "43.95",
+   "unit": "USD"
+  },
+  "link_click": "8",
+  "website_ctr": "1.335559",
+  "cost_per_link_click": {
+   "value": "4.49",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247593825120591",
+  "name": "S106 - SP DIRECT V2 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C1",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T10:32:25-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "7.73",
+   "unit": "USD"
+  },
+  "impressions": "254",
+  "clicks": "4",
+  "ctr": "1.57%",
+  "cpc": {
+   "value": "1.93",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "30.43",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "7.73",
+   "unit": "USD"
+  },
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "1.574803",
+  "omni_add_to_cart": null,
+  "purchase_roas": "8.648124",
+  "omni_purchase_values": {
+   "value": "66.85",
+   "unit": "USD"
+  },
+  "link_click": "4",
+  "website_ctr": "1.574803",
+  "cost_per_link_click": {
+   "value": "1.93",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486839840591",
+  "name": "S106 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C2",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-09T02:15:43-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "16.42",
+   "unit": "USD"
+  },
+  "impressions": "372",
+  "clicks": "6",
+  "ctr": "1.61%",
+  "cpc": {
+   "value": "2.74",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "44.14",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "5",
+  "outbound_clicks_ctr": "1.344086",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "5",
+  "website_ctr": "1.344086",
+  "cost_per_link_click": {
+   "value": "3.28",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486930180591",
+  "name": "S106 - OG - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C3",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-09T02:15:43-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "60.01",
+   "unit": "USD"
+  },
+  "impressions": "1567",
+  "clicks": "39",
+  "ctr": "2.49%",
+  "cpc": {
+   "value": "1.54",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "38.3",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "60.01",
+   "unit": "USD"
+  },
+  "outbound_clicks": "23",
+  "outbound_clicks_ctr": "1.467773",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.932345",
+  "omni_purchase_values": {
+   "value": "55.95",
+   "unit": "USD"
+  },
+  "link_click": "23",
+  "website_ctr": "1.467773",
+  "cost_per_link_click": {
+   "value": "2.61",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643190591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C10",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "18.92",
+   "unit": "USD"
+  },
+  "impressions": "606",
+  "clicks": "23",
+  "ctr": "3.80%",
+  "cpc": {
+   "value": "0.82",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "31.22",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "18.92",
+   "unit": "USD"
+  },
+  "outbound_clicks": "16",
+  "outbound_clicks_ctr": "2.640264",
+  "omni_add_to_cart": null,
+  "purchase_roas": "3.374736",
+  "omni_purchase_values": {
+   "value": "63.85",
+   "unit": "USD"
+  },
+  "link_click": "16",
+  "website_ctr": "2.640264",
+  "cost_per_link_click": {
+   "value": "1.18",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643140591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C4",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "37.45",
+   "unit": "USD"
+  },
+  "impressions": "395",
+  "clicks": "44",
+  "ctr": "11.14%",
+  "cpc": {
+   "value": "0.85",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "94.81",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "17",
+  "outbound_clicks_ctr": "4.303797",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "17",
+  "website_ctr": "4.303797",
+  "cost_per_link_click": {
+   "value": "2.2",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643160591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C6",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "11.29",
+   "unit": "USD"
+  },
+  "impressions": "210",
+  "clicks": "13",
+  "ctr": "6.19%",
+  "cpc": {
+   "value": "0.87",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "53.76",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "11.29",
+   "unit": "USD"
+  },
+  "outbound_clicks": "10",
+  "outbound_clicks_ctr": "4.761905",
+  "omni_add_to_cart": null,
+  "purchase_roas": "5.327724",
+  "omni_purchase_values": {
+   "value": "60.15",
+   "unit": "USD"
+  },
+  "link_click": "10",
+  "website_ctr": "4.761905",
+  "cost_per_link_click": {
+   "value": "1.13",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643170591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C8",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "10.89",
+   "unit": "USD"
+  },
+  "impressions": "161",
+  "clicks": "12",
+  "ctr": "7.45%",
+  "cpc": {
+   "value": "0.91",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "67.64",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "5.45",
+   "unit": "USD"
+  },
+  "outbound_clicks": "5",
+  "outbound_clicks_ctr": "3.10559",
+  "omni_add_to_cart": null,
+  "purchase_roas": "7.195592",
+  "omni_purchase_values": {
+   "value": "78.36",
+   "unit": "USD"
+  },
+  "link_click": "5",
+  "website_ctr": "3.10559",
+  "cost_per_link_click": {
+   "value": "2.18",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643180591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C9",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "9.68",
+   "unit": "USD"
+  },
+  "impressions": "117",
+  "clicks": "16",
+  "ctr": "13.68%",
+  "cpc": {
+   "value": "0.61",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "82.74",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "3.418803",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "3.418803",
+  "cost_per_link_click": {
+   "value": "2.42",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590457260591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C7",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "10.19",
+   "unit": "USD"
+  },
+  "impressions": "80",
+  "clicks": "13",
+  "ctr": "16.25%",
+  "cpc": {
+   "value": "0.78",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "127.38",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "10.19",
+   "unit": "USD"
+  },
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "2.5",
+  "omni_add_to_cart": null,
+  "purchase_roas": "7.252208",
+  "omni_purchase_values": {
+   "value": "73.9",
+   "unit": "USD"
+  },
+  "link_click": "2",
+  "website_ctr": "2.5",
+  "cost_per_link_click": {
+   "value": "5.1",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643150591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C5",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "27.36",
+   "unit": "USD"
+  },
+  "impressions": "265",
+  "clicks": "35",
+  "ctr": "13.21%",
+  "cpc": {
+   "value": "0.78",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "103.25",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "13",
+  "outbound_clicks_ctr": "4.90566",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "13",
+  "website_ctr": "4.90566",
+  "cost_per_link_click": {
+   "value": "2.1",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643110591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C1",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "5.81",
+   "unit": "USD"
+  },
+  "impressions": "59",
+  "clicks": "5",
+  "ctr": "8.47%",
+  "cpc": {
+   "value": "1.16",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "98.47",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "3.389831",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "3.389831",
+  "cost_per_link_click": {
+   "value": "2.91",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486930170591",
+  "name": "S106 - OG - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C2",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-09T02:15:43-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "18.19",
+   "unit": "USD"
+  },
+  "impressions": "445",
+  "clicks": "17",
+  "ctr": "3.82%",
+  "cpc": {
+   "value": "1.07",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "40.88",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "18.19",
+   "unit": "USD"
+  },
+  "outbound_clicks": "14",
+  "outbound_clicks_ctr": "3.146067",
+  "omni_add_to_cart": null,
+  "purchase_roas": "4.117647",
+  "omni_purchase_values": {
+   "value": "74.9",
+   "unit": "USD"
+  },
+  "link_click": "14",
+  "website_ctr": "3.146067",
+  "cost_per_link_click": {
+   "value": "1.3",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643130591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C3",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "79.37",
+   "unit": "USD"
+  },
+  "impressions": "1022",
+  "clicks": "141",
+  "ctr": "13.80%",
+  "cpc": {
+   "value": "0.56",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "77.66",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "79.37",
+   "unit": "USD"
+  },
+  "outbound_clicks": "42",
+  "outbound_clicks_ctr": "4.109589",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.742724",
+  "omni_purchase_values": {
+   "value": "58.95",
+   "unit": "USD"
+  },
+  "link_click": "42",
+  "website_ctr": "4.109589",
+  "cost_per_link_click": {
+   "value": "1.89",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247590643120591",
+  "name": "S203 - SP DIRECT - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None_C2",
+  "adset_id": "120247590457250591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-16T05:55:11-0400",
+  "adset_name": "S203 - C1 - C10 - LFS - Cream - Jurre - Don Elmore Suing - the_cycle - woman_45plus -  treatment_sabotage_loop - Problem Aware - LFS - Ideation - None",
+  "amount_spent": {
+   "value": "41.54",
+   "unit": "USD"
+  },
+  "impressions": "383",
+  "clicks": "53",
+  "ctr": "13.84%",
+  "cpc": {
+   "value": "0.78",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "108.46",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "20",
+  "outbound_clicks_ctr": "5.221932",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "20",
+  "website_ctr": "5.221932",
+  "cost_per_link_click": {
+   "value": "2.08",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247622239360591",
+  "name": "S196 - SP DIRECT - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS_V1",
+  "adset_id": "120247622239370591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-18T04:54:33-0400",
+  "adset_name": "S196 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-SS",
+  "amount_spent": {
+   "value": "130.87",
+   "unit": "USD"
+  },
+  "impressions": "1825",
+  "clicks": "117",
+  "ctr": "6.41%",
+  "cpc": {
+   "value": "1.12",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "71.71",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "32.72",
+   "unit": "USD"
+  },
+  "outbound_clicks": "104",
+  "outbound_clicks_ctr": "5.69863",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.919386",
+  "omni_purchase_values": {
+   "value": "120.32",
+   "unit": "USD"
+  },
+  "link_click": "104",
+  "website_ctr": "5.69863",
+  "cost_per_link_click": {
+   "value": "1.26",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247486839830591",
+  "name": "S106 - SP DIRECT - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS_C3 - imp",
+  "adset_id": "120247486747490591",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-09T02:15:43-0400",
+  "adset_name": "S106 - C1-C3 - LFS - Stick - Aris - Aldrin Vitug - offer - woman_45plus - single_target_trap - triple_natural_formula - Most Aware - Static - Iteration - IT-VIS",
+  "amount_spent": {
+   "value": "195.68",
+   "unit": "USD"
+  },
+  "impressions": "2930",
+  "clicks": "138",
+  "ctr": "4.71%",
+  "cpc": {
+   "value": "1.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "66.78",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "48.92",
+   "unit": "USD"
+  },
+  "outbound_clicks": "75",
+  "outbound_clicks_ctr": "2.559727",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.26252",
+  "omni_purchase_values": {
+   "value": "247.05",
+   "unit": "USD"
+  },
+  "link_click": "75",
+  "website_ctr": "2.559727",
+  "cost_per_link_click": {
+   "value": "2.61",
+   "unit": "USD"
+  }
+ }
+]
