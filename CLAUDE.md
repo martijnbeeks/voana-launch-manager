@@ -483,18 +483,17 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   raise `ClickUpError` at once. `upsert_checklist` re-reads the task and
   retries once on a 404, recreates an item deleted in the UI, and the checklist
   is written **last** so the comment / Result / status never wait on it.
-- **Kill comments are laid out for reading** (2026-10-05, Martijn: "I cannot read
-  this"). A batch comment is a bold head, the totals on two short lines, then one
-  aligned row per ad in a **code block** — columns only line up in monospace, so
-  `cu_comment` posts ClickUp's rich `comment` array (`comment_ops`) instead of
-  `comment_text`. Ads with no spend and no impressions get no row; they are named
-  on one `No delivery:` line. The table is capped near 46 monospace characters
-  (`TABLE_MAX_WIDTH`) so it does not wrap in the narrow comment panel: per-ad
-  columns are Spend / Pur / CPA / oCTR / ATC / Impr only, and a lander the whole
-  batch shares is said once in the totals line (`V1`, not `V1/COMP`). A 400 on the rich body falls back to plain text, so
-  the layout can never cost the comment. Dedupe still reads the first line of
-  `comment_text`, which ClickUp derives from the rich body. The `Result` field is
-  NOT restyled: `merge_result` re-parses it line by line.
+- **Kill comments are short lines only** (2026-10-05, Martijn: "I cannot read
+  this", then "too wide" on an aligned table). The comment panel is narrow, so a
+  batch comment is: head, four short total lines (days/lander, spend + purchases,
+  CPA + ROAS, oCTR + ATC), then `Per ad:` with one line per ad —
+  `V1 · $51.43 · 0 purchases`, CPA added only when there is a purchase
+  (`ad_rows`). Ads with no spend and no impressions get no line; they are named
+  on one `Not delivered:` line. A lander the whole batch shares is said once
+  (`V1`, not `V1/COMP`). **Do not add metrics back to the comment** — CPM, CPC,
+  AOV and revenue are in the Media number fields, and the per-ad detail is in
+  the `Result` field and checklist, which are NOT restyled (`merge_result`
+  re-parses them line by line). Still plain `comment_text`; no tables.
 - **Re-runs are idempotent, ledger or not.** `cu_comment` reads the task's
   comments and skips when the deterministic first line (actor + kill time) is
   already there; fields and checklist items are upserts. So the crash recovery

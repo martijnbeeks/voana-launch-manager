@@ -466,45 +466,14 @@ class ClickUpTasks:
 SKIP_CLICKUP = os.environ.get("KILL_SYNC_SKIP_CLICKUP") == "1"
 
 
-FENCE = "```"   # a line holding only this opens/closes a monospace table in a comment
-
-
-def comment_plain(text: str) -> str:
-    """The comment without its table fences — what ClickUp stores as comment_text."""
-    return "\n".join(l for l in text.splitlines() if l.strip() != FENCE)
-
-
-def comment_ops(text: str) -> list[dict]:
-    """ClickUp's rich comment body: bold first line, fenced lines as a code block.
-
-    A kill comment used to be one wall of '·'-joined numbers, eleven per ad, that
-    wrapped mid-metric in the task panel (Martijn, 2026-10-05: "I cannot read
-    this"). Columns only line up in a monospace font, and comment_text has none.
-    """
-    ops, code, first = [], False, True
-    for line in text.splitlines():
-        if line.strip() == FENCE:
-            code = not code
-            continue
-        if code:
-            ops += [{"text": line}, {"text": "\n", "attributes": {"code-block": {"code-block": "plain"}}}]
-        elif first and line.strip():
-            ops += [{"text": line, "attributes": {"bold": True}}, {"text": "\n"}]
-        else:
-            ops.append({"text": line + "\n"})
-        first = first and not line.strip()
-    return ops
-
-
 def cu_comment(task_id: str, text: str, dry: bool):
     """Post once. The first line of every kill comment is deterministic (actor +
     kill time), so a re-run after a crash finds it and does not repeat itself —
     the 2026-09-10 crash had already commented on four tasks it never ledgered."""
-    plain = comment_plain(text)
     if dry or SKIP_CLICKUP:
-        print(f"    [dry] comment on {task_id}:\n" + "\n".join("      " + l for l in plain.splitlines()))
+        print(f"    [dry] comment on {task_id}:\n" + "\n".join("      " + l for l in text.splitlines()))
         return
-    head = plain.strip().splitlines()[0].strip()
+    head = text.strip().splitlines()[0].strip()
     # Match on the head WITHOUT its clock time. Until 2026-09-17 the kill time
     # could fall back to "now" (unparsed English dates), so the same kill got a
     # different HH:MM on every run and was commented again. Actor + kill DATE +
@@ -520,14 +489,7 @@ def cu_comment(task_id: str, text: str, dry: bool):
            == _key(head) for c in existing):
         print(f"    comment already on {task_id}: {head[:70]} — not repeated")
         return
-    try:
-        cu("POST", f"/task/{task_id}/comment", {"comment": comment_ops(text), "notify_all": False})
-    except ClickUpError as e:
-        # The layout must never cost the comment itself.
-        if e.code != 400:
-            raise
-        print(f"    rich comment rejected on {task_id} ({e}); posting plain text")
-        cu("POST", f"/task/{task_id}/comment", {"comment_text": plain, "notify_all": False})
+    cu("POST", f"/task/{task_id}/comment", {"comment_text": text, "notify_all": False})
 
 
 def cu_set_field(task_id: str, field_id: str, value, dry: bool):
@@ -817,46 +779,43 @@ def ledger_append(rows: list[dict]):
 
 
 # ── core ─────────────────────────────────────────────────────────────────────
+def purchases_text(n) -> str:
+    return "n/a purchases" if n is None else f"{whole(n)} purchase{'' if int(n) == 1 else 's'}"
+
+
 def ad_summary(m: dict) -> str:
+    """One ad's numbers on three short lines — the comment panel is narrow."""
     purch, cpa = purchases_of(m), cpa_of(m)
     return (f"{money(m.get('amount_spent'))} spent · "
-            f"{purch if purch is not None else 'n/a'} purchase(s) · CPA {money(cpa)} · "
-            f"oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))}\n"
-            f"ROAS {ratio(roas_of(m))} · AOV {money(aov_of(m))} · CPM {money(cpm_of(m))} · "
-            f"CPC {money(m.get('cpc'))} · CTR {pct(m.get('ctr'))} · {count(m.get('impressions')):,} impr")
+            f"{purch if purch is not None else 'n/a'} purchase(s) · CPA {money(cpa)}\n"
+            f"oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))} · ROAS {ratio(roas_of(m))}\n"
+            f"CPM {money(cpm_of(m))} · CPC {money(m.get('cpc'))} · {count(m.get('impressions')):,} impr")
 
 
-TABLE_MAX_WIDTH = 46   # monospace characters that fit ClickUp's narrow comment panel
+def ad_rows(ads: list[dict]) -> tuple[list[str], list[str], str]:
+    """Per-ad lines for a batch comment, the ads that never delivered, and the
+    lander every ad shares ('' when they differ).
 
-
-def ad_table(ads: list[dict]) -> tuple[list[str], list[str], str]:
-    """Aligned per-ad rows for a batch comment, the ads that never delivered
-    (named on one line instead of a row of n/a each), and the lander every ad
-    shares ('' when they differ).
-
-    Width is the constraint: the comment panel fits about 46 monospace
-    characters, and a wrapped table row is worse than the wall of text it
-    replaced. So the per-ad columns are the kill-decision ones only (CPM, CPC,
-    ROAS and AOV are in the batch totals above), and a lander shared by the whole
-    batch is said once instead of in every row ('V1', not 'V1/COMP')."""
+    Deliberately tiny: 'V1 · $51.43 · 0 purchases'. The comment panel is narrow
+    and two layouts were rejected as unreadable on 2026-10-05 — first eleven
+    '·'-joined metrics per ad, then an aligned table that was too wide. Spend
+    and purchases are what a kill is read by; every other per-ad number is
+    already in the Result field and the checklist. CPA only when there is one.
+    An ad with no spend and no impressions gets no line, and a lander the whole
+    batch shares is said once ('V1', not 'V1/COMP')."""
     landers = {lander_code(a.get("name", "")) for a in ads}
     shared = landers.pop() if len(landers) == 1 else ""
-    label = (lambda n: creative_no(n)) if shared else ad_key
-    rows, idle = [["Ad", "Spend", "Pur", "CPA", "oCTR", "ATC", "Impr"]], []
+    label = creative_no if shared else ad_key
+    rows, idle = [], []
     for a in sorted(ads, key=lambda a: _key_order(ad_key(a.get("name", "")))):
         key = label(a.get("name", ""))
         if not count(a.get("impressions")) and not num(a.get("amount_spent")):
             idle.append(key)
             continue
         purch = purchases_of(a)
-        rows.append([key, money(a.get("amount_spent")), "n/a" if purch is None else str(purch),
-                     money(cpa_of(a)), pct(outbound_ctr_of(a)), whole(atc_of(a)),
-                     f"{count(a.get('impressions')):,}"])
-    if len(rows) == 1:
-        return [], idle, shared
-    width = [max(len(r[i]) for r in rows) for i in range(len(rows[0]))]
-    return ["  ".join(c.ljust(width[i]) if i == 0 else c.rjust(width[i]) for i, c in enumerate(r)).rstrip()
-            for r in rows], idle, shared
+        rows.append(f"{key} · {money(a.get('amount_spent'))} · {purchases_text(purch)}"
+                    + (f" · CPA {money(cpa_of(a))}" if purch else ""))
+    return rows, idle, shared
 
 
 def brief_metrics(x: dict) -> str:
@@ -1022,20 +981,19 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                           f"{money(t['spend'])} · {whole(t['purch'])} purchase(s) · "
                           f"CPA {money(t['cpa'])} · oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · "
                           f"ROAS {ratio(t['roas'])} · by {actor}")
-                # The comment is for reading, not parsing: totals on two short
-                # lines, then one aligned row per ad that actually delivered.
-                table, idle, lander = ad_table(ads)
+                # The comment is for reading, not parsing: short lines only.
+                # CPM / CPC / AOV / revenue are left out on purpose — they are
+                # in the Media number fields, written below.
+                rows, idle, lander = ad_rows(ads)
                 lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})", "",
-                         f"Lived {live if live is not None else '?'} days{' on ' + lander if lander else ''} · Spend {money(t['spend'])} · "
-                         f"Purchases {whole(t['purch'])} · CPA {money(t['cpa'])} · ROAS {ratio(t['roas'])}",
-                         f"oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · CPM {money(t['cpm'])} · "
-                         f"CPC {money(t['cpc'])} · AOV {money(t['aov'])} · Revenue {money(t['revenue'])} · "
-                         f"{whole(t['impr'])} impr"
-                         + ("" if t["source"] == "adset" else "  (summed from ad rows)")]
-                if table:
-                    lines += ["", FENCE, *table, FENCE]
+                         f"Lived {live if live is not None else '?'} days{' on ' + lander if lander else ''}",
+                         f"Spend {money(t['spend'])} · {purchases_text(t['purch'])}",
+                         f"CPA {money(t['cpa'])} · ROAS {ratio(t['roas'])}",
+                         f"oCTR {pct(t['octr'])} · ATC {whole(t['atc'])}"]
+                if rows:
+                    lines += ["", "Per ad:", *rows]
                 if idle:
-                    lines.append(f"No delivery: {', '.join(idle)}")
+                    lines += ([] if rows else [""]) + [f"Not delivered: {', '.join(idle)}"]
                 lines += ["", "→ fill in 📖 Learnings"]
                 cu_comment(task["id"], "\n".join(lines), dry)
                 # every ad in the set is dead now; ads killed earlier keep their own ✖ date.

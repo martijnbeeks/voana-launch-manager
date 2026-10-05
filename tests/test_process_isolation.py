@@ -50,7 +50,6 @@ class FakeClickUp:
                                   ("ready for launch", "launched", "complete")]},
         }
         self.calls = []
-        self.posted = []
         self.comments = {t["id"]: [] for t in tasks}
         self.fail_item_posts = {}
         self._item_posts = {}
@@ -78,8 +77,7 @@ class FakeClickUp:
             if seg[-1] == "comment":
                 if method == "GET":
                     return {"comments": [{"comment_text": c} for c in self.comments[tid]]}
-                self.posted.append(body)
-                self.comments[tid].append(body.get("comment_text") or "".join(o["text"] for o in body["comment"])); return {}
+                self.comments[tid].append(body["comment_text"]); return {}
             if seg[2] == "field":
                 if not any(f["id"] == seg[3] for f in t["custom_fields"]):
                     raise ks.ClickUpError(method, path, 400, '{"err":"Custom field does not exist in the task location hierarchy","ECODE":"FIELD_115"}')
@@ -359,46 +357,19 @@ check("same kill, different clock time: not repeated", len(fake.comments["td"]),
 ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-10 03:46 (GetVoana - 1)\nnext day", dry=False)
 check("different day: posted", len(fake.comments["td"]), 2)
 
-# ── comment layout: readable, and never at the cost of the comment ──────────
-rows = [{"name": "S301 - COMP - x_V1", "amount_spent": "51.43", "impressions": "507", "cpc": "1.38", "cpm": "101.44"},
-        {"name": "S301 - COMP - x_V10", "amount_spent": "0.02", "impressions": "1", "cpm": "20"},
+# ── comment layout: short lines, the panel is narrow ────────────────────────
+rows = [{"name": "S301 - COMP - x_V1", "amount_spent": "51.43", "impressions": "507"},
+        {"name": "S301 - COMP - x_V10", "amount_spent": "48.00", "impressions": "900",
+         "omni_purchase": "1", "cost_per_omni_purchase": "48.00"},
         {"name": "S301 - COMP - x_V7"}]
-table, idle, lander = ks.ad_table(rows)
-check("table: header + one row per delivered ad", len(table), 3)
-check("table: columns line up", len({l.index("Spend") + 5 for l in table[:1]} | {l.index("$") + len(l.split()[1]) for l in table[1:]}), 1)
-check("table: numeric creative order", [l.split()[0] for l in table[1:]], ["V1", "V10"])
-check("table: undelivered ad is named, not a row of n/a", idle, ["V7"])
-check("table: shared lander said once, not per row", lander, "COMP")
-big = [{"name": f"S301 - COMP - x_V{i}", "amount_spent": "487.20", "impressions": "48210",
-        "omni_purchase": "5", "cost_per_omni_purchase": "97.44", "outbound_clicks_ctr": "1.34"} for i in range(1, 13)]
-check("table: a heavy test batch still fits the narrow comment panel", max(map(len, ks.ad_table(big)[0])) <= ks.TABLE_MAX_WIDTH, True)
+lines, idle, lander = ks.ad_rows(rows)
+check("rows: one short line per delivered ad", lines, ["V1 · $51.43 · 0 purchases", "V10 · $48.00 · 1 purchase · CPA $48.00"])
+check("rows: undelivered ad is named, not a line of n/a", idle, ["V7"])
+check("rows: shared lander said once, not per row", lander, "COMP")
+check("rows: nothing delivered -> no lines", ks.ad_rows(rows[2:]), ([], ["V7"], "COMP"))
 mixed = [dict(rows[0]), {"name": "S301 - 7R - x_V1", "amount_spent": "3", "impressions": "9"}]
-check("table: two landers keep the lander in the key", [l.split()[0] for l in ks.ad_table(mixed)[0][1:]], ["V1/7R", "V1/COMP"])
-check("table: nothing delivered -> no table", ks.ad_table(rows[2:]), ([], ["V7"], "COMP"))
-
-body = "\n".join(["💀 Batch killed by Martijn on 2026-09-26 04:28 (GetVoana - 1)", "", "Lived 2 days", "", ks.FENCE, *table, ks.FENCE, "→ fill in"])
-ops = ks.comment_ops(body)
-check("ops: head is bold", ops[0].get("attributes"), {"bold": True})
-check("ops: table rows are code-block lines", sum(1 for o in ops if "code-block" in (o.get("attributes") or {})), 3)
-check("ops: fences are not posted", any(ks.FENCE in o["text"] for o in ops), False)
-check("ops: text round-trips to the plain comment", "".join(o["text"] for o in ops).rstrip("\n"), ks.comment_plain(body))
-
-te = make_task("te", adset_name("S301"))
-fake = FakeClickUp([te]); ks.cu = fake
-ks.cu_comment("te", body, dry=False)
-check("rich comment posted", "comment" in fake.posted[-1], True)
-ks.cu_comment("te", body, dry=False)
-check("rich comment dedupes on its head", len(fake.comments["te"]), 1)
-
-class Rejecting(FakeClickUp):
-    def __call__(self, method, path, body=None):
-        if method == "POST" and path.endswith("/comment") and "comment" in body:
-            raise ks.ClickUpError(method, path, 400, "bad comment")
-        return super().__call__(method, path, body)
-tf = make_task("tf", adset_name("S302"))
-fake = Rejecting([tf]); ks.cu = fake
-ks.cu_comment("tf", body, dry=False)
-check("rejected layout falls back to plain text", fake.posted[-1].get("comment_text"), ks.comment_plain(body))
+check("rows: two landers keep the lander in the key", [l.split()[0] for l in ks.ad_rows(mixed)[0]], ["V1/7R", "V1/COMP"])
+check("ad_summary: no long line", max(map(len, ks.ad_summary(rows[1]).splitlines())) <= 45, True)
 
 # ── archive: durable, pruned ─────────────────────────────────────────────────
 check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)
