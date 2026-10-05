@@ -826,24 +826,37 @@ def ad_summary(m: dict) -> str:
             f"CPC {money(m.get('cpc'))} · CTR {pct(m.get('ctr'))} · {count(m.get('impressions')):,} impr")
 
 
-def ad_table(ads: list[dict]) -> tuple[list[str], list[str]]:
-    """Aligned per-ad rows for a batch comment, plus the keys of ads that never
-    delivered — those are named on one line instead of a row of n/a each."""
-    rows, idle = [["Ad", "Spend", "Purch", "CPA", "oCTR", "ATC", "CPM", "CPC", "Impr"]], []
+TABLE_MAX_WIDTH = 46   # monospace characters that fit ClickUp's narrow comment panel
+
+
+def ad_table(ads: list[dict]) -> tuple[list[str], list[str], str]:
+    """Aligned per-ad rows for a batch comment, the ads that never delivered
+    (named on one line instead of a row of n/a each), and the lander every ad
+    shares ('' when they differ).
+
+    Width is the constraint: the comment panel fits about 46 monospace
+    characters, and a wrapped table row is worse than the wall of text it
+    replaced. So the per-ad columns are the kill-decision ones only (CPM, CPC,
+    ROAS and AOV are in the batch totals above), and a lander shared by the whole
+    batch is said once instead of in every row ('V1', not 'V1/COMP')."""
+    landers = {lander_code(a.get("name", "")) for a in ads}
+    shared = landers.pop() if len(landers) == 1 else ""
+    label = (lambda n: creative_no(n)) if shared else ad_key
+    rows, idle = [["Ad", "Spend", "Pur", "CPA", "oCTR", "ATC", "Impr"]], []
     for a in sorted(ads, key=lambda a: _key_order(ad_key(a.get("name", "")))):
-        key = ad_key(a.get("name", ""))
+        key = label(a.get("name", ""))
         if not count(a.get("impressions")) and not num(a.get("amount_spent")):
             idle.append(key)
             continue
         purch = purchases_of(a)
         rows.append([key, money(a.get("amount_spent")), "n/a" if purch is None else str(purch),
                      money(cpa_of(a)), pct(outbound_ctr_of(a)), whole(atc_of(a)),
-                     money(cpm_of(a)), money(a.get("cpc")), f"{count(a.get('impressions')):,}"])
+                     f"{count(a.get('impressions')):,}"])
     if len(rows) == 1:
-        return [], idle
+        return [], idle, shared
     width = [max(len(r[i]) for r in rows) for i in range(len(rows[0]))]
     return ["  ".join(c.ljust(width[i]) if i == 0 else c.rjust(width[i]) for i, c in enumerate(r)).rstrip()
-            for r in rows], idle
+            for r in rows], idle, shared
 
 
 def brief_metrics(x: dict) -> str:
@@ -1011,9 +1024,9 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                           f"ROAS {ratio(t['roas'])} · by {actor}")
                 # The comment is for reading, not parsing: totals on two short
                 # lines, then one aligned row per ad that actually delivered.
-                table, idle = ad_table(ads)
+                table, idle, lander = ad_table(ads)
                 lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})", "",
-                         f"Lived {live if live is not None else '?'} days · Spend {money(t['spend'])} · "
+                         f"Lived {live if live is not None else '?'} days{' on ' + lander if lander else ''} · Spend {money(t['spend'])} · "
                          f"Purchases {whole(t['purch'])} · CPA {money(t['cpa'])} · ROAS {ratio(t['roas'])}",
                          f"oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · CPM {money(t['cpm'])} · "
                          f"CPC {money(t['cpc'])} · AOV {money(t['aov'])} · Revenue {money(t['revenue'])} · "

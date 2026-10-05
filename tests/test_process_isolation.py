@@ -363,12 +363,18 @@ check("different day: posted", len(fake.comments["td"]), 2)
 rows = [{"name": "S301 - COMP - x_V1", "amount_spent": "51.43", "impressions": "507", "cpc": "1.38", "cpm": "101.44"},
         {"name": "S301 - COMP - x_V10", "amount_spent": "0.02", "impressions": "1", "cpm": "20"},
         {"name": "S301 - COMP - x_V7"}]
-table, idle = ks.ad_table(rows)
+table, idle, lander = ks.ad_table(rows)
 check("table: header + one row per delivered ad", len(table), 3)
 check("table: columns line up", len({l.index("Spend") + 5 for l in table[:1]} | {l.index("$") + len(l.split()[1]) for l in table[1:]}), 1)
-check("table: numeric creative order", [l.split()[0] for l in table[1:]], ["V1/COMP", "V10/COMP"])
-check("table: undelivered ad is named, not a row of n/a", idle, ["V7/COMP"])
-check("table: nothing delivered -> no table", ks.ad_table(rows[2:]), ([], ["V7/COMP"]))
+check("table: numeric creative order", [l.split()[0] for l in table[1:]], ["V1", "V10"])
+check("table: undelivered ad is named, not a row of n/a", idle, ["V7"])
+check("table: shared lander said once, not per row", lander, "COMP")
+big = [{"name": f"S301 - COMP - x_V{i}", "amount_spent": "487.20", "impressions": "48210",
+        "omni_purchase": "5", "cost_per_omni_purchase": "97.44", "outbound_clicks_ctr": "1.34"} for i in range(1, 13)]
+check("table: a heavy test batch still fits the narrow comment panel", max(map(len, ks.ad_table(big)[0])) <= ks.TABLE_MAX_WIDTH, True)
+mixed = [dict(rows[0]), {"name": "S301 - 7R - x_V1", "amount_spent": "3", "impressions": "9"}]
+check("table: two landers keep the lander in the key", [l.split()[0] for l in ks.ad_table(mixed)[0][1:]], ["V1/7R", "V1/COMP"])
+check("table: nothing delivered -> no table", ks.ad_table(rows[2:]), ([], ["V7"], "COMP"))
 
 body = "\n".join(["💀 Batch killed by Martijn on 2026-09-26 04:28 (GetVoana - 1)", "", "Lived 2 days", "", ks.FENCE, *table, ks.FENCE, "→ fill in"])
 ops = ks.comment_ops(body)
