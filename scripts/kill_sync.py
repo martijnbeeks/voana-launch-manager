@@ -779,13 +779,43 @@ def ledger_append(rows: list[dict]):
 
 
 # ── core ─────────────────────────────────────────────────────────────────────
+def purchases_text(n) -> str:
+    return "n/a purchases" if n is None else f"{whole(n)} purchase{'' if int(n) == 1 else 's'}"
+
+
 def ad_summary(m: dict) -> str:
+    """One ad's numbers on three short lines — the comment panel is narrow."""
     purch, cpa = purchases_of(m), cpa_of(m)
     return (f"{money(m.get('amount_spent'))} spent · "
-            f"{purch if purch is not None else 'n/a'} purchase(s) · CPA {money(cpa)} · "
-            f"oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))}"
-            f"  |  ROAS {ratio(roas_of(m))} · AOV {money(aov_of(m))} · CPM {money(cpm_of(m))} · "
-            f"CPC {money(m.get('cpc'))} · CTR {pct(m.get('ctr'))} · {count(m.get('impressions')):,} impr")
+            f"{purch if purch is not None else 'n/a'} purchase(s) · CPA {money(cpa)}\n"
+            f"oCTR {pct(outbound_ctr_of(m))} · ATC {whole(atc_of(m))} · ROAS {ratio(roas_of(m))}\n"
+            f"CPM {money(cpm_of(m))} · CPC {money(m.get('cpc'))} · {count(m.get('impressions')):,} impr")
+
+
+def ad_rows(ads: list[dict]) -> tuple[list[str], list[str], str]:
+    """Per-ad lines for a batch comment, the ads that never delivered, and the
+    lander every ad shares ('' when they differ).
+
+    Deliberately tiny: 'V1 · $51.43 · 0 purchases'. The comment panel is narrow
+    and two layouts were rejected as unreadable on 2026-10-05 — first eleven
+    '·'-joined metrics per ad, then an aligned table that was too wide. Spend
+    and purchases are what a kill is read by; every other per-ad number is
+    already in the Result field and the checklist. CPA only when there is one.
+    An ad with no spend and no impressions gets no line, and a lander the whole
+    batch shares is said once ('V1', not 'V1/COMP')."""
+    landers = {lander_code(a.get("name", "")) for a in ads}
+    shared = landers.pop() if len(landers) == 1 else ""
+    label = creative_no if shared else ad_key
+    rows, idle = [], []
+    for a in sorted(ads, key=lambda a: _key_order(ad_key(a.get("name", "")))):
+        key = label(a.get("name", ""))
+        if not count(a.get("impressions")) and not num(a.get("amount_spent")):
+            idle.append(key)
+            continue
+        purch = purchases_of(a)
+        rows.append(f"{key} · {money(a.get('amount_spent'))} · {purchases_text(purch)}"
+                    + (f" · CPA {money(cpa_of(a))}" if purch else ""))
+    return rows, idle, shared
 
 
 def brief_metrics(x: dict) -> str:
@@ -927,8 +957,8 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
             def write_ad_kill():
                 m = ads[0] if ads else {}
                 text = (f"💀 {ad_key(name)} killed by {actor} on {when:%Y-%m-%d %H:%M} "
-                        f"({acc['name']}, {lander_code(name) or 'lander n/a'}) after {days_live(m.get('created_time'), when)} days\n"
-                        f"{ad_summary(m) if m else 'metrics n/a'}\n"
+                        f"({acc['name']}, {lander_code(name) or 'lander n/a'}) after {days_live(m.get('created_time'), when)} days\n\n"
+                        f"{ad_summary(m) if m else 'metrics n/a'}\n\n"
                         f"Still running: {', '.join(still) if still else 'none'}\n"
                         f"{ads_manager_url(account, 'ad', obj_id)}")
                 cu_comment(task["id"], text, dry)
@@ -942,25 +972,29 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 upsert_checklist(task, siblings or ads, {obj_id}, when, dry)
 
             def write_batch_kill():
-                lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})"]
                 t = totals_of(ads, adset_metrics.get(str(obj_id)))
-                for a in sorted(ads, key=lambda a: a.get("name", "")):
-                    lines.append(f"• {creative_no(a.get('name',''))} ({lander_code(a.get('name','')) or '-'}): {ad_summary(a)}")
                 live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
                 # Batch totals. Primary metrics (CPA / outbound CTR / adds to
                 # cart) go in the one-line Result header — merge_result
-                # re-parses that line, so it must stay a single line. The
-                # secondary context lands in the comment just below.
+                # re-parses that line, so it must stay a single line.
                 result = (f"KILLED {when:%Y-%m-%d} after {live if live is not None else '?'} days · "
                           f"{money(t['spend'])} · {whole(t['purch'])} purchase(s) · "
                           f"CPA {money(t['cpa'])} · oCTR {pct(t['octr'])} · ATC {whole(t['atc'])} · "
                           f"ROAS {ratio(t['roas'])} · by {actor}")
-                lines.append(result)
-                lines.append(f"Batch context · CPM {money(t['cpm'])} · CPC {money(t['cpc'])} · "
-                             f"AOV {money(t['aov'])} · revenue {money(t['revenue'])} · "
-                             f"{whole(t['impr'])} impr"
-                             + ("" if t["source"] == "adset" else "  (summed from ad rows)"))
-                lines.append("→ fill in 📖 Learnings")
+                # The comment is for reading, not parsing: short lines only.
+                # CPM / CPC / AOV / revenue are left out on purpose — they are
+                # in the Media number fields, written below.
+                rows, idle, lander = ad_rows(ads)
+                lines = [f"💀 Batch killed by {actor} on {when:%Y-%m-%d %H:%M} ({acc['name']})", "",
+                         f"Lived {live if live is not None else '?'} days{' on ' + lander if lander else ''}",
+                         f"Spend {money(t['spend'])} · {purchases_text(t['purch'])}",
+                         f"CPA {money(t['cpa'])} · ROAS {ratio(t['roas'])}",
+                         f"oCTR {pct(t['octr'])} · ATC {whole(t['atc'])}"]
+                if rows:
+                    lines += ["", "Per ad:", *rows]
+                if idle:
+                    lines += ([] if rows else [""]) + [f"Not delivered: {', '.join(idle)}"]
+                lines += ["", "→ fill in 📖 Learnings"]
                 cu_comment(task["id"], "\n".join(lines), dry)
                 # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
                 # A ✖ line stamped with THIS kill's date is ours — rewrite it (that is

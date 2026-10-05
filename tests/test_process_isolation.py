@@ -357,6 +357,20 @@ check("same kill, different clock time: not repeated", len(fake.comments["td"]),
 ks.cu_comment("td", "💀 Batch killed by Martijn on 2026-09-10 03:46 (GetVoana - 1)\nnext day", dry=False)
 check("different day: posted", len(fake.comments["td"]), 2)
 
+# ── comment layout: short lines, the panel is narrow ────────────────────────
+rows = [{"name": "S301 - COMP - x_V1", "amount_spent": "51.43", "impressions": "507"},
+        {"name": "S301 - COMP - x_V10", "amount_spent": "48.00", "impressions": "900",
+         "omni_purchase": "1", "cost_per_omni_purchase": "48.00"},
+        {"name": "S301 - COMP - x_V7"}]
+lines, idle, lander = ks.ad_rows(rows)
+check("rows: one short line per delivered ad", lines, ["V1 · $51.43 · 0 purchases", "V10 · $48.00 · 1 purchase · CPA $48.00"])
+check("rows: undelivered ad is named, not a line of n/a", idle, ["V7"])
+check("rows: shared lander said once, not per row", lander, "COMP")
+check("rows: nothing delivered -> no lines", ks.ad_rows(rows[2:]), ([], ["V7"], "COMP"))
+mixed = [dict(rows[0]), {"name": "S301 - 7R - x_V1", "amount_spent": "3", "impressions": "9"}]
+check("rows: two landers keep the lander in the key", [l.split()[0] for l in ks.ad_rows(mixed)[0]], ["V1/7R", "V1/COMP"])
+check("ad_summary: no long line", max(map(len, ks.ad_summary(rows[1]).splitlines())) <= 45, True)
+
 # ── archive: durable, pruned ─────────────────────────────────────────────────
 check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)
 arch = ks.archive_dir()
