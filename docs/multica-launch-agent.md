@@ -15,7 +15,11 @@ You do not develop the repo, and you never decide what goes live — a person do
 Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow → Syncing the queue**.
 
 - **Call no Meta tool.** A sync reads ClickUp and Drive and posts proposals; that is all.
-- Skip every batch code already under `known` in `python3 scripts/launch_draft.py approved`.
+- Under `known` in `python3 scripts/launch_draft.py approved`: skip a batch that is `touched` or no
+  longer a `draft`. An untouched `draft` may be proposed again when you can now fill in more.
+- Landing pages: read all three ClickUp fields, split "A and B", resolve each part against the
+  roster in `CLAUDE.md`, and propose one ad per creative per page. A part you cannot place for
+  certain stays open — name it for the reviewer, never guess it.
 - What you cannot find, leave **empty** — landing page, Facebook page. The reviewer fills it in on
   the dashboard; a guess that looks filled in is worse than a blank.
 - A tool you need is missing (Drive, or a way to stage a creative publicly): still submit the

@@ -395,14 +395,33 @@ Triggered by an issue titled `Sync: ready for launch …` (the dashboard's butto
 or a schedule. **No Meta tool is called in a sync.**
 
 1. `python3 scripts/launch_draft.py approved` → read `known`. A batch code that is
-   already there is **skipped**, whatever its status: a reviewer may be filling it
-   in, and a second proposal would overwrite their work.
+   there with `"touched": true`, or in any status other than `draft`, is
+   **skipped**: a person is working on it or has decided, and a second proposal
+   would overwrite that. An untouched `draft` is still only your own proposal —
+   propose it again when you can now do better (a landing page resolved, copy
+   found, a creative staged).
 2. Read the Launch Manager list (`ready for launch`). For each task not in `known`:
    - task name → `title` and the ad names (`…_C<n>`, lander code inserted once the
      landing page is known — leave it out of the name when it is not);
-   - `Landing Page URL`: exactly one link → use it, with the UTM parameters;
-     empty, two links, or one that contradicts the copy docs → **leave `link_url`
-     empty**. The reviewer chooses. Never guess a lander.
+   - **Landing pages — a batch usually has two.** Read all three fields:
+     `Landing Page URL` (free text), `Landing Page URL 1` and `Landing Page URL 2`.
+     The team mostly writes both into the first one ("comparison and 7 reasons
+     why", "OG and direct SP", "<url> and 7 reasons why"): split it on "and" /
+     "," / "&" and resolve each part on its own.
+     - a full `https://` link → use it as written (repair nothing; a link that is
+       visibly cut off is not usable — say so);
+     - a name → the roster's page: comparison → `COMP` (`/comparison2`), 7 reasons
+       / 7R / listicle → `7R` (`/7-reasons`), OG → `OG`
+       (`/intertigo-stick-og/lander`), lead 7 → `LEAD7`, page 13 → `PG13`,
+       page 18 / 5 possible fixes → `PG18`, sales page / SP → `SP`
+       (`/intertigo-stick-og/sp`);
+     - a name that fits two pages or none ("direct", "direct SP": the sales page
+       or `/directSP`?) → **do not pick**. Propose the parts you are sure of, and
+       name the open one in `agent_notes` and in a `qa_flags` warning so the
+       reviewer ticks it.
+     Then propose **one ad per creative per resolved page**: `"creative": <n>`,
+     `"lander": "<code>"`, the lander code in the ad name, the link with the UTM
+     parameters. Nothing resolved → one ad per creative with `link_url` empty.
    - `Page` field: filled → use it. Empty → propose one only when the style rule
      in "ClickUp pipeline" clearly applies and say why in `agent_notes`;
      otherwise leave `page_name` empty.
