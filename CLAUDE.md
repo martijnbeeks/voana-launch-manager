@@ -409,7 +409,7 @@ fix the batch, do not look for a way around it.
     "name": "<ad name>", "meta_ad_id": "<Meta ad id>", "meta_creative_id": "<creative id>",
     "format": "image", "media_url": "https://raw.githubusercontent.com/martijnbeeks/voana-ad-assets/main/batch-S190/ad1.jpg",
     "preview_url": "<Meta preview link, optional>",
-    "headline": "…", "primary_texts": ["AD COPY 1 …", "AD COPY 2 …"],
+    "headlines": ["…", "…"], "primary_texts": ["AD COPY 1 …", "AD COPY 2 …"],
     "link_url": "https://offer.getvoana.com/comparison2?tw_source={{site_source_name}}&tw_adid={{ad.id}}",
     "display_link": "WWW.NO-SKIN-RASH.COM", "cta": "Learn More"
   }]
@@ -419,6 +419,12 @@ fix the batch, do not look for a way around it.
 retailers, fabricated publications, rating mismatches). Say it plainly — the
 reviewer reads these instead of a chat summary. The draft key is
 `<batch_code>@<ad_account_id>`.
+
+**Send every option Meta can show.** `primary_texts` and `headlines` are lists:
+put in each text and each headline that is on the creative (the
+`asset_feed_spec` bodies and titles), complete and unshortened, in the order
+they were set. The reviewer approves what is in the draft — an option that is
+live in Meta but missing from the draft was never reviewed.
 
 ### Activating an approved batch
 Triggered by a Multica issue titled `Launch: <batch> — approved by …`, or by a
