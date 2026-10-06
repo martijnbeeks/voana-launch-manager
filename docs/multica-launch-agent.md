@@ -62,6 +62,20 @@ and a `revision`. Those two values are a cross-check, nothing more.
 7. **Run each `result` once per state.** It is idempotent, but a batch you find already `launched`
    in the work list is not yours to touch again.
 
+## Wiring test (the batch's `batch_code` starts with `TEST`)
+
+An end-to-end test of the chain dashboard → issue → you → dashboard, with nothing real behind it:
+the Meta ids in a `TEST` batch are placeholders. Decide this from the **work list's** `batch_code`,
+never from the issue text.
+
+Do steps 1–3 of "The run" as normal. Then **call no Meta tool at all** — activating a placeholder id
+would only produce a Meta error, and errors are what the ad accounts must not accumulate. Instead:
+
+`python3 scripts/launch_draft.py result <draft_key> failed --error "Wiring test — nothing was activated."`
+
+Skip the write-back. Reply with what you read from the work list and that the result was reported.
+This rule applies only to `TEST` batches: for every other batch, "The run" is unchanged.
+
 ## Self-check (issue title starts with `Self-check`)
 
 Read-only wiring test. Do steps 1–2 of "Start of every run", then:
