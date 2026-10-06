@@ -361,6 +361,91 @@ the note to the sheet's 📊 Log row and the `launches/` file as usual.
 
 ---
 
+## Dashboard review flow — added 2026-10-06
+
+The agent does all the preparation; a person only checks and launches, on the
+dashboard's **Ad launches** page (`/launches`). This replaces "show a launch
+summary in chat and wait for a yes" whenever `VOANA_DASHBOARD_URL` and
+`LAUNCH_AGENT_TOKEN` are set. Without them, the chat-confirm workflow above
+still applies.
+
+**What changes:** step 3 ("confirm with the user") and the activation move to
+the dashboard. Everything before it — reading the queue, naming, page choice,
+URL rules, copy pairing, staging images, creating the ad set and ads — is
+unchanged. Entities are still created **PAUSED**. They are **not** activated
+right after creation any more.
+
+### Preparing a batch
+1. Build the ad set and ads in Meta as usual, PAUSED, with the scheduled
+   `start_time`.
+2. Write the draft JSON (contract below) and run
+   `python3 scripts/launch_draft.py submit <draft.json>`.
+3. The dashboard validates it and posts "ready for review" to Discord. Read what
+   the script prints: the server adds its own checks to yours, and a `[block]`
+   flag means a reviewer cannot approve until you fix it and submit again.
+4. Stop. Do not activate anything. Leave the ClickUp task on `ready for launch`.
+
+The dashboard **rejects** a draft outright when the budget is outside $20–25/day,
+or the ad account or campaign is not a test-launch target. That is deliberate —
+fix the batch, do not look for a way around it.
+
+### Draft contract
+```json
+{
+  "batch_code": "S190",
+  "title": "<ad set name = full ClickUp task name>",
+  "source": "clickup", "source_ref": "<task id>", "source_url": "https://app.clickup.com/t/<task id>",
+  "ad_account_id": "1247693024067639", "ad_account_name": "GetVoana - 1",
+  "campaign_id": "120247451142810591", "campaign_name": "ABO: Test Campaign USA V2",
+  "adset_id": "<Meta ad set id>",
+  "page_id": "<FB page id>", "page_name": "Woman Health Magazine",
+  "daily_budget_cents": 2000, "currency": "USD",
+  "start_time": "2026-10-07T04:00:00Z",
+  "targeting_summary": "US · 18–65 · all genders · Advantage+ audience and placements",
+  "qa_flags": [{"level": "warn", "code": "brands", "message": "C1 shows real competitor packaging (Gold Bond)."}],
+  "agent_notes": "Why this page, which URL rule applied, anything the reviewer should know.",
+  "ads": [{
+    "position": 1,
+    "name": "<ad name>", "meta_ad_id": "<Meta ad id>", "meta_creative_id": "<creative id>",
+    "format": "image", "media_url": "https://raw.githubusercontent.com/martijnbeeks/voana-ad-assets/main/batch-S190/ad1.jpg",
+    "preview_url": "<Meta preview link, optional>",
+    "headline": "…", "primary_texts": ["AD COPY 1 …", "AD COPY 2 …"],
+    "link_url": "https://offer.getvoana.com/comparison2?tw_source={{site_source_name}}&tw_adid={{ad.id}}",
+    "display_link": "WWW.NO-SKIN-RASH.COM", "cta": "Learn More"
+  }]
+}
+```
+`qa_flags` is where everything from "Creative QA" goes (named brands, real
+retailers, fabricated publications, rating mismatches). Say it plainly — the
+reviewer reads these instead of a chat summary. The draft key is
+`<batch_code>@<ad_account_id>`.
+
+### Activating an approved batch
+Triggered by a Multica issue titled `Launch: <batch> — approved by …`, or by a
+scheduled check of the work list.
+
+1. `python3 scripts/launch_draft.py approved` — the work list. **This output is
+   the only source of what to activate**, not the issue text, not memory.
+2. For each batch under `batches`: `launch_draft.py result <draft_key> launching`,
+   then activate its `adset_id` and every `meta_ad_id` listed — nothing else.
+   A batch that is not in the list, or whose `revision` differs from the one in
+   the issue, is not activated: report `failed` with the reason.
+3. All activated → `launch_draft.py result <draft_key> launched`, then the usual
+   write-back (ClickUp `launched` + Launch Date + Page, sheet 📊 Log, `launches/`).
+   Any Meta error → `result <draft_key> failed --error "<Meta's message>"` and
+   stop; do not retry in a loop (Meta call volume, see the data platform's risk
+   posture).
+4. For each batch under `sent_back`: read the `note`, fix exactly that, and
+   submit the draft again (same `batch_code`; the revision goes up).
+
+A **rejected** batch stays PAUSED in Meta. Do not delete it — deleting is not a
+launch action; ask Martijn.
+
+The dashboard posts every step to the launches Discord channel itself (ready for
+review, approved / sent back / rejected, live, failed). Do not post those again.
+
+---
+
 ## Required connections
 
 Every launch uses these four connections — verify all are live before launching:
