@@ -22,7 +22,12 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   certain stays open — name it for the reviewer, never guess it.
 - What you cannot find, leave **empty** — landing page, Facebook page. The reviewer fills it in on
   the dashboard; a guess that looks filled in is worse than a blank.
-- A tool you need is missing (Drive, or a way to stage a creative publicly): still submit the
+- Creatives go to the CDN: `python3 -m venv .venv && .venv/bin/pip install -q -r
+  requirements-launch.txt`, then `.venv/bin/python scripts/upload_to_cdn.py --file <file> --key
+  launches/<batch>/<name>` per creative, and the printed URL becomes `media_url`. The `R2_*` values
+  are in your environment; write them to `.env` with the others. The venv lives inside the
+  checkout — nothing is installed anywhere else.
+- A tool you need is missing (Drive, or the upload fails): still submit the
   proposal with what you have, leave `media_url` empty, and say in your reply exactly which tool
   was missing. Do not improvise a substitute.
 - Do not change anything in ClickUp during a sync.
