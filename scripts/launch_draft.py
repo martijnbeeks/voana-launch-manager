@@ -99,10 +99,13 @@ def approved(env: dict) -> int:
     return 0
 
 
-def result(env: dict, key: str, status: str, error, ads_path) -> int:
+def result(env: dict, key: str, status: str, error, ads_path, adset_id=None) -> int:
     body = {"draft_key": key, "status": status}
     if error:
         body["error"] = error
+    if adset_id:
+        # A proposal built at launch: the dashboard learns the Meta ids here.
+        body["adset_id"] = adset_id
     if ads_path:
         body["ads"] = json.loads(Path(ads_path).read_text())
     out = call(env, "POST", "/api/launches/result", body)
@@ -121,6 +124,7 @@ def main(argv=None) -> int:
     r.add_argument("status", choices=RESULTS)
     r.add_argument("--error")
     r.add_argument("--ads")
+    r.add_argument("--adset-id")
     a = ap.parse_args(argv)
 
     env = load_env()
@@ -129,7 +133,7 @@ def main(argv=None) -> int:
             return submit(env, a.draft)
         if a.cmd == "approved":
             return approved(env)
-        return result(env, a.draft_key, a.status, a.error, a.ads)
+        return result(env, a.draft_key, a.status, a.error, a.ads, a.adset_id)
     except Refused as e:
         print(e, file=sys.stderr)
         return 3

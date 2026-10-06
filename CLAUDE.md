@@ -375,6 +375,74 @@ URL rules, copy pairing, staging images, creating the ad set and ads — is
 unchanged. Entities are still created **PAUSED**. They are **not** activated
 right after creation any more.
 
+### The flow since 2026-10-06: sync → fill in → launch
+
+This is the flow the team works in. Where it differs from "Preparing a batch"
+and "Activating an approved batch" below, **this wins**; those describe the
+older path (build paused in Meta first), which still works for a `built` draft.
+
+1. **Sync.** "Ready for launch" tasks are loaded onto the dashboard as
+   **proposals** (`"build": "spec"`). Nothing is created in Meta.
+2. **Fill in.** A person completes what the agent could not find — Facebook page,
+   landing page, budget — on the batch's page, and checks every ad.
+3. **Launch.** Only then does the agent build the ad set and ads in Meta and
+   activate them, from exactly the values on the dashboard.
+4. **Write back.** ClickUp moves to `launched` only after Meta confirms the ad set
+   and every ad are ACTIVE.
+
+#### Syncing the queue
+Triggered by an issue titled `Sync: ready for launch …` (the dashboard's button)
+or a schedule. **No Meta tool is called in a sync.**
+
+1. `python3 scripts/launch_draft.py approved` → read `known`. A batch code that is
+   already there is **skipped**, whatever its status: a reviewer may be filling it
+   in, and a second proposal would overwrite their work.
+2. Read the Launch Manager list (`ready for launch`). For each task not in `known`:
+   - task name → `title` and the ad names (`…_C<n>`, lander code inserted once the
+     landing page is known — leave it out of the name when it is not);
+   - `Landing Page URL`: exactly one link → use it, with the UTM parameters;
+     empty, two links, or one that contradicts the copy docs → **leave `link_url`
+     empty**. The reviewer chooses. Never guess a lander.
+   - `Page` field: filled → use it. Empty → propose one only when the style rule
+     in "ClickUp pipeline" clearly applies and say why in `agent_notes`;
+     otherwise leave `page_name` empty.
+   - Drive folder: one ad per creative file; every primary text and headline from
+     the copy docs, complete (the copy pairing rule applies);
+   - stage each creative where Meta can fetch it (see "Image hosting") and put
+     that URL in `media_url`. A creative you cannot stage → leave `media_url`
+     empty and say why; the dashboard then blocks the batch until it is fixed.
+   - fixed spec: `daily_budget_cents` 2000, next midnight ET as `start_time`,
+     account and campaign per "ClickUp pipeline", `drive_url` = the folder link.
+3. `python3 scripts/launch_draft.py submit <draft.json>` per batch, with
+   `"build": "spec"` and no `adset_id` / `meta_ad_id`.
+4. Reply with one line per batch: proposed, skipped (known), or could not be read
+   and why. Do not change anything in ClickUp.
+
+#### Launching an approved batch
+The work list entry says `"build": "spec"` or `"built"`.
+
+- `built` → activate the ids it lists ("Activating an approved batch" below).
+- `spec` → build it **from the work list's values, verbatim**: ad set name =
+  `title`, budget, `start_time`, `page_id`, and per ad its name, `media_url`,
+  `headlines`, `primary_texts`, `link_url`, `display_link`, `cta`. Everything not
+  in the work list comes from the fixed ad-set / ad spec in "Launch template".
+  A reviewer may have changed any of these on the dashboard — never fall back to
+  ClickUp or to what the sync proposed.
+
+Then, in order:
+1. `result <draft_key> launching`
+2. Create the ad set, then each ad, and activate them.
+3. **Confirm in Meta**: read the ad set and its ads once and check each is
+   ACTIVE (or scheduled by its `start_time`, with no error). Only then:
+4. `result <draft_key> launched --adset-id <id> --ads <ads.json>` — the file lists
+   `{"position": n, "meta_ad_id": "…", "review_status": "…"}` per ad.
+5. **Only after step 4 succeeded**: ClickUp task → `launched`, `Launch Date`, `Page`;
+   `launches/` file; sheet log. If Meta did not confirm, ClickUp is not touched.
+
+Any Meta error, or an ad that is not active after the read: `result <draft_key>
+failed --error "<Meta's message>"`, leave ClickUp on `ready for launch`, and say
+exactly which entities were created so a person can decide what to do with them.
+
 ### Preparing a batch
 1. Build the ad set and ads in Meta as usual, PAUSED, with the scheduled
    `start_time`.
