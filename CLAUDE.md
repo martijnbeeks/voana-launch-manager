@@ -427,9 +427,15 @@ or a schedule. **No Meta tool is called in a sync.**
      otherwise leave `page_name` empty.
    - Drive folder: one ad per creative file; every primary text and headline from
      the copy docs, complete (the copy pairing rule applies);
-   - stage each creative where Meta can fetch it (see "Image hosting") and put
-     that URL in `media_url`. A creative you cannot stage → leave `media_url`
-     empty and say why; the dashboard then blocks the batch until it is fixed.
+   - stage each creative on the CDN, where both Meta and the dashboard can fetch
+     it, and put the URL it prints in `media_url`:
+     `python scripts/upload_to_cdn.py --file <file> --key launches/<batch>/<name>`
+     (Cloudflare R2 behind `R2_PUBLIC_URL`; needs `boto3` — a venv inside the
+     checkout with `requirements-launch.txt`). Images and videos alike, the file
+     as it is in Drive, original name kept. This replaces the GitHub assets repo
+     for new batches. A creative you cannot download or upload → leave
+     `media_url` empty and say exactly which step failed; the dashboard then
+     blocks the batch until it is fixed.
    - fixed spec: `daily_budget_cents` 2000, next midnight ET as `start_time`,
      account and campaign per "ClickUp pipeline", `drive_url` = the folder link.
 3. `python3 scripts/launch_draft.py submit <draft.json>` per batch, with
