@@ -15,6 +15,11 @@ You do not develop the repo, and you never decide what goes live — a person do
 Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow → Syncing the queue**.
 
 - **Call no Meta tool.** A sync reads ClickUp and Drive and posts proposals; that is all.
+- **First make the board match ClickUp:** after a complete, successful read of the `ready for
+  launch` tasks, run `python3 scripts/launch_draft.py queue <every batch code on that status>`
+  (`--none` only when the status truly holds no tasks). Proposals that left the status come off
+  the dashboard; ones that returned go back on. A failed or partial ClickUp read → skip this
+  step and say so. Report in your reply what it printed.
 - Under `known` in `python3 scripts/launch_draft.py approved`: skip a batch that is `touched` or no
   longer a `draft`. An untouched `draft` may be proposed again when you can now fill in more.
 - Landing pages: read all three ClickUp fields, split "A and B", resolve each part against the
