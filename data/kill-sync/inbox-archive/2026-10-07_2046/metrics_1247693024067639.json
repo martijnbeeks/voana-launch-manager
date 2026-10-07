@@ -1,0 +1,1308 @@
+[
+ {
+  "id": "120247859098320591",
+  "name": "S197 - SP DIRECT - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT_V3",
+  "adset_id": "120247859021520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-05T01:07:23-0400",
+  "adset_name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "amount_spent": {
+   "value": "2.49",
+   "unit": "USD"
+  },
+  "impressions": "30",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "83",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247859111410591",
+  "name": "S197 - COMP - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT_V3",
+  "adset_id": "120247859021520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-05T01:07:23-0400",
+  "adset_name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "amount_spent": {
+   "value": "40.92",
+   "unit": "USD"
+  },
+  "impressions": "394",
+  "clicks": "21",
+  "ctr": "5.33%",
+  "cpc": {
+   "value": "1.95",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "103.86",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "18",
+  "outbound_clicks_ctr": "4.568528",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "20",
+  "website_ctr": "5.076142",
+  "cost_per_link_click": {
+   "value": "2.05",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247859021530591",
+  "name": "S197 - SP DIRECT - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT_V1",
+  "adset_id": "120247859021520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-05T01:07:23-0400",
+  "adset_name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "amount_spent": {
+   "value": "3.14",
+   "unit": "USD"
+  },
+  "impressions": "40",
+  "clicks": "3",
+  "ctr": "7.50%",
+  "cpc": {
+   "value": "1.05",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "78.5",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "5",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "5",
+  "cost_per_link_click": {
+   "value": "1.57",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247859111390591",
+  "name": "S197 - COMP - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT_V1",
+  "adset_id": "120247859021520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-05T01:07:23-0400",
+  "adset_name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "amount_spent": {
+   "value": "6.78",
+   "unit": "USD"
+  },
+  "impressions": "85",
+  "clicks": "2",
+  "ctr": "2.35%",
+  "cpc": {
+   "value": "3.39",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "79.76",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "2.352941",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "2.352941",
+  "cost_per_link_click": {
+   "value": "3.39",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247859098310591",
+  "name": "S197 - SP DIRECT - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT_V2",
+  "adset_id": "120247859021520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-05T01:07:23-0400",
+  "adset_name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "amount_spent": {
+   "value": "3.77",
+   "unit": "USD"
+  },
+  "impressions": "42",
+  "clicks": "7",
+  "ctr": "16.67%",
+  "cpc": {
+   "value": "0.54",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "89.76",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "5",
+  "outbound_clicks_ctr": "11.904762",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "5",
+  "website_ctr": "11.904762",
+  "cost_per_link_click": {
+   "value": "0.75",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247859111400591",
+  "name": "S197 - COMP - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT_V2",
+  "adset_id": "120247859021520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-05T01:07:23-0400",
+  "adset_name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "amount_spent": {
+   "value": "2.81",
+   "unit": "USD"
+  },
+  "impressions": "19",
+  "clicks": "1",
+  "ctr": "5.26%",
+  "cpc": {
+   "value": "2.81",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "147.89",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "5.263158",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "5.263158",
+  "cost_per_link_click": {
+   "value": "2.81",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857802980591",
+  "name": "S291 - SP DIRECT - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None_C1",
+  "adset_id": "120247857802970591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T23:02:58-0400",
+  "adset_name": "S291 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "33.88",
+   "unit": "USD"
+  },
+  "impressions": "500",
+  "clicks": "25",
+  "ctr": "5.00%",
+  "cpc": {
+   "value": "1.36",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "67.76",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "20",
+  "outbound_clicks_ctr": "4",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "20",
+  "website_ctr": "4",
+  "cost_per_link_click": {
+   "value": "1.69",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857844880591",
+  "name": "S291 - SP DIRECT - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None_C2",
+  "adset_id": "120247857802970591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T23:02:58-0400",
+  "adset_name": "S291 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "1.93",
+   "unit": "USD"
+  },
+  "impressions": "40",
+  "clicks": "6",
+  "ctr": "15.00%",
+  "cpc": {
+   "value": "0.32",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "48.25",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "10",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "10",
+  "cost_per_link_click": {
+   "value": "0.48",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857844870591",
+  "name": "S291 - SP DIRECT - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None_C3",
+  "adset_id": "120247857802970591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T23:02:58-0400",
+  "adset_name": "S291 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "14.59",
+   "unit": "USD"
+  },
+  "impressions": "261",
+  "clicks": "21",
+  "ctr": "8.05%",
+  "cpc": {
+   "value": "0.69",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "55.9",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "17",
+  "outbound_clicks_ctr": "6.51341",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "17",
+  "website_ctr": "6.51341",
+  "cost_per_link_click": {
+   "value": "0.86",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857723930591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C6",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "0.05",
+   "unit": "USD"
+  },
+  "impressions": "5",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "10",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247857723990591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C2",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "0.26",
+   "unit": "USD"
+  },
+  "impressions": "11",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "23.64",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247857723940591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C7",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "6.05",
+   "unit": "USD"
+  },
+  "impressions": "49",
+  "clicks": "3",
+  "ctr": "6.12%",
+  "cpc": {
+   "value": "2.02",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "123.47",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "3",
+  "outbound_clicks_ctr": "6.122449",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "6.122449",
+  "cost_per_link_click": {
+   "value": "2.02",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857698150591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C4",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "0.1",
+   "unit": "USD"
+  },
+  "impressions": "4",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "25",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247857723980591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C1",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.49",
+   "unit": "USD"
+  },
+  "impressions": "20",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "74.5",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247857723950591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C8",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.56",
+   "unit": "USD"
+  },
+  "impressions": "19",
+  "clicks": "1",
+  "ctr": "5.26%",
+  "cpc": {
+   "value": "1.56",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "82.11",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "5.263158",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "5.263158",
+  "cost_per_link_click": {
+   "value": "1.56",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857724000591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C3",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "impressions": "3",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247857723920591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C5",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "16.02",
+   "unit": "USD"
+  },
+  "impressions": "167",
+  "clicks": "11",
+  "ctr": "6.59%",
+  "cpc": {
+   "value": "1.46",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "95.93",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "8",
+  "outbound_clicks_ctr": "4.790419",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "8",
+  "website_ctr": "4.790419",
+  "cost_per_link_click": {
+   "value": "2",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857723960591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C9",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "2.21",
+   "unit": "USD"
+  },
+  "impressions": "21",
+  "clicks": "1",
+  "ctr": "4.76%",
+  "cpc": {
+   "value": "2.21",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "105.24",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247857723970591",
+  "name": "S283 - SP DIRECT - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None_C10",
+  "adset_id": "120247857698140591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-04T22:55:53-0400",
+  "adset_name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "31.65",
+   "unit": "USD"
+  },
+  "impressions": "284",
+  "clicks": "13",
+  "ctr": "4.58%",
+  "cpc": {
+   "value": "2.43",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "111.44",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "11",
+  "outbound_clicks_ctr": "3.873239",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "11",
+  "website_ctr": "3.873239",
+  "cost_per_link_click": {
+   "value": "2.88",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247827790140591",
+  "name": "S234 - PG18 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None_C2",
+  "adset_id": "120247827501390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:06:44-0400",
+  "adset_name": "S234 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "5.23",
+   "unit": "USD"
+  },
+  "impressions": "138",
+  "clicks": "2",
+  "ctr": "1.45%",
+  "cpc": {
+   "value": "2.62",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "37.9",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "1.449275",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "1.449275",
+  "cost_per_link_click": {
+   "value": "2.62",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247827501380591",
+  "name": "S234 - PG18 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None_C1",
+  "adset_id": "120247827501390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:06:44-0400",
+  "adset_name": "S234 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "187.19",
+   "unit": "USD"
+  },
+  "impressions": "2995",
+  "clicks": "99",
+  "ctr": "3.31%",
+  "cpc": {
+   "value": "1.89",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "62.5",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "46.8",
+   "unit": "USD"
+  },
+  "outbound_clicks": "85",
+  "outbound_clicks_ctr": "2.838063",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "0.99984",
+  "omni_purchase_values": {
+   "value": "187.16",
+   "unit": "USD"
+  },
+  "link_click": "85",
+  "website_ctr": "2.838063",
+  "cost_per_link_click": {
+   "value": "2.2",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247827790150591",
+  "name": "S234 - PG18 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None_C3",
+  "adset_id": "120247827501390591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:06:44-0400",
+  "adset_name": "S234 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "6.97",
+   "unit": "USD"
+  },
+  "impressions": "162",
+  "clicks": "4",
+  "ctr": "2.47%",
+  "cpc": {
+   "value": "1.74",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "43.02",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "2.469136",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "2.469136",
+  "cost_per_link_click": {
+   "value": "1.74",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247828858650591",
+  "name": "S021 - 7R - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF - V3",
+  "adset_id": "120247828730080591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:22:50-0400",
+  "adset_name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "amount_spent": {
+   "value": "0.08",
+   "unit": "USD"
+  },
+  "impressions": "1",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "80",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247828730090591",
+  "name": "S021 - 7R - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF - V2",
+  "adset_id": "120247828730080591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:22:50-0400",
+  "adset_name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "amount_spent": {
+   "value": "0.68",
+   "unit": "USD"
+  },
+  "impressions": "15",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "45.33",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247828884400591",
+  "name": "S021 - COMP - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF - V2",
+  "adset_id": "120247828730080591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:22:50-0400",
+  "adset_name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "amount_spent": {
+   "value": "3.2",
+   "unit": "USD"
+  },
+  "impressions": "32",
+  "clicks": "1",
+  "ctr": "3.13%",
+  "cpc": {
+   "value": "3.2",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "100",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "3.125",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "3.125",
+  "cost_per_link_click": {
+   "value": "3.2",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247828884410591",
+  "name": "S021 - COMP - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF - V1",
+  "adset_id": "120247828730080591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:22:50-0400",
+  "adset_name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "amount_spent": {
+   "value": "152.23",
+   "unit": "USD"
+  },
+  "impressions": "1789",
+  "clicks": "115",
+  "ctr": "6.43%",
+  "cpc": {
+   "value": "1.32",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "85.09",
+   "unit": "USD"
+  },
+  "omni_purchase": "3",
+  "cost_per_omni_purchase": {
+   "value": "50.74",
+   "unit": "USD"
+  },
+  "outbound_clicks": "99",
+  "outbound_clicks_ctr": "5.533818",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.774158",
+  "omni_purchase_values": {
+   "value": "117.85",
+   "unit": "USD"
+  },
+  "link_click": "99",
+  "website_ctr": "5.533818",
+  "cost_per_link_click": {
+   "value": "1.54",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247828858660591",
+  "name": "S021 - 7R - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF - V1",
+  "adset_id": "120247828730080591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:22:50-0400",
+  "adset_name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "amount_spent": {
+   "value": "1.68",
+   "unit": "USD"
+  },
+  "impressions": "24",
+  "clicks": "4",
+  "ctr": "16.67%",
+  "cpc": {
+   "value": "0.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "70",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "3",
+  "outbound_clicks_ctr": "12.5",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "12.5",
+  "cost_per_link_click": {
+   "value": "0.56",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247828884420591",
+  "name": "S021 - COMP - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF - V3",
+  "adset_id": "120247828730080591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-02T05:22:50-0400",
+  "adset_name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "amount_spent": {
+   "value": "0.47",
+   "unit": "USD"
+  },
+  "impressions": "10",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "47",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247782342310591",
+  "name": "S257 - OG - V1 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "adset_id": "120247782212520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-29T05:06:32-0400",
+  "adset_name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "amount_spent": {
+   "value": "8.54",
+   "unit": "USD"
+  },
+  "impressions": "104",
+  "clicks": "2",
+  "ctr": "1.92%",
+  "cpc": {
+   "value": "4.27",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "82.12",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "1.923077",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "1.923077",
+  "cost_per_link_click": {
+   "value": "4.27",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247782299660591",
+  "name": "S257 - SP DIRECT - V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "adset_id": "120247782212520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-29T05:04:33-0400",
+  "adset_name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "amount_spent": {
+   "value": "107.71",
+   "unit": "USD"
+  },
+  "impressions": "1168",
+  "clicks": "51",
+  "ctr": "4.37%",
+  "cpc": {
+   "value": "2.11",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "92.22",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "107.71",
+   "unit": "USD"
+  },
+  "outbound_clicks": "36",
+  "outbound_clicks_ctr": "3.082192",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.463745",
+  "omni_purchase_values": {
+   "value": "49.95",
+   "unit": "USD"
+  },
+  "link_click": "38",
+  "website_ctr": "3.253425",
+  "cost_per_link_click": {
+   "value": "2.83",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247782342320591",
+  "name": "S257 - OG - V2 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "adset_id": "120247782212520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-29T05:06:32-0400",
+  "adset_name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "amount_spent": {
+   "value": "35.45",
+   "unit": "USD"
+  },
+  "impressions": "400",
+  "clicks": "17",
+  "ctr": "4.25%",
+  "cpc": {
+   "value": "2.09",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "88.63",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "17",
+  "outbound_clicks_ctr": "4.25",
+  "omni_add_to_cart": "1",
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "17",
+  "website_ctr": "4.25",
+  "cost_per_link_click": {
+   "value": "2.09",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247782212510591",
+  "name": "S257 - SP DIRECT - V1 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "adset_id": "120247782212520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-29T05:04:33-0400",
+  "adset_name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "amount_spent": {
+   "value": "0.77",
+   "unit": "USD"
+  },
+  "impressions": "8",
+  "clicks": "1",
+  "ctr": "12.50%",
+  "cpc": {
+   "value": "0.77",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "96.25",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120247782299650591",
+  "name": "S257 - SP DIRECT - V2 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "adset_id": "120247782212520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-29T05:04:33-0400",
+  "adset_name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "amount_spent": {
+   "value": "22.21",
+   "unit": "USD"
+  },
+  "impressions": "255",
+  "clicks": "8",
+  "ctr": "3.14%",
+  "cpc": {
+   "value": "2.78",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "87.1",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "11.11",
+   "unit": "USD"
+  },
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "1.568627",
+  "omni_add_to_cart": "3",
+  "purchase_roas": "5.124719",
+  "omni_purchase_values": {
+   "value": "113.82",
+   "unit": "USD"
+  },
+  "link_click": "6",
+  "website_ctr": "2.352941",
+  "cost_per_link_click": {
+   "value": "3.7",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247782342300591",
+  "name": "S257 - OG - V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "adset_id": "120247782212520591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-29T05:06:32-0400",
+  "adset_name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "amount_spent": {
+   "value": "52.4",
+   "unit": "USD"
+  },
+  "impressions": "527",
+  "clicks": "29",
+  "ctr": "5.50%",
+  "cpc": {
+   "value": "1.81",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "99.43",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "52.4",
+   "unit": "USD"
+  },
+  "outbound_clicks": "18",
+  "outbound_clicks_ctr": "3.41556",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.523855",
+  "omni_purchase_values": {
+   "value": "79.85",
+   "unit": "USD"
+  },
+  "link_click": "17",
+  "website_ctr": "3.225806",
+  "cost_per_link_click": {
+   "value": "3.08",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247766853210591",
+  "name": "S112 - SP DIRECT - V1 - Video - Cream - Jurre Branderhorst - Wasif Work - the_cycle - grandmothers_60_75 - lipid_deficit - lipid_replenishment_matrix - Problem Aware - VOBR - Iteration - None",
+  "adset_id": "120247766853220591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-09-28T06:10:12-0400",
+  "adset_name": "S112 - V1 - Video - Cream - Jurre Branderhorst - Wasif Work - the_cycle - grandmothers_60_75 - lipid_deficit - lipid_replenishment_matrix - Problem Aware - VOBR - Iteration - None",
+  "amount_spent": {
+   "value": "305.52",
+   "unit": "USD"
+  },
+  "impressions": "2540",
+  "clicks": "190",
+  "ctr": "7.48%",
+  "cpc": {
+   "value": "1.61",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "120.28",
+   "unit": "USD"
+  },
+  "omni_purchase": "7",
+  "cost_per_omni_purchase": {
+   "value": "43.65",
+   "unit": "USD"
+  },
+  "outbound_clicks": "135",
+  "outbound_clicks_ctr": "5.314961",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.232162",
+  "omni_purchase_values": {
+   "value": "376.45",
+   "unit": "USD"
+  },
+  "link_click": "135",
+  "website_ctr": "5.314961",
+  "cost_per_link_click": {
+   "value": "2.26",
+   "unit": "USD"
+  }
+ }
+]

@@ -1,0 +1,278 @@
+[
+ {
+  "id": "120247827501390591",
+  "name": "S234 - C1-C3 - Image - Stick - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-02T05:06:42-0400",
+  "amount_spent": {
+   "value": "199.39",
+   "unit": "USD"
+  },
+  "impressions": "3295",
+  "clicks": "105",
+  "ctr": "3.19%",
+  "cpc": {
+   "value": "1.9",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "60.51",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "49.85",
+   "unit": "USD"
+  },
+  "outbound_clicks": "91",
+  "outbound_clicks_ctr": "2.76176",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "0.938663",
+  "omni_purchase_values": {
+   "value": "187.16",
+   "unit": "USD"
+  },
+  "link_click": "91",
+  "website_ctr": "2.76176",
+  "cost_per_link_click": {
+   "value": "2.19",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247828730080591",
+  "name": "S021 - Iteration - UGC - Stick - Aris - Wasif Work - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Problem Aware - NA - Iteration - IT-OF",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-02T05:22:49-0400",
+  "amount_spent": {
+   "value": "158.34",
+   "unit": "USD"
+  },
+  "impressions": "1871",
+  "clicks": "120",
+  "ctr": "6.41%",
+  "cpc": {
+   "value": "1.32",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "84.63",
+   "unit": "USD"
+  },
+  "omni_purchase": "3",
+  "cost_per_omni_purchase": {
+   "value": "52.78",
+   "unit": "USD"
+  },
+  "outbound_clicks": "103",
+  "outbound_clicks_ctr": "5.505078",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.744284",
+  "omni_purchase_values": {
+   "value": "117.85",
+   "unit": "USD"
+  },
+  "link_click": "103",
+  "website_ctr": "5.505078",
+  "cost_per_link_click": {
+   "value": "1.54",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247766853220591",
+  "name": "S112 - V1 - Video - Cream - Jurre Branderhorst - Wasif Work - the_cycle - grandmothers_60_75 - lipid_deficit - lipid_replenishment_matrix - Problem Aware - VOBR - Iteration - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-28T06:10:10-0400",
+  "amount_spent": {
+   "value": "305.52",
+   "unit": "USD"
+  },
+  "impressions": "2540",
+  "clicks": "190",
+  "ctr": "7.48%",
+  "cpc": {
+   "value": "1.61",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "120.28",
+   "unit": "USD"
+  },
+  "omni_purchase": "7",
+  "cost_per_omni_purchase": {
+   "value": "43.65",
+   "unit": "USD"
+  },
+  "outbound_clicks": "135",
+  "outbound_clicks_ctr": "5.314961",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.232162",
+  "omni_purchase_values": {
+   "value": "376.45",
+   "unit": "USD"
+  },
+  "link_click": "135",
+  "website_ctr": "5.314961",
+  "cost_per_link_click": {
+   "value": "2.26",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857802970591",
+  "name": "S291 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Static - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-04T23:02:55-0400",
+  "amount_spent": {
+   "value": "50.4",
+   "unit": "USD"
+  },
+  "impressions": "801",
+  "clicks": "52",
+  "ctr": "6.49%",
+  "cpc": {
+   "value": "0.97",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "62.92",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "41",
+  "outbound_clicks_ctr": "5.118602",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "41",
+  "website_ctr": "5.118602",
+  "cost_per_link_click": {
+   "value": "1.23",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857698140591",
+  "name": "S283 - C1-C10 - Image - Cream - Jurre Branderhorst - Aldrin Vitug - offer - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Most Aware - Static - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-04T22:55:51-0400",
+  "amount_spent": {
+   "value": "59.39",
+   "unit": "USD"
+  },
+  "impressions": "583",
+  "clicks": "29",
+  "ctr": "4.97%",
+  "cpc": {
+   "value": "2.05",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "101.87",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "23",
+  "outbound_clicks_ctr": "3.945111",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "23",
+  "website_ctr": "3.945111",
+  "cost_per_link_click": {
+   "value": "2.58",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247782212520591",
+  "name": "S257 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - Avatar - thin_skin_threshold - UMS - Product Aware - Video - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-29T05:04:31-0400",
+  "amount_spent": {
+   "value": "227.08",
+   "unit": "USD"
+  },
+  "impressions": "2462",
+  "clicks": "108",
+  "ctr": "4.39%",
+  "cpc": {
+   "value": "2.1",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "92.23",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "56.77",
+   "unit": "USD"
+  },
+  "outbound_clicks": "77",
+  "outbound_clicks_ctr": "3.127539",
+  "omni_add_to_cart": "4",
+  "purchase_roas": "1.072838",
+  "omni_purchase_values": {
+   "value": "243.62",
+   "unit": "USD"
+  },
+  "link_click": "80",
+  "website_ctr": "3.249391",
+  "cost_per_link_click": {
+   "value": "2.84",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247859021520591",
+  "name": "S197 - V1-V3 - UGC - Cream - Jurre Branderhorst - Aldrin Vitug - the_cycle - woman_45plus - single_target_trap - UMS - Problem Aware - THAI - Ideation - IT-ACT",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-05T01:07:21-0400",
+  "amount_spent": {
+   "value": "59.91",
+   "unit": "USD"
+  },
+  "impressions": "610",
+  "clicks": "34",
+  "ctr": "5.57%",
+  "cpc": {
+   "value": "1.76",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "98.21",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "28",
+  "outbound_clicks_ctr": "4.590164",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "30",
+  "website_ctr": "4.918033",
+  "cost_per_link_click": {
+   "value": "2",
+   "unit": "USD"
+  }
+ }
+]
