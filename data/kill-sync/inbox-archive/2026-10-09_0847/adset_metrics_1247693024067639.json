@@ -1,0 +1,590 @@
+[
+ {
+  "id": "120247877112770591",
+  "name": "S262 - C1-C3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-06T05:48:21-0400",
+  "amount_spent": {
+   "value": "94.8",
+   "unit": "USD"
+  },
+  "impressions": "1401",
+  "clicks": "194",
+  "ctr": "13.85%",
+  "cpc": {
+   "value": "0.49",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "67.67",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "94.8",
+   "unit": "USD"
+  },
+  "outbound_clicks": "71",
+  "outbound_clicks_ctr": "5.067809",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.621835",
+  "omni_purchase_values": {
+   "value": "58.95",
+   "unit": "USD"
+  },
+  "link_click": "71",
+  "website_ctr": "5.067809",
+  "cost_per_link_click": {
+   "value": "1.34",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247873865140591",
+  "name": "S138 - SCRIPT 1 - V1-V3 - UGC - Cream - Jurre Branderhorst - Wasif Work - the_cycle - woman_45plus - treatment_sabotage_loop - UMS - Problem Aware - Video - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-06T02:15:25-0400",
+  "amount_spent": {
+   "value": "77.93",
+   "unit": "USD"
+  },
+  "impressions": "444",
+  "clicks": "29",
+  "ctr": "6.53%",
+  "cpc": {
+   "value": "2.69",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "175.52",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "38.97",
+   "unit": "USD"
+  },
+  "outbound_clicks": "26",
+  "outbound_clicks_ctr": "5.855856",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.287694",
+  "omni_purchase_values": {
+   "value": "100.35",
+   "unit": "USD"
+  },
+  "link_click": "26",
+  "website_ctr": "5.855856",
+  "cost_per_link_click": {
+   "value": "3",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247872468550591",
+  "name": "S294 - C1-C4 - Image - Cream - Aris - Don Elmore Suing - rash - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-05T23:40:52-0400",
+  "amount_spent": {
+   "value": "98.65",
+   "unit": "USD"
+  },
+  "impressions": "2888",
+  "clicks": "93",
+  "ctr": "3.22%",
+  "cpc": {
+   "value": "1.06",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "34.16",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "49.33",
+   "unit": "USD"
+  },
+  "outbound_clicks": "84",
+  "outbound_clicks_ctr": "2.908587",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "1.052813",
+  "omni_purchase_values": {
+   "value": "103.86",
+   "unit": "USD"
+  },
+  "link_click": "84",
+  "website_ctr": "2.908587",
+  "cost_per_link_click": {
+   "value": "1.17",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247872397360591",
+  "name": "S295 - C1-C3 - GIF - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - GIF - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-05T23:35:34-0400",
+  "amount_spent": {
+   "value": "65.08",
+   "unit": "USD"
+  },
+  "impressions": "947",
+  "clicks": "79",
+  "ctr": "8.34%",
+  "cpc": {
+   "value": "0.82",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "68.72",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "65.08",
+   "unit": "USD"
+  },
+  "outbound_clicks": "70",
+  "outbound_clicks_ctr": "7.391763",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "0.859711",
+  "omni_purchase_values": {
+   "value": "55.95",
+   "unit": "USD"
+  },
+  "link_click": "74",
+  "website_ctr": "7.81415",
+  "cost_per_link_click": {
+   "value": "0.88",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247869982350591",
+  "name": "S166 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-05T17:04:32-0400",
+  "amount_spent": {
+   "value": "68.08",
+   "unit": "USD"
+  },
+  "impressions": "999",
+  "clicks": "217",
+  "ctr": "21.72%",
+  "cpc": {
+   "value": "0.31",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "68.15",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "68.08",
+   "unit": "USD"
+  },
+  "outbound_clicks": "47",
+  "outbound_clicks_ctr": "4.704705",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.68963",
+  "omni_purchase_values": {
+   "value": "46.95",
+   "unit": "USD"
+  },
+  "link_click": "47",
+  "website_ctr": "4.704705",
+  "cost_per_link_click": {
+   "value": "1.45",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247858594170591",
+  "name": "S265 - V1-V4 - UGC - Cream - Aris - Wasif Work - not_your_fault - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Video - Iteration - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-05T00:49:08-0400",
+  "amount_spent": {
+   "value": "129.93",
+   "unit": "USD"
+  },
+  "impressions": "1271",
+  "clicks": "97",
+  "ctr": "7.63%",
+  "cpc": {
+   "value": "1.34",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "102.23",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "32.48",
+   "unit": "USD"
+  },
+  "outbound_clicks": "68",
+  "outbound_clicks_ctr": "5.350118",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "1.268375",
+  "omni_purchase_values": {
+   "value": "164.8",
+   "unit": "USD"
+  },
+  "link_click": "71",
+  "website_ctr": "5.586153",
+  "cost_per_link_click": {
+   "value": "1.83",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247857617880591",
+  "name": "S256 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - Avatar - UMP - UMS - Solution Aware - Static - Iteration - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-04T22:45:13-0400",
+  "amount_spent": {
+   "value": "129.74",
+   "unit": "USD"
+  },
+  "impressions": "3380",
+  "clicks": "57",
+  "ctr": "1.69%",
+  "cpc": {
+   "value": "2.28",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "38.38",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "32.44",
+   "unit": "USD"
+  },
+  "outbound_clicks": "48",
+  "outbound_clicks_ctr": "1.420118",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "1.226761",
+  "omni_purchase_values": {
+   "value": "159.16",
+   "unit": "USD"
+  },
+  "link_click": "48",
+  "website_ctr": "1.420118",
+  "cost_per_link_click": {
+   "value": "2.7",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247796009250591",
+  "name": "S258 V1 - C1-C4 - Image - Cream - Aris - Don Elmore Suing - the_cycle - Avatar - thin_skin_threshold - UMS - Solution Aware - Static - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-30T03:44:01-0400",
+  "amount_spent": {
+   "value": "464.21",
+   "unit": "USD"
+  },
+  "impressions": "5666",
+  "clicks": "195",
+  "ctr": "3.44%",
+  "cpc": {
+   "value": "2.38",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "81.93",
+   "unit": "USD"
+  },
+  "omni_purchase": "11",
+  "cost_per_omni_purchase": {
+   "value": "42.2",
+   "unit": "USD"
+  },
+  "outbound_clicks": "148",
+  "outbound_clicks_ctr": "2.612072",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "1.232438",
+  "omni_purchase_values": {
+   "value": "572.11",
+   "unit": "USD"
+  },
+  "link_click": "148",
+  "website_ctr": "2.612072",
+  "cost_per_link_click": {
+   "value": "3.14",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247793044150591",
+  "name": "S275 - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - smell - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - THAI - Imitation - IT-ANGL",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-30T00:00:53-0400",
+  "amount_spent": {
+   "value": "490.04",
+   "unit": "USD"
+  },
+  "impressions": "4068",
+  "clicks": "288",
+  "ctr": "7.08%",
+  "cpc": {
+   "value": "1.7",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "120.46",
+   "unit": "USD"
+  },
+  "omni_purchase": "9",
+  "cost_per_omni_purchase": {
+   "value": "54.45",
+   "unit": "USD"
+  },
+  "outbound_clicks": "247",
+  "outbound_clicks_ctr": "6.07178",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "1.009407",
+  "omni_purchase_values": {
+   "value": "494.65",
+   "unit": "USD"
+  },
+  "link_click": "248",
+  "website_ctr": "6.096362",
+  "cost_per_link_click": {
+   "value": "1.98",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247792698080591",
+  "name": "S276 - V1-V5 - UGC - Cream - Aris - Wasif - smell - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - Video - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-29T23:34:03-0400",
+  "amount_spent": {
+   "value": "559.87",
+   "unit": "USD"
+  },
+  "impressions": "3251",
+  "clicks": "309",
+  "ctr": "9.50%",
+  "cpc": {
+   "value": "1.81",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "172.21",
+   "unit": "USD"
+  },
+  "omni_purchase": "10",
+  "cost_per_omni_purchase": {
+   "value": "55.99",
+   "unit": "USD"
+  },
+  "outbound_clicks": "250",
+  "outbound_clicks_ctr": "7.689942",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "1.015414",
+  "omni_purchase_values": {
+   "value": "568.5",
+   "unit": "USD"
+  },
+  "link_click": "250",
+  "website_ctr": "7.689942",
+  "cost_per_link_click": {
+   "value": "2.24",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247782924890591",
+  "name": "S265 - V1-V3 - Video - Cream - Aris - Wasif Work - the_cycle - woman_45plus - thin_skin_threshold - UMS - Problem Aware - Video - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-29T05:54:37-0400",
+  "amount_spent": {
+   "value": "613.99",
+   "unit": "USD"
+  },
+  "impressions": "7195",
+  "clicks": "712",
+  "ctr": "9.90%",
+  "cpc": {
+   "value": "0.86",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "85.34",
+   "unit": "USD"
+  },
+  "omni_purchase": "21",
+  "cost_per_omni_purchase": {
+   "value": "29.24",
+   "unit": "USD"
+  },
+  "outbound_clicks": "606",
+  "outbound_clicks_ctr": "8.422516",
+  "omni_add_to_cart": "10",
+  "purchase_roas": "1.728367",
+  "omni_purchase_values": {
+   "value": "1061.2",
+   "unit": "USD"
+  },
+  "link_click": "622",
+  "website_ctr": "8.644892",
+  "cost_per_link_click": {
+   "value": "0.99",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247780295660591",
+  "name": "S263 - C1-C4 - Image - Cream - Aris - Don Elmore Suing - shame - woman_45plus - single_target_trap - UMS - Product Aware - Static - Ideation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-29T02:41:49-0400",
+  "amount_spent": {
+   "value": "361.09",
+   "unit": "USD"
+  },
+  "impressions": "4610",
+  "clicks": "173",
+  "ctr": "3.75%",
+  "cpc": {
+   "value": "2.09",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "78.33",
+   "unit": "USD"
+  },
+  "omni_purchase": "8",
+  "cost_per_omni_purchase": {
+   "value": "45.14",
+   "unit": "USD"
+  },
+  "outbound_clicks": "136",
+  "outbound_clicks_ctr": "2.950108",
+  "omni_add_to_cart": "5",
+  "purchase_roas": "1.043923",
+  "omni_purchase_values": {
+   "value": "376.95",
+   "unit": "USD"
+  },
+  "link_click": "136",
+  "website_ctr": "2.950108",
+  "cost_per_link_click": {
+   "value": "2.66",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247762449360591",
+  "name": "S267 V2 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-27T23:38:23-0400",
+  "amount_spent": {
+   "value": "375.27",
+   "unit": "USD"
+  },
+  "impressions": "5973",
+  "clicks": "351",
+  "ctr": "5.88%",
+  "cpc": {
+   "value": "1.07",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "62.83",
+   "unit": "USD"
+  },
+  "omni_purchase": "11",
+  "cost_per_omni_purchase": {
+   "value": "34.12",
+   "unit": "USD"
+  },
+  "outbound_clicks": "275",
+  "outbound_clicks_ctr": "4.604052",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "1.366216",
+  "omni_purchase_values": {
+   "value": "512.7",
+   "unit": "USD"
+  },
+  "link_click": "275",
+  "website_ctr": "4.604052",
+  "cost_per_link_click": {
+   "value": "1.36",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247746233310591",
+  "name": "S267 V3 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - rash - Avatar - UMP - UMS - Problem Aware - Static - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-09-26T10:40:19-0400",
+  "amount_spent": {
+   "value": "223.87",
+   "unit": "USD"
+  },
+  "impressions": "4219",
+  "clicks": "207",
+  "ctr": "4.91%",
+  "cpc": {
+   "value": "1.08",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "53.06",
+   "unit": "USD"
+  },
+  "omni_purchase": "4",
+  "cost_per_omni_purchase": {
+   "value": "55.97",
+   "unit": "USD"
+  },
+  "outbound_clicks": "160",
+  "outbound_clicks_ctr": "3.792368",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.798678",
+  "omni_purchase_values": {
+   "value": "178.8",
+   "unit": "USD"
+  },
+  "link_click": "160",
+  "website_ctr": "3.792368",
+  "cost_per_link_click": {
+   "value": "1.4",
+   "unit": "USD"
+  }
+ }
+]
