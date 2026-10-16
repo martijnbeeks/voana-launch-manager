@@ -171,9 +171,16 @@ has fewer copy docs than images (typically "AD COPY 1" long + "AD COPY 2" short)
 give every ad **both** texts as Meta "multiple primary text" options:
 `creative.asset_feed_spec = {"optimization_type":"DEGREES_OF_FREEDOM","bodies":[{"text":…},{"text":…}]}`
 next to a normal `object_story_spec.link_data` (pass the whole creative JSON to
-`ads_create_ad`; `ads_create_creative` cannot express this). Body = the full doc
-including its bold title line, paragraphs separated by a `⠀` spacer line;
-headline = the title line of AD COPY 1.
+`ads_create_ad`; `ads_create_creative` cannot express this).
+**Title line → headline, never in the body (Martijn, 2026-10-16):** each copy
+doc opens with a bold title line ("Underboob Rash Keeps Returning?"). That line
+is the ad's **headline**; the **primary text is the doc without it** — the
+paragraphs after the title, separated by a `⠀` spacer line. Before 2026-10-16
+the body kept the title and the headline repeated it, so every ad showed the
+same line twice. One headline per copy doc, in the same order as the bodies
+(AD COPY 1's title first), so `headlines[i]` is the title of `primary_texts[i]`.
+A doc without a bold first line gets no headline from it: use the hook instead
+and keep the body whole.
 
 **Ad spec (fixed):**
 - Video page-post ads with linked Instagram media; ads named `1`, `2`, `3`, …
@@ -463,7 +470,9 @@ or a schedule. **No Meta tool is called in a sync.**
      in "ClickUp pipeline" clearly applies and say why in `agent_notes`;
      otherwise leave `page_name` empty.
    - Drive folder: one ad per creative file; every primary text and headline from
-     the copy docs, complete (the copy pairing rule applies);
+     the copy docs, complete (the copy pairing rule applies). The bold title
+     line of a doc is its headline and is **removed** from the primary text —
+     see "Title line → headline" in "Launch template";
    - stage each creative on the CDN, where both Meta and the dashboard can fetch
      it, and put the URL it prints in `media_url`:
      `python scripts/upload_to_cdn.py --file <file> --key launches/<batch>/<name>`

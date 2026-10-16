@@ -34,6 +34,9 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   shows it as "Landing page?" on the board and a "Which landing page?" callout on the batch.
 - What you cannot find, leave **empty** — landing page, Facebook page. The reviewer fills it in on
   the dashboard; a guess that looks filled in is worse than a blank.
+- Copy: each copy doc's bold **title line is the headline** and is **not** part of the primary
+  text — the body is the paragraphs after it. The same line in both fields shows twice in the ad
+  (seen 2026-10-16). `headlines[i]` belongs to `primary_texts[i]`, in doc order.
 - Creatives go to the CDN: `python3 -m venv .venv && .venv/bin/pip install -q -r
   requirements-launch.txt`, then `.venv/bin/python scripts/upload_to_cdn.py --file <file> --key
   launches/<batch>/<name>` per creative, and the printed URL becomes `media_url`. The `R2_*` values
