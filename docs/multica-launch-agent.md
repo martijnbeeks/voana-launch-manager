@@ -83,6 +83,15 @@ and a `revision`. Those two values are a cross-check, nothing more.
      the work list** (`CLAUDE.md` → "Launching an approved batch"), then activate them. A reviewer
      may have changed page, landing page or budget on the dashboard: never substitute ClickUp's or
      your own.
+   - **Draft mode**: when a create answers `status=DRAFT`, the Meta connector is staging the objects
+     in the account's Ads Manager draft, and a plain activate does nothing. Publish **only the
+     batch's own ids**: read them with `ads_get_ad_entities` (`object_state: "draft"`,
+     `object_ids: [<adset_id>]`), then `ads_activate_entity` with `entity_id` = the ad set,
+     `entity_type: "ad_set"`, `object_ids` = the ad set + its ads, `publish_as_active: true`.
+     **The campaign is never listed and never activated** — it is live and shared with other
+     batches, and a publish only touches the ids you list. Then confirm live as in step 5; an ad
+     still PAUSED gets a plain ad-level activate. Full procedure: `CLAUDE.md` → "Meta draft mode".
+     Do not stop for this — it is covered.
 5. Confirm in Meta with **one** read of the ad set and its ads that each is ACTIVE (or scheduled by
    its start time, without an error). Then
    `python3 scripts/launch_draft.py result <draft_key> launched --adset-id <id> --ads <ads.json>`.

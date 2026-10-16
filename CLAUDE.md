@@ -505,7 +505,9 @@ Then, in order:
    the batch links to a page it names, `result <draft_key> failed --error
    "landing page <url> is not live: <detail>"` and stop — build nothing.
 1. `result <draft_key> launching`
-2. Create the ad set, then each ad, and activate them.
+2. Create the ad set, then each ad, and activate them. **If the create calls
+   answer `status=DRAFT`, follow "Meta draft mode" below instead of a plain
+   activate** — the objects are not in Meta yet.
 3. **Confirm in Meta**: read the ad set and its ads once and check each is
    ACTIVE (or scheduled by its `start_time`, with no error). Only then:
 4. `result <draft_key> launched --adset-id <id> --ads <ads.json>` — the file lists
@@ -516,6 +518,42 @@ Then, in order:
 Any Meta error, or an ad that is not active after the read: `result <draft_key>
 failed --error "<Meta's message>"`, leave ClickUp on `ready for launch`, and say
 exactly which entities were created so a person can decide what to do with them.
+
+**Meta draft mode (since 2026-10-16).** The Meta MCP on the runtime is in
+*draft mode*: a setting on Meta's side that no caller can switch off.
+`ads_create_ad_set` and `ads_create_ad` then do not create anything — they
+*stage* the objects in the account's Ads Manager draft and answer
+`status=DRAFT` with an allocated id. On 2026-10-16 the first launch under it
+stopped before any Meta call because the tool text says "publish that
+campaign", and the campaign (ABO: Test Campaign USA V2) is shared with other
+batches. That reading was too cautious: a publish is scoped to the ids you
+list, and a parent that is already live is never listed. The campaign is not
+touched. Do this:
+1. Create the ad set, then each ad, as usual; keep every returned id. A create
+   that answers with `active_errors` is a failure: `result <draft_key> failed`
+   with that message, publish nothing.
+2. `ads_get_ad_entities` with `object_state: "draft"` and
+   `object_ids: ["<adset_id>"]` → every object staged under the ad set. Take the
+   `ad_object_id` of the ad set and of each ad; the count must equal the ads in
+   the work list, else fail.
+3. `ads_activate_entity` with `entity_id: "<adset_id>"`, `entity_type: "ad_set"`,
+   `object_ids: ["<adset_id>", "<ad id>", …]` (every id from step 2, nothing
+   else), `publish_as_active: true`, `ignore_validation_errors: false`. **Never
+   put the campaign id in `object_ids` and never call `ads_activate_entity` on
+   the campaign** — it is live and shared; the tool lists a parent only when the
+   parent itself is still unpublished.
+4. `PUBLISHING` in the answer means "handed to the publisher". Read the ad set
+   and its ads back live (`ads_get_ad_entities`, default `object_state`). The ad
+   set must be ACTIVE; an ad that reads PAUSED is activated one by one with a
+   plain `ads_activate_entity` (`entity_type: "ad"`, no `object_ids`) — that is
+   step 2 of the normal flow, just after the publish.
+5. A rejected publish (validation error) → `result <draft_key> failed` with the
+   message verbatim, and say that the objects are still in the account's draft,
+   where a person can see them in Ads Manager and discard or fix them.
+Not in draft mode (the create answers a PAUSED object with a live id) → the
+normal flow, unchanged. A `built` batch whose ids are only found with
+`object_state: "draft"` is published the same way (step 2 onward) instead of
+activated.
 
 ### Preparing a batch
 1. Build the ad set and ads in Meta as usual, PAUSED, with the scheduled
