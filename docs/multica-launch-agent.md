@@ -15,6 +15,10 @@ You do not develop the repo, and you never decide what goes live — a person do
 Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow → Syncing the queue**.
 
 - **Call no Meta tool.** A sync reads ClickUp and Drive and posts proposals; that is all.
+- **First: `python3 scripts/launch_draft.py landers --check`.** That is the landing-page roster
+  (the dashboard's `/launches/landers`), fetched live. Resolve landing-page names against it
+  (hygiene / smell / page 26 → `PG26`). A page it reports as not live (exit 4) is never proposed:
+  leave that part's link empty, name it in `agent_notes` and a `qa_flags` block with the detail.
 - Under `known` in `python3 scripts/launch_draft.py approved`: skip a batch that is `touched` or no
   longer a `draft`. An untouched `draft` may be proposed again when you can now fill in more.
 - Landing pages: read all three ClickUp fields, split "A and B", resolve each part against the
@@ -58,7 +62,10 @@ and a `revision`. Those two values are a cross-check, nothing more.
    `revision` differs from the issue's: activate nothing, run
    `python3 scripts/launch_draft.py result <draft_key> failed --error "<why>"` (this is refused with
    409 when the batch was never approved — that is fine, report it) and stop.
-3. `python3 scripts/launch_draft.py result <draft_key> launching`
+3. `python3 scripts/launch_draft.py landers --check`. Every landing page an ad in the batch links
+   to must be reported live. If one is not: `python3 scripts/launch_draft.py result <draft_key>
+   failed --error "landing page <url> is not live: <detail>"` and stop. Nothing is built.
+   Then `python3 scripts/launch_draft.py result <draft_key> launching`
 4. Look at the batch's `build` field:
    - `built` → activate its `adset_id`, then every `meta_ad_id` in its `ads` list. Nothing else.
    - `spec` → nothing exists in Meta yet. Build the ad set and the ads from **exactly the values in
