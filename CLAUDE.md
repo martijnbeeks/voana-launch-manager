@@ -542,11 +542,24 @@ touched. Do this:
    put the campaign id in `object_ids` and never call `ads_activate_entity` on
    the campaign** — it is live and shared; the tool lists a parent only when the
    parent itself is still unpublished.
-4. `PUBLISHING` in the answer means "handed to the publisher". Read the ad set
-   and its ads back live (`ads_get_ad_entities`, default `object_state`). The ad
-   set must be ACTIVE; an ad that reads PAUSED is activated one by one with a
-   plain `ads_activate_entity` (`entity_type: "ad"`, no `object_ids`) — that is
-   step 2 of the normal flow, just after the publish.
+4. `PUBLISHING` in the answer means "handed to the publisher", which finishes
+   **afterwards** — this is not a failure and not yet a success. **Wait for
+   it.** Read the ad set live (`ads_get_ad_entities`, level `adset`, default
+   `object_state`) every 30 seconds for up to 10 minutes, until its
+   `effective_status` is no longer `IN_PROCESS` / `PUBLISHING`. Only then read
+   the ads. While the publisher runs, the ad ids answer *"The following
+   object_ids are not ad entities in the requested ad account"* — that means
+   "not published yet", never "they do not exist". On 2026-10-16 (S302) the
+   agent read back right after the publish, got exactly that, reported failed,
+   and every ad was ACTIVE a few minutes later. When the wait ends: the ad set
+   must be ACTIVE and every ad ACTIVE or `PENDING_REVIEW` (Meta's review is
+   normal); an ad that reads PAUSED is activated one by one with a plain
+   `ads_activate_entity` (`entity_type: "ad"`, no `object_ids`). If the ad set
+   is still `IN_PROCESS` after 10 minutes: `result <draft_key> failed --error
+   "published, still IN_PROCESS after 10 min: ad set <id>, ads <ids>"` — name
+   every id, because they exist and must not be built again. A `launched`
+   result may follow a `failed` one, so when a later run (or a person) finds
+   them live, report `launched` with the ids and finish the write-back.
 5. A rejected publish (validation error) → `result <draft_key> failed` with the
    message verbatim, and say that the objects are still in the account's draft,
    where a person can see them in Ads Manager and discard or fix them.

@@ -89,9 +89,13 @@ and a `revision`. Those two values are a cross-check, nothing more.
      `object_ids: [<adset_id>]`), then `ads_activate_entity` with `entity_id` = the ad set,
      `entity_type: "ad_set"`, `object_ids` = the ad set + its ads, `publish_as_active: true`.
      **The campaign is never listed and never activated** — it is live and shared with other
-     batches, and a publish only touches the ids you list. Then confirm live as in step 5; an ad
-     still PAUSED gets a plain ad-level activate. Full procedure: `CLAUDE.md` → "Meta draft mode".
-     Do not stop for this — it is covered.
+     batches, and a publish only touches the ids you list. `PUBLISHING` means the publisher is
+     still working: **poll the ad set every 30 s for up to 10 min** until `effective_status` is not
+     `IN_PROCESS`, and only then read the ads — before that the ad ids answer "not ad entities in
+     the requested ad account", which means not published yet, not missing (S302, 2026-10-16, was
+     reported failed that way with all ten ads live minutes later). Then confirm live as in step
+     5; `PENDING_REVIEW` is fine, an ad still PAUSED gets a plain ad-level activate. Full
+     procedure: `CLAUDE.md` → "Meta draft mode". Do not stop for this — it is covered.
 5. Confirm in Meta with **one** read of the ad set and its ads that each is ACTIVE (or scheduled by
    its start time, without an error). Then
    `python3 scripts/launch_draft.py result <draft_key> launched --adset-id <id> --ads <ads.json>`.
