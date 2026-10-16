@@ -1,0 +1,212 @@
+[
+ {
+  "id": "120247989452160591",
+  "name": "S327 - V1-V3 - UGC - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Solution Aware - THAI - Iteration - IT-ACT",
+  "campaign_id": "120247451142810591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-13T22:47:27-0400",
+  "amount_spent": {
+   "value": "75.38",
+   "unit": "USD"
+  },
+  "impressions": "1148",
+  "clicks": "110",
+  "ctr": "9.58%",
+  "cpc": {
+   "value": "0.69",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "65.66",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "75.38",
+   "unit": "USD"
+  },
+  "outbound_clicks": "101",
+  "outbound_clicks_ctr": "8.797909",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.900106",
+  "omni_purchase_values": {
+   "value": "67.85",
+   "unit": "USD"
+  },
+  "link_click": "101",
+  "website_ctr": "8.797909",
+  "cost_per_link_click": {
+   "value": "0.75",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247971942260591",
+  "name": "S152 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-13T00:50:58-0400",
+  "amount_spent": {
+   "value": "90.27",
+   "unit": "USD"
+  },
+  "impressions": "762",
+  "clicks": "166",
+  "ctr": "21.78%",
+  "cpc": {
+   "value": "0.54",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "118.46",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "45.14",
+   "unit": "USD"
+  },
+  "outbound_clicks": "33",
+  "outbound_clicks_ctr": "4.330709",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "1.558657",
+  "omni_purchase_values": {
+   "value": "140.7",
+   "unit": "USD"
+  },
+  "link_click": "33",
+  "website_ctr": "4.330709",
+  "cost_per_link_click": {
+   "value": "2.74",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247990963390591",
+  "name": "S333 - V1-V3 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-ACT",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-14T01:40:28-0400",
+  "amount_spent": {
+   "value": "54.55",
+   "unit": "USD"
+  },
+  "impressions": "769",
+  "clicks": "81",
+  "ctr": "10.53%",
+  "cpc": {
+   "value": "0.67",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "70.94",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "27.28",
+   "unit": "USD"
+  },
+  "outbound_clicks": "71",
+  "outbound_clicks_ctr": "9.23277",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.463795",
+  "omni_purchase_values": {
+   "value": "79.85",
+   "unit": "USD"
+  },
+  "link_click": "72",
+  "website_ctr": "9.362809",
+  "cost_per_link_click": {
+   "value": "0.76",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247990776810591",
+  "name": "S330 - V1-V3 - UGC - Cream - Aris - Wasif - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - Video - Iteration - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-14T01:20:23-0400",
+  "amount_spent": {
+   "value": "49.16",
+   "unit": "USD"
+  },
+  "impressions": "765",
+  "clicks": "55",
+  "ctr": "7.19%",
+  "cpc": {
+   "value": "0.89",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "64.26",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "49.16",
+   "unit": "USD"
+  },
+  "outbound_clicks": "48",
+  "outbound_clicks_ctr": "6.27451",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.609235",
+  "omni_purchase_values": {
+   "value": "29.95",
+   "unit": "USD"
+  },
+  "link_click": "49",
+  "website_ctr": "6.405229",
+  "cost_per_link_click": {
+   "value": "1",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120247989629690591",
+  "name": "S329 - V1-V3 - UGC - Cream - Aris - Wasif - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - Video - Iteration - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-14T00:54:51-0400",
+  "amount_spent": {
+   "value": "54.24",
+   "unit": "USD"
+  },
+  "impressions": "480",
+  "clicks": "50",
+  "ctr": "10.42%",
+  "cpc": {
+   "value": "1.08",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "113",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "54.24",
+   "unit": "USD"
+  },
+  "outbound_clicks": "45",
+  "outbound_clicks_ctr": "9.375",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.736541",
+  "omni_purchase_values": {
+   "value": "39.95",
+   "unit": "USD"
+  },
+  "link_click": "45",
+  "website_ctr": "9.375",
+  "cost_per_link_click": {
+   "value": "1.21",
+   "unit": "USD"
+  }
+ }
+]
