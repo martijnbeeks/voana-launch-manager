@@ -10,6 +10,8 @@ activate — exactly the Meta ids the dashboard hands back. Full flow: CLAUDE.md
 
   launch_draft.py submit draft.json     post (or replace) a draft for review
   launch_draft.py approved              the work list: approved + sent-back batches
+  launch_draft.py queue CODE [CODE …]   every batch code now on "ready for launch";
+        | --none                        the board is made to match (proposals only)
   launch_draft.py result KEY STATUS     report launching | launched | failed
         [--error TEXT] [--ads ads.json]
   launch_draft.py landers [--check] [--json]
@@ -105,6 +107,17 @@ def approved(env: dict) -> int:
     return 0
 
 
+def queue(env: dict, codes: list, none: bool) -> int:
+    # An empty queue has to be said on purpose: a ClickUp read that failed also
+    # yields no codes, and reporting that would clear the board.
+    if bool(codes) == none:
+        print("Give the batch codes on ready for launch, or --none when there are none.", file=sys.stderr)
+        return 2
+    out = call(env, "POST", "/api/launches/queue", {"batch_codes": codes, "empty": none})
+    print("left the queue: " + (", ".join(out.get("withdrawn", [])) or "none"))
+    print("back on the queue: " + (", ".join(out.get("restored", [])) or "none"))
+    return 0
+
 def result(env: dict, key: str, status: str, error, ads_path, adset_id=None) -> int:
     body = {"draft_key": key, "status": status}
     if error:
@@ -145,6 +158,9 @@ def main(argv=None) -> int:
     s = sub.add_parser("submit")
     s.add_argument("draft")
     sub.add_parser("approved")
+    q = sub.add_parser("queue")
+    q.add_argument("codes", nargs="*")
+    q.add_argument("--none", action="store_true")
     r = sub.add_parser("result")
     r.add_argument("draft_key")
     r.add_argument("status", choices=RESULTS)
@@ -164,6 +180,8 @@ def main(argv=None) -> int:
             return approved(env)
         if a.cmd == "landers":
             return landers(env, a.check, a.json)
+        if a.cmd == "queue":
+            return queue(env, a.codes, a.none)
         return result(env, a.draft_key, a.status, a.error, a.ads, a.adset_id)
     except Refused as e:
         print(e, file=sys.stderr)

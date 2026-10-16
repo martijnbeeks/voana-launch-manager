@@ -19,11 +19,19 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   (the dashboard's `/launches/landers`), fetched live. Resolve landing-page names against it
   (hygiene / smell / page 26 → `PG26`). A page it reports as not live (exit 4) is never proposed:
   leave that part's link empty, name it in `agent_notes` and a `qa_flags` block with the detail.
+- **First make the board match ClickUp:** after a complete, successful read of the `ready for
+  launch` tasks, run `python3 scripts/launch_draft.py queue <every batch code on that status>`
+  (`--none` only when the status truly holds no tasks). Proposals that left the status come off
+  the dashboard; ones that returned go back on. A failed or partial ClickUp read → skip this
+  step and say so. Report in your reply what it printed.
 - Under `known` in `python3 scripts/launch_draft.py approved`: skip a batch that is `touched` or no
   longer a `draft`. An untouched `draft` may be proposed again when you can now fill in more.
 - Landing pages: read all three ClickUp fields, split "A and B", resolve each part against the
   roster in `CLAUDE.md`, and propose one ad per creative per page. A part you cannot place for
-  certain stays open — name it for the reviewer, never guess it.
+  certain stays open — never guess it — and MUST be visible on the dashboard: add a `qa_flags`
+  entry `{"level": "block", "code": "landing_unclear", "message": "ClickUp says \"<field text
+  verbatim>\" — could not place \"<part>\""}` and say the same in `agent_notes`. The dashboard
+  shows it as "Landing page?" on the board and a "Which landing page?" callout on the batch.
 - What you cannot find, leave **empty** — landing page, Facebook page. The reviewer fills it in on
   the dashboard; a guess that looks filled in is worse than a blank.
 - Creatives go to the CDN: `python3 -m venv .venv && .venv/bin/pip install -q -r

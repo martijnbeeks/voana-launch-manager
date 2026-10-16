@@ -409,6 +409,18 @@ older path (build paused in Meta first), which still works for a `built` draft.
 Triggered by an issue titled `Sync: ready for launch …` (the dashboard's button)
 or a schedule. **No Meta tool is called in a sync.**
 
+0. **Make the board match ClickUp first.** Read the Launch Manager list and take
+   the batch code (the task name up to the first ` - `) of **every** task on
+   `ready for launch`, then report that complete list in one call:
+   `python3 scripts/launch_draft.py queue S300 S299 S297` — or
+   `python3 scripts/launch_draft.py queue --none` when the status really holds no
+   tasks. The dashboard takes every proposal that is no longer on the list off
+   the board ("Left the queue") and puts back one that returned. It only moves
+   proposals; approved, launching and launched batches are never touched.
+   - Run it **only after a ClickUp read that succeeded and was complete** (every
+     page of the list). A failed, partial or doubtful read → skip this step and
+     say so: a short list would take live proposals off the board.
+   - Never use `--none` because a read returned nothing unexpectedly.
 1. `python3 scripts/launch_draft.py approved` → read `known`. A batch code that is
    there with `"touched": true`, or in any status other than `draft`, is
    **skipped**: a person is working on it or has decided, and a second proposal
@@ -437,8 +449,13 @@ or a schedule. **No Meta tool is called in a sync.**
        `agent_notes` and a `qa_flags` block;
      - a name that fits two pages or none ("direct", "direct SP": the sales page
        or `/directSP`?) → **do not pick**. Propose the parts you are sure of, and
-       name the open one in `agent_notes` and in a `qa_flags` warning so the
-       reviewer ticks it.
+       make the open one **visible on the dashboard**: a `qa_flags` entry
+       `{"level": "block", "code": "landing_unclear", "message": "ClickUp says
+       \"<the field text, verbatim>\" — could not place \"<the part>\""}` plus
+       the same in `agent_notes`. The board then shows "Landing page?" on the
+       batch and its page opens with a "Which landing page?" callout quoting
+       that message, so the reviewer sees the brief's own words and picks. A
+       silent blank reads as "not filled in yet", which is a different thing.
      Then propose **one ad per creative per resolved page**: `"creative": <n>`,
      `"lander": "<code>"`, the lander code in the ad name, the link with the UTM
      parameters. Nothing resolved → one ad per creative with `link_url` empty.
