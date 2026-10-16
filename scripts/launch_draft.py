@@ -14,6 +14,11 @@ activate — exactly the Meta ids the dashboard hands back. Full flow: CLAUDE.md
         | --none                        the board is made to match (proposals only)
   launch_draft.py result KEY STATUS     report launching | launched | failed
         [--error TEXT] [--ads ads.json]
+  launch_draft.py landers [--check] [--json]
+                                        the landing-page roster (dashboard
+                                        /launches/landers). --check fetches every
+                                        active page NOW and stores the verdict;
+                                        exit 4 when an active page is not live.
 
 Env (.env in the repo root, or the process environment):
   VOANA_DASHBOARD_URL   e.g. https://<dashboard host>
@@ -22,7 +27,8 @@ Env (.env in the repo root, or the process environment):
 This script never talks to Meta. It moves JSON between the agent and the
 dashboard; the Meta writes stay with the Meta Ads MCP.
 
-Exit codes: 0 ok · 2 usage/config · 3 the dashboard refused (message printed).
+Exit codes: 0 ok · 2 usage/config · 3 the dashboard refused (message printed)
+· 4 (landers) at least one active landing page is not live.
 """
 import argparse
 import json
@@ -126,6 +132,26 @@ def result(env: dict, key: str, status: str, error, ads_path, adset_id=None) -> 
     return 0
 
 
+def landers(env: dict, check: bool, as_json: bool) -> int:
+    """The landing pages an ad may go to, each with its last live check. With
+    --check the dashboard fetches every active page first (lib/landers.ts decides
+    what "live" means: 2xx, no redirect elsewhere, a real HTML page). A page that
+    is unchecked counts as not live: nobody has seen it serving."""
+    out = call(env, "GET", "/api/launches/landers" + ("?check=1" if check else ""))
+    rows = out.get("landers", [])
+    if as_json:
+        print(json.dumps(out, indent=2))
+    else:
+        for l in rows:
+            live = l.get("live") or {}
+            mark = "LIVE" if live.get("ok") is True else ("DOWN" if live.get("ok") is False else "UNCHECKED")
+            print(f"{l['code']:<6} {l['status']:<7} {mark:<9} {l['url']}  {live.get('detail') or ''}".rstrip())
+    not_live = [l["code"] for l in rows if l.get("status") == "active" and (l.get("live") or {}).get("ok") is not True]
+    if not_live:
+        print(f"not live: {', '.join(not_live)} — do not propose or launch an ad to these pages", file=sys.stderr)
+        return 4
+    return 0
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -141,6 +167,9 @@ def main(argv=None) -> int:
     r.add_argument("--error")
     r.add_argument("--ads")
     r.add_argument("--adset-id")
+    ld = sub.add_parser("landers")
+    ld.add_argument("--check", action="store_true", help="fetch every active page now")
+    ld.add_argument("--json", action="store_true")
     a = ap.parse_args(argv)
 
     env = load_env()
@@ -149,6 +178,8 @@ def main(argv=None) -> int:
             return submit(env, a.draft)
         if a.cmd == "approved":
             return approved(env)
+        if a.cmd == "landers":
+            return landers(env, a.check, a.json)
         if a.cmd == "queue":
             return queue(env, a.codes, a.none)
         return result(env, a.draft_key, a.status, a.error, a.ads, a.adset_id)

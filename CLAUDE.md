@@ -231,7 +231,21 @@ first attempt 404s.
 
 ## Landing pages (advertorials)
 
-All on `offer.getvoana.com`. Confirmed roster (from Martijn, 2026-08-17):
+All on `offer.getvoana.com`. **The roster lives on the dashboard** since
+2026-10-16 — `/launches/landers`, where the team adds a page — and the agent
+reads it with `python3 scripts/launch_draft.py landers --check`. That command
+also **fetches every active page and stores the verdict**; it exits 4 and names
+the pages that are not live (non-2xx, a redirect to another page or host, an
+empty or "not found" body — `lib/landers.ts` on the dashboard decides). **Run it
+at the start of every sync and every launch**, and never propose or launch an ad
+to a page it reports as not live: leave the link empty (sync) or report
+`failed` with the detail (launch). The dashboard checks again when a reviewer
+picks a page, when a batch is approved and once a day — but the agent's check
+is the first line, and the only one that runs before Meta objects are built.
+
+The table below is the roster as seeded; the dashboard is the truth when they
+differ. Confirmed roster (from Martijn, 2026-08-17; hygiene page added
+2026-10-16):
 
 | URL | Codename in account |
 |---|---|
@@ -241,6 +255,7 @@ All on `offer.getvoana.com`. Confirmed roster (from Martijn, 2026-08-17):
 | `https://offer.getvoana.com/comparison-listicle-v2-page13` | Page 13 (see also "Page 14" ad sets) |
 | `https://offer.getvoana.com/lead7` | LEAD7 (`SCALE_LEAD_7`, `CRO - PAGE TEST - LEAD7`) |
 | `https://offer.getvoana.com/5-possible-fixes/page-18` | Page 18 / SMOOCHE (`SCALE_PAGE18_SMOOCHE`) |
+| `https://offer.getvoana.com/smell-in-folds/page-26` | **PG26 — Hygiene** ("Hygiene URL", "smell", "page 26" in a ClickUp field) |
 
 Also observed in the account (not in the confirmed roster — ask before using):
 `/BWADV` (test-campaign advertorial), `/directSP` (direct sales page, graveyard).
@@ -426,11 +441,21 @@ or a schedule. **No Meta tool is called in a sync.**
        / 7R / listicle → `7R` (`/7-reasons`), OG → `OG`
        (`/intertigo-stick-og/lander`), lead 7 → `LEAD7`, page 13 → `PG13`,
        page 18 / 5 possible fixes → `PG18`, sales page / SP → `SP`
-       (`/intertigo-stick-og/sp`);
+       (`/intertigo-stick-og/sp`), hygiene / smell / page 26 → `PG26`
+       (`/smell-in-folds/page-26`). Resolve against the live roster
+       (`launch_draft.py landers --check`, run first): a page the dashboard
+       added since this list was written is there, and a page it reports as
+       **not live** is never proposed — leave that part open and say why in
+       `agent_notes` and a `qa_flags` block;
      - a name that fits two pages or none ("direct", "direct SP": the sales page
        or `/directSP`?) → **do not pick**. Propose the parts you are sure of, and
-       name the open one in `agent_notes` and in a `qa_flags` warning so the
-       reviewer ticks it.
+       make the open one **visible on the dashboard**: a `qa_flags` entry
+       `{"level": "block", "code": "landing_unclear", "message": "ClickUp says
+       \"<the field text, verbatim>\" — could not place \"<the part>\""}` plus
+       the same in `agent_notes`. The board then shows "Landing page?" on the
+       batch and its page opens with a "Which landing page?" callout quoting
+       that message, so the reviewer sees the brief's own words and picks. A
+       silent blank reads as "not filled in yet", which is a different thing.
      Then propose **one ad per creative per resolved page**: `"creative": <n>`,
      `"lander": "<code>"`, the lander code in the ad name, the link with the UTM
      parameters. Nothing resolved → one ad per creative with `link_url` empty.
@@ -467,6 +492,9 @@ The work list entry says `"build": "spec"` or `"built"`.
   ClickUp or to what the sync proposed.
 
 Then, in order:
+0. `python3 scripts/launch_draft.py landers --check`. If it exits 4 and any ad in
+   the batch links to a page it names, `result <draft_key> failed --error
+   "landing page <url> is not live: <detail>"` and stop — build nothing.
 1. `result <draft_key> launching`
 2. Create the ad set, then each ad, and activate them.
 3. **Confirm in Meta**: read the ad set and its ads once and check each is
