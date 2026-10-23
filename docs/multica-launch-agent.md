@@ -79,7 +79,10 @@ and a `revision`. Those two values are a cross-check, nothing more.
    Then `python3 scripts/launch_draft.py result <draft_key> launching`
 4. Look at the batch's `build` field:
    - `built` → activate its `adset_id`, then every `meta_ad_id` in its `ads` list. Nothing else.
-   - `spec` → nothing exists in Meta yet. Build the ad set and the ads from **exactly the values in
+   - `spec` → **first look for this batch's ad set in the campaign, live and in the draft**
+     (`CLAUDE.md` → "Launching an approved batch", step 2). Found live → confirm and report
+     `launched`; found in the draft → publish what is staged. Never build a batch twice. Only when
+     it is in neither: build the ad set and the ads from **exactly the values in
      the work list** (`CLAUDE.md` → "Launching an approved batch"), then activate them. A reviewer
      may have changed page, landing page or budget on the dashboard: never substitute ClickUp's or
      your own.
@@ -90,10 +93,12 @@ and a `revision`. Those two values are a cross-check, nothing more.
      `entity_type: "ad_set"`, `object_ids` = the ad set + its ads, `publish_as_active: true`.
      **The campaign is never listed and never activated** — it is live and shared with other
      batches, and a publish only touches the ids you list. `PUBLISHING` means the publisher is
-     still working: **poll the ad set every 30 s for up to 10 min** until `effective_status` is not
-     `IN_PROCESS`, and only then read the ads — before that the ad ids answer "not ad entities in
-     the requested ad account", which means not published yet, not missing (S302, 2026-10-16, was
-     reported failed that way with all ten ads live minutes later). Then confirm live as in step
+     still working: **read the ad set every 60 s for up to 30 min, and send the identical publish
+     again at 10 and at 20 min** if it is still not live — that re-send is what made S358 and S363
+     go live on 2026-10-23, and it is not an error retry. Before it is live the ids answer "not
+     adset/ad entities in the requested ad account", which means not published yet, not missing
+     (S302, 2026-10-16, was reported failed that way with all ten ads live minutes later). After
+     30 min report `failed` with "PUBLISH PENDING" and every id. Then confirm live as in step
      5; `PENDING_REVIEW` is fine, an ad still PAUSED gets a plain ad-level activate. Full
      procedure: `CLAUDE.md` → "Meta draft mode". Do not stop for this — it is covered.
 5. Confirm in Meta with **one** read of the ad set and its ads that each is ACTIVE (or scheduled by
@@ -127,7 +132,11 @@ and a `revision`. Those two values are a cross-check, nothing more.
    never by a pinned server id — the id differs per machine and has changed before.
 3. **One attempt per entity.** No retry loops against Meta, no "quick checks", no extra reads.
    The ad accounts are business-critical and Meta's ban heuristics key on call patterns and error
-   rates. An error ends the run with `failed`.
+   rates. An error ends the run with `failed`. The one exception is a draft publish that answered
+   `PUBLISHING`: the same call is sent again at 10 and 20 minutes (`CLAUDE.md` → "Meta draft
+   mode", step 4) — it errored on nothing and creates nothing new.
+9. **Each batch stands on its own.** Never skip or fail a batch because an earlier one is stuck or
+   failed; build and publish it, and report what Meta says about this batch.
 4. **Never background work and yield.** Multica kills the task when your turn exits.
 5. **`AskUserQuestion` is disabled.** If something is ambiguous, stop and report — never guess a
    draft key, an id or a revision.
