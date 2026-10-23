@@ -505,9 +505,18 @@ Then, in order:
    the batch links to a page it names, `result <draft_key> failed --error
    "landing page <url> is not live: <detail>"` and stop — build nothing.
 1. `result <draft_key> launching`
-2. Create the ad set, then each ad, and activate them. **If the create calls
-   answer `status=DRAFT`, follow "Meta draft mode" below instead of a plain
-   activate** — the objects are not in Meta yet.
+2. **Resume, never build twice.** Before any create, look for this batch's ad
+   set in the campaign: live (`ads_get_ad_entities`, level `adset`, filter
+   `adset.name` CONTAIN the batch code, `date_preset: maximum`) and staged
+   (`object_state: "draft"`, no `object_ids`). An ad set whose name equals
+   `title` means an earlier run already built it: found live → skip to step 3;
+   found in the draft → skip the creates and go straight to "Meta draft mode"
+   step 2 (publish what is staged). A batch that is approved again after a
+   `failed` publish is resumed this way, never rebuilt — S363 and S358 sat in
+   the draft on 2026-10-23 while their batches read `failed`.
+   Otherwise create the ad set, then each ad, and activate them. **If the
+   create calls answer `status=DRAFT`, follow "Meta draft mode" below instead of
+   a plain activate** — the objects are not in Meta yet.
 3. **Confirm in Meta**: read the ad set and its ads once and check each is
    ACTIVE (or scheduled by its `start_time`, with no error). Only then:
 4. `result <draft_key> launched --adset-id <id> --ads <ads.json>` — the file lists
@@ -544,22 +553,33 @@ touched. Do this:
    parent itself is still unpublished.
 4. `PUBLISHING` in the answer means "handed to the publisher", which finishes
    **afterwards** — this is not a failure and not yet a success. **Wait for
-   it.** Read the ad set live (`ads_get_ad_entities`, level `adset`, default
-   `object_state`) every 30 seconds for up to 10 minutes, until its
-   `effective_status` is no longer `IN_PROCESS` / `PUBLISHING`. Only then read
-   the ads. While the publisher runs, the ad ids answer *"The following
-   object_ids are not ad entities in the requested ad account"* — that means
-   "not published yet", never "they do not exist". On 2026-10-16 (S302) the
-   agent read back right after the publish, got exactly that, reported failed,
-   and every ad was ACTIVE a few minutes later. When the wait ends: the ad set
-   must be ACTIVE and every ad ACTIVE or `PENDING_REVIEW` (Meta's review is
-   normal); an ad that reads PAUSED is activated one by one with a plain
-   `ads_activate_entity` (`entity_type: "ad"`, no `object_ids`). If the ad set
-   is still `IN_PROCESS` after 10 minutes: `result <draft_key> failed --error
-   "published, still IN_PROCESS after 10 min: ad set <id>, ads <ids>"` — name
-   every id, because they exist and must not be built again. A `launched`
-   result may follow a `failed` one, so when a later run (or a person) finds
-   them live, report `launched` with the ids and finish the write-back.
+   it, up to 30 minutes**:
+   - Every 60 seconds read the ad set live (`ads_get_ad_entities`, level
+     `adset`, `object_ids: ["<adset_id>"]`). While it is unpublished the answer
+     is *"The following object_ids are not adset entities in the requested ad
+     account"* — that means "not published yet", never "it does not exist".
+   - **At 10 and at 20 minutes, if it is still not live, send the same publish
+     again**: the identical `ads_activate_entity` call from step 3, same
+     `object_ids`, nothing added. This is not a retry of an error — the call
+     answered `PUBLISHING` and nothing is created twice — so hard rule 3 does
+     not forbid it. It is what worked on 2026-10-23: S358 sat in the draft for
+     20 minutes after the agent's publish and was live 4 minutes after the
+     same call was sent again; S363 went live the same way. At most these two
+     re-sends; no other calls in between.
+   - Live means: the ad set reads ACTIVE (or scheduled by its `start_time`) and
+     every ad reads ACTIVE or `PENDING_REVIEW` (Meta's review is normal); an ad
+     that reads PAUSED is activated one by one with a plain
+     `ads_activate_entity` (`entity_type: "ad"`, no `object_ids`). Then step 3
+     of "Launching an approved batch" and `launched`.
+   - Still not live after 30 minutes: `result <draft_key> failed --error
+     "PUBLISH PENDING after 30 min: ad set <id>, ads <ids> are staged in the
+     Ads Manager draft. Approve again to resume; nothing will be built twice."`
+     Name every id. A later run resumes it (step 2 above), and a `launched`
+     result may follow a `failed` one, so when a run or a person finds them
+     live, report `launched` with the ids and finish the write-back.
+   - **Each batch stands on its own.** Never skip, delay or fail a batch
+     because an earlier batch is stuck or failed — on 2026-10-23 S369 was
+     reported failed without a single Meta call for that reason alone.
 5. A rejected publish (validation error) → `result <draft_key> failed` with the
    message verbatim, and say that the objects are still in the account's draft,
    where a person can see them in Ads Manager and discard or fix them.
