@@ -66,5 +66,6 @@
     "7": "PAUSED",
     "9": "PENDING_REVIEW",
     "17": "IN_PROCESS"
-  }
+  },
+  "cheap_cpa_max": 45
 }
