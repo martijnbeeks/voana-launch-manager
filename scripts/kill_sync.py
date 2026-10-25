@@ -818,6 +818,24 @@ def ad_rows(ads: list[dict]) -> tuple[list[str], list[str], str]:
     return rows, idle, shared
 
 
+CHEAP_CPA_MAX = float(CONFIG.get("cheap_cpa_max", 45))
+
+
+def cheap_ads(ads: list[dict], cap: float = CHEAP_CPA_MAX) -> list[str]:
+    """Ads that bought at a CPA under `cap`, cheapest first: 'C2/7R $29.00 (8 purch)'.
+
+    A batch is killed on its TOTAL, so one ad that converts cheaply inside it
+    dies with the rest unless someone notices — the question Jurre asked on
+    2026-10-22. Only real purchases count: an ad with no purchase has no CPA,
+    and an ad whose purchases Meta did not report is never guessed into one."""
+    hits = []
+    for a in ads:
+        purch, cpa = purchases_of(a), cpa_of(a)
+        if purch and cpa is not None and cpa < cap:
+            hits.append((cpa, f"{ad_key(a.get('name', ''))} {money(cpa)} ({purch} purch)"))
+    return [label for _, label in sorted(hits, key=lambda h: h[0])]
+
+
 def brief_metrics(x: dict) -> str:
     """The numbers a kill decision is read by. Takes an ad row (Meta field
     names) or a totals_of() dict. Two lines: outcome, then delivery cost
@@ -869,7 +887,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
     tasks = ClickUpTasks()
     print(f"ClickUp: {len(tasks.tasks)} tasks loaded{' · CLICKUP WRITES SKIPPED' if SKIP_CLICKUP else ''} · webhook: "
           f"{'dedicated' if WEBHOOK and not WEBHOOK_IS_FALLBACK else 'OPS FALLBACK' if WEBHOOK else 'NONE'}")
-    new_rows, embeds, problems, notes = [], [], [], []
+    new_rows, embeds, problems, notes, alerts = [], [], [], [], []
     failed_clickup = 0
     now = dt.datetime.now()
 
@@ -947,6 +965,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
             batch_no = batch_prefix(adset_name) or adset_name[:12]
             if only and batch_no not in only:
                 continue
+            cheap = cheap_ads(ads)
 
             # ── ClickUp. Everything for one kill is isolated: a failure here is
             # logged, ledgered and reported, and the run carries on to the next
@@ -994,6 +1013,8 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                     lines += ["", "Per ad:", *rows]
                 if idle:
                     lines += ([] if rows else [""]) + [f"Not delivered: {', '.join(idle)}"]
+                if cheap:
+                    lines += ["", f"🟢 CPA under ${CHEAP_CPA_MAX:.0f}:", *cheap]
                 lines += ["", "→ fill in 📖 Learnings"]
                 cu_comment(task["id"], "\n".join(lines), dry)
                 # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
@@ -1077,12 +1098,17 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 title = f"💀💀 {batch_no} · batch · {actor}"
                 desc = (f"{acc['name']} · {len(ads)} ads · {live if live is not None else '?'}d · {brief_metrics(t)}"
                         f" · 📖 learnings?")
+            if cheap:
+                desc += f"\n🟢 CPA under ${CHEAP_CPA_MAX:.0f}: {' · '.join(cheap)}"
+                what = "killed ad set" if kind == "adset" else "killed ad"
+                alerts.append(f"🟢 **{batch_no}** — {what} had CPA under ${CHEAP_CPA_MAX:.0f}: "
+                              f"{' · '.join(cheap)} · {ads_manager_url(account, kind, obj_id)}")
             if clickup_error:
                 desc += "\n⚠️ ClickUp update failed"
             links = " · ".join(x for x in [f"[ClickUp]({task_url(task)})" if task else "no ClickUp task",
                                            f"[Ads Manager]({ads_manager_url(account, kind, obj_id)})"])
             embeds.append({"title": title[:256], "description": (desc + "\n" + links)[:4000],
-                           "color": 0xE74C3C if kind == "adset" else 0xE67E22,
+                           "color": 0x2ECC71 if cheap else 0xE74C3C if kind == "adset" else 0xE67E22,
                            "url": task_url(task) or ads_manager_url(account, kind, obj_id)})
             row = {"key": key, "account": account, "kind": kind, "object_id": obj_id, "name": name,
                    "actor": actor, "at": when.isoformat(), "task_id": task["id"] if task else None,
@@ -1092,8 +1118,9 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
             new_rows.append(row)
 
     content = None
-    if problems or notes:
-        content = "\n".join(["⚠️ " + p for p in problems] + ["ℹ️ " + n for n in notes])
+    if alerts or problems or notes:
+        # cheap-CPA alerts first: they are the line someone has to act on
+        content = "\n".join(alerts + ["⚠️ " + p for p in problems] + ["ℹ️ " + n for n in notes])
     if WEBHOOK_IS_FALLBACK and embeds:
         content = (content or "") + "\n_(ops channel — set KILL_SYNC_DISCORD_WEBHOOK_URL)_"
     if rewrite:

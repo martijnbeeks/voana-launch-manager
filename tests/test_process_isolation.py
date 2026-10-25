@@ -371,6 +371,38 @@ mixed = [dict(rows[0]), {"name": "S301 - 7R - x_V1", "amount_spent": "3", "impre
 check("rows: two landers keep the lander in the key", [l.split()[0] for l in ks.ad_rows(mixed)[0]], ["V1/7R", "V1/COMP"])
 check("ad_summary: no long line", max(map(len, ks.ad_summary(rows[1]).splitlines())) <= 45, True)
 
+# ── cheap-CPA ad inside a killed batch (Jurre, 2026-10-22) ──────────────────
+def buyer(code, spend, purch, adset_id="as324", no="S324"):
+    a = ad(no, "7R", code, adset_id, spend=spend)
+    a["omni_purchase"] = purch
+    return a
+
+cheap_set = [buyer("C1", "$120.00 USD", 1), buyer("C2", "$58.00 USD", 2),
+             buyer("C3", "$40.00 USD", 0), buyer("C4", "$44.90 USD", 1)]
+check("cheap_ads: under the cap only, cheapest first", ks.cheap_ads(cheap_set),
+      ["C2/7R $29.00 (2 purch)", "C4/7R $44.90 (1 purch)"])
+check("cheap_ads: exactly the cap is not under it", ks.cheap_ads([buyer("C5", "$45.00 USD", 1)]), [])
+no_data = buyer("C6", "", 0); no_data.pop("omni_purchase"); no_data["impressions"] = 0
+check("cheap_ads: missing purchases never become a CPA", ks.cheap_ads([no_data]), [])
+
+posted.clear()
+ks._LIST_CACHE.clear()
+fake = FakeClickUp([make_task("t324", adset_name("S324"))]); ks.cu = fake
+state8 = fresh_state([ev("S324", "as324")], cheap_set)
+check("S324: run clean", ks.process(dry=False), 0)
+embeds, content = posted[-1]
+check("S324: alert line names the cheap ads", "C2/7R $29.00 (2 purch) · C4/7R $44.90 (1 purch)" in (content or ""), True)
+check("S324: alert says it was an ad set", "killed ad set had CPA under $45" in (content or ""), True)
+check("S324: embed flagged green", embeds[0]["color"], 0x2ECC71)
+check("S324: ClickUp comment lists them", "🟢 CPA under $45:\nC2/7R" in fake.comments["t324"][0], True)
+
+posted.clear()
+fake = FakeClickUp([make_task("t325", adset_name("S325"))]); ks.cu = fake
+state9 = fresh_state([ev("S325", "as325")], [buyer("C1", "$120.00 USD", 1, "as325", "S325")])
+ks.process(dry=False)
+check("no cheap ad: no alert line", "🟢" in (posted[-1][1] or ""), False)
+check("no cheap ad: embed stays red", posted[-1][0][0]["color"], 0xE74C3C)
+
 # ── archive: durable, pruned ─────────────────────────────────────────────────
 check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)
 arch = ks.archive_dir()
@@ -380,7 +412,7 @@ gone = ks.prune_archive()
 check("prune keeps the newest ARCHIVE_KEEP", len([d for d in arch.iterdir() if d.is_dir()]), ks.ARCHIVE_KEEP)
 check("prune drops the oldest first", gone[0] if gone else None, "2026-09-00_0845")
 
-for d in (state, state2, state3, state4, state5, state6, state7):
+for d in (state, state2, state3, state4, state5, state6, state7, state8, state9):
     shutil.rmtree(d, ignore_errors=True)
 if fails:
     print("\n".join("FAIL " + f for f in fails)); sys.exit(1)
