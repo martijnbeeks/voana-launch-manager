@@ -172,6 +172,28 @@ give every ad **both** texts as Meta "multiple primary text" options:
 `creative.asset_feed_spec = {"optimization_type":"DEGREES_OF_FREEDOM","bodies":[{"text":…},{"text":…}]}`
 next to a normal `object_story_spec.link_data` (pass the whole creative JSON to
 `ads_create_ad`; `ads_create_creative` cannot express this).
+**Rising LFS: one ad per V-number (Martijn, 2026-10-27).** A task whose
+`Variation *` reads `V<p>.<c>-V<p>.<c>` (e.g. `V1.1-V3.5`) is a rising-LFS
+batch from voana-tools: every picture runs with every ad copy, **each pair its
+own ad**, so Meta's per-ad numbers show which copy and which picture won.
+Here the copy pairing rule and the multiple-primary-text override do NOT apply.
+- The task description lists the split, one line per ad:
+  `V2.3 = Picture 2 & Ad copy 3` (a blank line between pictures). Follow it
+  exactly: 3 pictures × 5 copies = 15 ads.
+- Drive folder: `<batch> - Picture <p>.png` per picture and Google Docs
+  `AD COPY <c>`. Each doc's bold first line is the headline, the rest is the
+  primary text (the title-line rule below). The big `… LFS imitation …` doc is
+  the review copy, not launch input.
+- Each ad gets **one** primary text (its own `AD COPY <c>`) and that doc's one
+  headline, nothing else — never `asset_feed_spec` bodies with the other copies.
+- Ad name = the usual ad name with `_V<p>.<c>` instead of `_C<n>`
+  (`S370 - SP - V1.1-V3.5 - … - None_V2.3`); on the dashboard `creative` is the
+  ad's position 1-15 in the description's order.
+- The landing page is the task's `Landing Page URL` (the product's sales page);
+  the copy already links to it.
+- No `Picture` files (the competitor ad had no still): one ad per copy, `_V1.<c>`,
+  and flag `missing_media` so a person adds a picture.
+
 **Title line → headline, never in the body (Martijn, 2026-10-16):** each copy
 doc opens with a bold title line ("Underboob Rash Keeps Returning?"). That line
 is the ad's **headline**; the **primary text is the doc without it** — the
@@ -340,7 +362,7 @@ REST, `https://api.clickup.com/api/v2/…`); never commit the key.
 | Statuses | `ready for launch` → `launched` → `complete` |
 | Task name | `S0nn - C1-Cn - <Image\|Video\|LFS\|GIF> - Stick - <Creative Director> - <Editor> - <angle> - <avatar> - <UMP> - <UMS> - <Awareness> - <Static\|…> - <Iteration\|Ideation\|Imitation> - <Variation ID>` |
 | Key custom fields | `Landing Page URL` (short text — can hold 2 URLs or be empty), `Google Drive Folder Link`, `Page` (dropdown of the FB pages), `Launch Date`, `Batch number *`, `Ad Format *`, `Number of Ads in Batch` |
-| Drive folder contents | `…_C<n>.png` per creative (1080×1080) + Google Docs `AD COPY 1` (long) / `AD COPY 2` (short) — usually only two docs regardless of image count |
+| Drive folder contents | `…_C<n>.png` per creative (1080×1080) + Google Docs `AD COPY 1` (long) / `AD COPY 2` (short) — usually only two docs regardless of image count. Rising LFS (`V1.1-V3.5`): `<batch> - Picture <p>.png` + `AD COPY 1-5`, one ad per pair |
 
 **How to read it:** `GET /list/901819973363/task?include_closed=true` (38 tasks,
 single page) — dropdown values come back as `orderindex`, resolve them against
@@ -470,7 +492,9 @@ or a schedule. **No Meta tool is called in a sync.**
      in "ClickUp pipeline" clearly applies and say why in `agent_notes`;
      otherwise leave `page_name` empty.
    - Drive folder: one ad per creative file; every primary text and headline from
-     the copy docs, complete (the copy pairing rule applies). The bold title
+     the copy docs, complete (the copy pairing rule applies). **Exception:** a
+     `V<p>.<c>` Variation is one ad per picture × copy — see "Rising LFS: one ad
+     per V-number". The bold title
      line of a doc is its headline and is **removed** from the primary text —
      see "Title line → headline" in "Launch template";
    - stage each creative on the CDN, where both Meta and the dashboard can fetch

@@ -361,7 +361,7 @@ MONTHS = {m: i + 1 for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "ju
 MONTHS.update({"mrt": 3, "mei": 5, "okt": 10})
 
 BATCH_RE = re.compile(r"^(S\d{3}|#\d{3,4})\b")
-CREATIVE_RE = re.compile(r"_(C\d+|V\d+)$")
+CREATIVE_RE = re.compile(r"_(C\d+|V\d+(?:\.\d+)?)$")   # V1.1 = picture 1 & ad copy 1 (rising LFS)
 
 
 def batch_prefix(name: str) -> str | None:
@@ -620,8 +620,8 @@ CHECKLIST_NAME = "Ad performance"
 # and the checklist upsert match on, so it must be unique per AD, and one
 # creative runs on two landers (OG and 7R) — a bare 'C4' silently collapsed
 # them into one line, dropping half the batch from the Result field.
-AD_LINE_RE = re.compile(r"^((?:C|V)\d+(?:/[A-Za-z0-9]+)?)\b")
-SCRIPT_LINE_RE = re.compile(r"^(?:C|V)\d+(?:/[A-Za-z0-9]+)? (?:✖\d\d-\d\d|▶|⏸) · ")
+AD_LINE_RE = re.compile(r"^((?:C|V)\d+(?:\.\d+)?(?:/[A-Za-z0-9]+)?)(?![\w.])")
+SCRIPT_LINE_RE = re.compile(r"^(?:C|V)\d+(?:\.\d+)?(?:/[A-Za-z0-9]+)? (?:✖\d\d-\d\d|▶|⏸) · ")
 
 
 def ad_key(ad_name: str) -> str:
@@ -632,8 +632,8 @@ def ad_key(ad_name: str) -> str:
 
 def _key_order(k: str):
     """C1, C2, … C10 numerically, landers alphabetically inside a creative."""
-    m = re.match(r"([CV])(\d+)(?:/(.*))?$", k)
-    return (m.group(1), int(m.group(2)), m.group(3) or "") if m else ("Z", 0, k)
+    m = re.match(r"([CV])(\d+)(?:\.(\d+))?(?:/(.*))?$", k)
+    return (m.group(1), int(m.group(2)), int(m.group(3) or 0), m.group(4) or "") if m else ("Z", 0, 0, k)
 
 
 def ad_line(m: dict, killed_on: dt.datetime | None = None) -> str:

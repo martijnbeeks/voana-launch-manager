@@ -32,6 +32,11 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   entry `{"level": "block", "code": "landing_unclear", "message": "ClickUp says \"<field text
   verbatim>\" — could not place \"<part>\""}` and say the same in `agent_notes`. The dashboard
   shows it as "Landing page?" on the board and a "Which landing page?" callout on the batch.
+- **Rising LFS (`Variation *` like `V1.1-V3.5`): one ad per V-number.** Every picture × every
+  ad copy is its own ad (3 × 5 = 15), named `…_V<p>.<c>`, with ONE primary text (its `AD COPY
+  <c>`) and that doc's headline — no multiple-text options. The task description lists the split
+  (`V2.3 = Picture 2 & Ad copy 3`); the folder holds `<batch> - Picture <p>.png` and `AD COPY 1-5`.
+  See `CLAUDE.md` → "Rising LFS: one ad per V-number".
 - What you cannot find, leave **empty** — landing page, Facebook page. The reviewer fills it in on
   the dashboard; a guess that looks filled in is worse than a blank.
 - Copy: each copy doc's bold **title line is the headline** and is **not** part of the primary
