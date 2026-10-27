@@ -130,7 +130,7 @@ def fresh_state(events, metrics, adset_rows=None):
 ks.CLICKUP_KEY = "pk_test"
 ks.WEBHOOK = ""
 posted = []                # discord() stubbed: record what would be posted
-ks.discord = lambda embeds, content, dry: (posted.append((embeds, content)), True)[1]
+ks.discord = lambda embeds, content, dry, mention_ids=(): (posted.append((embeds, content, mention_ids)), True)[1]
 ks.SKIP_CLICKUP = False
 ks._SLEEP = lambda s: None
 
@@ -202,6 +202,7 @@ rows = [json.loads(l) for l in (state / "kills.jsonl").read_text().splitlines()]
 check("run completed with a ClickUp-failure exit code", rc, 4)
 check("failure named in the Discord problems line", "S004" in (posted[-1][1] or "") and "ClickUp update failed" in posted[-1][1], True)
 check("failed kill still gets its embed", len(posted[-1][0]), 3)
+check("kill post pings Jurre", posted[-1][2], ("880800086341337151",))
 check("all three kills ledgered", sorted(r["object_id"] for r in rows), ["as3", "as4", "as5"])
 check("only the failed one carries an error", [r["object_id"] for r in rows if r.get("error")], ["as4"])
 check("last_run advanced", (state / "last_run.json").exists(), True)
@@ -390,7 +391,7 @@ ks._LIST_CACHE.clear()
 fake = FakeClickUp([make_task("t324", adset_name("S324"))]); ks.cu = fake
 state8 = fresh_state([ev("S324", "as324")], cheap_set)
 check("S324: run clean", ks.process(dry=False), 0)
-embeds, content = posted[-1]
+embeds, content, _ = posted[-1]
 check("S324: alert line names the cheap ads", "C2/7R $29.00 (2 purch) · C4/7R $44.90 (1 purch)" in (content or ""), True)
 check("S324: alert says it was an ad set", "killed ad set had CPA under $45" in (content or ""), True)
 check("S324: embed flagged green", embeds[0]["color"], 0x2ECC71)

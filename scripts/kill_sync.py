@@ -82,6 +82,11 @@ WEBHOOK = ENV.get("KILL_SYNC_DISCORD_WEBHOOK_URL") or ""
 WEBHOOK_IS_FALLBACK = False
 if not WEBHOOK and ENV.get("DISCORD_WEBHOOK_URL"):
     WEBHOOK, WEBHOOK_IS_FALLBACK = ENV["DISCORD_WEBHOOK_URL"], True
+# Discord user ids pinged on a post with kill cards (comma separated, "" = no
+# ping). Default: Jurre, who reads the learnings — same id the ROAS-winner alert
+# in voana-azure-data-platform pings (TW_AD_ROAS_MENTION_IDS).
+MENTION_IDS = tuple(i.strip() for i in ENV.get(
+    "KILL_SYNC_MENTION_IDS", "880800086341337151").split(",") if i.strip())
 
 
 # ── parsing helpers ──────────────────────────────────────────────────────────
@@ -567,16 +572,23 @@ def chunk_embeds(embeds: list[dict]) -> list[list[dict]]:
     return chunks
 
 
-def discord(embeds: list[dict], content: str | None, dry: bool) -> bool:
+def discord(embeds: list[dict], content: str | None, dry: bool,
+            mention_ids: tuple[str, ...] = ()) -> bool:
     if not embeds and not content:
         return True
     if dry or not WEBHOOK:
-        print("    [dry/no-webhook] discord:", json.dumps({"content": content, "embeds": embeds}, ensure_ascii=False)[:1500])
+        print("    [dry/no-webhook] discord:", json.dumps({"mentions": list(mention_ids), "content": content, "embeds": embeds}, ensure_ascii=False)[:1500])
         return bool(WEBHOOK)
     for i, batch in enumerate(chunk_embeds(embeds) or [[]]):
         payload = {"username": "Voana kill-sync", "embeds": batch}
         if i == 0 and content:
             payload["content"] = content[:1900]
+        if i == 0 and mention_ids:
+            # the ping must sit in content (embeds never notify); allowed_mentions
+            # limits it to these users so nothing else in the text can ping
+            ping = " ".join(f"<@{u}>" for u in mention_ids)
+            payload["content"] = (ping + "\n" + payload.get("content", ""))[:1900].rstrip()
+            payload["allowed_mentions"] = {"parse": [], "users": list(mention_ids)}
         req = urllib.request.Request(
             WEBHOOK, data=json.dumps(payload).encode(),
             headers={"Content-Type": "application/json", "User-Agent": UA},
@@ -1127,7 +1139,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
         print(f"\nRewrite done: {len(embeds)} kill(s) rewritten, {failed_clickup} ClickUp failure(s)"
               + ("".join(f"\n  ℹ️ {n}" for n in notes)))
         return 4 if failed_clickup else 0
-    ok = discord(embeds, content, dry)
+    ok = discord(embeds, content, dry, MENTION_IDS if embeds else ())
 
     if not dry and not replay:
         if new_rows:
