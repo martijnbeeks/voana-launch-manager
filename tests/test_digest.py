@@ -21,7 +21,7 @@ def check(label, got, want):
         fails.append(f"{label}: got {got!r}, want {want!r}")
 
 posted = []
-ks.discord = lambda embeds, content, dry: (posted.append(embeds), True)[1]
+ks.discord = lambda embeds, content, dry, mention_ids=(): (posted.append(embeds), True)[1]
 
 def state(rows, last_run, kills):
     """A durable dir as `process` leaves it: ledger + this run's last_run.json."""
