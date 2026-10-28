@@ -1,0 +1,209 @@
+[
+ {
+  "id": "120248173604200591",
+  "name": "S172 - SP DIRECT - V3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248173604190591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:35:22-0400",
+  "adset_name": "S172 - V3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "34.18",
+   "unit": "USD"
+  },
+  "impressions": "163",
+  "clicks": "13",
+  "ctr": "7.98%",
+  "cpc": {
+   "value": "2.63",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "209.69",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "4.294479",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "7",
+  "website_ctr": "4.294479",
+  "cost_per_link_click": {
+   "value": "4.88",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173762770591",
+  "name": "S172 - SP DIRECT - V3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248173604190591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:35:22-0400",
+  "adset_name": "S172 - V3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "2.99",
+   "unit": "USD"
+  },
+  "impressions": "37",
+  "clicks": "6",
+  "ctr": "16.22%",
+  "cpc": {
+   "value": "0.5",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "80.81",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "2.99",
+   "unit": "USD"
+  },
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "5.405405",
+  "omni_add_to_cart": "2",
+  "purchase_roas": "23.377926",
+  "omni_purchase_values": {
+   "value": "69.9",
+   "unit": "USD"
+  },
+  "link_click": "2",
+  "website_ctr": "5.405405",
+  "cost_per_link_click": {
+   "value": "1.5",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173762780591",
+  "name": "S172 - SP DIRECT - V3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None_C2",
+  "adset_id": "120248173604190591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:35:22-0400",
+  "adset_name": "S172 - V3 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "31.05",
+   "unit": "USD"
+  },
+  "impressions": "236",
+  "clicks": "31",
+  "ctr": "13.14%",
+  "cpc": {
+   "value": "1",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "131.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "10",
+  "outbound_clicks_ctr": "4.237288",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "10",
+  "website_ctr": "4.237288",
+  "cost_per_link_click": {
+   "value": "3.11",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248211346790591",
+  "name": "S998 - SPDIRECT - C1-C3 - Image - Cream - Dave - Don Elmore Suing - offer - Avatar - UMP - deep_layer_repair_system - Most Aware - Static - Ideation - None - TEST (copy of S335, Facebook-only launch test, delete after)_C1",
+  "adset_id": "120248211343170591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-28T09:55:31-0400",
+  "adset_name": "S998 - C1-C3 - Image - Cream - Dave - Don Elmore Suing - offer - Avatar - UMP - deep_layer_repair_system - Most Aware - Static - Ideation - None - TEST (copy of S335, Facebook-only launch test, delete after)",
+  "amount_spent": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "impressions": "0",
+  "clicks": "0",
+  "ctr": null,
+  "cpc": null,
+  "cpm": null,
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248211351120591",
+  "name": "S998 - SPDIRECT - C1-C3 - Image - Cream - Dave - Don Elmore Suing - offer - Avatar - UMP - deep_layer_repair_system - Most Aware - Static - Ideation - None - TEST (copy of S335, Facebook-only launch test, delete after)_C3",
+  "adset_id": "120248211343170591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-28T09:55:31-0400",
+  "adset_name": "S998 - C1-C3 - Image - Cream - Dave - Don Elmore Suing - offer - Avatar - UMP - deep_layer_repair_system - Most Aware - Static - Ideation - None - TEST (copy of S335, Facebook-only launch test, delete after)",
+  "amount_spent": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "impressions": "0",
+  "clicks": "0",
+  "ctr": null,
+  "cpc": null,
+  "cpm": null,
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248211349230591",
+  "name": "S998 - SPDIRECT - C1-C3 - Image - Cream - Dave - Don Elmore Suing - offer - Avatar - UMP - deep_layer_repair_system - Most Aware - Static - Ideation - None - TEST (copy of S335, Facebook-only launch test, delete after)_C2",
+  "adset_id": "120248211343170591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-28T09:55:31-0400",
+  "adset_name": "S998 - C1-C3 - Image - Cream - Dave - Don Elmore Suing - offer - Avatar - UMP - deep_layer_repair_system - Most Aware - Static - Ideation - None - TEST (copy of S335, Facebook-only launch test, delete after)",
+  "amount_spent": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "impressions": "0",
+  "clicks": "0",
+  "ctr": null,
+  "cpc": null,
+  "cpm": null,
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ }
+]
