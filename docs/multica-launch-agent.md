@@ -49,7 +49,23 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   checkout — nothing is installed anywhere else.
 - A tool you need is missing (Drive, or the upload fails): still submit the
   proposal with what you have, leave `media_url` empty, and say in your reply exactly which tool
-  was missing. Do not improvise a substitute.
+  was missing. Do not improvise a substitute. **Also put it on the batch**, or the reviewer only
+  sees "no creative file" and not why: a `qa_flags` entry `{"level": "block", "code":
+  "tool_missing", "message": "Could not fetch the creatives: <tool> — <its error, verbatim>. Fix:
+  <the fix, e.g. run composio link googledrive on mac.home>, then sync again."}`, and the same in
+  `agent_notes`. The next sync with a working tool drops the flag by itself. **Never make a
+  known draft worse:** a batch that is already on the dashboard keeps the `media_url`s it has —
+  the files stay on the CDN under `launches/<batch>/…`, so reuse those URLs; do not re-submit
+  it with empty media just to add this flag (seen 2026-10-28, four drafts lost their media).
+- **A refused submit must still reach the dashboard.** When `submit` fails (e.g. `HTTP 422:
+  invalid draft — ads holds 18; the limit is 12`), the batch is otherwise invisible there and
+  only this reply knows. Submit it once more in a form the dashboard accepts and flag it: for
+  too many ads, the first 12 in folder order plus a `qa_flags` entry `{"level": "block", "code":
+  "too_many_ads", "message": "The folder holds <n> ads; the dashboard takes 12. Left out:
+  <names>. Trim the Drive folder or split the batch, then sync again."}`. For any other refusal:
+  the smallest valid draft (one ad, only fields you are sure of) with a block flag `"code":
+  "submit_refused"` quoting the error verbatim. The block keeps it from launching; never drop
+  ads silently.
 - Do not change anything in ClickUp during a sync.
 - Reply with one line per batch: proposed, skipped (known), or failed and why.
 
