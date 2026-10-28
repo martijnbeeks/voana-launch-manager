@@ -18,7 +18,7 @@ Proven angles: rash/chafing relief and GLP-1 loose-skin chafing. Markets: US, CA
 | Account | ID | Role | Currency |
 |---|---|---|---|
 | CLN_0034_Kandy_Voana (CLNG4) | `758865990548177` | **Main media-buying account.** All testing + scaling happens here. | USD |
-| GetVoana - 1 (Voana) | `1247693024067639` | **Second live test account** (since 2026-09-06). Runs `ABO: Test Campaign USA V2` (`120247451142810591`, the S-series batches from ClickUp, $20/day per ad set), the `KATECHON X VOANA \| $10 \| ABO` campaign (active, ad set `KAT020` at $60/day) and mirrored `14-07-26 \| Scaling campaign US/CA/UK` CBOs. Same pixel as the main account. **Image-upload MCP tools are not enabled here** — see "Launching into GetVoana - 1". | USD |
+| GetVoana - 1 (Voana) | `1247693024067639` | **Second live test account** (since 2026-09-06). Runs the S-series test campaigns from ClickUp, one per product, $20/day per ad set: `ABO: Stick Test Campaign USA` (`120247451142810591`, called `ABO: Test Campaign USA V2` until 2026-10) and `ABO: Cream Test Campaign USA` (`120247554389210591`), the `KATECHON X VOANA \| $10 \| ABO` campaign (active, ad set `KAT020` at $60/day) and mirrored `14-07-26 \| Scaling campaign US/CA/UK` CBOs. Same pixel as the main account. **Image-upload MCP tools are not enabled here** — see "Launching into GetVoana - 1". | USD |
 | [NOVA] getvoana.com (InovaInteraktif) | `901583842399904` | Engagement/social-proof farming ("NEW PPE - US", ~€1/day PPE ad set with duplicated post ads). | EUR |
 | CLA_0011_Kandy_Voana (Clikim Apex) | `814663791667175` | Idle — no active campaigns. | USD |
 
@@ -366,7 +366,7 @@ REST, `https://api.clickup.com/api/v2/…`); never commit the key.
 | Space | VOANA (Brand) — `901811531882` |
 | Folder → list | `[VN] - Tasks` → **Launch Manager** — list `901819973363`; only view is "Channel Tasks" (`2kzn0jtf-3038`). Sibling lists: Creative Team, Media. |
 | Statuses | `ready for launch` → `launched` → `complete` |
-| Task name | `S0nn - C1-Cn - <Image\|Video\|LFS\|GIF> - Stick - <Creative Director> - <Editor> - <angle> - <avatar> - <UMP> - <UMS> - <Awareness> - <Static\|…> - <Iteration\|Ideation\|Imitation> - <Variation ID>` |
+| Task name | `S0nn - C1-Cn - <Image\|Video\|LFS\|GIF> - <Stick\|Cream> - <Creative Director> - <Editor> - <angle> - <avatar> - <UMP> - <UMS> - <Awareness> - <Static\|…> - <Iteration\|Ideation\|Imitation> - <Variation ID>` |
 | Key custom fields | `Landing Page URL` (short text — can hold 2 URLs or be empty), `Google Drive Folder Link`, `Page` (dropdown of the FB pages), `Launch Date`, `Batch number *`, `Ad Format *`, `Number of Ads in Batch` |
 | Drive folder contents | `…_C<n>.png` per creative (1080×1080) + Google Docs `AD COPY 1` (long) / `AD COPY 2` (short) — usually only two docs regardless of image count. Rising LFS (`V1.1-V3.5`): `<batch> - Picture <p>.png` + `AD COPY 1-5`, one ad per pair |
 
@@ -376,8 +376,20 @@ single page) — dropdown values come back as `orderindex`, resolve them against
 order, which is by batch number, not the list API's `orderindex`.
 
 **Launch spec for S-batches** (differences from the sheet template):
-- Account GetVoana - 1, campaign `ABO: Test Campaign USA V2` (`120247451142810591`) —
-  Martijn chose to keep using it rather than open a new ABO (2026-09-07).
+- Account GetVoana - 1. **The campaign follows the product**, the token after
+  the format in the task name (`S998 - C1-C3 - Image - Cream - …`):
+
+  | Product token | Campaign |
+  |---|---|
+  | `Stick` | `ABO: Stick Test Campaign USA` (`120247451142810591`) |
+  | `Cream` | `ABO: Cream Test Campaign USA` (`120247554389210591`) |
+
+  Read the token from the name only, compare it case-insensitively, and never
+  guess from the copy, the landing page or the images. Any other token, or no
+  token → do not propose the batch; reply `skipped: unknown product "<token>"`
+  so a human adds the campaign here and on the dashboard. Until 2026-10-28 this
+  rule did not exist and every S-batch went to the Stick campaign, Cream
+  included (S302, S998).
 - Ad set name = the full ClickUp task name. Ad name = task name with the lander
   code inserted after the batch id and `_C<n>` appended:
   `S070 - COMP - C1-C3 - … - None_C1` (codes seen: `OG`, `7R`, `COMP`, `PG8`).
@@ -574,7 +586,7 @@ exactly which entities were created so a person can decide what to do with them.
 *stage* the objects in the account's Ads Manager draft and answer
 `status=DRAFT` with an allocated id. On 2026-10-16 the first launch under it
 stopped before any Meta call because the tool text says "publish that
-campaign", and the campaign (ABO: Test Campaign USA V2) is shared with other
+campaign", and the test campaign (Stick or Cream) is shared with other
 batches. That reading was too cautious: a publish is scoped to the ids you
 list, and a parent that is already live is never listed. The campaign is not
 touched. Do this:
@@ -651,7 +663,7 @@ fix the batch, do not look for a way around it.
   "title": "<ad set name = full ClickUp task name>",
   "source": "clickup", "source_ref": "<task id>", "source_url": "https://app.clickup.com/t/<task id>",
   "ad_account_id": "1247693024067639", "ad_account_name": "GetVoana - 1",
-  "campaign_id": "120247451142810591", "campaign_name": "ABO: Test Campaign USA V2",
+  "campaign_id": "120247451142810591", "campaign_name": "ABO: Stick Test Campaign USA",
   "adset_id": "<Meta ad set id>",
   "page_id": "<FB page id>", "page_name": "Woman Health Magazine",
   "daily_budget_cents": 2000, "currency": "USD",
