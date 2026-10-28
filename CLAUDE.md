@@ -234,10 +234,16 @@ first attempt 404s.
   `composio execute GOOGLEDRIVE_DOWNLOAD_FILE -d '{"fileId":"…"}'` returns a
   short-lived `downloaded_file_content.s3url`; `curl` that to disk. Copy docs are
   fine via the Drive MCP `read_file_content`.
-- **If `ads_creative_upload_media` / `ads_creative_upload_image` answer "gradually
-  rolled out"** (true for GetVoana - 1), skip the library upload and put
-  `"image_url": "<raw.githubusercontent URL>"` at the **top level** of the
-  `creative` JSON in `ads_create_ad`; Meta fetches it at creation.
+- **Images go in by `image_hash`, never by `image_url`** (since 2026-10-28).
+  First `ads_creative_upload_media` with `upload_source: "URL"`, `media_type:
+  "IMAGE"`, `media_url: <the media_url>` → it returns a `hash`. Then build the
+  ad with `link_data.image_hash: "<hash>"` and **no** `image_url` / `picture`
+  anywhere in the creative. An `image_url` creative is stored with *both*
+  `picture` and `image_hash`, and Meta refuses that at publish (error 1443051,
+  "only one of picture and image_hash"), so the draft never goes live. The
+  upload tool answered "gradually rolled out" on GetVoana - 1 until October;
+  it works now. If it still answers that, fail the batch with that message —
+  do not fall back to `image_url`.
 
 ### Workflow
 1. **Gather** the per-launch inputs above; default to next batch number,
@@ -523,6 +529,16 @@ The work list entry says `"build": "spec"` or `"built"`.
   in the work list comes from the fixed ad-set / ad spec in "Launch template".
   A reviewer may have changed any of these on the dashboard — never fall back to
   ClickUp or to what the sync proposed.
+- **Placements: Facebook only** (Martijn, 2026-10-28). Every new ad set gets
+  `"publisher_platforms": ["facebook"]` inside `targeting` (no `*_positions`
+  list: all Facebook positions). Voana runs no Instagram account, and since
+  ~2026-10-20 Meta refuses to publish an ad that can show on Instagram without
+  one ("Instagram account is missing" — visible only in Ads Manager; the MCP
+  says `VALIDATED`, no errors, and the publish just never finishes). With
+  Advantage+ placements every batch from S363 to S999 hung in the draft and was
+  published by hand; the same batch with Facebook-only placements published in
+  75 s (test 6, 2026-10-28). Images: by `image_hash` only — see "Image hosting
+  for uploads" in "Launch template".
 
 Then, in order:
 0. `python3 scripts/launch_draft.py landers --check`. If it exits 4 and any ad in
@@ -586,10 +602,12 @@ touched. Do this:
      again**: the identical `ads_activate_entity` call from step 3, same
      `object_ids`, nothing added. This is not a retry of an error — the call
      answered `PUBLISHING` and nothing is created twice — so hard rule 3 does
-     not forbid it. It is what worked on 2026-10-23: S358 sat in the draft for
-     20 minutes after the agent's publish and was live 4 minutes after the
-     same call was sent again; S363 went live the same way. At most these two
-     re-sends; no other calls in between.
+     not forbid it. At most these two re-sends; no other calls in between.
+     (Correction 2026-10-28: S358 and S363 did **not** go live from a re-send on
+     2026-10-23 — Meta's activity log shows them published by hand from Ads
+     Manager. A publish that hangs is almost always an object Meta refuses
+     without telling the MCP: Instagram placements or an `image_url` creative,
+     both above. Re-sending does not fix those.)
    - Live means: the ad set reads ACTIVE (or scheduled by its `start_time`) and
      every ad reads ACTIVE or `PENDING_REVIEW` (Meta's review is normal); an ad
      that reads PAUSED is activated one by one with a plain
@@ -638,7 +656,7 @@ fix the batch, do not look for a way around it.
   "page_id": "<FB page id>", "page_name": "Woman Health Magazine",
   "daily_budget_cents": 2000, "currency": "USD",
   "start_time": "2026-10-07T04:00:00Z",
-  "targeting_summary": "US · 18–65 · all genders · Advantage+ audience and placements",
+  "targeting_summary": "US · 18–65 · all genders · Advantage+ audience · Facebook placements only",
   "qa_flags": [{"level": "warn", "code": "brands", "message": "C1 shows real competitor packaging (Gold Bond)."}],
   "agent_notes": "Why this page, which URL rule applied, anything the reviewer should know.",
   "ads": [{
