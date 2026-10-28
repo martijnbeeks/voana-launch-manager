@@ -47,6 +47,12 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   launches/<batch>/<name>` per creative, and the printed URL becomes `media_url`. The `R2_*` values
   are in your environment; write them to `.env` with the others. The venv lives inside the
   checkout — nothing is installed anywhere else.
+- **One batch at a time, submitted as soon as it is ready.** Work through the batches one by one
+  and run `launch_draft.py submit` for a batch the moment its own creatives are on the CDN — never
+  collect all batches first and submit at the end. Videos can be hundreds of MB: on 2026-10-28 a
+  sync spent 25+ minutes downloading S397/S398 videos while S998 (three images, uploaded in the
+  first minute) sat unsubmitted and the dashboard showed nothing. Do small batches (images) before
+  big ones (video), and never wait on another batch's upload.
 - A tool you need is missing (Drive, or the upload fails): still submit the
   proposal with what you have, leave `media_url` empty, and say in your reply exactly which tool
   was missing. Do not improvise a substitute. **Also put it on the batch**, or the reviewer only
