@@ -565,11 +565,21 @@ Then, in order:
    set in the campaign: live (`ads_get_ad_entities`, level `adset`, filter
    `adset.name` CONTAIN the batch code, `date_preset: maximum`) and staged
    (`object_state: "draft"`, no `object_ids`). An ad set whose name equals
-   `title` means an earlier run already built it: found live → skip to step 3;
-   found in the draft → skip the creates and go straight to "Meta draft mode"
-   step 2 (publish what is staged). A batch that is approved again after a
-   `failed` publish is resumed this way, never rebuilt — S363 and S358 sat in
-   the draft on 2026-10-23 while their batches read `failed`.
+   `title` means an earlier run already built it — **reuse that ad set, never
+   create a second one**. Then check its ads the same way (live, and staged with
+   `object_state: "draft"`, `object_ids: ["<adset_id>"]`) and match each ad of
+   the work list by its name suffix (`_V2.4`, `_C3`). **Create only the ads that
+   are missing**, under the existing ad set id, in work-list order; an ad that is
+   already there is never created again. A run that stopped half-way (S406 on
+   2026-10-28: Meta's `INTERNAL` error on the 9th of 15 ads left the ad set and
+   8 ads staged) is finished this way — publishing only what was staged would
+   launch an incomplete batch, and the count check in "Meta draft mode" step 2
+   fails it. A create that errored "may or may not be staged": the name match
+   decides, never the error message. When every ad is there: found live → skip
+   to step 3; found in the draft → "Meta draft mode" step 2 (publish what is
+   staged). A batch that is approved again after a `failed` publish is resumed
+   this way, never rebuilt — S363 and S358 sat in the draft on 2026-10-23 while
+   their batches read `failed`.
    Otherwise create the ad set, then each ad, and activate them. **If the
    create calls answer `status=DRAFT`, follow "Meta draft mode" below instead of
    a plain activate** — the objects are not in Meta yet.
