@@ -607,13 +607,32 @@ touched. Do this:
 1. Create the ad set, then each ad, as usual; keep every returned id. A create
    that answers with `active_errors` is a failure: `result <draft_key> failed`
    with that message, publish nothing.
+   **One retry for Meta's transient error only**: a create that fails with
+   `error_code 1` / `INTERNAL` / "An internal error occurred. Please try again
+   later" — wait 60 seconds, read the draft under the ad set (step 2) and look
+   for that ad by its name suffix, because the failed call may still have staged
+   it. Found → keep its id and go on. Not found → send that one create again,
+   once. A second failure is a real failure (`result … failed`, as above). This
+   is one retry of one call, not a loop, and no other error is retried. Without
+   it S406 failed at ad 9 of 15 on 2026-10-28 on a single hiccup.
 2. `ads_get_ad_entities` with `object_state: "draft"` and
-   `object_ids: ["<adset_id>"]` → every object staged under the ad set. Take the
-   `ad_object_id` of the ad set and of each ad; the count must equal the ads in
-   the work list, else fail.
+   `object_ids: ["<adset_id>"]` → every object staged under the ad set. Match
+   every ad of the work list to **exactly one** staged ad by its name suffix
+   (`_V2.4`, `_C3`) with `source: "mcp_campaign_creation"`, and take those
+   `ad_object_id`s plus the ad set's. **Meta adds ads of its own to the draft**:
+   on 2026-10-28 an ad with `source: "upgrade_duplicate"` (a copy of V1.1 with
+   Advantage+ creative enhancements switched on, `originalAdObjectID` /
+   `source_ad_id` pointing at the ad it copied, name ending `__V2.1`) appeared
+   in the S406 draft during the run. Nobody asked for it, and a reviewer never
+   saw it. Such an ad — any `source` other than `mcp_campaign_creation`, or a
+   `source_ad_id` / `originalAdObjectID` — is **never published and never a
+   reason to fail**: leave it in the draft and name it in the `launched` note
+   ("Meta added <id> (<source>, copy of <ad>); not published, discard it in Ads
+   Manager"). Fail only when a work-list ad has no match, or two of ours match
+   one name.
 3. `ads_activate_entity` with `entity_id: "<adset_id>"`, `entity_type: "ad_set"`,
-   `object_ids: ["<adset_id>", "<ad id>", …]` (every id from step 2, nothing
-   else), `publish_as_active: true`, `ignore_validation_errors: false`. **Never
+   `object_ids: ["<adset_id>", "<ad id>", …]` (the ad set and the matched
+   work-list ads from step 2, nothing else — never a Meta-added copy), `publish_as_active: true`, `ignore_validation_errors: false`. **Never
    put the campaign id in `object_ids` and never call `ads_activate_entity` on
    the campaign** — it is live and shared; the tool lists a parent only when the
    parent itself is still unpublished.
