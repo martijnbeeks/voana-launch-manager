@@ -191,6 +191,10 @@ Here the copy pairing rule and the multiple-primary-text override do NOT apply.
   ad's position 1-15 in the description's order.
 - The landing page is the task's `Landing Page URL` (the product's sales page);
   the copy already links to it.
+- Budget **$20/day per ad set** (`daily_budget_cents` 2000), display link
+  **`skin-fold-issues.com`** (as on earlier LFS ads, not the template's
+  no-skin-rash.com), CTA Learn More, page from the task's `Page` field
+  (Linda Ramos for the 2026-10-28 batches) — Martijn, 2026-10-28.
 - No `Picture` files (the competitor ad had no still): one ad per copy, `_V1.<c>`,
   and flag `missing_media` so a person adds a picture.
 

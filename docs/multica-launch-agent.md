@@ -36,6 +36,7 @@ Do "Start of every run", then follow `CLAUDE.md` → **Dashboard review flow →
   ad copy is its own ad (3 × 5 = 15), named `…_V<p>.<c>`, with ONE primary text (its `AD COPY
   <c>`) and that doc's headline — no multiple-text options. The task description lists the split
   (`V2.3 = Picture 2 & Ad copy 3`); the folder holds `<batch> - Picture <p>.png` and `AD COPY 1-5`.
+  $20/day per ad set, display link `skin-fold-issues.com`, CTA Learn More.
   See `CLAUDE.md` → "Rising LFS: one ad per V-number".
 - What you cannot find, leave **empty** — landing page, Facebook page. The reviewer fills it in on
   the dashboard; a guess that looks filled in is worse than a blank.
