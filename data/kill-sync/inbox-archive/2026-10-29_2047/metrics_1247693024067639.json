@@ -1,0 +1,2434 @@
+[
+ {
+  "id": "120248173799970591",
+  "name": "S173 - SP DIRECT - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248173799960591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:47:08-0400",
+  "adset_name": "S173 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "22.77",
+   "unit": "USD"
+  },
+  "impressions": "112",
+  "clicks": "10",
+  "ctr": "8.93%",
+  "cpc": {
+   "value": "2.28",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "203.3",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "5",
+  "outbound_clicks_ctr": "4.464286",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "5",
+  "website_ctr": "4.464286",
+  "cost_per_link_click": {
+   "value": "4.55",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248174074600591",
+  "name": "S173 - SP DIRECT - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248173799960591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:47:08-0400",
+  "adset_name": "S173 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "21.76",
+   "unit": "USD"
+  },
+  "impressions": "113",
+  "clicks": "29",
+  "ctr": "25.66%",
+  "cpc": {
+   "value": "0.75",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "192.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "3",
+  "outbound_clicks_ctr": "2.654867",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "2.654867",
+  "cost_per_link_click": {
+   "value": "7.25",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248174074590591",
+  "name": "S173 - SP DIRECT - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C2",
+  "adset_id": "120248173799960591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:47:08-0400",
+  "adset_name": "S173 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "30.57",
+   "unit": "USD"
+  },
+  "impressions": "172",
+  "clicks": "30",
+  "ctr": "17.44%",
+  "cpc": {
+   "value": "1.02",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "177.73",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "12",
+  "outbound_clicks_ctr": "6.976744",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "12",
+  "website_ctr": "6.976744",
+  "cost_per_link_click": {
+   "value": "2.55",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173357250591",
+  "name": "S172 - SP DIRECT - V2 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248173357240591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:28:39-0400",
+  "adset_name": "S172 - V2 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "6.4",
+   "unit": "USD"
+  },
+  "impressions": "28",
+  "clicks": "5",
+  "ctr": "17.86%",
+  "cpc": {
+   "value": "1.28",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "228.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248173458930591",
+  "name": "S172 - SP DIRECT - V2 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248173357240591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:28:39-0400",
+  "adset_name": "S172 - V2 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "63.4",
+   "unit": "USD"
+  },
+  "impressions": "340",
+  "clicks": "107",
+  "ctr": "31.47%",
+  "cpc": {
+   "value": "0.59",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "186.47",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "23",
+  "outbound_clicks_ctr": "6.764706",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "23",
+  "website_ctr": "6.764706",
+  "cost_per_link_click": {
+   "value": "2.76",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173458940591",
+  "name": "S172 - SP DIRECT - V2 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C2",
+  "adset_id": "120248173357240591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:28:39-0400",
+  "adset_name": "S172 - V2 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "0.18",
+   "unit": "USD"
+  },
+  "impressions": "3",
+  "clicks": "1",
+  "ctr": "33.33%",
+  "cpc": {
+   "value": "0.18",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "60",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "33.333333",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "33.333333",
+  "cost_per_link_click": {
+   "value": "0.18",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173189010591",
+  "name": "S172 - SP DIRECT - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248173189020591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:20:04-0400",
+  "adset_name": "S172 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "33.48",
+   "unit": "USD"
+  },
+  "impressions": "293",
+  "clicks": "10",
+  "ctr": "3.41%",
+  "cpc": {
+   "value": "3.35",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "114.27",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "8",
+  "outbound_clicks_ctr": "2.730375",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "8",
+  "website_ctr": "2.730375",
+  "cost_per_link_click": {
+   "value": "4.19",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173299800591",
+  "name": "S172 - SP DIRECT - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C2",
+  "adset_id": "120248173189020591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:20:04-0400",
+  "adset_name": "S172 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "5.66",
+   "unit": "USD"
+  },
+  "impressions": "43",
+  "clicks": "7",
+  "ctr": "16.28%",
+  "cpc": {
+   "value": "0.81",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "131.63",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248173299790591",
+  "name": "S172 - SP DIRECT - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248173189020591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:20:04-0400",
+  "adset_name": "S172 - V1 - LFS - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "30.84",
+   "unit": "USD"
+  },
+  "impressions": "206",
+  "clicks": "39",
+  "ctr": "18.93%",
+  "cpc": {
+   "value": "0.79",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "149.71",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "11",
+  "outbound_clicks_ctr": "5.339806",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "11",
+  "website_ctr": "5.339806",
+  "cost_per_link_click": {
+   "value": "2.8",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173033550591",
+  "name": "S171 - SP DIRECT - V3 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248173033540591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:11:01-0400",
+  "adset_name": "S171 - V3 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "59.12",
+   "unit": "USD"
+  },
+  "impressions": "696",
+  "clicks": "41",
+  "ctr": "5.89%",
+  "cpc": {
+   "value": "1.44",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "84.94",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "18",
+  "outbound_clicks_ctr": "2.586207",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "18",
+  "website_ctr": "2.586207",
+  "cost_per_link_click": {
+   "value": "3.28",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248173129480591",
+  "name": "S171 - SP DIRECT - V3 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248173033540591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:11:01-0400",
+  "adset_name": "S171 - V3 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "3.9",
+   "unit": "USD"
+  },
+  "impressions": "10",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "390",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248173129470591",
+  "name": "S171 - SP DIRECT - V3 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None_C2",
+  "adset_id": "120248173033540591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:11:01-0400",
+  "adset_name": "S171 - V3 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "4.85",
+   "unit": "USD"
+  },
+  "impressions": "35",
+  "clicks": "7",
+  "ctr": "20.00%",
+  "cpc": {
+   "value": "0.69",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "138.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "11.428571",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "11.428571",
+  "cost_per_link_click": {
+   "value": "1.21",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248172910400591",
+  "name": "S171 - SP DIRECT - V2 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248172910390591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:01:57-0400",
+  "adset_name": "S171 - V2 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "3.88",
+   "unit": "USD"
+  },
+  "impressions": "48",
+  "clicks": "7",
+  "ctr": "14.58%",
+  "cpc": {
+   "value": "0.55",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "80.83",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "4.166667",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "4.166667",
+  "cost_per_link_click": {
+   "value": "1.94",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248172975160591",
+  "name": "S171 - SP DIRECT - V2 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248172910390591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:01:57-0400",
+  "adset_name": "S171 - V2 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "66.89",
+   "unit": "USD"
+  },
+  "impressions": "294",
+  "clicks": "91",
+  "ctr": "30.95%",
+  "cpc": {
+   "value": "0.74",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "227.52",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "25",
+  "outbound_clicks_ctr": "8.503401",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "25",
+  "website_ctr": "8.503401",
+  "cost_per_link_click": {
+   "value": "2.68",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248172975150591",
+  "name": "S171 - SP DIRECT - V2 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C2",
+  "adset_id": "120248172910390591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T05:01:57-0400",
+  "adset_name": "S171 - V2 - LFS - Cream - Aris - Don Elmore Suing - sleep - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "2.81",
+   "unit": "USD"
+  },
+  "impressions": "16",
+  "clicks": "3",
+  "ctr": "18.75%",
+  "cpc": {
+   "value": "0.94",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "175.63",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170616280591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C2.2",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "9.27",
+   "unit": "USD"
+  },
+  "impressions": "85",
+  "clicks": "3",
+  "ctr": "3.53%",
+  "cpc": {
+   "value": "3.09",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "109.06",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.176471",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.176471",
+  "cost_per_link_click": {
+   "value": "9.27",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248170549560591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C2.1",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "4.12",
+   "unit": "USD"
+  },
+  "impressions": "22",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "187.27",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170653490591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C4.1",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "1.64",
+   "unit": "USD"
+  },
+  "impressions": "12",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "136.67",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170653510591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C3.2",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "impressions": "3",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170743090591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C6.1",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.78",
+   "unit": "USD"
+  },
+  "impressions": "5",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "156",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170771300591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C6.3",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.92",
+   "unit": "USD"
+  },
+  "impressions": "7",
+  "clicks": "3",
+  "ctr": "42.86%",
+  "cpc": {
+   "value": "0.31",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "131.43",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "28.571429",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "28.571429",
+  "cost_per_link_click": {
+   "value": "0.46",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248170771290591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C6.2",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "impressions": "1",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "0",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170743080591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C5.3",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.05",
+   "unit": "USD"
+  },
+  "impressions": "5",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "10",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170743100591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C5.2",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.1",
+   "unit": "USD"
+  },
+  "impressions": "2",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "50",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170672750591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C5.1",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.7",
+   "unit": "USD"
+  },
+  "impressions": "5",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "140",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170672770591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C4.2",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "1.68",
+   "unit": "USD"
+  },
+  "impressions": "24",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "70",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170672760591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C4.3",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "1.46",
+   "unit": "USD"
+  },
+  "impressions": "21",
+  "clicks": "1",
+  "ctr": "4.76%",
+  "cpc": {
+   "value": "1.46",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "69.52",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "4.761905",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "4.761905",
+  "cost_per_link_click": {
+   "value": "1.46",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248170616300591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C3.1",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.08",
+   "unit": "USD"
+  },
+  "impressions": "2",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "40",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170449760591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C1.1",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.81",
+   "unit": "USD"
+  },
+  "impressions": "11",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "73.64",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170616290591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C2.3",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "40.69",
+   "unit": "USD"
+  },
+  "impressions": "401",
+  "clicks": "22",
+  "ctr": "5.49%",
+  "cpc": {
+   "value": "1.85",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "101.47",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "18",
+  "outbound_clicks_ctr": "4.488778",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "18",
+  "website_ctr": "4.488778",
+  "cost_per_link_click": {
+   "value": "2.26",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248170653500591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C3.3",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "0.16",
+   "unit": "USD"
+  },
+  "impressions": "5",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "32",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248170549540591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C1.2",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "9.62",
+   "unit": "USD"
+  },
+  "impressions": "77",
+  "clicks": "5",
+  "ctr": "6.49%",
+  "cpc": {
+   "value": "1.92",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "124.94",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "3",
+  "outbound_clicks_ctr": "3.896104",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "3",
+  "website_ctr": "3.896104",
+  "cost_per_link_click": {
+   "value": "3.21",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248170549550591",
+  "name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - UMP - UMS - Product Aware - Static - Ideation - None_C1.3",
+  "adset_id": "120248170449750591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-26T02:45:30-0400",
+  "adset_name": "S372 - C1-C6 - Image - Cream - yousuf hussam - Don Elmore Suing - offer - Avatar - thin_skin_threshold - deep_layer_repair_system - Product Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "5.28",
+   "unit": "USD"
+  },
+  "impressions": "66",
+  "clicks": "1",
+  "ctr": "1.52%",
+  "cpc": {
+   "value": "5.28",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "80",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.515152",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.515152",
+  "cost_per_link_click": {
+   "value": "5.28",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248168362560591",
+  "name": "S362 - SP DIRECT - V1-V3 - Video - Stick - Aris - Don Elmore Suing - shame - woman_45plus - treatment_sabotage_loop - UMS - Full Funnel - Scrolling Text - Iteration - None_V3",
+  "adset_id": "120248168128130591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-25T22:39:38-0400",
+  "adset_name": "S362 - V1-V3 - Video - Stick - Aris - Don Elmore Suing - shame - woman_45plus - treatment_sabotage_loop - UMS - Full Funnel - Scrolling Text - Iteration - None",
+  "amount_spent": {
+   "value": "48.09",
+   "unit": "USD"
+  },
+  "impressions": "335",
+  "clicks": "41",
+  "ctr": "12.24%",
+  "cpc": {
+   "value": "1.17",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "143.55",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "48.09",
+   "unit": "USD"
+  },
+  "outbound_clicks": "33",
+  "outbound_clicks_ctr": "9.850746",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.913911",
+  "omni_purchase_values": {
+   "value": "43.95",
+   "unit": "USD"
+  },
+  "link_click": "33",
+  "website_ctr": "9.850746",
+  "cost_per_link_click": {
+   "value": "1.46",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248168128120591",
+  "name": "S362 - SP DIRECT - V1-V3 - Video - Stick - Aris - Don Elmore Suing - shame - woman_45plus - treatment_sabotage_loop - UMS - Full Funnel - Scrolling Text - Iteration - None_V1",
+  "adset_id": "120248168128130591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-25T22:39:38-0400",
+  "adset_name": "S362 - V1-V3 - Video - Stick - Aris - Don Elmore Suing - shame - woman_45plus - treatment_sabotage_loop - UMS - Full Funnel - Scrolling Text - Iteration - None",
+  "amount_spent": {
+   "value": "72.06",
+   "unit": "USD"
+  },
+  "impressions": "542",
+  "clicks": "50",
+  "ctr": "9.23%",
+  "cpc": {
+   "value": "1.44",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "132.95",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "72.06",
+   "unit": "USD"
+  },
+  "outbound_clicks": "38",
+  "outbound_clicks_ctr": "7.01107",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.829864",
+  "omni_purchase_values": {
+   "value": "59.8",
+   "unit": "USD"
+  },
+  "link_click": "38",
+  "website_ctr": "7.01107",
+  "cost_per_link_click": {
+   "value": "1.9",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248168362570591",
+  "name": "S362 - SP DIRECT - V1-V3 - Video - Stick - Aris - Don Elmore Suing - shame - woman_45plus - treatment_sabotage_loop - UMS - Full Funnel - Scrolling Text - Iteration - None_V2",
+  "adset_id": "120248168128130591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-25T22:39:38-0400",
+  "adset_name": "S362 - V1-V3 - Video - Stick - Aris - Don Elmore Suing - shame - woman_45plus - treatment_sabotage_loop - UMS - Full Funnel - Scrolling Text - Iteration - None",
+  "amount_spent": {
+   "value": "1.68",
+   "unit": "USD"
+  },
+  "impressions": "10",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "168",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248042719420591",
+  "name": "S163 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C2 - IMP",
+  "adset_id": "120248042674250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-17T09:25:11-0400",
+  "adset_name": "S163 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "105.48",
+   "unit": "USD"
+  },
+  "impressions": "1033",
+  "clicks": "253",
+  "ctr": "24.49%",
+  "cpc": {
+   "value": "0.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "102.11",
+   "unit": "USD"
+  },
+  "omni_purchase": "3",
+  "cost_per_omni_purchase": {
+   "value": "35.16",
+   "unit": "USD"
+  },
+  "outbound_clicks": "32",
+  "outbound_clicks_ctr": "3.097773",
+  "omni_add_to_cart": "4",
+  "purchase_roas": "1.13102",
+  "omni_purchase_values": {
+   "value": "119.3",
+   "unit": "USD"
+  },
+  "link_click": "32",
+  "website_ctr": "3.097773",
+  "cost_per_link_click": {
+   "value": "3.3",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075481070591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C1",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "54.17",
+   "unit": "USD"
+  },
+  "impressions": "620",
+  "clicks": "26",
+  "ctr": "4.19%",
+  "cpc": {
+   "value": "2.08",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "87.37",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "20",
+  "outbound_clicks_ctr": "3.225806",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "20",
+  "website_ctr": "3.225806",
+  "cost_per_link_click": {
+   "value": "2.71",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075418900591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C1",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "7.9",
+   "unit": "USD"
+  },
+  "impressions": "92",
+  "clicks": "5",
+  "ctr": "5.43%",
+  "cpc": {
+   "value": "1.58",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "85.87",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "5",
+  "outbound_clicks_ctr": "5.434783",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "5",
+  "website_ctr": "5.434783",
+  "cost_per_link_click": {
+   "value": "1.58",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075481110591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C6",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "0.52",
+   "unit": "USD"
+  },
+  "impressions": "7",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "74.29",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248075447340591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C5",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "0.12",
+   "unit": "USD"
+  },
+  "impressions": "3",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "40",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248075447360591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C7",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "1.03",
+   "unit": "USD"
+  },
+  "impressions": "15",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "68.67",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248075481090591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C4",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "1.56",
+   "unit": "USD"
+  },
+  "impressions": "10",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "156",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248075481120591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C7",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "0.99",
+   "unit": "USD"
+  },
+  "impressions": "14",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "70.71",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248075447320591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C3",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "33.01",
+   "unit": "USD"
+  },
+  "impressions": "374",
+  "clicks": "38",
+  "ctr": "10.16%",
+  "cpc": {
+   "value": "0.87",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "88.26",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "33.01",
+   "unit": "USD"
+  },
+  "outbound_clicks": "17",
+  "outbound_clicks_ctr": "4.545455",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.813087",
+  "omni_purchase_values": {
+   "value": "59.85",
+   "unit": "USD"
+  },
+  "link_click": "17",
+  "website_ctr": "4.545455",
+  "cost_per_link_click": {
+   "value": "1.94",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075447310591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C2",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "12.14",
+   "unit": "USD"
+  },
+  "impressions": "128",
+  "clicks": "7",
+  "ctr": "5.47%",
+  "cpc": {
+   "value": "1.73",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "94.84",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "6",
+  "outbound_clicks_ctr": "4.6875",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "6",
+  "website_ctr": "4.6875",
+  "cost_per_link_click": {
+   "value": "2.02",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075481080591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C3",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "15.66",
+   "unit": "USD"
+  },
+  "impressions": "128",
+  "clicks": "11",
+  "ctr": "8.59%",
+  "cpc": {
+   "value": "1.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "122.34",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "5.46875",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "7",
+  "website_ctr": "5.46875",
+  "cost_per_link_click": {
+   "value": "2.24",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075447330591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C4",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "2.01",
+   "unit": "USD"
+  },
+  "impressions": "18",
+  "clicks": "1",
+  "ctr": "5.56%",
+  "cpc": {
+   "value": "2.01",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "111.67",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "5.555556",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "5.555556",
+  "cost_per_link_click": {
+   "value": "2.01",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075481130591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C5",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "0.1",
+   "unit": "USD"
+  },
+  "impressions": "4",
+  "clicks": "1",
+  "ctr": "25.00%",
+  "cpc": {
+   "value": "0.1",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "25",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "25",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "25",
+  "cost_per_link_click": {
+   "value": "0.1",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075481100591",
+  "name": "S357 - PG26 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C2",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "4.53",
+   "unit": "USD"
+  },
+  "impressions": "44",
+  "clicks": "6",
+  "ctr": "13.64%",
+  "cpc": {
+   "value": "0.76",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "102.95",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "4.545455",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "4.545455",
+  "cost_per_link_click": {
+   "value": "2.27",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248075447350591",
+  "name": "S357 - SP DIRECT - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None_C6",
+  "adset_id": "120248075418890591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-19T23:46:21-0400",
+  "adset_name": "S357 - C1-C7 - Image - Stick - Aris - Don Elmore Suing - smell - woman_45plus - single_target_trap - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "3.14",
+   "unit": "USD"
+  },
+  "impressions": "24",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "130.83",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248042674260591",
+  "name": "S163 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C1",
+  "adset_id": "120248042674250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-17T09:25:11-0400",
+  "adset_name": "S163 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "4.57",
+   "unit": "USD"
+  },
+  "impressions": "83",
+  "clicks": "7",
+  "ctr": "8.43%",
+  "cpc": {
+   "value": "0.65",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "55.06",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "4.57",
+   "unit": "USD"
+  },
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "2.409639",
+  "omni_add_to_cart": null,
+  "purchase_roas": "6.553611",
+  "omni_purchase_values": {
+   "value": "29.95",
+   "unit": "USD"
+  },
+  "link_click": "2",
+  "website_ctr": "2.409639",
+  "cost_per_link_click": {
+   "value": "2.29",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248042719450591",
+  "name": "S163 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C5",
+  "adset_id": "120248042674250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-17T09:25:11-0400",
+  "adset_name": "S163 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "0.95",
+   "unit": "USD"
+  },
+  "impressions": "37",
+  "clicks": "3",
+  "ctr": "8.11%",
+  "cpc": {
+   "value": "0.32",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "25.68",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "2.702703",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "2.702703",
+  "cost_per_link_click": {
+   "value": "0.95",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248042719430591",
+  "name": "S163 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C3",
+  "adset_id": "120248042674250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-17T09:25:11-0400",
+  "adset_name": "S163 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "56.14",
+   "unit": "USD"
+  },
+  "impressions": "601",
+  "clicks": "127",
+  "ctr": "21.13%",
+  "cpc": {
+   "value": "0.44",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "93.41",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "46",
+  "outbound_clicks_ctr": "7.65391",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "46",
+  "website_ctr": "7.65391",
+  "cost_per_link_click": {
+   "value": "1.22",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248042719440591",
+  "name": "S163 - SP DIRECT - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None_C4",
+  "adset_id": "120248042674250591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-17T09:25:11-0400",
+  "adset_name": "S163 - C1-C5 - LFS - Cream - Aris - Don Elmore Suing - shame - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Problem Aware - LFS - Imitation - None",
+  "amount_spent": {
+   "value": "4.26",
+   "unit": "USD"
+  },
+  "impressions": "37",
+  "clicks": "5",
+  "ctr": "13.51%",
+  "cpc": {
+   "value": "0.85",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "115.14",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248025939110591",
+  "name": "S347 - OG - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C2",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "33.72",
+   "unit": "USD"
+  },
+  "impressions": "422",
+  "clicks": "14",
+  "ctr": "3.32%",
+  "cpc": {
+   "value": "2.41",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "79.91",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "11",
+  "outbound_clicks_ctr": "2.606635",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "11",
+  "website_ctr": "2.606635",
+  "cost_per_link_click": {
+   "value": "3.07",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248025886010591",
+  "name": "S347 - PG23 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C6",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "2.9",
+   "unit": "USD"
+  },
+  "impressions": "70",
+  "clicks": "2",
+  "ctr": "2.86%",
+  "cpc": {
+   "value": "1.45",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "41.43",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.428571",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.428571",
+  "cost_per_link_click": {
+   "value": "2.9",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248025886040591",
+  "name": "S347 - PG23 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C3",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "4.3",
+   "unit": "USD"
+  },
+  "impressions": "72",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "59.72",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248025939120591",
+  "name": "S347 - OG - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C5",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "31.32",
+   "unit": "USD"
+  },
+  "impressions": "478",
+  "clicks": "13",
+  "ctr": "2.72%",
+  "cpc": {
+   "value": "2.41",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "65.52",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "31.32",
+   "unit": "USD"
+  },
+  "outbound_clicks": "8",
+  "outbound_clicks_ctr": "1.67364",
+  "omni_add_to_cart": null,
+  "purchase_roas": "2.549489",
+  "omni_purchase_values": {
+   "value": "79.85",
+   "unit": "USD"
+  },
+  "link_click": "8",
+  "website_ctr": "1.67364",
+  "cost_per_link_click": {
+   "value": "3.92",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248025772510591",
+  "name": "S347 - PG23 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C1",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "5.33",
+   "unit": "USD"
+  },
+  "impressions": "66",
+  "clicks": "4",
+  "ctr": "6.06%",
+  "cpc": {
+   "value": "1.33",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "80.76",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "3.030303",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "3.030303",
+  "cost_per_link_click": {
+   "value": "2.67",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248025939140591",
+  "name": "S347 - OG - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C3",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "2.5",
+   "unit": "USD"
+  },
+  "impressions": "48",
+  "clicks": "1",
+  "ctr": "2.08%",
+  "cpc": {
+   "value": "2.5",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "52.08",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248025886030591",
+  "name": "S347 - PG23 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C4",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "0.54",
+   "unit": "USD"
+  },
+  "impressions": "5",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "108",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248025939090591",
+  "name": "S347 - OG - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C1",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "28.14",
+   "unit": "USD"
+  },
+  "impressions": "233",
+  "clicks": "14",
+  "ctr": "6.01%",
+  "cpc": {
+   "value": "2.01",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "120.77",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "3.004292",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "7",
+  "website_ctr": "3.004292",
+  "cost_per_link_click": {
+   "value": "4.02",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248025886020591",
+  "name": "S347 - PG23 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C5",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "3.29",
+   "unit": "USD"
+  },
+  "impressions": "36",
+  "clicks": "3",
+  "ctr": "8.33%",
+  "cpc": {
+   "value": "1.1",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "91.39",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "3.29",
+   "unit": "USD"
+  },
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "5.555556",
+  "omni_add_to_cart": null,
+  "purchase_roas": "14.270517",
+  "omni_purchase_values": {
+   "value": "46.95",
+   "unit": "USD"
+  },
+  "link_click": "2",
+  "website_ctr": "5.555556",
+  "cost_per_link_click": {
+   "value": "1.65",
+   "unit": "USD"
+  }
+ },
+ {
+  "id": "120248025939130591",
+  "name": "S347 - OG - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C4",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "1.82",
+   "unit": "USD"
+  },
+  "impressions": "6",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "303.33",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248025939100591",
+  "name": "S347 - OG - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C6",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "3.16",
+   "unit": "USD"
+  },
+  "impressions": "53",
+  "clicks": "1",
+  "ctr": "1.89%",
+  "cpc": {
+   "value": "3.16",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "59.62",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null
+ },
+ {
+  "id": "120248025886050591",
+  "name": "S347 - PG23 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None_C2",
+  "adset_id": "120248025772500591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-10-16T05:39:03-0400",
+  "adset_name": "S347 - C1-C7 - Image - Cream - Aris - Don Elmore Suing - smell - Avatar - thin_skin_threshold - UMS - Product Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "16.73",
+   "unit": "USD"
+  },
+  "impressions": "167",
+  "clicks": "6",
+  "ctr": "3.59%",
+  "cpc": {
+   "value": "2.79",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "100.18",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "6",
+  "outbound_clicks_ctr": "3.592814",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "6",
+  "website_ctr": "3.592814",
+  "cost_per_link_click": {
+   "value": "2.79",
+   "unit": "USD"
+  }
+ }
+]
