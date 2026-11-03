@@ -1,0 +1,44 @@
+[
+ {
+  "id": "120248259755270591",
+  "name": "S414 - C1-C6 - Image - Cream - Aris - Don Elmore Suing - offer - Avatar - treatment_sabotage_loop - UMS - Most Aware - Static - Imitation - None",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-10-31T08:18:03-0400",
+  "amount_spent": {
+   "value": "93.78",
+   "unit": "USD"
+  },
+  "impressions": "1074",
+  "clicks": "36",
+  "ctr": "3.35%",
+  "cpc": {
+   "value": "2.61",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "87.32",
+   "unit": "USD"
+  },
+  "omni_purchase": "3",
+  "cost_per_omni_purchase": {
+   "value": "31.26",
+   "unit": "USD"
+  },
+  "outbound_clicks": "31",
+  "outbound_clicks_ctr": "2.886406",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.751973",
+  "omni_purchase_values": {
+   "value": "164.3",
+   "unit": "USD"
+  },
+  "link_click": "31",
+  "website_ctr": "2.886406",
+  "cost_per_link_click": {
+   "value": "3.03",
+   "unit": "USD"
+  }
+ }
+]
