@@ -67,5 +67,6 @@
     "9": "PENDING_REVIEW",
     "17": "IN_PROCESS"
   },
-  "cheap_cpa_max": 45
+  "cheap_cpa_max": 45,
+  "cheap_min_purchases": 3
 }
