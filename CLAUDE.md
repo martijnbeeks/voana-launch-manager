@@ -163,6 +163,31 @@ midnight ET with `start_time` at 00:00.
 - Placements: Advantage+ (all platforms/positions, mobile + desktop)
 - Brand safety: relaxed (Facebook / Audience Network / Feed)
 
+**Creative settings (fixed, Martijn 2026-11-05): every enhancement and
+multi-advertiser ads OFF, on every ad.** Never leave these to Meta's default.
+Every creative you build — `ads_create_creative` or the creative JSON passed to
+`ads_create_ad` — carries both:
+- `contextual_multi_ads = {"enroll_status":"OPT_OUT"}` (Multi-advertiser ads off).
+  With `ads_create_creative` this is the connector's default for a new inline
+  creative; state it explicitly in the `ads_create_ad` creative JSON.
+- `degrees_of_freedom_spec.creative_features_spec` with **each** of these set
+  to `{"enroll_status":"OPT_OUT"}`: `image_touchups`,
+  `image_brightness_and_contrast`, `image_uncrop`, `image_templates`,
+  `image_animation`, `text_optimizations`, `add_text_overlay`,
+  `description_automation`, `enhance_cta`, `inline_comment`,
+  `adapt_to_placement`, `video_auto_crop`, `site_extensions`,
+  `product_extensions` (Advantage+ creative enhancements and the Essential
+  enhancements — relevant comments, enhance CTA, spotlights — off). On
+  `ads_create_creative` pass it as the JSON-encoded string
+  `degrees_of_freedom_spec` and never set `advantage_plus_creative` true or
+  `advantage_plus_creative_features`. Never send `standard_enhancements`
+  (retired; Meta rejects it).
+- Never copy a source ad's enhancement or multi-advertiser setting, and never
+  pass `source_ad_id` without the explicit opt-outs above.
+After the build, the one confirming read (work-list step 5) also checks the
+creative: any feature or multi-advertiser setting not `OPT_OUT` → report the
+batch `failed` with the creative id; do not edit it.
+
 **Copy pairing rule:** the copy doc is always paired 1:1 with its same-numbered
 image — image 1 gets "ad copy 1", image 2 gets "ad copy 2". Never cross-combine
 images and copies into a test matrix.
