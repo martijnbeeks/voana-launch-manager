@@ -831,19 +831,24 @@ def ad_rows(ads: list[dict]) -> tuple[list[str], list[str], str]:
 
 
 CHEAP_CPA_MAX = float(CONFIG.get("cheap_cpa_max", 45))
+# Fewer purchases than this is noise, not a cheap ad: one or two lucky sales
+# put an ad "under $45" without telling anyone it converts (Jurre, 2026-11-05).
+CHEAP_MIN_PURCHASES = int(CONFIG.get("cheap_min_purchases", 3))
 
 
-def cheap_ads(ads: list[dict], cap: float = CHEAP_CPA_MAX) -> list[str]:
+def cheap_ads(ads: list[dict], cap: float = CHEAP_CPA_MAX,
+              min_purch: int = CHEAP_MIN_PURCHASES) -> list[str]:
     """Ads that bought at a CPA under `cap`, cheapest first: 'C2/7R $29.00 (8 purch)'.
 
     A batch is killed on its TOTAL, so one ad that converts cheaply inside it
     dies with the rest unless someone notices — the question Jurre asked on
     2026-10-22. Only real purchases count: an ad with no purchase has no CPA,
-    and an ad whose purchases Meta did not report is never guessed into one."""
+    and an ad whose purchases Meta did not report is never guessed into one.
+    An ad needs at least `min_purch` purchases to count (Jurre, 2026-11-05)."""
     hits = []
     for a in ads:
         purch, cpa = purchases_of(a), cpa_of(a)
-        if purch and cpa is not None and cpa < cap:
+        if purch and purch >= min_purch and cpa is not None and cpa < cap:
             hits.append((cpa, f"{ad_key(a.get('name', ''))} {money(cpa)} ({purch} purch)"))
     return [label for _, label in sorted(hits, key=lambda h: h[0])]
 

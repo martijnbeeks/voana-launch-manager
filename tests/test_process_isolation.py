@@ -378,11 +378,13 @@ def buyer(code, spend, purch, adset_id="as324", no="S324"):
     a["omni_purchase"] = purch
     return a
 
-cheap_set = [buyer("C1", "$120.00 USD", 1), buyer("C2", "$58.00 USD", 2),
-             buyer("C3", "$40.00 USD", 0), buyer("C4", "$44.90 USD", 1)]
-check("cheap_ads: under the cap only, cheapest first", ks.cheap_ads(cheap_set),
-      ["C2/7R $29.00 (2 purch)", "C4/7R $44.90 (1 purch)"])
-check("cheap_ads: exactly the cap is not under it", ks.cheap_ads([buyer("C5", "$45.00 USD", 1)]), [])
+cheap_set = [buyer("C1", "$120.00 USD", 1), buyer("C2", "$87.00 USD", 3),
+             buyer("C3", "$40.00 USD", 0), buyer("C4", "$134.70 USD", 3),
+             buyer("C7", "$58.00 USD", 2), buyer("C8", "$20.00 USD", 1)]
+check("cheap_ads: under the cap with 3+ purchases only, cheapest first", ks.cheap_ads(cheap_set),
+      ["C2/7R $29.00 (3 purch)", "C4/7R $44.90 (3 purch)"])
+check("cheap_ads: exactly the cap is not under it", ks.cheap_ads([buyer("C5", "$135.00 USD", 3)]), [])
+check("cheap_ads: 2 cheap purchases is not enough", ks.cheap_ads([buyer("C9", "$40.00 USD", 2)]), [])
 no_data = buyer("C6", "", 0); no_data.pop("omni_purchase"); no_data["impressions"] = 0
 check("cheap_ads: missing purchases never become a CPA", ks.cheap_ads([no_data]), [])
 
@@ -392,7 +394,7 @@ fake = FakeClickUp([make_task("t324", adset_name("S324"))]); ks.cu = fake
 state8 = fresh_state([ev("S324", "as324")], cheap_set)
 check("S324: run clean", ks.process(dry=False), 0)
 embeds, content, _ = posted[-1]
-check("S324: alert line names the cheap ads", "C2/7R $29.00 (2 purch) · C4/7R $44.90 (1 purch)" in (content or ""), True)
+check("S324: alert line names the cheap ads", "C2/7R $29.00 (3 purch) · C4/7R $44.90 (3 purch)" in (content or ""), True)
 check("S324: alert says it was an ad set", "killed ad set had CPA under $45" in (content or ""), True)
 check("S324: embed flagged green", embeds[0]["color"], 0x2ECC71)
 check("S324: ClickUp comment lists them", "🟢 CPA under $45:\nC2/7R" in fake.comments["t324"][0], True)
