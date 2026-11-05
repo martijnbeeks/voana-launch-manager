@@ -89,9 +89,7 @@ and a `revision`. Those two values are a cross-check, nothing more.
      (`CLAUDE.md` → "Launching an approved batch", step 2). Found live → confirm and report
      `launched`; found in the draft → publish what is staged. Never build a batch twice. Only when
      it is in neither: build the ad set and the ads from **exactly the values in
-     the work list** (`CLAUDE.md` → "Launching an approved batch"), then activate them. Every
-     creative goes out with all enhancements and multi-advertiser ads OFF (`CLAUDE.md` →
-     "Creative settings (fixed …)") — no exceptions. A reviewer
+     the work list** (`CLAUDE.md` → "Launching an approved batch"), then activate them. A reviewer
      may have changed page, landing page or budget on the dashboard: never substitute ClickUp's or
      your own.
    - **Draft mode**: when a create answers `status=DRAFT`, the Meta connector is staging the objects
