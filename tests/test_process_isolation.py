@@ -45,7 +45,7 @@ class FakeClickUp:
         L = ks.CONFIG["clickup"]["list_ids"]
         self.lists = {
             L["media"]: {"name": "Media", "statuses": [{"status": s} for s in
-                         ("to do", "learning", "rejected", "winner", "has potential", "killed", "complete")]},
+                         ("to do", "learning", "rejected", "winner", "breakthrough", "has potential", "killed", "complete")]},
             L["launch_manager"]: {"name": "Launch Manager", "statuses": [{"status": s} for s in
                                   ("ready for launch", "launched", "complete")]},
         }
@@ -316,6 +316,18 @@ check("Media task: status set to killed", fake.tasks["tm"]["status"]["status"], 
 check("Media task: metric fields written",
       any(f["value"] is not None for f in fake.tasks["tm"]["custom_fields"]
           if f["id"] in (ks.CONFIG["clickup"].get("metric_fields") or {}).values()), True)
+
+# ── a human verdict is never overwritten by a kill (2026-11-10) ─────────────
+for i, st in enumerate(("winner", "breakthrough", "has potential", "Breakthrough")):
+    ks._LIST_CACHE.clear()
+    no = f"S5{i:02d}"
+    tp = make_task("tp", adset_name(no), status=st)
+    fake = FakeClickUp([tp]); ks.cu = fake
+    fresh_state([ev(no, f"as5{i}")], [ad(no, "OG", "C1", f"as5{i}")])
+    check(f"{st}: run clean", ks.process(dry=False), 0)
+    check(f"{st}: task status left alone", fake.tasks["tp"]["status"]["status"], st)
+    check(f"{st}: no status PUT", [c for c in fake.calls if c[0] == "PUT"], [])
+    check(f"{st}: kill comment still written", len(fake.comments["tp"]), 1)
 
 # ── rewrite: ClickUp only, filtered, ignores the ledger, touches no state ─────
 ks._LIST_CACHE.clear()

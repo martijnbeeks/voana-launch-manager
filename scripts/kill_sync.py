@@ -1078,8 +1078,13 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                            f"— not written; move it to Media if it launched")
                     print(f"    {why}")
                     notes.append(f"{batch_no} · {why} · {task_url(task)}")
-                if task["status"]["status"] in cfg["clickup"]["protected_task_statuses"]:
-                    print(f"    task status left as '{task['status']['status']}' (human-set)")
+                # A human verdict (winner / breakthrough / has potential) outranks
+                # a kill: on 2026-11-10 a Breakthrough task was moved to Killed
+                # because "breakthrough" was missing from this list.
+                cur_status = str((task.get("status") or {}).get("status", "")).strip().lower()
+                protected = {str(s).strip().lower() for s in cfg["clickup"]["protected_task_statuses"]}
+                if cur_status in protected:
+                    print(f"    task status left as '{cur_status}' (human-set)")
                 else:
                     why = cu_set_status(task, cfg["clickup"]["batch_kill_task_status"], dry)
                     if why:
