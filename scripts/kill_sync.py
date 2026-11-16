@@ -1032,7 +1032,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                     lines += ([] if rows else [""]) + [f"Not delivered: {', '.join(idle)}"]
                 if cheap:
                     lines += ["", f"🟢 CPA under ${CHEAP_CPA_MAX:.0f}:", *cheap]
-                lines += ["", "→ fill in 📖 Learnings"]
+                lines += ["", "→ fill in 🎓 Learning"]
                 cu_comment(task["id"], "\n".join(lines), dry)
                 # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
                 # A ✖ line stamped with THIS kill's date is ours — rewrite it (that is
@@ -1119,7 +1119,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
                 title = f"💀💀 {batch_no} · batch · {actor}"
                 desc = (f"{acc['name']} · {len(ads)} ads · {live if live is not None else '?'}d · {brief_metrics(t)}"
-                        f" · 📖 learnings?")
+                        f" · 🎓 learning?")
             if cheap:
                 desc += f"\n🟢 CPA under ${CHEAP_CPA_MAX:.0f}: {' · '.join(cheap)}"
                 what = "killed ad set" if kind == "adset" else "killed ad"

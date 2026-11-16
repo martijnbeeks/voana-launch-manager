@@ -417,8 +417,11 @@ launch → launched → complete) is only the queue. A ClickUp automation moves 
 the **Media** list (`901819973378`) the moment it becomes `launched`, where it lands as
 `learning`; Media's outcome statuses are `killed` / `winner` / `has potential` /
 `rejected` / `complete`. So after launch, look for the task in Media, not Launch Manager.
-Custom fields (`Status`, `Result`, `📖 Learnings`, `Launch Date`, `Page`) are shared
+Custom fields (`Status`, `Result`, `Launch Date`, `Page`) are shared
 across both lists with identical IDs (see `scripts/kill_sync_config.json`).
+Learnings: the team writes them in `🎓 Learning` (2107279a, Media list only).
+The space-wide field d7e04b82 (was `📖 Learnings`, renamed `AI Learnings`
+2026-11-16) is no longer the learnings field.
 
 **Write-back after launch:** `PUT /task/{id}` `{"status":"launched"}`, then
 `POST /task/{id}/field/{field_id}` for `Launch Date` (ms epoch), `Page`
@@ -840,7 +843,7 @@ not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
   empty / Not Tested / In Testing), `Result` = `KILLED <date> after N days · $ ·
   purchases · CPA · by <actor>` header plus the per-creative lines (earlier ✖ dates
   kept), checklist fully ticked, comment with the per-ad table, Discord embed asking
-  for 📖 Learnings. Never touches Learnings and never downgrades winner / has
+  for 🎓 Learning. Never touches Learnings and never downgrades winner / has
   potential / complete.
 - `KILL_SYNC_SKIP_CLICKUP=1` keeps Discord + ledger live but leaves ClickUp
   untouched. It was set in the installed plist from 2026-09-07 and **removed on
