@@ -497,7 +497,19 @@ def cu_comment(task_id: str, text: str, dry: bool):
     cu("POST", f"/task/{task_id}/comment", {"comment_text": text, "notify_all": False})
 
 
+# Learnings fields belong to the team (🎓 Learning, 📖 Learning Done?) or to a
+# future AI step (AI Learnings x2). kill-sync only asks people to fill them in.
+NEVER_WRITE_FIELDS = frozenset({
+    "2107279a-31dd-4952-9650-35152569d81e",   # 🎓 Learning
+    "dba0690b-cfe3-4993-8b0a-670b38292f77",   # 📖 Learning Done?
+    "d7e04b82-e58c-4210-af33-3613009ed6b2",   # AI Learnings (was 📖 Learnings)
+    "1b57827a-e363-40cf-8a11-57b972115610",   # AI Learnings (Creative Team list)
+})
+
+
 def cu_set_field(task_id: str, field_id: str, value, dry: bool):
+    if field_id in NEVER_WRITE_FIELDS:
+        raise ValueError(f"refusing to write learnings field {field_id}")
     if dry or SKIP_CLICKUP:
         print(f"    [dry] set field {field_id[:8]}… = {value!r}")
         return
@@ -1032,7 +1044,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                     lines += ([] if rows else [""]) + [f"Not delivered: {', '.join(idle)}"]
                 if cheap:
                     lines += ["", f"🟢 CPA under ${CHEAP_CPA_MAX:.0f}:", *cheap]
-                lines += ["", "→ fill in 📖 Learnings"]
+                lines += ["", "→ fill in 🎓 Learning"]
                 cu_comment(task["id"], "\n".join(lines), dry)
                 # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
                 # A ✖ line stamped with THIS kill's date is ours — rewrite it (that is
@@ -1119,7 +1131,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 live = days_live(min((a.get("created_time") for a in ads if a.get("created_time")), default=None), when)
                 title = f"💀💀 {batch_no} · batch · {actor}"
                 desc = (f"{acc['name']} · {len(ads)} ads · {live if live is not None else '?'}d · {brief_metrics(t)}"
-                        f" · 📖 learnings?")
+                        f" · 🎓 learning?")
             if cheap:
                 desc += f"\n🟢 CPA under ${CHEAP_CPA_MAX:.0f}: {' · '.join(cheap)}"
                 what = "killed ad set" if kind == "adset" else "killed ad"
