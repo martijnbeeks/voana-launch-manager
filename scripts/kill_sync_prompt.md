@@ -21,10 +21,12 @@ Read `data/kill-sync/last_run.json` (tracked in git — it is the poll window fr
 timezone offset of this Mac. If the file is missing, use now minus 36 hours. If the environment
 variable KILL_SYNC_WINDOW_HOURS is set, ignore the file and use now minus that many hours.
 
-## Step 1 — pause events, per account
-Accounts (from `scripts/kill_sync_config.json`):
-- 758865990548177 (CLN_0034_Kandy_Voana) — test campaign 120254492561360562
-- 1247693024067639 (GetVoana - 1) — test campaign 120247451142810591
+## Step 1 — accounts, then pause events per account
+**Always read every ad account — never a fixed list.** Call `ads_get_ad_accounts` (follow
+`next_cursor` until it is null) and keep every account with `is_ads_mcp_enabled: true` and
+`is_queryable: true`. Write `state/inbox/accounts.json` as a JSON array of
+`{"id": "<ad_account_id>", "name": "<ad_account_name>"}`. List the skipped accounts and their
+reason in your report. `scripts/kill_sync_config.json` has an old `accounts` list: ignore it.
 
 For each account call `ads_account_get_activity_logs` with `event_category: "status"`,
 `start_time` from Step 0, `limit: 1000`. From the result keep ONLY events where
@@ -60,8 +62,8 @@ script prints `n/a` for it, and inventing a `0` turns a missing number into a
 wrong one.
 Follow `pagination.next_cursor` until exhausted. If the adset_id filter is rejected, fall back to
 `object_ids` with the killed ad ids plus a second call per ad set using
-`filtering: [{"field":"campaign_id","operator":"IN","value":[<test campaign id>]}]` and keep
-only rows whose `adset_id` is involved.
+`filtering: [{"field":"campaign_id","operator":"IN","value":[<campaign_id of the killed ad set>]}]`
+and keep only rows whose `adset_id` is involved.
 
 Write `state/inbox/metrics_<account_id>.json` as a JSON array containing every returned ad
 row for the involved ad sets, with the field values exactly as returned (strings are fine).
@@ -82,16 +84,61 @@ say so in your report if it happens.
 Media buyers sometimes pause an ad set and re-create it under the same name. For each account
 with a non-empty kills file, call `ads_get_ad_entities` with `level: "adset"`, `limit: 1000`,
 `fields: ["id","name","effective_status"]`,
-`filtering: [{"field":"campaign_id","operator":"IN","value":[<test campaign id>]},
-             {"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`
+`filtering: [{"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`
 and write `state/inbox/active_adsets_<account_id>.json` as a JSON array of `{"id","name"}`.
 Write `[]` for accounts without kills.
 
 Note for Step 2: the `adset_id` filter can silently return `[]` for archived objects. When the
 kill was followed by archiving, add `{"field":"effective_status","operator":"IN",
 "value":["ACTIVE","PAUSED","ADSET_PAUSED","CAMPAIGN_PAUSED","ARCHIVED","WITH_ISSUES"]}` to the
-campaign_id query so archived ads are included. Missing metric fields are fine — write the
+fallback query (filter on the killed ad set's `campaign_id`, read from the ad) so archived ads are included. Missing metric fields are fine — write the
 rows as returned; the script prints n/a.
+
+## Step 2d — killed batches that are live again (comeback audit)
+A killed batch can come back two ways: its ad set is switched on again, or its ads are copied
+into a scaling CBO. A copied ad set usually gets a generic name (`Week_46_winners_Stick`,
+`W41_Winners`), but the **ad names** keep the batch name (`TA S361 - COMP - V1-V4 - …`,
+`FC S078 - 7R - …`). You are the judge here. Do not write a script or regex for it.
+
+1. For EVERY account in `accounts.json` (not only accounts with kills), call
+   `ads_get_ad_entities` with `level: "ad"`, `limit: 500`, `date_preset: "last_7d"`,
+   `fields: ["id","name","adset_id","adset_name","campaign_id","campaign_name","created_time","amount_spent"]`,
+   `filtering: [{"field":"effective_status","operator":"IN","value":["ACTIVE"]}]`.
+   Follow `pagination.next_cursor` until it is gone (one account has 1,000+ live ads). A large
+   result is saved to a file; read it with python and write the rows to
+   `state/inbox/active_ads_<account_id>.json` as a JSON array, values as returned. Write `[]`
+   for an account with no live ads.
+2. Bash: `"${KILL_SYNC_PYTHON:-python3}" scripts/kill_sync.py audit-view`. It prints the batches
+   killed in the last 60 days (with the killed ad set ids) and every live ad grouped by account,
+   campaign and ad set. It also writes the same text to `state/inbox/audit_view.md`.
+3. Read the whole view. For each killed batch, decide whether any live ad is that batch:
+   - `reactivated` — a live ad set whose id is one of the batch's killed ad set ids.
+   - `copied` — live ads of the same creative somewhere else. Judge on the ad name (batch
+     code, format, product, persona, angle); a prefix like `TA`, `FC`, `LC` or a lander tag
+     (`COMP`, `7R`, `SP DIRECT`) does not make it a different creative. An ad that only shares a
+     number or a generic word (`Batch #335`, `3 - imp - Copy`) is NOT a match — if you cannot
+     tell, leave it out.
+   - `graveyard` — a copy inside a campaign with `Graveyard` in its name. That is on purpose;
+     still list it so it is counted.
+   Write `state/inbox/comebacks.json` as a JSON array, one object per batch + ad set:
+   `{"batch": "S272", "kind": "copied", "adset_id": "<live ad set id>", "ad_ids": ["…"],
+     "reason": "<one short sentence: why this is the batch>"}`.
+   Give only `adset_id` (no `ad_ids`) when every live ad in that ad set is the batch; give
+   `ad_ids` too when the ad set mixes batches (winner ad sets do — the view prints every id
+   there). A batch code is sometimes reused for another creative: if the code matches but
+   format, product or angle differ from the killed batch's name, it is not a copy. Copies made
+   before the kill date are still listed: the script labels them, so a person can see the
+   batch graduated and fix the ClickUp label. Copy ids from the view
+   verbatim. Write `[]` when nothing came back. The script drops a verdict whose batch is not in
+   the killed list or whose ids are not live, so never guess an id.
+4. Bash: `"${KILL_SYNC_PYTHON:-python3}" scripts/kill_sync.py audit` (add `--dry-run` only if
+   KILL_SYNC_DRY_RUN=1). It posts new comebacks to Discord and comments on the ClickUp task.
+   It never changes a status and never touches Meta. Run it BEFORE Step 3: `process` archives
+   the inbox.
+
+If a Meta call in this step fails, write `comebacks.json` only for the accounts you did read,
+say which account failed in your report, and carry on with Step 3 — the kill sync must not wait
+on the audit.
 
 ## Step 3 — run the sync
 Bash: `"${KILL_SYNC_PYTHON:-python3}" scripts/kill_sync.py process`
@@ -108,7 +155,7 @@ your report — the ClickUp and Discord work already landed and must not be repe
 Do NOT run `digest` yourself unless your task instructions say so — the MacBook wrapper posts it.
 
 ## Step 4 — report
-Final message, in this order: window used; per account the number of pause events kept and
-how many ads' metrics were written; the script's last "Done:" line verbatim; any ad/ad set the
+Final message, in this order: window used; accounts read and skipped (with reason); per account the number of pause events kept and
+how many ads' metrics were written; the script's last "Done:" line verbatim; the "Audit done:" line verbatim and each comeback you judged (batch, kind, one-line reason); any ad/ad set the
 script reported as unmapped. If the Meta MCP errors on a call, say which call and stop there —
 a partial run with an honest report beats a guessed one. Never post to Discord yourself.

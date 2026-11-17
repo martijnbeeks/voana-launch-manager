@@ -788,9 +788,13 @@ Local (no auth): macOS `sips` converts PNG→JPEG q92 before staging.
 
 ## Kill-sync (Meta pause → ClickUp + Discord) — runs on Martijn's Mac
 
-Twice daily (08:45 / 20:45 local, LaunchAgent `com.voana.kill-sync`) a headless
-Claude run follows `scripts/kill_sync_prompt.md`: it reads both test accounts'
-activity logs via the Meta MCP, writes the human pause events (run_status 1→7,
+Once a day at **01:00 America/New_York** (07:00 Amsterdam), right after the US
+ad-account day ends — the ad accounts report in New York time, so a run then sees
+a whole day's data (Multica autopilot `22cd4e47` on the Mac Mini; it was 08:45 +
+20:45 Amsterdam until 2026-11-17, and before that LaunchAgent `com.voana.kill-sync`). A headless
+Claude run follows `scripts/kill_sync_prompt.md`: it reads the activity logs of
+**every** queryable ad account (discovered with `ads_get_ad_accounts` each run,
+written to `state/inbox/accounts.json`) via the Meta MCP, writes the human pause events (run_status 1→7,
 not by "Meta", not our own 17→7 launch flow) plus lifetime metrics into
 `state/inbox/`, then `scripts/kill_sync.py process` does the deterministic part:
 - metrics written on a kill (field names verified with `ads_get_field_context`,
@@ -955,6 +959,38 @@ Secrets in `.env` (gitignored): `CLICKUP_API_KEY`, `KILL_SYNC_DISCORD_WEBHOOK_UR
 (in-memory ClickUp) and `python3 tests/test_digest.py`.
 Full design: `docs/kill-sync-plan.md`.
 Guardrail: the job is **read-only on Meta**.
+
+### Comeback audit — killed batches that are live again (since 2026-11-17)
+
+A kill is not final. On 2026-11-17 an audit found 10 ad sets that kill-sync had
+ledgered as killed running again under the **same ad set id** (S247 at $1,090 a
+week), and killed batches copied into the scaling CBOs (`Week_46_winners_Stick`,
+`W41_Winners`) after their kill date. A copied ad set gets a generic name; only
+the **ad names** keep the batch (`TA S361 - COMP - …`, `FC S078 - 7R - …`).
+
+- **Every account, every run.** The fixed `accounts` list in
+  `kill_sync_config.json` had drifted: it held the disabled CLN_0034 (no longer
+  even visible to the MCP) and missed Getvoana-3, GetVoana-4 and Pinnacle
+  `1782681832393562`. The bridge now writes `accounts.json`; the config list is
+  only a fallback for archived inboxes written before the change (`replay`,
+  `rewrite`).
+- **Claude judges, Python checks.** Step 2d of the prompt lists every live ad
+  of every account (`active_ads_<account>.json`), `kill_sync.py audit-view` lays
+  out the batches killed in the last `audit_days` (60) next to the live ads, and
+  Claude writes `comebacks.json` (`reactivated` / `copied` / `graveyard`, an ad
+  set id and/or ad ids, a reason). **Do not add name-matching rules** — a copy
+  is recognised by reading ad names, which a regex gets wrong both ways
+  (`Batch #335` is not batch #335's creative). `kill_sync.py audit` is the trust
+  boundary: it drops a verdict whose batch is not in the ledger or whose ids are
+  not live, and says so in the post.
+- **Report once, change nothing.** New comebacks (key `batch:ad_id` in
+  `data/kill-sync/comebacks.jsonl`) get one Discord line per batch + ad set and
+  one ClickUp comment. The task status is never touched: a comeback in a winners
+  ad set usually means the batch graduated and `killed` is the wrong label,
+  which a person decides. Graveyard copies are deliberate and only counted.
+- `audit` runs **before** `process`, because `process` archives the inbox.
+  A failed audit never blocks the kill sync. Covered by
+  `tests/test_comeback_audit.py`.
 
 ## Repo layout (target)
 
