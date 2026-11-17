@@ -992,6 +992,27 @@ the **ad names** keep the batch (`TA S361 - COMP - …`, `FC S078 - 7R - …`).
   A failed audit never blocks the kill sync. Covered by
   `tests/test_comeback_audit.py`.
 
+### Deadman — alert when a run did not complete (since 2026-11-17)
+
+From 15 to 17 Nov 2026, five kill-sync runs in a row stopped at the first Meta
+call (the disabled Kandy account in the old fixed account list). **Every one
+read `completed` in Multica**, so the Multica watchdog (which alerts on
+`failed`/`skipped`/overdue) and the dashboard's /jobs page stayed green while
+no kill reached ClickUp for three days.
+
+- `kill_sync.py health` asks the only question that proves a run finished: is
+  `data/kill-sync/last_run.json` on main younger than 26h? Only `process`
+  writes it and only `push-state` pushes it. Stale or missing → Discord alert
+  (with the catch-up command) and exit 1.
+- It runs in **GitHub Actions** (`.github/workflows/kill-sync-deadman.yml`,
+  09:30 UTC daily, a few hours after the 01:00 New York run): a different
+  substrate, so a dead Mac Mini cannot silence it. Needs the repo secret
+  `KILL_SYNC_DISCORD_WEBHOOK_URL`; without it the alert is not posted but the
+  workflow still fails, and GitHub mails the owner about a failed scheduled run.
+  Manual run: Actions → kill-sync deadman → Run workflow (dry run by default).
+- `last_run` now carries its UTC offset (the runner is UTC); older files are
+  read as Amsterdam time. Covered by `tests/test_health.py`.
+
 ## Repo layout (target)
 
 ```
