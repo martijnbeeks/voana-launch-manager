@@ -8,6 +8,8 @@ JSON files into state/inbox/; this script does everything deterministic:
   process   read state/inbox/*.json, detect kills, update ClickUp, post Discord,
             append data/kill-sync/kills.jsonl, advance data/kill-sync/last_run.json
   digest    post the "synced into ClickUp" digest for the run that just finished
+  audit-view  lay out killed batches + every live ad for Claude to judge
+  audit     report the comebacks Claude found (state/inbox/comebacks.json)
   replay D  re-post the Discord report for an archived inbox D (no ClickUp, no state)
   --dry-run print what would happen, write nothing to ClickUp/Discord
 
@@ -777,6 +779,17 @@ def prune_archive(keep: int = ARCHIVE_KEEP) -> list[str]:
     return [d.name for d in gone]
 
 
+def run_accounts(inbox: Path) -> dict[str, dict]:
+    """The ad accounts this run read: every account the bridge could query, from
+    its `accounts.json`. Until 2026-11-17 a fixed config list was used, and it had
+    drifted (a disabled account in, three live ones out). The config list is only
+    for an inbox written before that change."""
+    found = read_json(inbox / "accounts.json", None)
+    if not found:
+        return CONFIG["accounts"]
+    return {str(a["id"]): {"name": a.get("name") or str(a["id"])} for a in found if a.get("id")}
+
+
 def ledger_keys() -> set[str]:
     p = DURABLE / "kills.jsonl"
     if not p.exists():
@@ -908,7 +921,7 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
     failed_clickup = 0
     now = dt.datetime.now()
 
-    for account, acc in cfg["accounts"].items():
+    for account, acc in run_accounts(inbox).items():
         events = read_json(inbox / f"kills_{account}.json", [])
         metrics = read_json(inbox / f"metrics_{account}.json", [])
         active_adsets = read_json(inbox / f"active_adsets_{account}.json", [])
@@ -1272,9 +1285,220 @@ def push_state(branch: str = "main") -> int:
     return 0
 
 
+
+# ── comeback audit ───────────────────────────────────────────────────────────
+# A killed batch can come back: its ad set switched on again, or its ads copied
+# into a scaling CBO under a generic ad-set name ("Week_46_winners_Stick") where
+# only the AD names still carry the batch. Whether a live ad is such a copy is
+# judged by Claude in the bridge (kill_sync_prompt.md, Step 2d), never by name
+# matching here: this module only lays the evidence out (audit-view) and, after
+# the verdict, checks it against what Meta returned and reports it (audit).
+AUDIT_KINDS = {"reactivated", "copied", "graveyard"}
+AUDIT_DAYS = int(CONFIG.get("audit_days", 60))
+COMEBACKS = "comebacks.jsonl"
+
+
+def killed_batches(days: int = AUDIT_DAYS, now: dt.datetime | None = None) -> dict[str, dict]:
+    """Batches the ledger recorded as killed in the last `days`, keyed by batch
+    prefix: newest kill time, the killed ad set / ad ids, the ClickUp task."""
+    now = now or dt.datetime.now()
+    out: dict[str, dict] = {}
+    p = DURABLE / "kills.jsonl"
+    for line in (p.read_text().splitlines() if p.exists() else []):
+        try:
+            r = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if r.get("skipped") or not r.get("name"):
+            continue
+        try:
+            at = dt.datetime.fromisoformat(str(r.get("at"))).replace(tzinfo=None)
+        except ValueError:
+            continue
+        if not at or (now - at.replace(tzinfo=None)).days > days:
+            continue
+        b = out.setdefault(batch_prefix(r["name"]) or r["name"][:12],
+                           {"name": r["name"], "killed": at, "adsets": set(), "ads": set(), "task_id": None})
+        b["killed"] = max(b["killed"], at)
+        (b["adsets"] if r.get("kind") == "adset" else b["ads"]).add(str(r.get("object_id")))
+        b["task_id"] = r.get("task_id") or b["task_id"]
+    return out
+
+
+def active_ads(inbox: Path) -> dict[str, dict]:
+    """Every live ad the bridge listed, by ad id, tagged with its account."""
+    ads = {}
+    for account in run_accounts(inbox):
+        for a in read_json(inbox / f"active_ads_{account}.json", []):
+            if a.get("id"):
+                ads[str(a["id"])] = {**a, "account": account}
+    return ads
+
+
+def _spend(a: dict) -> float:
+    v = a.get("amount_spent")
+    return num(v.get("value") if isinstance(v, dict) else v) or 0.0
+
+
+def _post_lines(lines: list[str], dry: bool, mention: bool) -> bool:
+    """Plain-text Discord post split on line boundaries: a message holds 1900
+    characters and a cut inside a markdown link posts a broken link."""
+    chunks, cur = [], ""
+    for l in lines:
+        if cur and len(cur) + len(l) + 1 > 1800:
+            chunks.append(cur); cur = ""
+        cur = (cur + "\n" + l) if cur else l[:1800]
+    if cur:
+        chunks.append(cur)
+    ok = True
+    for i, c in enumerate(chunks):
+        ok = discord([], c, dry, MENTION_IDS if (mention and i == 0) else ()) and ok
+    return ok
+
+
+def _stem(name: str) -> str:
+    return CREATIVE_RE.sub("", re.sub(r" – Copy( \d+)?$| - Copy( \d+)?$", "", name.strip()))
+
+
+def audit_view(inbox: Path = INBOX, now: dt.datetime | None = None) -> str:
+    """The evidence Claude judges: killed batches, then every live ad grouped by
+    account / campaign / ad set. Ads in one ad set that differ only in their
+    creative suffix share a line. Ids are printed for every ad of an ad set that
+    mixes creatives (winners ad sets), so a single copy can be named, and for up
+    to 3 ads elsewhere."""
+    batches = killed_batches(now=now)
+    lines = [f"# Killed batches (last {AUDIT_DAYS} days): {len(batches)}"]
+    for k, b in sorted(batches.items()):
+        lines.append(f"- {k} · killed {b['killed']:%Y-%m-%d} · ad sets {' '.join(sorted(b['adsets'])) or '-'}"
+                     f" · {b['name'][:70]}")
+    accounts = run_accounts(inbox)
+    groups: dict[tuple, dict[str, list]] = {}
+    for a in active_ads(inbox).values():
+        g = groups.setdefault((a["account"], a.get("campaign_name", "?"), str(a.get("adset_id")),
+                               a.get("adset_name", "?")), {})
+        g.setdefault(_stem(a.get("name", "")), []).append(a)
+    lines += ["", f"# Live ads: {sum(len(v) for g in groups.values() for v in g.values())}",
+              "(per line: ad name · created · spend last 7d · ad ids, or a count when more than 3)"]
+    last = (None, None)
+    for (acct, camp, asid, asn), stems in sorted(groups.items()):
+        if (acct, camp) != last:
+            lines += ["", f"## {accounts.get(acct, {}).get('name', acct)} ({acct}) · {camp}"]
+            last = (acct, camp)
+        lines.append(f"- ad set {asid} · {asn[:80]}")
+        for stem, ads in sorted(stems.items()):
+            made = min((a.get("created_time") or "")[:10] for a in ads) or "?"
+            spend = sum(_spend(a) for a in ads)
+            # a mixed ad set (winners) needs every id, or one copy cannot be named
+            ids = " ".join(str(a["id"]) for a in ads) if len(ads) <= 3 or len(stems) > 1 else f"{len(ads)} ads"
+            lines.append(f"    · {stem[:95]} · {made} · {money(spend)} · {ids}")
+    return "\n".join(lines) + "\n"
+
+
+def parse_verdicts(raw, batches: dict, ads: dict) -> tuple[list[dict], list[str]]:
+    """Claude's verdicts, checked against the ledger and the live ads. An entry
+    names a batch, a kind, a reason, and an ad set id (meaning: all of its live
+    ads) and/or ad ids. Anything that does not resolve is dropped with a note."""
+    rows, notes = [], []
+    for v in raw if isinstance(raw, list) else []:
+        batch, kind = str(v.get("batch", "")).strip(), str(v.get("kind", "")).strip()
+        if batch not in batches:
+            notes.append(f"{batch or '?'} · not a killed batch in the ledger — verdict dropped")
+            continue
+        if kind not in AUDIT_KINDS:
+            notes.append(f"{batch} · unknown kind {kind!r} — verdict dropped")
+            continue
+        asid = str(v.get("adset_id") or "").strip()
+        want = {str(i) for i in v.get("ad_ids") or []}
+        hits = [a for a in ads.values()
+                if (str(a["id"]) in want) or (asid and not want and str(a.get("adset_id")) == asid)]
+        unknown = want - {str(a["id"]) for a in hits}
+        if unknown:
+            notes.append(f"{batch} · {len(unknown)} ad id(s) not live in this run — ignored")
+        if not hits:
+            notes.append(f"{batch} · no live ads behind the verdict — dropped")
+            continue
+        rows += [{"batch": batch, "kind": kind, "reason": str(v.get("reason", ""))[:300], "ad": a} for a in hits]
+    return rows, notes
+
+
+def audit(dry: bool, inbox: Path = INBOX, now: dt.datetime | None = None) -> int:
+    """Report the comebacks Claude found. New = (batch, ad id) not reported
+    before; those get one Discord line per batch + ad set and one ClickUp comment
+    per batch + ad set. Graveyard copies are deliberate: counted, not alerted.
+    The task status is never changed — a person decides what the comeback means."""
+    now = now or dt.datetime.now()
+    batches, ads = killed_batches(now=now), active_ads(inbox)
+    raw = read_json(inbox / "comebacks.json", None)
+    if raw is None:
+        print("audit: no comebacks.json in the inbox — the bridge did not judge; nothing reported")
+        return 0
+    rows, notes = parse_verdicts(raw, batches, ads)
+    seen = set()
+    p = DURABLE / COMEBACKS
+    for line in (p.read_text().splitlines() if p.exists() else []):
+        try:
+            seen.add(json.loads(line)["key"])
+        except (json.JSONDecodeError, KeyError):
+            continue
+    fresh = [r for r in rows if f"{r['batch']}:{r['ad']['id']}" not in seen]
+    groups: dict[tuple, list[dict]] = {}
+    for r in fresh:
+        groups.setdefault((r["batch"], r["kind"], str(r["ad"].get("adset_id"))), []).append(r)
+    alerts, failed = [], 0
+    graveyard = sum(1 for r in rows if r["kind"] == "graveyard")
+    for (batch, kind, asid), rs in sorted(groups.items()):
+        if kind == "graveyard":
+            continue
+        a0, b = rs[0]["ad"], batches[batch]
+        spend = sum(_spend(r["ad"]) for r in rs)
+        made = min((r["ad"].get("created_time") or "")[:10] for r in rs)
+        if kind == "reactivated":
+            what = "ad set switched on again"
+        elif not made:
+            what = "copied (date unknown)"
+        elif made < f"{b['killed']:%Y-%m-%d}":
+            what = f"copy made {made}, before the kill (graduated? check the label)"
+        else:
+            what = f"copied {made}, after the kill"
+        task = {"id": b["task_id"]} if b["task_id"] else None
+        line = (f"⚠️ **{batch}** killed {b['killed']:%Y-%m-%d} · {what} · in {a0.get('adset_name', '?')[:50]}"
+                f" · {len(rs)} ad(s) · {money(spend)}/7d"
+                f" · [Ads Manager]({ads_manager_url(a0['account'], 'adset', asid)})"
+                + (f" · [ClickUp]({task_url(task)})" if task else " · no ClickUp task"))
+        alerts.append(line)
+        if task:
+            text = (f"⚠️ Killed on {b['killed']:%Y-%m-%d}, but live again ({what}) in "
+                    f"{a0.get('campaign_name', '?')} / {a0.get('adset_name', '?')}\n\n"
+                    + "\n".join(f"- {r['ad'].get('name', '')[:120]} · {r['ad']['id']}" for r in rs)
+                    + f"\n\n{rs[0]['reason']}\n{ads_manager_url(a0['account'], 'adset', asid)}")
+            try:
+                cu_comment(task["id"], text, dry)
+            except ClickUpError as ex:
+                failed += 1
+                notes.append(f"{batch} · ClickUp comment failed · {ex}")
+    lines = alerts + [f"ℹ️ {n}" for n in notes]
+    if graveyard:
+        lines.append(f"ℹ️ {graveyard} live ad(s) of killed batches are in a Graveyard campaign (on purpose, not alerted)")
+    if alerts:
+        lines.insert(0, f"**Killed batches live again** — {len(groups) - sum(1 for g in groups if g[1] == 'graveyard')} new")
+    ok = _post_lines(lines, dry, bool(alerts)) if alerts or notes else True
+    if not dry and ok:
+        with p.open("a") as f:
+            for r in fresh:
+                f.write(json.dumps({"key": f"{r['batch']}:{r['ad']['id']}", "batch": r["batch"], "kind": r["kind"],
+                                    "ad_id": str(r["ad"]["id"]), "adset_id": str(r["ad"].get("adset_id")),
+                                    "account": r["ad"]["account"], "reason": r["reason"],
+                                    "at": now.isoformat(timespec="seconds")}, ensure_ascii=False) + "\n")
+    print(f"\nAudit done: {len(rows)} live ad(s) of killed batches, {len(fresh)} new, "
+          f"{len(alerts)} alert(s), {graveyard} in graveyard, {len(notes)} note(s), discord={'ok' if ok else 'FAILED'}")
+    if failed:
+        return 4
+    return 0 if ok else 3
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["process", "digest", "replay", "rewrite", "push-state"])
+    ap.add_argument("cmd", choices=["process", "digest", "replay", "rewrite", "push-state", "audit-view", "audit"])
     ap.add_argument("inbox", nargs="?", help="replay/rewrite: an archived inbox dir (data/kill-sync/inbox-archive/<stamp>)")
     ap.add_argument("--only", action="append", default=[], metavar="BATCH",
                     help="rewrite: only these batch prefixes, e.g. --only S182 (repeatable)")
@@ -1286,6 +1510,13 @@ def main(argv=None):
     STATE.mkdir(exist_ok=True); INBOX.mkdir(exist_ok=True); DURABLE.mkdir(parents=True, exist_ok=True)
     if a.cmd == "push-state":
         return push_state()
+    if a.cmd == "audit-view":
+        view = audit_view()
+        (INBOX / "audit_view.md").write_text(view)
+        print(view)
+        return 0
+    if a.cmd == "audit":
+        return audit(a.dry_run)
     if a.cmd == "replay":
         if not a.inbox or not Path(a.inbox).is_dir():
             ap.error("replay needs an archived inbox directory")
