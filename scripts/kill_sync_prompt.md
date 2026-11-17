@@ -71,8 +71,9 @@ row for the involved ad sets, with the field values exactly as returned (strings
 ## Step 2c — ad-set level metrics
 For each account with a non-empty kills file, also call `ads_get_ad_entities` with
 `level: "adset"`, `date_preset: "maximum"`, `limit: 1000`, the same `fields` list as
-Step 2, and `filtering: [{"field":"adset_id","operator":"IN","value":[<all involved
-ad set ids>]}]`. Write `state/inbox/adset_metrics_<account_id>.json` as a JSON array
+Step 2, and `filtering: [{"field":"id","operator":"IN","value":[<all involved
+ad set ids>]}]` (at ad-set level the field is `id`; `adset_id` is rejected there).
+Write `state/inbox/adset_metrics_<account_id>.json` as a JSON array
 of the returned rows. Write `[]` for accounts without kills.
 
 Why this exists: Meta dedupes people across the ads inside one ad set, and summing

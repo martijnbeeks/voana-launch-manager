@@ -1,0 +1,34 @@
+name: kill-sync deadman
+
+# Alerts when kill-sync has not completed a run in 26h. It reads
+# data/kill-sync/last_run.json on main, which only a finished run pushes, so it
+# also catches a run that fired and did nothing. It runs on GitHub, not on the
+# Mac Mini, so a dead Mini cannot silence it. Kill-sync fires at 01:00
+# America/New_York (05:00 or 06:00 UTC); this checks a few hours later.
+on:
+  schedule:
+    - cron: "30 9 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the alert instead of posting it"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the last completed run
+        env:
+          KILL_SYNC_DISCORD_WEBHOOK_URL: ${{ secrets.KILL_SYNC_DISCORD_WEBHOOK_URL }}
+          DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '--dry-run' || '' }}
+        run: python3 scripts/kill_sync.py health $DRY

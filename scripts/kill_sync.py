@@ -9,6 +9,7 @@ JSON files into state/inbox/; this script does everything deterministic:
             append data/kill-sync/kills.jsonl, advance data/kill-sync/last_run.json
   digest    post the "synced into ClickUp" digest for the run that just finished
   audit-view  lay out killed batches + every live ad for Claude to judge
+  health    deadman: exit 1 + Discord alert when no run completed in 26h
   audit     report the comebacks Claude found (state/inbox/comebacks.json)
   replay D  re-post the Discord report for an archived inbox D (no ClickUp, no state)
   --dry-run print what would happen, write nothing to ClickUp/Discord
@@ -1167,7 +1168,8 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
     if not dry and not replay:
         if new_rows:
             ledger_append(new_rows)
-        (DURABLE / "last_run.json").write_text(json.dumps({"last_run": now.isoformat(timespec="seconds"),
+        # with its UTC offset: the deadman (`health`) runs on a UTC GitHub runner
+        (DURABLE / "last_run.json").write_text(json.dumps({"last_run": now.astimezone().isoformat(timespec="seconds"),
                                                           "kills": len(embeds)}, indent=1))
         # The archive lives in the TRACKED durable dir: on the Mac Mini every run
         # is a fresh checkout and Multica deletes the workdir afterwards, so an
@@ -1496,13 +1498,47 @@ def audit(dry: bool, inbox: Path = INBOX, now: dt.datetime | None = None) -> int
     return 0 if ok else 3
 
 
+def health(dry: bool, max_age_hours: float, now: dt.datetime | None = None) -> int:
+    """Deadman: has a run completed within `max_age_hours`? A run only writes
+    last_run.json when `process` finished, and only `push-state` gets it to
+    main. So this catches a run that never fired, a Mac Mini that is down, AND
+    a run that fired, "completed" in Multica and did nothing: 15-17 Nov 2026,
+    five runs stopped at a disabled ad account and every one read `completed`,
+    so neither the Multica watchdog nor the dashboard's /jobs page noticed.
+    Runs on GitHub Actions (.github/workflows/kill-sync-deadman.yml), a
+    different substrate from the job it watches."""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    raw = str(read_json(DURABLE / "last_run.json", {}).get("last_run") or "")
+    try:
+        last = dt.datetime.fromisoformat(raw)
+    except ValueError:
+        last = None
+    if last is not None and last.tzinfo is None:
+        from zoneinfo import ZoneInfo   # files written before 2026-11-17 carry no offset
+        last = last.replace(tzinfo=ZoneInfo("Europe/Amsterdam"))
+    age = (now - last).total_seconds() / 3600 if last else None
+    if age is not None and age <= max_age_hours:
+        print(f"health: ok — last completed run {last:%Y-%m-%d %H:%M %Z}, {age:.1f}h ago")
+        return 0
+    since = f"since {last:%Y-%m-%d %H:%M} ({age:.0f}h ago)" if last else "ever (no last_run.json on main)"
+    msg = (f"🔴 **Kill-sync has not completed a run {since}.** The daily 01:00 New York run did not fire, "
+           f"or it stopped before `push-state`. Kills are not reaching ClickUp until it runs. "
+           f"Read the last run report in Multica (or the dashboard's /jobs page), fix the cause, then "
+           f"`multica autopilot trigger 22cd4e47-2563-4938-aa4d-6b0dab8ae30a` to catch up — "
+           f"the next run re-reads the whole gap.")
+    print(msg)
+    discord([], msg, dry, MENTION_IDS)
+    return 1
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["process", "digest", "replay", "rewrite", "push-state", "audit-view", "audit"])
+    ap.add_argument("cmd", choices=["process", "digest", "replay", "rewrite", "push-state", "audit-view", "audit", "health"])
     ap.add_argument("inbox", nargs="?", help="replay/rewrite: an archived inbox dir (data/kill-sync/inbox-archive/<stamp>)")
     ap.add_argument("--only", action="append", default=[], metavar="BATCH",
                     help="rewrite: only these batch prefixes, e.g. --only S182 (repeatable)")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--max-age-hours", type=float, default=26.0, help="health: alert when the last completed run is older")
     ap.add_argument("--skip-clickup", action="store_true", help="post Discord + record state, but do not write to ClickUp")
     a = ap.parse_args(argv)
     global SKIP_CLICKUP
@@ -1510,6 +1546,8 @@ def main(argv=None):
     STATE.mkdir(exist_ok=True); INBOX.mkdir(exist_ok=True); DURABLE.mkdir(parents=True, exist_ok=True)
     if a.cmd == "push-state":
         return push_state()
+    if a.cmd == "health":
+        return health(a.dry_run, a.max_age_hours)
     if a.cmd == "audit-view":
         view = audit_view()
         (INBOX / "audit_view.md").write_text(view)
