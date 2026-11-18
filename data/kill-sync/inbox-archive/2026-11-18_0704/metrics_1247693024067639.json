@@ -1,0 +1,1457 @@
+[
+ {
+  "id": "120248342096210591",
+  "name": "S423 - PG29 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "52.26",
+   "unit": "USD"
+  },
+  "impressions": "753",
+  "clicks": "33",
+  "ctr": "4.38%",
+  "cpc": {
+   "value": "1.58",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "69.4",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "52.26",
+   "unit": "USD"
+  },
+  "outbound_clicks": "25",
+  "outbound_clicks_ctr": "3.320053",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "0.935897",
+  "omni_purchase_values": {
+   "value": "48.91",
+   "unit": "USD"
+  },
+  "link_click": "25",
+  "website_ctr": "3.320053",
+  "cost_per_link_click": {
+   "value": "2.09",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499329030591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V7",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:32-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "4.47",
+   "unit": "USD"
+  },
+  "impressions": "40",
+  "clicks": "2",
+  "ctr": "5.00%",
+  "cpc": {
+   "value": "2.24",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "111.75",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "5",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "5",
+  "cost_per_link_click": {
+   "value": "2.24",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499328310591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V6",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:26-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "0.07",
+   "unit": "USD"
+  },
+  "impressions": "4",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "17.5",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499321750591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V1",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:10:54-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "4.38",
+   "unit": "USD"
+  },
+  "impressions": "84",
+  "clicks": "4",
+  "ctr": "4.76%",
+  "cpc": {
+   "value": "1.1",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "52.14",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "4.761905",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "4.761905",
+  "cost_per_link_click": {
+   "value": "1.1",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499325250591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V3",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:08-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "6.98",
+   "unit": "USD"
+  },
+  "impressions": "107",
+  "clicks": "10",
+  "ctr": "9.35%",
+  "cpc": {
+   "value": "0.7",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "65.23",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "8.411215",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "9",
+  "website_ctr": "8.411215",
+  "cost_per_link_click": {
+   "value": "0.78",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499329480591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V8",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:38-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "0.27",
+   "unit": "USD"
+  },
+  "impressions": "16",
+  "clicks": "2",
+  "ctr": "12.50%",
+  "cpc": {
+   "value": "0.14",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "16.88",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "2",
+  "outbound_clicks_ctr": "12.5",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "2",
+  "website_ctr": "12.5",
+  "cost_per_link_click": {
+   "value": "0.14",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499326070591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V4",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:14-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "0.42",
+   "unit": "USD"
+  },
+  "impressions": "14",
+  "clicks": "1",
+  "ctr": "7.14%",
+  "cpc": {
+   "value": "0.42",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "30",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "7.142857",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "7.142857",
+  "cost_per_link_click": {
+   "value": "0.42",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499327540591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V5",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:20-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "1.21",
+   "unit": "USD"
+  },
+  "impressions": "15",
+  "clicks": "2",
+  "ctr": "13.33%",
+  "cpc": {
+   "value": "0.61",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "80.67",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "6.666667",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "6.666667",
+  "cost_per_link_click": {
+   "value": "1.21",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248499324630591",
+  "name": "S389 - COMPARISON2-CR - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD_V2",
+  "adset_id": "120248499319160591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-14T03:11:01-0500",
+  "adset_name": "S389 - V1-V8 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - woman_45plus - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "48.27",
+   "unit": "USD"
+  },
+  "impressions": "604",
+  "clicks": "46",
+  "ctr": "7.62%",
+  "cpc": {
+   "value": "1.05",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "79.92",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "48.27",
+   "unit": "USD"
+  },
+  "outbound_clicks": "36",
+  "outbound_clicks_ctr": "5.960265",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.827636",
+  "omni_purchase_values": {
+   "value": "39.95",
+   "unit": "USD"
+  },
+  "link_click": "36",
+  "website_ctr": "5.960265",
+  "cost_per_link_click": {
+   "value": "1.34",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483969350591",
+  "name": "S518 - COMP - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None_C4",
+  "adset_id": "120248483965820591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:42:11-0500",
+  "adset_name": "S518 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "5.97",
+   "unit": "USD"
+  },
+  "impressions": "95",
+  "clicks": "1",
+  "ctr": "1.05%",
+  "cpc": {
+   "value": "5.97",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "62.84",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.052632",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.052632",
+  "cost_per_link_click": {
+   "value": "5.97",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483970440591",
+  "name": "S518 - COMP - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None_C5",
+  "adset_id": "120248483965820591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:42:16-0500",
+  "adset_name": "S518 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "2.58",
+   "unit": "USD"
+  },
+  "impressions": "59",
+  "clicks": "1",
+  "ctr": "1.69%",
+  "cpc": {
+   "value": "2.58",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "43.73",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483966640591",
+  "name": "S518 - COMP - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None_C1",
+  "adset_id": "120248483965820591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:41:51-0500",
+  "adset_name": "S518 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "12.15",
+   "unit": "USD"
+  },
+  "impressions": "241",
+  "clicks": "1",
+  "ctr": "0.41%",
+  "cpc": {
+   "value": "12.15",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "50.41",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483968590591",
+  "name": "S518 - COMP - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None_C3",
+  "adset_id": "120248483965820591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:42:05-0500",
+  "adset_name": "S518 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "60.99",
+   "unit": "USD"
+  },
+  "impressions": "1136",
+  "clicks": "44",
+  "ctr": "3.87%",
+  "cpc": {
+   "value": "1.39",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "53.69",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "60.99",
+   "unit": "USD"
+  },
+  "outbound_clicks": "32",
+  "outbound_clicks_ctr": "2.816901",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.655025",
+  "omni_purchase_values": {
+   "value": "39.95",
+   "unit": "USD"
+  },
+  "link_click": "32",
+  "website_ctr": "2.816901",
+  "cost_per_link_click": {
+   "value": "1.91",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483967700591",
+  "name": "S518 - COMP - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None_C2",
+  "adset_id": "120248483965820591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:41:59-0500",
+  "adset_name": "S518 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "0.6",
+   "unit": "USD"
+  },
+  "impressions": "21",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "28.57",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483972230591",
+  "name": "S518 - COMP - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None_C6",
+  "adset_id": "120248483965820591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:42:23-0500",
+  "adset_name": "S518 - C1-C3 - Image - Cream - Aris - Don Elmore Suing - the_cycle - woman_45plus - thin_skin_threshold - UMS - Solution Aware - Static - Iteration - None",
+  "amount_spent": {
+   "value": "9",
+   "unit": "USD"
+  },
+  "impressions": "135",
+  "clicks": "5",
+  "ctr": "3.70%",
+  "cpc": {
+   "value": "1.8",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "66.67",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "4",
+  "outbound_clicks_ctr": "2.962963",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "4",
+  "website_ctr": "2.962963",
+  "cost_per_link_click": {
+   "value": "2.25",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248484118640591",
+  "name": "S393 - COMP - V1-V4 - UGC - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Solution Aware - THAI - Iteration - IT-LEAD_V1",
+  "adset_id": "120248484118120591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:50:17-0500",
+  "adset_name": "S393 - V1-V4 - UGC - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - perpetual_micro_cycle - anhydrous_glide_film - Solution Aware - THAI - Iteration - IT-LEAD",
+  "amount_spent": {
+   "value": "80.15",
+   "unit": "USD"
+  },
+  "impressions": "1408",
+  "clicks": "96",
+  "ctr": "6.82%",
+  "cpc": {
+   "value": "0.83",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "56.92",
+   "unit": "USD"
+  },
+  "omni_purchase": "1",
+  "cost_per_omni_purchase": {
+   "value": "80.15",
+   "unit": "USD"
+  },
+  "outbound_clicks": "67",
+  "outbound_clicks_ctr": "4.758523",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.845914",
+  "omni_purchase_values": {
+   "value": "67.8",
+   "unit": "USD"
+  },
+  "link_click": "67",
+  "website_ctr": "4.758523",
+  "cost_per_link_click": {
+   "value": "1.2",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248483859640591",
+  "name": "S489 - COMP - V1-V5 - UGC - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - environ_maintenance_prdx - environment_reset_system - Solution Aware - THAI - Imitation - None_V1",
+  "adset_id": "120248483858400591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T05:35:36-0500",
+  "adset_name": "S489 - V1-V5 - UGC - Stick - Aris - Aldrin Vitug - the_cycle - woman_45plus - environ_maintenance_prdx - environment_reset_system - Solution Aware - THAI - Imitation - None",
+  "amount_spent": {
+   "value": "80.74",
+   "unit": "USD"
+  },
+  "impressions": "1482",
+  "clicks": "79",
+  "ctr": "5.33%",
+  "cpc": {
+   "value": "1.02",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "54.48",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "40.37",
+   "unit": "USD"
+  },
+  "outbound_clicks": "71",
+  "outbound_clicks_ctr": "4.790823",
+  "omni_add_to_cart": null,
+  "purchase_roas": "1.075675",
+  "omni_purchase_values": {
+   "value": "86.85",
+   "unit": "USD"
+  },
+  "link_click": "71",
+  "website_ctr": "4.790823",
+  "cost_per_link_click": {
+   "value": "1.14",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248478842750591",
+  "name": "S522 - COMP - C1-C3 - Image - Stick - Aris - Jansen - underboob - exhausted_recurrer - UMP - UMS - Solution Aware - Static - Ideation - None_C1",
+  "adset_id": "120248478842230591",
+  "campaign_id": "120247451142810591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-13T00:57:10-0500",
+  "adset_name": "S522 - C1-C3 - Image - Stick - Aris - Jansen - underboob - exhausted_recurrer - UMP - UMS - Solution Aware - Static - Ideation - None",
+  "amount_spent": {
+   "value": "91.48",
+   "unit": "USD"
+  },
+  "impressions": "777",
+  "clicks": "30",
+  "ctr": "3.86%",
+  "cpc": {
+   "value": "3.05",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "117.73",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "25",
+  "outbound_clicks_ctr": "3.217503",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "25",
+  "website_ctr": "3.217503",
+  "cost_per_link_click": {
+   "value": "3.66",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248441886000591",
+  "name": "S488 - COMP - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None_V1",
+  "adset_id": "120248441885990591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-11T03:33:13-0500",
+  "adset_name": "S488 - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None",
+  "amount_spent": {
+   "value": "1.91",
+   "unit": "USD"
+  },
+  "impressions": "33",
+  "clicks": "1",
+  "ctr": "3.03%",
+  "cpc": {
+   "value": "1.91",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "57.88",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "3.030303",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "3.030303",
+  "cost_per_link_click": {
+   "value": "1.91",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248441997750591",
+  "name": "S488 - COMP - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None_V5",
+  "adset_id": "120248441885990591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-11T03:33:13-0500",
+  "adset_name": "S488 - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None",
+  "amount_spent": {
+   "value": "1.15",
+   "unit": "USD"
+  },
+  "impressions": "15",
+  "clicks": "1",
+  "ctr": "6.67%",
+  "cpc": {
+   "value": "1.15",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "76.67",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "6.666667",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "6.666667",
+  "cost_per_link_click": {
+   "value": "1.15",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248441997760591",
+  "name": "S488 - COMP - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None_V2",
+  "adset_id": "120248441885990591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-11T03:33:13-0500",
+  "adset_name": "S488 - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None",
+  "amount_spent": {
+   "value": "4.4",
+   "unit": "USD"
+  },
+  "impressions": "88",
+  "clicks": "1",
+  "ctr": "1.14%",
+  "cpc": {
+   "value": "4.4",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "50",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.136364",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.136364",
+  "cost_per_link_click": {
+   "value": "4.4",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248441997770591",
+  "name": "S488 - COMP - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None_V3",
+  "adset_id": "120248441885990591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-11T03:33:13-0500",
+  "adset_name": "S488 - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None",
+  "amount_spent": {
+   "value": "37.32",
+   "unit": "USD"
+  },
+  "impressions": "399",
+  "clicks": "27",
+  "ctr": "6.77%",
+  "cpc": {
+   "value": "1.38",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "93.53",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "18.66",
+   "unit": "USD"
+  },
+  "outbound_clicks": "22",
+  "outbound_clicks_ctr": "5.513784",
+  "omni_add_to_cart": null,
+  "purchase_roas": "2.621919",
+  "omni_purchase_values": {
+   "value": "97.85",
+   "unit": "USD"
+  },
+  "link_click": "22",
+  "website_ctr": "5.513784",
+  "cost_per_link_click": {
+   "value": "1.7",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248441997780591",
+  "name": "S488 - COMP - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None_V4",
+  "adset_id": "120248441885990591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-11T03:33:13-0500",
+  "adset_name": "S488 - V1-V5 - UGC - Cream - Aris - Aldrin Vitug - the_cycle - Avatar - thin_skin_threshold - deep_layer_repair_system - Solution Aware - THAI - Imitation - None",
+  "amount_spent": {
+   "value": "77.81",
+   "unit": "USD"
+  },
+  "impressions": "929",
+  "clicks": "73",
+  "ctr": "7.86%",
+  "cpc": {
+   "value": "1.07",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "83.76",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "38.91",
+   "unit": "USD"
+  },
+  "outbound_clicks": "62",
+  "outbound_clicks_ctr": "6.673843",
+  "omni_add_to_cart": null,
+  "purchase_roas": "0.898342",
+  "omni_purchase_values": {
+   "value": "69.9",
+   "unit": "USD"
+  },
+  "link_click": "62",
+  "website_ctr": "6.673843",
+  "cost_per_link_click": {
+   "value": "1.26",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342100720591",
+  "name": "S423 - RASH - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "4.43",
+   "unit": "USD"
+  },
+  "impressions": "217",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "20.41",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342096200591",
+  "name": "S423 - PG29 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.16",
+   "unit": "USD"
+  },
+  "impressions": "79",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "14.68",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342104990591",
+  "name": "S423 - KOREAN - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:23-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "9.02",
+   "unit": "USD"
+  },
+  "impressions": "279",
+  "clicks": "8",
+  "ctr": "2.87%",
+  "cpc": {
+   "value": "1.13",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "32.33",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "7",
+  "outbound_clicks_ctr": "2.508961",
+  "omni_add_to_cart": "1",
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "7",
+  "website_ctr": "2.508961",
+  "cost_per_link_click": {
+   "value": "1.29",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342105010591",
+  "name": "S423 - KOREAN - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "3.35",
+   "unit": "USD"
+  },
+  "impressions": "61",
+  "clicks": "1",
+  "ctr": "1.64%",
+  "cpc": {
+   "value": "3.35",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "54.92",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.639344",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.639344",
+  "cost_per_link_click": {
+   "value": "3.35",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342091750591",
+  "name": "S423 - HUSBAND DISCOVERY - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "4.04",
+   "unit": "USD"
+  },
+  "impressions": "73",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "55.34",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248341686480591",
+  "name": "S423 - QUIZ - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "138.68",
+   "unit": "USD"
+  },
+  "impressions": "4134",
+  "clicks": "82",
+  "ctr": "1.98%",
+  "cpc": {
+   "value": "1.69",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "33.55",
+   "unit": "USD"
+  },
+  "omni_purchase": "2",
+  "cost_per_omni_purchase": {
+   "value": "69.34",
+   "unit": "USD"
+  },
+  "outbound_clicks": "72",
+  "outbound_clicks_ctr": "1.741655",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "0.576147",
+  "omni_purchase_values": {
+   "value": "79.9",
+   "unit": "USD"
+  },
+  "link_click": "72",
+  "website_ctr": "1.741655",
+  "cost_per_link_click": {
+   "value": "1.93",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342091740591",
+  "name": "S423 - HUSBAND DISCOVERY - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C1",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "7.46",
+   "unit": "USD"
+  },
+  "impressions": "241",
+  "clicks": "2",
+  "ctr": "0.83%",
+  "cpc": {
+   "value": "3.73",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "30.95",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "0.414938",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "0.414938",
+  "cost_per_link_click": {
+   "value": "7.46",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342105000591",
+  "name": "S423 - KOREAN - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "4.82",
+   "unit": "USD"
+  },
+  "impressions": "58",
+  "clicks": "1",
+  "ctr": "1.72%",
+  "cpc": {
+   "value": "4.82",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "83.1",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "1",
+  "outbound_clicks_ctr": "1.724138",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "1",
+  "website_ctr": "1.724138",
+  "cost_per_link_click": {
+   "value": "4.82",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342091760591",
+  "name": "S423 - HUSBAND DISCOVERY - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "1.63",
+   "unit": "USD"
+  },
+  "impressions": "42",
+  "clicks": "0",
+  "ctr": "0.00%",
+  "cpc": null,
+  "cpm": {
+   "value": "38.81",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": null,
+  "outbound_clicks_ctr": null,
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": null,
+  "website_ctr": null,
+  "cost_per_link_click": null,
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342057410591",
+  "name": "S423 - QUIZ - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "ACTIVE",
+  "effective_status": "ADSET_PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "33.6",
+   "unit": "USD"
+  },
+  "impressions": "568",
+  "clicks": "22",
+  "ctr": "3.87%",
+  "cpc": {
+   "value": "1.53",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "59.15",
+   "unit": "USD"
+  },
+  "omni_purchase": "3",
+  "cost_per_omni_purchase": {
+   "value": "11.2",
+   "unit": "USD"
+  },
+  "outbound_clicks": "17",
+  "outbound_clicks_ctr": "2.992958",
+  "omni_add_to_cart": "1",
+  "purchase_roas": "3.058333",
+  "omni_purchase_values": {
+   "value": "102.76",
+   "unit": "USD"
+  },
+  "link_click": "17",
+  "website_ctr": "2.992958",
+  "cost_per_link_click": {
+   "value": "1.98",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342096220591",
+  "name": "S423 - PG29 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "18.64",
+   "unit": "USD"
+  },
+  "impressions": "352",
+  "clicks": "12",
+  "ctr": "3.41%",
+  "cpc": {
+   "value": "1.55",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "52.95",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "2.556818",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "9",
+  "website_ctr": "2.556818",
+  "cost_per_link_click": {
+   "value": "2.07",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342057400591",
+  "name": "S423 - QUIZ - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "23.58",
+   "unit": "USD"
+  },
+  "impressions": "480",
+  "clicks": "9",
+  "ctr": "1.88%",
+  "cpc": {
+   "value": "2.62",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "49.13",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "6",
+  "outbound_clicks_ctr": "1.25",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "6",
+  "website_ctr": "1.25",
+  "cost_per_link_click": {
+   "value": "3.93",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342100730591",
+  "name": "S423 - RASH - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C2",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "12.33",
+   "unit": "USD"
+  },
+  "impressions": "338",
+  "clicks": "9",
+  "ctr": "2.66%",
+  "cpc": {
+   "value": "1.37",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "36.48",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "9",
+  "outbound_clicks_ctr": "2.662722",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "9",
+  "website_ctr": "2.662722",
+  "cost_per_link_click": {
+   "value": "1.37",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ },
+ {
+  "id": "120248342100740591",
+  "name": "S423 - RASH - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None_C3",
+  "adset_id": "120248341686470591",
+  "campaign_id": "120247554389210591",
+  "status": "PAUSED",
+  "effective_status": "PAUSED",
+  "created_time": "2026-11-04T22:38:22-0500",
+  "adset_name": "S423 - C1-C6 - Image - Cream - Aris - Aris - smell - woman_45plus - UMP - flora_defense_system - Problem Aware - Static - Imitation - None",
+  "amount_spent": {
+   "value": "19.53",
+   "unit": "USD"
+  },
+  "impressions": "261",
+  "clicks": "8",
+  "ctr": "3.07%",
+  "cpc": {
+   "value": "2.44",
+   "unit": "USD"
+  },
+  "cpm": {
+   "value": "74.83",
+   "unit": "USD"
+  },
+  "omni_purchase": null,
+  "cost_per_omni_purchase": null,
+  "outbound_clicks": "8",
+  "outbound_clicks_ctr": "3.065134",
+  "omni_add_to_cart": null,
+  "purchase_roas": null,
+  "omni_purchase_values": null,
+  "link_click": "8",
+  "website_ctr": "3.065134",
+  "cost_per_link_click": {
+   "value": "2.44",
+   "unit": "USD"
+  },
+  "attribution_setting": "1d_view_7d_click_1d_ev"
+ }
+]
