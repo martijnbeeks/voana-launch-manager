@@ -445,13 +445,16 @@ class ClickUpTasks:
                 page += 1
 
     def find(self, adset_name: str) -> tuple[dict | None, str]:
-        """Exact name match first, then unique batch-prefix match."""
-        exact = [t for t in self.tasks if t["name"].strip() == adset_name.strip()]
+        """Exact name match first, then unique batch-prefix match. Batch tasks
+        only: tw_sync's ad subtasks are named after the ad, which starts with
+        the batch code too."""
+        batches = [t for t in self.tasks if not t.get("parent")]
+        exact = [t for t in batches if t["name"].strip() == adset_name.strip()]
         if len(exact) == 1:
             return exact[0], "exact"
         pre = batch_prefix(adset_name)
         if pre:
-            cands = [t for t in self.tasks if batch_prefix(t["name"]) == pre]
+            cands = [t for t in batches if batch_prefix(t["name"]) == pre]
             if len(cands) == 1:
                 return cands[0], "prefix"
             if len(cands) > 1:

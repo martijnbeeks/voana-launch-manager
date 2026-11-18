@@ -69,5 +69,15 @@
     "17": "IN_PROCESS"
   },
   "cheap_cpa_max": 45,
-  "cheap_min_purchases": 3
+  "cheap_min_purchases": 3,
+  "tw_sync": {
+    "shop": "nr1p47-u0.myshopify.com",
+    "media_list": "901819973378",
+    "since": "2026-04-01",
+    "recent_days": 7,
+    "timezone": "America/New_York",
+    "subtask_status": "complete",
+    "max_calls_per_minute": 90,
+    "min_ad_spend": 1.0
+  }
 }
