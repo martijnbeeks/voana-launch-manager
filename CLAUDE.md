@@ -1013,6 +1013,55 @@ no kill reached ClickUp for three days.
 - `last_run` now carries its UTC offset (the runner is UTC); older files are
   read as Amsterdam time. Covered by `tests/test_health.py`.
 
+## TW ad numbers → ClickUp (`scripts/tw_sync.py`, since 2026-11-18)
+
+The team wanted each ad's performance inside the batch task, not on a separate
+list (a separate "Ads (TW)" list was built and rejected on 2026-11-18). So
+every live batch gets **one subtask per ad** on its Media task, carrying the
+"Aris" column set from Triple Whale, and the batch task carries the totals.
+
+- **Source**: Triple Whale SQL (`pixel_joined_tvf`, `TRIPLE_WHALE_API_KEY`,
+  also in Key Vault `voana-prod-kv` as `triple-whale-api-key`). Lifetime
+  numbers since `tw_sync.since`; Triple Attribution uses
+  `attribution_window='lifetime'`, Last Click has no lifetime row so its NC ROAS
+  uses `'28_days'`. Formulas: ROAS = CV / Spend, NC ROAS = NCV / Spend,
+  NC CPA = Spend / NCP, CPM, CTR %, OB CTR %, CPC. Batch ratios are recomputed
+  from the summed numbers, never averaged. **An SQL alias must not repeat a
+  column name** (`SUM(spend) AS spend` makes the API answer a bare HTTP 400).
+- **Scope**: a batch is live when an ad in its **own ad set** (ad-set name
+  starts with the batch code) spent in the last `recent_days` (7). Copies in
+  scaling CBOs (generic ad-set names) are left out; the comeback audit is
+  where they are judged. Ads under `min_ad_spend` ($1) get no subtask but count
+  in the total. A batch code that matches 0 or 2+ top-level Media tasks is
+  skipped and printed as a `note:` (7 on the first run, e.g. S272 has two tasks).
+- **Overwrite, never append.** `reconcile` compares desired values with what is
+  on the task and writes only the difference: no comments, no new lines. A
+  second run with nothing new writes nothing. Subtasks are found again by the
+  space-level `Meta Ad ID` field, set on create.
+- **Status is never touched.** Subtasks are created in `subtask_status`
+  (`complete`, a closed status) and stay there. Reason, measured 2026-11-18:
+  the folder boards **By Market** and **By Product** show subtasks as separate
+  cards (`show_subtasks: 3`) but hide closed tasks, and `learning`/`killed`
+  on an ad would be counted as a batch by status widgets and could fire Media
+  automations. The Meta delivery state is the `Meta status` text field. Change
+  `subtask_status` in config if closed subtasks turn out hidden in task view.
+- **Names**: a subtask is named exactly like its Meta ad (asked for on
+  2026-11-18), and renamed when the ad is. That name starts with the batch
+  code, so kill-sync's `ClickUpTasks.find` (which loads subtasks) matches
+  **top-level tasks only**; pinned in `tests/test_tw_sync.py`.
+- **Load**: the ClickUp token allows 100 requests a minute, and each field is
+  one call. `tw_sync.cu` paces at `max_calls_per_minute` (90). The first run
+  created ~770 subtasks; a daily run writes only changed values (Impressions,
+  Clicks and the per-ad date were dropped to keep it under an hour; "TW as of"
+  sits on the batch task).
+- **Schedule**: Multica autopilot `voana-tw-sync-mac-mini`, daily 02:30
+  New York (after kill-sync), defined in voana-tools
+  `docs/agents/multica/autopilots.json`. Needs `TRIPLE_WHALE_API_KEY` in the
+  runner's custom_env. A missing key, a Triple Whale error or ClickUp errors
+  post a 🟠 line to the kill-sync webhook.
+- **CLI**: `python3 scripts/tw_sync.py [--dry-run] [--only S457] [--limit N]`.
+  Covered by `tests/test_tw_sync.py` (offline).
+
 ## Repo layout (target)
 
 ```
