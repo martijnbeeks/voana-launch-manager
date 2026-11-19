@@ -116,12 +116,17 @@ def make_task(tid, name, status="learning", list_key="media"):
                                  for fid in (ks.CONFIG["clickup"].get("metric_fields") or {}).values()]
                                 if list_key == "media" else [])}
 
-def fresh_state(events, metrics, adset_rows=None):
+def fresh_state(events, metrics, adset_rows=None, live=()):
+    """`live` = every live ad in the account (runbook step 2d); None = the
+    bridge did not write the file."""
     d = pathlib.Path(tempfile.mkdtemp(prefix="killsync-"))
     (d / "inbox").mkdir()
     (d / "inbox" / f"kills_{ACCOUNT}.json").write_text(json.dumps(events))
     (d / "inbox" / f"metrics_{ACCOUNT}.json").write_text(json.dumps(metrics))
     (d / "inbox" / f"active_adsets_{ACCOUNT}.json").write_text("[]")
+    if live is not None:
+        (d / "inbox" / f"active_ads_{ACCOUNT}.json").write_text(json.dumps(list(live)))
+    (d / "inbox" / "accounts.json").write_text(json.dumps([{"id": ACCOUNT, "name": "GetVoana - 1"}]))
     if adset_rows is not None:
         (d / "inbox" / f"adset_metrics_{ACCOUNT}.json").write_text(json.dumps(adset_rows))
     ks.STATE, ks.INBOX, ks.DURABLE = d, d / "inbox", d
@@ -277,7 +282,7 @@ rc = ks.process(dry=False, inbox=state4 / "inbox", replay=True)
 check("replay exits clean", rc, 0)
 check("replay re-posted all three kills", len(posted[-1][0]), 3)
 check("replay wrote no ledger", (state4 / "kills.jsonl").exists(), False)
-check("replay left the inbox in place", len(list((state4 / "inbox").glob("*.json"))), 3)
+check("replay left the inbox in place", len(list((state4 / "inbox").glob("*.json"))), 5)
 check("replay made only ClickUp reads", all(m == "GET" for m, _ in fake.calls[before:]), True)
 ks.SKIP_CLICKUP = False
 
@@ -347,7 +352,7 @@ check("rewrite leaves other batches alone", len(fake.comments["tA"]), 0)
 check("rewrite posts nothing to Discord", posted, [])
 check("rewrite appends no ledger rows", len((state7 / "kills.jsonl").read_text().splitlines()), 2)
 check("rewrite leaves last_run alone", (state7 / "last_run.json").exists(), False)
-check("rewrite leaves the inbox in place", len(list((state7 / "inbox").glob("*.json"))), 3)
+check("rewrite leaves the inbox in place", len(list((state7 / "inbox").glob("*.json"))), 5)
 rc = ks.process(dry=False, inbox=state7 / "inbox", rewrite=True, only={"S202"})
 check("rewrite twice: still one comment", len(fake.comments["tB"]), 1)
 
@@ -417,6 +422,31 @@ state9 = fresh_state([ev("S325", "as325")], [buyer("C1", "$120.00 USD", 1, "as32
 ks.process(dry=False)
 check("no cheap ad: no alert line", "🟢" in (posted[-1][1] or ""), False)
 check("no cheap ad: embed stays red", posted[-1][0][0]["color"], 0xE74C3C)
+
+# ── a batch still live in another ad set is not killed (S460, 2026-11-18) ────
+def live_ad(name, adset_id, adset, campaign="Scaling campaign - CREAM - USA"):
+    return {"id": f"live-{adset_id}", "name": name, "adset_id": adset_id, "adset_name": adset,
+            "campaign_name": campaign, "created_time": "2026-11-13T10:00:00+0000", "amount_spent": "$50.00 USD"}
+
+copy = live_ad("TA S460 - COMP - V1-V5 - UGC - Cream_V1 IMP", "w46", "week_46_winners_cream_usa")
+cases = [
+    ("copied into a winners ad set", [copy], "learning", True),
+    ("only a graveyard copy", [live_ad("S460 - V1_V2", "gy", "gy", "Graveyard - CREAM")], "killed", False),
+    ("a look-alike code (S4601) is another batch", [live_ad("S4601 - C1_C1", "x", "x")], "killed", False),
+    ("live ads not checked this run", None, "learning", False),
+]
+for i, (label, live, want, mentions_copy) in enumerate(cases):
+    t460 = make_task("t460", adset_name("S460"))
+    fake = FakeClickUp([t460]); ks.cu = fake
+    st = fresh_state([ev("S460", f"as460{i}")], [ad("S460", "COMP", "V2", f"as460{i}")], live=live)
+    check(f"S460 {label}: run clean", ks.process(dry=False), 0)
+    check(f"S460 {label}: task status", fake.tasks["t460"]["status"]["status"], want)
+    held = want != "killed"
+    check(f"S460 {label}: Losing Ad verdict held back", fake.tasks["t460"]["custom_fields"][1]["value"] is None, held)
+    text = fake.comments["t460"][0] if fake.comments["t460"] else ""
+    check(f"S460 {label}: comment names the live ad set", "week_46_winners_cream_usa" in text, mentions_copy)
+    check(f"S460 {label}: comment says status left as is", "Task status left as is" in text, held)
+    shutil.rmtree(st, ignore_errors=True)
 
 # ── archive: durable, pruned ─────────────────────────────────────────────────
 check("archive written under the durable dir", len(list((state5 / "inbox-archive").iterdir())), 1)

@@ -96,6 +96,10 @@ fallback query (filter on the killed ad set's `campaign_id`, read from the ad) s
 rows as returned; the script prints n/a.
 
 ## Step 2d — killed batches that are live again (comeback audit)
+Step 3 needs this step's `active_ads_<account_id>.json` too, for every account: a batch whose
+ad set was killed but whose creative still runs elsewhere (a copy in a winners ad set) must not
+be set to killed, and without the file the script holds back every killed status. Never skip it.
+
 A killed batch can come back two ways: its ad set is switched on again, or its ads are copied
 into a scaling CBO. A copied ad set usually gets a generic name (`Week_46_winners_Stick`,
 `W41_Winners`), but the **ad names** keep the batch name (`TA S361 - COMP - V1-V4 - …`,
