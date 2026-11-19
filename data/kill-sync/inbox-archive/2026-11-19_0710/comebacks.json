@@ -1,0 +1,1526 @@
+[
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120247435213150591",
+  "ad_ids": [
+   "120247577437570591"
+  ],
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'Week_33_Winners' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120247444353240591",
+  "ad_ids": [
+   "120247577437300591"
+  ],
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'Week_33_Winners' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247968535940591"
+  ],
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120248180192500591",
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'week_44_winners_stick_usa' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120248180209070591",
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'week_44_winners_stick_uk/ca/nz/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120248486256010591",
+  "ad_ids": [
+   "120248486264160591"
+  ],
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'Week_46_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S078",
+  "kind": "copied",
+  "adset_id": "120248486279290591",
+  "ad_ids": [
+   "120248486292540591"
+  ],
+  "reason": "S078 creative (C1-C5 LFS Stick) live in 'Week_46_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S085",
+  "kind": "graveyard",
+  "adset_id": "120247591888490591",
+  "ad_ids": [
+   "120247944815680591"
+  ],
+  "reason": "S085 creative (Iteration UGC Stick) copied into the Evergreen - Graveyard - STICK - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S097",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247969002130591"
+  ],
+  "reason": "S097 creative (Iteration UGC Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S099",
+  "kind": "copied",
+  "adset_id": "120247621920800591",
+  "ad_ids": [
+   "120247663666950591"
+  ],
+  "reason": "S099 creative (C1-C3 Image Stick) live in 'week_38_winner' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S099",
+  "kind": "copied",
+  "adset_id": "120247622003910591",
+  "ad_ids": [
+   "120247663666920591"
+  ],
+  "reason": "S099 creative (C1-C3 Image Stick) live in 'week_38_winners' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S101",
+  "kind": "graveyard",
+  "adset_id": "120247591888490591",
+  "ad_ids": [
+   "120247944841570591"
+  ],
+  "reason": "S101 creative (Iteration Video Stick) copied into the Evergreen - Graveyard - STICK - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S104",
+  "kind": "copied",
+  "adset_id": "120248577570590591",
+  "ad_ids": [
+   "120248577709090591"
+  ],
+  "reason": "S104 creative (V1-V3 Video Stick) live in 'Week_47_Winners_STICK_USA' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S104",
+  "kind": "copied",
+  "adset_id": "120248577698980591",
+  "ad_ids": [
+   "120248577838590591"
+  ],
+  "reason": "S104 creative (V1-V3 Video Stick) live in 'Week_47_Winners_STICK_nz/aus/ca/uk' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S106",
+  "kind": "copied",
+  "adset_id": "120247621920800591",
+  "ad_ids": [
+   "120247621973430591",
+   "120247621973420591",
+   "120247663666940591",
+   "120247621973410591"
+  ],
+  "reason": "S106 creative (C1-C3 LFS Stick) live in 'week_38_winner' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S106",
+  "kind": "copied",
+  "adset_id": "120247622003910591",
+  "ad_ids": [
+   "120247622011700591",
+   "120247622011710591",
+   "120247663666930591",
+   "120247622011740591"
+  ],
+  "reason": "S106 creative (C1-C3 LFS Stick) live in 'week_38_winners' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S106",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247969012010591"
+  ],
+  "reason": "S106 creative (C1-C3 LFS Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S106",
+  "kind": "copied",
+  "adset_id": "120247968525770591",
+  "ad_ids": [
+   "120247969012020591"
+  ],
+  "reason": "S106 creative (C1-C3 LFS Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S106",
+  "kind": "copied",
+  "adset_id": "120248577570590591",
+  "ad_ids": [
+   "120248577708920591",
+   "120248577709180591"
+  ],
+  "reason": "S106 creative (C1-C3 LFS Stick) live in 'Week_47_Winners_STICK_USA' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S106",
+  "kind": "copied",
+  "adset_id": "120248577698980591",
+  "ad_ids": [
+   "120248577838610591",
+   "120248577838670591"
+  ],
+  "reason": "S106 creative (C1-C3 LFS Stick) live in 'Week_47_Winners_STICK_nz/aus/ca/uk' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S108",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247969008410591"
+  ],
+  "reason": "S108 creative (C1-C4 Image Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S108",
+  "kind": "copied",
+  "adset_id": "120247968525770591",
+  "ad_ids": [
+   "120247969008420591"
+  ],
+  "reason": "S108 creative (C1-C4 Image Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S111",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247969025130591"
+  ],
+  "reason": "S111 creative (C1-C3 Image Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S111",
+  "kind": "copied",
+  "adset_id": "120247968525770591",
+  "ad_ids": [
+   "120247969025120591"
+  ],
+  "reason": "S111 creative (C1-C3 Image Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S112",
+  "kind": "copied",
+  "adset_id": "120247958381000591",
+  "ad_ids": [
+   "120247968923900591",
+   "120247968932190591"
+  ],
+  "reason": "S112 creative (V1 Video Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S112",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120247968932180591",
+   "120247968923890591"
+  ],
+  "reason": "S112 creative (V1 Video Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S126",
+  "kind": "copied",
+  "adset_id": "120247622003910591",
+  "ad_ids": [
+   "120247622011730591"
+  ],
+  "reason": "S126 creative (C1-C3 Image Stick) live in 'week_38_winners' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S138",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792520591",
+   "120247944792500591"
+  ],
+  "reason": "S138 creative (SCRIPT 1 V1-V3 UGC) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S138",
+  "kind": "copied",
+  "adset_id": "120247958381000591",
+  "ad_ids": [
+   "120247997546710591"
+  ],
+  "reason": "S138 creative (SCRIPT 1 V1-V3 UGC) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S138",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120247997523600591"
+  ],
+  "reason": "S138 creative (SCRIPT 1 V1-V3 UGC) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S140",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792430591"
+  ],
+  "reason": "S140 creative (C1-C5 LFS Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S142",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247678978370591"
+  ],
+  "reason": "S142 creative (C1-C4 Image Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S142",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247678978540591",
+   "120247678978510591"
+  ],
+  "reason": "S142 creative (C1-C4 Image Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S157",
+  "kind": "copied",
+  "adset_id": "120248179811890591",
+  "ad_ids": [
+   "120248179863160591",
+   "120248179863150591"
+  ],
+  "reason": "S157 creative (C1-C5 LFS Cream) live in 'week_44_winners_uk/ca/nz/aus' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S157",
+  "kind": "copied",
+  "adset_id": "120248179833910591",
+  "ad_ids": [
+   "120248179863180591",
+   "120248179863170591"
+  ],
+  "reason": "S157 creative (C1-C5 LFS Cream) live in 'week_44_winners_usa' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S163",
+  "kind": "copied",
+  "adset_id": "120248099661380591",
+  "ad_ids": [
+   "120248124643670591"
+  ],
+  "reason": "S163 creative (C1-C5 LFS Cream) live in 'Week_43_winners - cream - usa' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S163",
+  "kind": "copied",
+  "adset_id": "120248099701500591",
+  "ad_ids": [
+   "120248124643640591"
+  ],
+  "reason": "S163 creative (C1-C5 LFS Cream) live in 'Week_43_winners - cream - uk/nz/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S166",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577169080591"
+  ],
+  "reason": "S166 creative (V1 LFS Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S166",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479340591"
+  ],
+  "reason": "S166 creative (V1 LFS Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S180",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792570591",
+   "120247916455260591",
+   "120247682856050591",
+   "120247916455290591"
+  ],
+  "reason": "S180 creative (C1C-C10 LFS Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S190",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247682856060591",
+   "120247682856040591",
+   "120247944792470591",
+   "120247622113160591",
+   "120247622113140591"
+  ],
+  "reason": "S190 creative (C1-C10 LFS Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S196",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247678978400591"
+  ],
+  "reason": "S196 creative (V1-V3 UGC Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S196",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247678978550591"
+  ],
+  "reason": "S196 creative (V1-V3 UGC Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S196",
+  "kind": "copied",
+  "adset_id": "120247958381000591",
+  "ad_ids": [
+   "120247967468770591",
+   "120247967465120591"
+  ],
+  "reason": "S196 creative (V1-V3 UGC Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S196",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120247967468760591",
+   "120247967465100591"
+  ],
+  "reason": "S196 creative (V1-V3 UGC Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S196",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168740591"
+  ],
+  "reason": "S196 creative (V1-V3 UGC Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S196",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577531480591"
+  ],
+  "reason": "S196 creative (V1-V3 UGC Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S202",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792460591",
+   "120247916455310591",
+   "120247916455270591"
+  ],
+  "reason": "S202 creative (C1 C10 LFS) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S203",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792450591"
+  ],
+  "reason": "S203 creative (C1 C10 LFS) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S214",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768800591"
+  ],
+  "reason": "S214 creative (C1-C3 IMAGE Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S214",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247640472330591"
+  ],
+  "reason": "S214 creative (C1-C3 IMAGE Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S214",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247640573570591"
+  ],
+  "reason": "S214 creative (C1-C3 IMAGE Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S216",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768820591"
+  ],
+  "reason": "S216 creative (C1-C3 IMAGE Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S216",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247640472350591"
+  ],
+  "reason": "S216 creative (C1-C3 IMAGE Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S216",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247640573620591"
+  ],
+  "reason": "S216 creative (C1-C3 IMAGE Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S217",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247682856070591"
+  ],
+  "reason": "S217 creative (C1-C3 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S220",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768910591",
+   "120247682856030591"
+  ],
+  "reason": "S220 creative (C1-C3 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S220",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247678978360591"
+  ],
+  "reason": "S220 creative (C1-C3 Image Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S220",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247678978520591"
+  ],
+  "reason": "S220 creative (C1-C3 Image Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S221",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792560591"
+  ],
+  "reason": "S221 creative (V1-V3 Video Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S221",
+  "kind": "copied",
+  "adset_id": "120247623720100591",
+  "reason": "S221 creative (V1-V3 Video Cream) live in 'S221 - V1-V3 - Video - Cream - Aris - Aldrin' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S221",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247678978380591"
+  ],
+  "reason": "S221 creative (V1-V3 Video Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S221",
+  "kind": "copied",
+  "adset_id": "120247640573580591",
+  "reason": "S221 creative (V1-V3 Video Cream) live in 'S221 - V1-V3 - Video - Cream - Aris - Aldrin' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S221",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247678978530591"
+  ],
+  "reason": "S221 creative (V1-V3 Video Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S221",
+  "kind": "copied",
+  "adset_id": "120248199421020591",
+  "ad_ids": [
+   "120248199421120591",
+   "120248199421150591"
+  ],
+  "reason": "S221 creative (V1-V3 Video Cream) live in 'Quiz Funnel Winners' (ABO: Cream Test Campaign USA - Excl. all)."
+ },
+ {
+  "batch": "S223",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768940591",
+   "120247944768960591"
+  ],
+  "reason": "S223 creative (V1-V3 Video Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S226",
+  "kind": "copied",
+  "adset_id": "120247640573560591",
+  "reason": "S226 creative (C1-C10 Image Cream) live in 'S226 - C1-C10 - Image - Cream - Jus Santos -' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S226",
+  "kind": "copied",
+  "adset_id": "120248099661380591",
+  "ad_ids": [
+   "120248124743710591"
+  ],
+  "reason": "S226 creative (C1-C10 Image Cream) live in 'Week_43_winners - cream - usa' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S245",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168830591"
+  ],
+  "reason": "S245 creative (C1-C3 Image Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S245",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479020591"
+  ],
+  "reason": "S245 creative (C1-C3 Image Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S247",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120247958400970591"
+  ],
+  "reason": "S247 creative (C1-C4 Image Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S248",
+  "kind": "copied",
+  "adset_id": "120247621920800591",
+  "ad_ids": [
+   "120247944169550591"
+  ],
+  "reason": "S248 creative (C1-C3 LFS Stick) live in 'week_38_winner' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S248",
+  "kind": "copied",
+  "adset_id": "120247622003910591",
+  "ad_ids": [
+   "120247944169540591"
+  ],
+  "reason": "S248 creative (C1-C3 LFS Stick) live in 'week_38_winners' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S256",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768870591"
+  ],
+  "reason": "S256 creative (C1-C3 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S257",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792400591"
+  ],
+  "reason": "S257 creative (V1-V3 Video Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S257",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168590591"
+  ],
+  "reason": "S257 creative (V1-V3 Video Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S257",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479110591"
+  ],
+  "reason": "S257 creative (V1-V3 Video Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S258",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792380591",
+   "120247944769000591"
+  ],
+  "reason": "S258 creative (C1-C4 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S258",
+  "kind": "copied",
+  "adset_id": "120247958381000591",
+  "ad_ids": [
+   "120247968938100591",
+   "120247968941700591"
+  ],
+  "reason": "S258 creative (C1-C4 Image Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S258",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120247968938090591",
+   "120247968941690591"
+  ],
+  "reason": "S258 creative (C1-C4 Image Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S259",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168940591"
+  ],
+  "reason": "S259 creative (C1-C3 GIF Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S259",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479040591"
+  ],
+  "reason": "S259 creative (C1-C3 GIF Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S262",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792480591"
+  ],
+  "reason": "S262 creative (C1-C3 LFS Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S263",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768980591",
+   "120247944768860591"
+  ],
+  "reason": "S263 creative (C1-C4 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S263",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168990591"
+  ],
+  "reason": "S263 creative (C1-C4 Image Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S263",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479250591"
+  ],
+  "reason": "S263 creative (C1-C4 Image Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S265",
+  "kind": "copied",
+  "adset_id": "120247958381000591",
+  "ad_ids": [
+   "120247997546700591",
+   "120247997546690591"
+  ],
+  "reason": "S265 creative (V1-V8 Video Stick) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S265",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247997534670591"
+  ],
+  "reason": "S265 creative (V1-V8 Video Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S265",
+  "kind": "copied",
+  "adset_id": "120247968525770591",
+  "ad_ids": [
+   "120247997534680591"
+  ],
+  "reason": "S265 creative (V1-V8 Video Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S265",
+  "kind": "copied",
+  "adset_id": "120248199421020591",
+  "ad_ids": [
+   "120248199421140591"
+  ],
+  "reason": "S265 creative (V1-V8 Video Stick) live in 'Quiz Funnel Winners' (ABO: Cream Test Campaign USA - Excl. all)."
+ },
+ {
+  "batch": "S267",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768930591",
+   "120247944792440591"
+  ],
+  "reason": "S267 creative (C1-C3 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S267",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247847868000591"
+  ],
+  "reason": "S267 creative (C1-C3 Image Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S267",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247847868030591"
+  ],
+  "reason": "S267 creative (C1-C3 Image Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S275",
+  "kind": "copied",
+  "adset_id": "120248291350260591",
+  "ad_ids": [
+   "120248327118450591"
+  ],
+  "reason": "S275 creative (V1-V5 UGC Cream) live in 'Week_45_winners_usa (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S275",
+  "kind": "copied",
+  "adset_id": "120248291362420591",
+  "ad_ids": [
+   "120248327118440591"
+  ],
+  "reason": "S275 creative (V1-V5 UGC Cream) live in 'Week_45_winners_uk/ca/aus/nz (getvoana)' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S276",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768990591"
+  ],
+  "reason": "S276 creative (V1-V5 UGC Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S276",
+  "kind": "copied",
+  "adset_id": "120247640467630591",
+  "ad_ids": [
+   "120247861667390591"
+  ],
+  "reason": "S276 creative (V1-V5 UGC Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S276",
+  "kind": "copied",
+  "adset_id": "120247640573790591",
+  "ad_ids": [
+   "120247861667380591"
+  ],
+  "reason": "S276 creative (V1-V5 UGC Cream) live in 'W38_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S286",
+  "kind": "copied",
+  "adset_id": "120247968525760591",
+  "ad_ids": [
+   "120247968557060591"
+  ],
+  "reason": "S286 creative (V1-V3 Video Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S286",
+  "kind": "copied",
+  "adset_id": "120247968525770591",
+  "ad_ids": [
+   "120247968557050591"
+  ],
+  "reason": "S286 creative (V1-V3 Video Stick) live in 'Week_42_winners_Stick' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S288",
+  "kind": "copied",
+  "adset_id": "120247621920800591",
+  "ad_ids": [
+   "120247944179800591"
+  ],
+  "reason": "S288 creative (C1-C6 LFS Stick) live in 'week_38_winner' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S288",
+  "kind": "copied",
+  "adset_id": "120247622003910591",
+  "ad_ids": [
+   "120247944179790591"
+  ],
+  "reason": "S288 creative (C1-C6 LFS Stick) live in 'week_38_winners' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S290",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768890591"
+  ],
+  "reason": "S290 creative (V1-V3 Video Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S290",
+  "kind": "copied",
+  "adset_id": "120247958381000591",
+  "ad_ids": [
+   "120247968956010591",
+   "120247968970810591",
+   "120247968944730591",
+   "120247968952110591"
+  ],
+  "reason": "S290 creative (V1-V3 Video Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S290",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120247968970920591",
+   "120247968956080591",
+   "120247968952130591",
+   "120247968944740591"
+  ],
+  "reason": "S290 creative (V1-V3 Video Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S292",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944768920591",
+   "120247944792540591"
+  ],
+  "reason": "S292 creative (C1-C3 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S294",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792510591"
+  ],
+  "reason": "S294 creative (C1-C4 Image Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S295",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247916477330591"
+  ],
+  "reason": "S295 creative (C1-C3 GIF Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S296",
+  "kind": "graveyard",
+  "adset_id": "120247589769800591",
+  "ad_ids": [
+   "120247944792490591"
+  ],
+  "reason": "S296 creative (C1-C3 GIF Cream) copied into the Evergreen - Graveyard - CREAM - UK/CA/NZ graveyard."
+ },
+ {
+  "batch": "S297",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577169100591"
+  ],
+  "reason": "S297 creative (V1-V3 Video Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S297",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479170591"
+  ],
+  "reason": "S297 creative (V1-V3 Video Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S315",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168710591"
+  ],
+  "reason": "S315 creative (V1-V3 Video Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S315",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577478980591"
+  ],
+  "reason": "S315 creative (V1-V3 Video Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S318",
+  "kind": "copied",
+  "adset_id": "120247924557800591",
+  "reason": "S318 creative (V1-V5 Video Cream) live in 'S318 - V1-V5 - Video - Cream - Aris - Peter E' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S323",
+  "kind": "copied",
+  "adset_id": "120248099661380591",
+  "ad_ids": [
+   "120248100819850591"
+  ],
+  "reason": "S323 creative (V1-V3 UGC Cream) live in 'Week_43_winners - cream - usa' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S323",
+  "kind": "copied",
+  "adset_id": "120248099701500591",
+  "ad_ids": [
+   "120248100819860591"
+  ],
+  "reason": "S323 creative (V1-V3 UGC Cream) live in 'Week_43_winners - cream - uk/nz/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S324",
+  "kind": "copied",
+  "adset_id": "120248099661380591",
+  "ad_ids": [
+   "120248124662590591"
+  ],
+  "reason": "S324 creative (V1-V3 UGC Cream) live in 'Week_43_winners - cream - usa' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S329",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168690591"
+  ],
+  "reason": "S329 creative (V1-V3 UGC Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S329",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479130591"
+  ],
+  "reason": "S329 creative (V1-V3 UGC Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S333",
+  "kind": "copied",
+  "adset_id": "120247958386630591",
+  "ad_ids": [
+   "120248046093640591"
+  ],
+  "reason": "S333 creative (V1-V3 UGC Cream) live in 'Week_42_winners' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S333",
+  "kind": "copied",
+  "adset_id": "120248199421020591",
+  "ad_ids": [
+   "120248199421100591",
+   "120248199421130591"
+  ],
+  "reason": "S333 creative (V1-V3 UGC Cream) live in 'Quiz Funnel Winners' (ABO: Cream Test Campaign USA - Excl. all)."
+ },
+ {
+  "batch": "S344",
+  "kind": "copied",
+  "adset_id": "120248577570590591",
+  "ad_ids": [
+   "120248577708890591"
+  ],
+  "reason": "S344 creative (V1-V4 UGC Stick) live in 'Week_47_Winners_STICK_USA' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S344",
+  "kind": "copied",
+  "adset_id": "120248577698980591",
+  "ad_ids": [
+   "120248577838620591"
+  ],
+  "reason": "S344 creative (V1-V4 UGC Stick) live in 'Week_47_Winners_STICK_nz/aus/ca/uk' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S349",
+  "kind": "copied",
+  "adset_id": "120248577570590591",
+  "ad_ids": [
+   "120248577708870591"
+  ],
+  "reason": "S349 creative (C1-C7 Image Stick) live in 'Week_47_Winners_STICK_USA' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S349",
+  "kind": "copied",
+  "adset_id": "120248577698980591",
+  "ad_ids": [
+   "120248577838600591"
+  ],
+  "reason": "S349 creative (C1-C7 Image Stick) live in 'Week_47_Winners_STICK_nz/aus/ca/uk' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S358",
+  "kind": "copied",
+  "adset_id": "120248100212420591",
+  "ad_ids": [
+   "120248308219580591"
+  ],
+  "reason": "S358 creative (C1-C6 Image Stick) live in 'Week_45_winner_stick_usa' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S358",
+  "kind": "copied",
+  "adset_id": "120248100247880591",
+  "ad_ids": [
+   "120248308219570591"
+  ],
+  "reason": "S358 creative (C1-C6 Image Stick) live in 'Week_45_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S359",
+  "kind": "copied",
+  "adset_id": "120248291350260591",
+  "ad_ids": [
+   "120248307251250591"
+  ],
+  "reason": "S359 creative (V1-V4 AI UGC Cream) live in 'Week_45_winners_usa (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S359",
+  "kind": "copied",
+  "adset_id": "120248291362420591",
+  "ad_ids": [
+   "120248307251240591"
+  ],
+  "reason": "S359 creative (V1-V4 AI UGC Cream) live in 'Week_45_winners_uk/ca/aus/nz (getvoana)' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S359",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168640591"
+  ],
+  "reason": "S359 creative (V1-V4 AI UGC Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S359",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479200591"
+  ],
+  "reason": "S359 creative (V1-V4 AI UGC Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S361",
+  "kind": "copied",
+  "adset_id": "120248100212420591",
+  "ad_ids": [
+   "120248355312200591"
+  ],
+  "reason": "S361 creative (V1-V4 AI UGC Stick) live in 'Week_45_winner_stick_usa' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S361",
+  "kind": "copied",
+  "adset_id": "120248100247880591",
+  "ad_ids": [
+   "120248355312210591"
+  ],
+  "reason": "S361 creative (V1-V4 AI UGC Stick) live in 'Week_45_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S361",
+  "kind": "reactivated",
+  "adset_id": "120248142926440591",
+  "reason": "The killed S361 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S361",
+  "kind": "copied",
+  "adset_id": "120248486256010591",
+  "ad_ids": [
+   "120248486318840591",
+   "120248486318850591"
+  ],
+  "reason": "S361 creative (V1-V4 AI UGC Stick) live in 'Week_46_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S361",
+  "kind": "copied",
+  "adset_id": "120248486279290591",
+  "ad_ids": [
+   "120248486318880591",
+   "120248486318860591"
+  ],
+  "reason": "S361 creative (V1-V4 AI UGC Stick) live in 'Week_46_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S363",
+  "kind": "copied",
+  "adset_id": "120248179811890591",
+  "ad_ids": [
+   "120248210342680591"
+  ],
+  "reason": "S363 creative (C1-C6 Image Cream) live in 'week_44_winners_uk/ca/nz/aus' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S363",
+  "kind": "copied",
+  "adset_id": "120248179833910591",
+  "ad_ids": [
+   "120248210342670591"
+  ],
+  "reason": "S363 creative (C1-C6 Image Cream) live in 'week_44_winners_usa' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S371",
+  "kind": "copied",
+  "adset_id": "120248100212420591",
+  "ad_ids": [
+   "120248308036560591",
+   "120248308036570591"
+  ],
+  "reason": "S371 creative (C1-C6 Image Stick) live in 'Week_45_winner_stick_usa' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S394",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577478960591"
+  ],
+  "reason": "S394 creative (V1-V4 UGC Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S395",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577169190591"
+  ],
+  "reason": "S395 creative (N/A Video Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S395",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479520591"
+  ],
+  "reason": "S395 creative (N/A Video Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S406",
+  "kind": "reactivated",
+  "adset_id": "120248259022800591",
+  "reason": "The killed S406 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S406",
+  "kind": "copied",
+  "adset_id": "120248291350260591",
+  "ad_ids": [
+   "120248307382940591"
+  ],
+  "reason": "TA S406 Image Cream offer ad, the creative of the killed S406 ad set 120248259022800591, copied into a Cream Week_45 winners set."
+ },
+ {
+  "batch": "S406",
+  "kind": "copied",
+  "adset_id": "120248291362420591",
+  "ad_ids": [
+   "120248307382930591"
+  ],
+  "reason": "TA S406 Image Cream offer ad, the creative of the killed S406 ad set 120248259022800591, copied into a Cream Week_45 winners set."
+ },
+ {
+  "batch": "S414",
+  "kind": "copied",
+  "adset_id": "120248291350260591",
+  "ad_ids": [
+   "120248327243560591"
+  ],
+  "reason": "S414 creative (C1-C6 Image Cream) live in 'Week_45_winners_usa (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S414",
+  "kind": "copied",
+  "adset_id": "120248291362420591",
+  "ad_ids": [
+   "120248327243570591"
+  ],
+  "reason": "S414 creative (C1-C6 Image Cream) live in 'Week_45_winners_uk/ca/aus/nz (getvoana)' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S416",
+  "kind": "reactivated",
+  "adset_id": "120248500676080591",
+  "reason": "The killed S416 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S422",
+  "kind": "reactivated",
+  "adset_id": "120248327534400591",
+  "reason": "The killed S422 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S422",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479190591"
+  ],
+  "reason": "S422 PG29 Image Cream offer ad, same creative as the killed (now reactivated) S422 ad set, copied into Week_47_Winners_Cream."
+ },
+ {
+  "batch": "S427",
+  "kind": "copied",
+  "adset_id": "120248577570590591",
+  "ad_ids": [
+   "120248577708850591"
+  ],
+  "reason": "S427 NURSE Image Stick sleep ad, same creative as the S427 Stick ad set killed 11-18, copied into Week_47_Winners_STICK."
+ },
+ {
+  "batch": "S427",
+  "kind": "copied",
+  "adset_id": "120248577698980591",
+  "ad_ids": [
+   "120248577838630591"
+  ],
+  "reason": "S427 NURSE Image Stick sleep ad, same creative as the S427 Stick ad set killed 11-18, copied into Week_47_Winners_STICK."
+ },
+ {
+  "batch": "S430",
+  "kind": "reactivated",
+  "adset_id": "120248367672650591",
+  "reason": "The killed S430 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S430",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479400591"
+  ],
+  "reason": "S430 creative (C1-C6 Image Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S434",
+  "kind": "reactivated",
+  "adset_id": "120248379554540591",
+  "reason": "The killed S434 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S453",
+  "kind": "copied",
+  "adset_id": "120248486256010591",
+  "ad_ids": [
+   "120248499849850591"
+  ],
+  "reason": "S453 creative (C1-C3 Image Stick) live in 'Week_46_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S453",
+  "kind": "copied",
+  "adset_id": "120248486279290591",
+  "ad_ids": [
+   "120248499849980591"
+  ],
+  "reason": "S453 creative (C1-C3 Image Stick) live in 'Week_46_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S457",
+  "kind": "reactivated",
+  "adset_id": "120248365704230591",
+  "reason": "The killed S457 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S459",
+  "kind": "copied",
+  "adset_id": "120248486256010591",
+  "ad_ids": [
+   "120248499788390591"
+  ],
+  "reason": "S459 creative (V1-V5 UGC Stick) live in 'Week_46_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S459",
+  "kind": "copied",
+  "adset_id": "120248486279290591",
+  "ad_ids": [
+   "120248499788380591"
+  ],
+  "reason": "S459 creative (V1-V5 UGC Stick) live in 'Week_46_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S469",
+  "kind": "copied",
+  "adset_id": "120248486256010591",
+  "ad_ids": [
+   "120248499768320591"
+  ],
+  "reason": "S469 creative (V1-V3 UGC Stick) live in 'Week_46_winners_Stick' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S469",
+  "kind": "copied",
+  "adset_id": "120248486279290591",
+  "ad_ids": [
+   "120248499768310591"
+  ],
+  "reason": "S469 creative (V1-V3 UGC Stick) live in 'Week_46_winner_stick_uk/nz/ca/aus' (14-07-26 | Scaling campaign - STICK - UK)."
+ },
+ {
+  "batch": "S472",
+  "kind": "copied",
+  "adset_id": "120248577082830591",
+  "ad_ids": [
+   "120248577168560591"
+  ],
+  "reason": "S472 creative (C1-C3 Image Cream) live in 'Week_47_Winners_Cream_USA (getvoana)' (16-09-26 | Scaling campaign - CREAM - US)."
+ },
+ {
+  "batch": "S472",
+  "kind": "copied",
+  "adset_id": "120248577356660591",
+  "ad_ids": [
+   "120248577479090591"
+  ],
+  "reason": "S472 creative (C1-C3 Image Cream) live in 'Week_47_Winners_Cream_nz/uk/aus/ca' (16-09-26 | Scaling campaign - CREAM - UK)."
+ },
+ {
+  "batch": "S487",
+  "kind": "reactivated",
+  "adset_id": "120248420648190591",
+  "reason": "The killed S487 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S494",
+  "kind": "reactivated",
+  "adset_id": "120248442175820591",
+  "reason": "The killed S494 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S511",
+  "kind": "reactivated",
+  "adset_id": "120248497660750591",
+  "reason": "The killed S511 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S522",
+  "kind": "reactivated",
+  "adset_id": "120248478842230591",
+  "reason": "The killed S522 ad set is running again under the same ad set id."
+ },
+ {
+  "batch": "S522",
+  "kind": "copied",
+  "adset_id": "120248577570590591",
+  "ad_ids": [
+   "120248577708770591"
+  ],
+  "reason": "S522 creative (C1-C3 Image Stick) live in 'Week_47_Winners_STICK_USA' (14-07-26 | Scaling campaign - STICK - US)."
+ },
+ {
+  "batch": "S522",
+  "kind": "copied",
+  "adset_id": "120248577698980591",
+  "ad_ids": [
+   "120248577838650591"
+  ],
+  "reason": "S522 creative (C1-C3 Image Stick) live in 'Week_47_Winners_STICK_nz/aus/ca/uk' (14-07-26 | Scaling campaign - STICK - UK)."
+ }
+]
