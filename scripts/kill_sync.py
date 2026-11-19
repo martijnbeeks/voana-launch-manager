@@ -27,6 +27,10 @@ Inbox contract (written by the Claude runbook, one file per account):
       killed ads AND for every ad in a killed ad set, each with at least:
       id, name, adset_id, adset_name, effective_status, created_time,
       amount_spent, impressions, clicks, ctr, cpc, purchases, cost_per_purchase
+  state/inbox/active_ads_<account_id>.json   every ACTIVE ad in the account (step
+      2d). Also the kill guard: a batch whose code is still on a live ad in
+      another ad set (a copy in a winners ad set) is NOT set to killed, and
+      neither is any batch when this file is missing for an account.
 Values may be the MCP's localized display strings ("$20.00 USD", "2,56%") —
 they are parsed leniently.
 """
@@ -370,6 +374,21 @@ CREATIVE_RE = re.compile(r"_(C\d+|V\d+(?:\.\d+)?)$")   # V1.1 = picture 1 & ad c
 def batch_prefix(name: str) -> str | None:
     m = BATCH_RE.match(name.strip())
     return m.group(1) if m else None
+
+
+def live_elsewhere(batch_no: str, live: dict[str, dict], killed_adset_id: str) -> list[dict]:
+    """Live ads of this batch outside the ad set that was just switched off.
+
+    A test ad set is killed, but its best creative is often copied into a
+    scaling ad set first (S460 V1 → Week_46_winners, 2026-11-18). The copy keeps
+    the batch code in its AD name ("TA S460 - COMP - …_V1 IMP"), so the batch
+    is not dead and its task must not say "killed". Graveyard campaigns are
+    parked on purpose and do not count, as in the comeback audit."""
+    code = re.compile(rf"(?<![\w#]){re.escape(batch_no)}(?!\d)")
+    return [a for a in live.values()
+            if code.search(a.get("name") or "")
+            and str(a.get("adset_id")) != str(killed_adset_id)
+            and "graveyard" not in (a.get("campaign_name") or "").lower()]
 
 
 def creative_no(ad_name: str) -> str:
@@ -924,6 +943,11 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
     new_rows, embeds, problems, notes, alerts = [], [], [], [], []
     failed_clickup = 0
     now = dt.datetime.now()
+    # Every live ad in every account (runbook step 2d). Without that list we
+    # cannot tell whether a batch still runs somewhere, so no task is set to
+    # killed: a missing file holds the status back, it never assumes "dead".
+    live_ads = active_ads(inbox)
+    live_known = all((inbox / f"active_ads_{a}.json").exists() for a in run_accounts(inbox))
 
     for account, acc in run_accounts(inbox).items():
         events = read_json(inbox / f"kills_{account}.json", [])
@@ -999,6 +1023,10 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
             batch_no = batch_prefix(adset_name) or adset_name[:12]
             if only and batch_no not in only:
                 continue
+            running = live_elsewhere(batch_no, live_ads, obj_id) if kind == "adset" else []
+            if running:
+                print(f"    still live elsewhere: {len(running)} ad(s) in "
+                      f"{', '.join(sorted({a.get('adset_name') or '?' for a in running}))[:120]}")
             cheap = cheap_ads(ads)
 
             # ── ClickUp. Everything for one kill is isolated: a failure here is
@@ -1049,6 +1077,12 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                     lines += ([] if rows else [""]) + [f"Not delivered: {', '.join(idle)}"]
                 if cheap:
                     lines += ["", f"🟢 CPA under ${CHEAP_CPA_MAX:.0f}:", *cheap]
+                if running:
+                    where = sorted({a.get("adset_name") or "?" for a in running})
+                    lines += ["", f"▶ Still running in {len(where)} other ad set(s): {', '.join(where)}",
+                              "Task status left as is — the batch is not dead."]
+                elif not live_known:
+                    lines += ["", "Task status left as is — the live ads could not be checked this run."]
                 lines += ["", "→ fill in 📖 Learnings"]
                 cu_comment(task["id"], "\n".join(lines), dry)
                 # every ad in the set is dead now; ads killed earlier keep their own ✖ date.
@@ -1063,7 +1097,11 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 table = [ad_line(a, when) for a in ads if ad_key(a.get("name", "")) not in earlier]
                 cu_set_field(task["id"], cfg["clickup"]["fields"]["result"], merge_result(prior, table, result), dry)
                 cur = tasks.field_value(task, cfg["clickup"]["fields"]["status"]) or ""
-                if cur in cfg["clickup"]["overridable_statuses"]:
+                hold = bool(running) or not live_known
+                if hold:
+                    print("    verdict fields left as is: " + ("batch still live elsewhere" if running
+                                                              else "live ads not checked"))
+                elif cur in cfg["clickup"]["overridable_statuses"]:
                     cu_set_field(task["id"], cfg["clickup"]["fields"]["status"],
                                  cfg["clickup"]["status_options"]["Losing Ad"], dry)
                 else:
@@ -1102,6 +1140,10 @@ def process(dry: bool, inbox: Path | None = None, replay: bool = False,
                 protected = {str(s).strip().lower() for s in cfg["clickup"]["protected_task_statuses"]}
                 if cur_status in protected:
                     print(f"    task status left as '{cur_status}' (human-set)")
+                elif hold:
+                    notes.append(f"{batch_no} · ad set killed but " + (
+                        f"still live in {', '.join(sorted({a.get('adset_name') or '?' for a in running}))[:150]}"
+                        if running else "live ads not checked") + f" — not set to killed · {task_url(task)}")
                 else:
                     why = cu_set_status(task, cfg["clickup"]["batch_kill_task_status"], dry)
                     if why:
